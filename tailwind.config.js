@@ -14,6 +14,9 @@ module.exports = {
         primary: {
           blue: "#46B2C8",
           "blue-light": "#EEF4F5",
+          gray: "#C4C4C4",
+          "gray-light": "#796D6D",
+          bg: "rgba(239, 248, 249, 0.7)",
         },
       },
     },

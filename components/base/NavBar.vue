@@ -1,5 +1,7 @@
 <template>
-  <div class="py-3 px-6 md:px-12 flex items-center justify-between">
+  <div
+    class="py-3 px-6 md:px-12 flex items-center justify-between sticky top-0 bg-white"
+  >
     <div class="w-24 xs:w-40 h-10 bg-primary-blue rounded cursor-pointer"></div>
     <div
       class="bg-primary-blue-light px-3 py-2 hidden lg:flex justify-between items-center rounded w-96"
@@ -17,7 +19,37 @@
         Become a seller
       </h1>
       <div>
-        <div class="w-7 h-7 rounded-full bg-black cursor-pointer"></div>
+        <div
+          @click="toggleDropdown"
+          class="w-7 h-7 rounded-full bg-black cursor-pointer"
+        ></div>
+
+        <div
+          v-if="dropdown"
+          @click="toggleDropdown"
+          class="bg-transparent fixed inset-0"
+        >
+          <div
+            @click.stop=""
+            class="bg-white w-60 absolute top-20 right-4 rounded-sm"
+          >
+            <div class="px-4 py-4">
+              <button
+                class="bg-primary-blue py-2 text-white font-light w-full rounded-sm"
+              >
+                Sign In
+              </button>
+            </div>
+            <div class="border-t"></div>
+            <div class="px-4 py-4">
+              <ul>
+                <li class="cursor-pointer mb-4">My Account</li>
+                <li class="cursor-pointer mb-4">Orders</li>
+                <li class="cursor-pointer mb-4">Wishlist</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
       <img
         class="cursor-pointer"
@@ -27,3 +59,18 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      dropdown: false,
+    };
+  },
+  methods: {
+    toggleDropdown() {
+      this.dropdown = !this.dropdown;
+    },
+  },
+};
+</script>
