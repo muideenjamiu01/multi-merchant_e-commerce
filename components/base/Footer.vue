@@ -1,7 +1,5 @@
-<template>
-  <div
-    class="flex flex-col md:flex-row space-y-4 md:space-y-0 items-center justify-evenly text-sm py-4"
-  >
+<template> 
+  <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 items-center justify-evenly fixed bottom-0 w-full text-sm py-4">
     <div class="flex items-center gap-5">
       <img
         class="cursor-pointer"
