@@ -1,6 +1,6 @@
 <template>
   <div
-    class="py-3 px-6 md:px-12 flex items-center justify-between sticky top-0 bg-white"
+    class="py-3 px-4 flex items-center justify-between sticky top-0 bg-white"
   >
     <div class="w-24 xs:w-40 h-10 bg-primary-blue rounded cursor-pointer"></div>
     <div
