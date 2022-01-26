@@ -3,18 +3,21 @@
     <div class="skewed-box">
     </div>
      <div class="signup">
-        <!-- <img alt="youstore logo" width="150" height="30" src="./assets/logo.jpg"> -->
-        <div class="skewed-logo">
+          <img src="../../assets/images/logos/login-logo.svg" alt="login-logo">
+
+        <!-- <div class="skewed-logo ">
           <p>YOUSTORE</p>
-        </div>
-        <p class="heading"> Create your account</p>
-        <input type="text" placeholder="Email Address">
-        <input type="text" placeholder="Password">
-        <!-- <input type="text" placeholder="Confirm Password"> -->
-        <button>LOGIN</button>
-        <p>Don't have an account? &nbsp; <span> <nuxt-link to='/Signup'>Create your account here</nuxt-link>  </span> </p>
-        <p>By clicking the signup button you agree to our</p>
-        <p><span> <a href=""> Conditions Of Use</a> </span></p>
+        </div> -->
+        <p class="heading ">Sign in to your acount</p>
+
+          
+
+
+        <input type="email" placeholder="Email Address">
+        <input type="password" placeholder="Password">
+        <button class="bg-primary-blue flex justify-center items-center">LOGIN</button>
+        <p>Don't have an account? &nbsp; <span> <nuxt-link to='/Signup'>Sign up here</nuxt-link>  </span> </p>
+        <p><span> <nuxt-link to=''> Forgot your password?</nuxt-link> </span></p>
       </div>
       <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 
@@ -30,23 +33,11 @@ export default {
 }
 </script>
 <style>
-  body {
-    margin: 0;
-  }
-
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-  }
 
 </style>
 
 
 <style>
-.signup__page .heading {
-  align-self: center;
-  font-weight: bold;
-  margin: 1rem 1rem 2rem 1rem;
-}
 
 
 .signup__page {
@@ -62,26 +53,6 @@ export default {
   width: 100%;
   height: 100%;
   clip-path: polygon(0 0, 100% 0, 100% 34%, 0 56%);
-}
-
-.skewed-logo {
-  background-color: #45b2c7;
-  clip-path: polygon(100% 0, 100% 74%, 70% 100%, 0 100%, 0 0);
-  width: 8rem;
-  padding: 1rem 2rem 1rem 0rem;
-  height: 2rem;
-  border-radius: 8px;
-
-}
-
-.signup .skewed-logo p{
-  color: white;
-  padding: 0;
-  height: 100%;
-  margin: 0rem 0.7rem;
-  font-size: 1.5rem;
-  line-height: 2rem;
-
 }
 
 
@@ -117,7 +88,6 @@ export default {
   margin-bottom: 1rem;
   width:83%;
   height: 2rem;
-  background-color: #45b2c7;
   color: white;
   border-radius: 3px;
   outline: none;

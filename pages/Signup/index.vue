@@ -3,23 +3,19 @@
     <div class="skewed-box">
     </div>
      <div class="signup">
-        <!-- <img alt="youstore logo" width="150" height="30" src="./assets/logo.jpg"> -->
-        <div class="skewed-logo">
-          <p>YOUSTORE</p>
-        </div>
+                <img src="../../assets/images/logos/login-logo.svg" alt="login-logo">
+
         <p class="heading"> Create your account</p>
+
         <input type="text" placeholder="Your Name">
-        <input type="text" placeholder="Email Address">
-        <input type="text" placeholder="Password">
-        <input type="text" placeholder="Confirm Password">
-        <button>SIGNUP</button>
+        <input type="email" placeholder="Email Address">
+        <input type="password" placeholder="Password">
+        <input type="password" placeholder="Confirm Password">
+        <button class="flex justify-center items-center bg-primary-blue" >SIGNUP</button>
         <p>Already have an account? &nbsp; <span> <nuxt-link to="/Login">Sign-In</nuxt-link>  </span> </p>
         <p>By clicking the signup button you agree to our</p>
         <p><span> <a href=""> Conditions Of Use</a> </span></p>
       </div>
-      <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-
- 
   </div>
 </template>
 
@@ -114,12 +110,9 @@ export default {
 }
 
 .signup button{
-  padding: 0.5rem 0rem 0.5rem 0.5rem;
   margin-bottom: 1rem;
   width:83%;
   height: 2rem;
-  background-color: #45b2c7;
-  color: white;
   border-radius: 3px;
   outline: none;
   border: none;

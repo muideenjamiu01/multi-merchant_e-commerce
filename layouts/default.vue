@@ -1,16 +1,9 @@
 <template>
-  <div>
-      <nuxt />
-      <Footer/>
+  <div class="max-w-7xl mx-auto">
+    <NavBar />
+    <nuxt class="min-h-screen" />
+    <Footer />
   </div>
 </template>
 
-<script>
 
-import Footer  from "../components/base/Footer.vue";
-export default {
-  components: {
-    Footer
-  }
-}
-</script>

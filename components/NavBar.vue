@@ -1,5 +1,7 @@
 <template>
-  <div class="py-3 px-6 md:px-12 flex items-center justify-between sticky top-0 bg-white">
+  <div
+    class="py-3 px-4 flex items-center justify-between sticky top-0 bg-white"
+  >
     <div class="w-24 xs:w-40 h-10 bg-primary-blue rounded cursor-pointer"></div>
     <div class="bg-primary-blue-light px-3 py-2 hidden lg:flex justify-between items-center rounded w-96">
       <input

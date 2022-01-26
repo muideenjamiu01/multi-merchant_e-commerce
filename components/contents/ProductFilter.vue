@@ -1,5 +1,5 @@
 <template>
-  <div class="w-72 bg-primary-blue-light py-4 px-6">
+  <div class="w-72 bg-primary-blue-light py-4 px-6 hidden xl:block mr-8">
     <div class="mb-6">
       <h1 class="text-lg font-light">Categories</h1>
       <div class="px-4">
