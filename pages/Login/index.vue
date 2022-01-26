@@ -29,7 +29,7 @@
 // import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  
+  layout: 'auth'
 }
 </script>
 <style>
