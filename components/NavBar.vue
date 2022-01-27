@@ -35,9 +35,9 @@
             <div class="border-t"></div>
             <div class="px-4 py-4">
               <ul>
-                <li class="cursor-pointer mb-4">My Account</li>
-                <li class="cursor-pointer mb-4">Orders</li>
-                <li class="cursor-pointer mb-4">Wishlist</li>
+                <NuxtLink to="/customer/profile"><li class="cursor-pointer mb-4">My Account</li></NuxtLink>
+                <NuxtLink to="/customer/orders"><li class="cursor-pointer mb-4">Orders</li></NuxtLink>
+                <NuxtLink to="/customer/wishlist"><li class="cursor-pointer mb-4">Wishlist</li></NuxtLink>
               </ul>
             </div>
           </div>
