@@ -28,6 +28,9 @@ module.exports = {
     minWidth: {
       88: "22rem",
     },
+    fontFamily: {
+      'br-sonoma': ["'BR Sonoma'"]
+    }
   },
   plugins: [],
 };
