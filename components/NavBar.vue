@@ -33,19 +33,19 @@
             <div class="border-t"></div>
             <div class="px-4 py-4">
               <ul>
-                <nuxt-link to='/merchant/settings' ><li class="cursor-pointer mb-4">My Account</li></nuxt-link>
-                <nuxt-link to='/customer/orders'><li class="cursor-pointer mb-4">Orders</li></nuxt-link>
-                <nuxt-link to='/customer/wishlist'> <li class="cursor-pointer mb-4">Wishlist</li></nuxt-link>
+                <NuxtLink to="/customer/profile"><li class="cursor-pointer mb-4">My Account</li></NuxtLink>
+                <NuxtLink to="/customer/orders"><li class="cursor-pointer mb-4">Orders</li></NuxtLink>
+                <NuxtLink to="/customer/wishlist"><li class="cursor-pointer mb-4">Wishlist</li></NuxtLink>
               </ul>
             </div>
           </div>
         </div>
       </div>
-      <img
+      <NuxtLink to="/cart"><img
         class="cursor-pointer"
         src="@/assets/images/icons/cart-icon.svg"
         alt="Checkout image"
-      />
+      /></NuxtLink>
     </div>
   </div>
 </template>

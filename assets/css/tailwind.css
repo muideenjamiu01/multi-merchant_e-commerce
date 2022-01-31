@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'BR Sonoma';
+    src: url(../fonts/BR-Sonoma-Light.otf);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'BR Sonoma';
+    src: url(../fonts/BR-Sonoma-Regular.otf);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'BR Sonoma';
+    src: url(../fonts/BR-Sonoma-Medium.otf);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'BR Sonoma';
+    src: url(../fonts/BR-Sonoma-SemiBold.otf);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'BR Sonoma';
+    src: url(../fonts/BR-Sonoma-Bold.otf);
+    font-weight: 700;
+}
