@@ -23,18 +23,10 @@
                     value="Primary address"
                     name="radio"
                     v-model="SelectedAddress"
-                    class="mr-2 hidden"
+                    class="mr-2 form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-primary-blue checked:border-primary-blue focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer"
                   />
                 </div>
-                <label
-                  for="primary-address"
-                  class="flex items-center cursor-pointer text-xl"
-                >
-                  <span
-                    class="w-8 h-8 inline-block mr-2 rounded-full border border-grey flex-no-shrink"
-                  ></span>
-                  Primary address</label
-                >
+                <label for="primary-address"> Primary address</label>
               </div>
             </div>
 
@@ -46,7 +38,7 @@
                     id="home-address"
                     value="Home address"
                     v-model="SelectedAddress"
-                    class="mr-2 bg-primary-blue"
+                    class="mr-2 form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-primary-blue checked:border-primary-blue focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer"
                   />
                 </div>
                 <label for="home-address">Home address</label>
@@ -142,7 +134,7 @@
                       id="auxillary-card"
                       value="Auxillary Card"
                       v-model="paymentMethod"
-                      class="mr-2"
+                      class="mr-2 form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-primary-blue checked:border-primary-blue focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer"
                     />
                   </div>
                   <label for="auxillary-card">Auxillary card</label>
@@ -156,7 +148,7 @@
                       id="main-account"
                       value="main-account"
                       v-model="paymentMethod"
-                      class="mr-2"
+                      class="mr-2 form-check-input appearance-none rounded-full h-4 w-4 border border-primary-blue bg-white checked:bg-primary-blue checked:border-primary-blue focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer"
                     />
                   </div>
                   <label for="main-account">Main account</label>
@@ -299,6 +291,7 @@
                             Make Order
                           </button>
                         </div>
+                        <div class="flex justify-center"></div>
                       </div>
                     </div>
                   </div>
