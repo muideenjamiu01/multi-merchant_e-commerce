@@ -43,11 +43,11 @@
           </div>
         </div>
       </div>
-      <img
+      <NuxtLink to="/cart"><img
         class="cursor-pointer"
         src="@/assets/images/icons/cart-icon.svg"
         alt="Checkout image"
-      />
+      /></NuxtLink>
     </div>
   </div>
 </template>
