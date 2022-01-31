@@ -1,7 +1,7 @@
 <template>
   <div>
-    <nuxt class="min-h-screen" />
-    <Footer />
+    <nuxt/>
+    <Footer/>
   </div>
 </template> 
 
