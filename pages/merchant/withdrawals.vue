@@ -1,7 +1,7 @@
 <template>
   <div>
-    <MerchantStats />
-    <MerchantTransfers />
-    <MerchantBeneficiaries />
+    <MerchantTransactionsStats />
+    <MerchantTransactionsTransfers />
+    <MerchantTransactionsBeneficiaries />
   </div>
 </template>
