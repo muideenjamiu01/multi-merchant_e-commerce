@@ -29,8 +29,11 @@ module.exports = {
       88: "22rem",
     },
     fontFamily: {
-      'br-sonoma': ["'BR Sonoma'"]
-    }
+      "br-sonoma": ["'BR Sonoma'"],
+    },
+    maxHeight: {
+      128: "32rem",
+    },
   },
   plugins: [],
 };
