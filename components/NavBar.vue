@@ -1,15 +1,13 @@
 <template>
-  <div
-    class="py-3 px-4 flex items-center justify-between sticky top-0 bg-white"
-  >
-    <div class="w-24 xs:w-40 h-10 bg-primary-blue rounded cursor-pointer"></div>
+  <div class="py-3 px-4 flex items-center justify-between sticky top-0 bg-white">
+    <nuxt-link to='/'><img src="../assets/images/logos/login-logo.svg" alt="login-logo"></nuxt-link>
     <div class="bg-primary-blue-light px-3 py-2 hidden lg:flex justify-between items-center rounded w-96">
       <input
         type="text"
         placeholder="Search Youstore"
         class="focus:outline-none bg-transparent w-full"
       />
-      <img class="cursor-pointer" src="@/assets/images/icons/search-icon.svg"/>
+      <nuxt-link to='/' ><img class="cursor-pointer" src="@/assets/images/icons/search-icon.svg"/></nuxt-link>
     </div>
 
     <div class="flex items-center gap-5">
@@ -26,7 +24,7 @@
         <div v-if="dropdown" @click="toggleDropdown" class="bg-transparent fixed inset-0">
           <div @click.stop="" class="bg-white w-60 absolute top-20 right-4 rounded-sm">
             <div class="px-4 py-4">
-              <nuxt-link to='/Login' > 
+              <nuxt-link to='/authentication/login' > 
                 <button class="bg-primary-blue py-2 text-white font-light w-full rounded-sm">
                   Sign In 
                 </button>
