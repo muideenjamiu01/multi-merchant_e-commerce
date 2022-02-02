@@ -10,7 +10,7 @@
         <input type="password" placeholder="Password">
         <input type="password" placeholder="Confirm Password">
         <button class="flex justify-center items-center bg-primary-blue text-white">SIGNUP</button>
-        <p>Already have an account? &nbsp;<span><nuxt-link to="/login">Sign-In</nuxt-link></span></p>
+        <p>Already have an account? &nbsp;<span><nuxt-link to="/authentication/login">Sign-In</nuxt-link></span></p>
         <p>By clicking the signup button you agree to our</p>
         <p><span> <a href="">Conditions Of Use</a> </span></p>
       </div>
@@ -23,7 +23,7 @@
   }
 </script>
 
-<style>
+<style  scoped>
 
 .signup__page .heading {
   align-self: center;
