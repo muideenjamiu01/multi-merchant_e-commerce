@@ -283,7 +283,7 @@
                       <div>
                         <div class="flex space-x-2 justify-center mt-16">
                           <button
-                            type="button"
+                            type ="button"
                             data-mdb-ripple="true"
                             data-mdb-ripple-color="light"
                             class="inline-block px-6 py-2.5 bg-primary-blue text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-primary-blue-dark hover:shadow-lg focus:bg-primary-blue focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-blue active:shadow-lg transition duration-150 ease-in-out"
@@ -359,21 +359,5 @@ export default {
 </script>
 
 <style>
-input[type="radio"] + label span {
-  transition: background 0.2s, transform 0.2s;
-}
 
-input[type="radio"] + label span:hover,
-input[type="radio"] + label:hover span {
-  transform: scale(1.2);
-}
-
-input[type="radio"]:checked + label span {
-  background-color: #46b2c8;
-  box-shadow: 0px 0px 0px 2px white inset;
-}
-
-input[type="radio"]:checked + label {
-  color: #46b2c8;
-}
 </style>
