@@ -14,10 +14,18 @@ module.exports = {
         primary: {
           blue: "#46B2C8",
           "blue-light": "#EEF4F5",
+          "blue-sharpen": "#ebf8fe",
+          "green-light": "#e8f8ea",
+          "gold-light": "#f8f6da",
+          "purple-light": "#fbeaf8",
+		  "purple-deep":"#da30b5",
           "blue-dark": "#0B4B58",
           gray: "#C4C4C4",
           "gray-light": "#796D6D",
           black: "#262626",
+		  gold:"#ABA519",
+		  green:"#1EB62D",
+		  purple:"#DA30B5"
         },
       },
     },
