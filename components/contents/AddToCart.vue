@@ -1,6 +1,6 @@
 <template>
 	<div class="container mx-auto">
-		<div class="bg-primary-blue-light">
+		<div class="bg-primary-blue-light p-4">
 			<div  class="mt-4 flex gap-4">
             <div>
               <img src="" alt="" class="w-28 h-28" />
