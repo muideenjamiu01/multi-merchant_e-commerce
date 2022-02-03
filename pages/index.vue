@@ -77,9 +77,9 @@
         </button>
       </div>
 
-      <div class="flex bg-black w-full h-fit mt-5 justify-between"> <!-- grid section-->
+      <div class="flex w-full h-fit mt-5 justify-between"> <!-- grid section-->
         
-        <main class="flex flex-col bg-rose-500 w-3/4 h-full mr-5 pr-5" > <!-- main grid contains 2 rows of 3 pictures each-->
+        <main class="flex flex-col bg-rose-500 w-3/4 h-full mr-5 pr-5"> <!-- main grid contains 2 rows of 3 pictures each-->
 
           <div class="flex flex-row bg-sky-500 w-full mt-5 mb-5">  <!-- main grid top row contains 3 colums with 4 boxes inside-->
 
@@ -124,7 +124,7 @@
           
             <div class="flex flex-col w-full sm:w-1/3 h-3/6 bg-white shadow-lg mr-5 mb-5"> <!-- card 2-->
 
-                <h1>FASHION</h1>
+                <h1>Phones & Tablets</h1>
                 <div class="flex w-full">
                   <div class="mb-3 mr-3">
                     <img
@@ -163,7 +163,7 @@
             
             <div class="flex flex-col w-full sm:w-1/3 h-3/6 bg-white shadow-lg mr-5 mb-5"> <!-- card 3-->
 
-                <h1>FASHION</h1>
+                <h1>Computing</h1>
                 <div class="flex w-full">
                   <div class="mb-3 mr-3">
                     <img
@@ -323,13 +323,19 @@
 
         </main>
 
-        <aside class="flex flex-col bg-violet-500 w-1/4 h-full"> <!-- aside grid contains 3 rows -->
-          <div class="bg-sky-500 h-1/4 my-5">
-          <h1>Sign in for the best experience</h1>
-          
+        <aside class="flex flex-col w-1/4 h-full text-center justify-between px-4 font-bold"> <!-- aside grid contains 3 rows -->
+          <div class=" h-1/3 my-5 px-10">
+            <h1 class="my-5 mx-5" >Sign in for the best experience</h1>
+            <ButtonsSignin/>
           </div>
-          <div class="bg-green-500 h-1/4 my-5"></div>
-          <div class="bg-lime-500 h-1/4 my-5"></div>
+          <div class="bg-pink-200 h-1/3 px-50 my-5">
+            <h1 class="my-5 px-4">Delivered to your doorstep wherever you are in Nigeria</h1>
+            <img class="my-5 px-4" src="../assets/images/test-images/people.png" alt="">
+          </div>
+          <div class="flex flex-col items-center justify-center bg-indigo-200 h-1/3 px-50 my-5">
+            <h1 class="my-5 mx-5">Easy Returns</h1>
+            <img src="../assets/images/test-images/box.png" alt="">
+          </div>
         </aside>
 
       </div>
@@ -354,6 +360,7 @@
         }
       ]
     }
+   
  
   }
 
