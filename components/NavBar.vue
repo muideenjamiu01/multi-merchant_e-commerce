@@ -1,5 +1,5 @@
 <template>
-  <div class="py-3 px-4 flex items-center justify-between sticky top-0 bg-white">
+  <div class="py-3 px-4 flex items-center justify-between sticky top-0 bg-white z-50">
     <nuxt-link to='/'><img src="../assets/images/logos/login-logo.svg" alt="login-logo"></nuxt-link>
     <div class="bg-primary-blue-light px-3 py-2 hidden lg:flex justify-between items-center rounded w-96">
       <input
@@ -11,9 +11,13 @@
     </div>
 
     <div class="flex items-center gap-5">
-      <NuxtLink to="/merchant/createMerchant"><h1 class="text-primary-blue text-lg cursor-pointer hidden md:block">
+
+     
+
+      <nuxt-link to='/authentication/merchant-login'><h1 class="text-primary-blue text-lg cursor-pointer hidden md:block">
         Become a seller
-      </h1></NuxtLink>
+      </h1></nuxt-link>
+
      
       <div>
         <div @click="toggleDropdown" class="w-7 h-7  cursor-pointer">

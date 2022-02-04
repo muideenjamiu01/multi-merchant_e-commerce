@@ -2,6 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: [
+    './src/**/*.{html,js}', './node_modules/tw-elements/dist/js/**/*.js',
     "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
     "./pages/**/*.vue",
@@ -23,6 +24,7 @@ module.exports = {
           "blue-dark": "#0B4B58",
           gray: "#C4C4C4",
           "gray-light": "#796D6D",
+          "gray-text": "#8D8888",
           black: "#262626",
 		  gold:"#ABA519",
 		  green:"#1EB62D",
@@ -47,5 +49,5 @@ module.exports = {
       128: "32rem",
     },
   },
-  plugins: [],
+  plugins: [require('tw-elements/dist/plugin')],
 };
