@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="bg-primary-blue-light w-96 p-4">
+    <div class="hidden lg:block bg-primary-blue-light w-96 p-4">
       <h1 class="pt-2">Order Summary</h1>
       <p class="my-3 text-gray-400">4 items in cart</p>
       <div>
-        <div v-for="item in 3" :key="item" class="flex justify-start items-start gap-2">
+        <div v-for="item in 3" :key="item" class="flex justify-start items-start gap-2 mt-4">
           <div>
             <img src="" alt="" class="w-12 h-12" />
           </div>

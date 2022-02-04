@@ -44,29 +44,29 @@
                     </div>
                   </td>
                   <td class="">
-                    <div class="flex justify-center items-center">
+                    
                       <div
-                        class="flex flex-row h-8 rounded-lg relative bg-transparent"
+                        class="flex justify-center items-center gap-4 "
                       >
                         <button
                           @click="counter -= 1"
-                          class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none"
+                          
                         >
                           <span class="m-auto text-2xl font-thin">-</span>
                         </button>
                         <div
-                          class="text-center bg-gray-300 font-semibold text-md hover:text-black focus:text-black md:text-basecursor-default flex items-center text-gray-700"
+                          class="text-center font-semibold text-md text-gray-400 flex items-center "
                         >
                           {{ counter }}
                         </div>
                         <button
                           @click="counter += 1"
-                          class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer"
+                          class="  cursor-pointer"
                         >
                           <span class="m-auto text-2xl font-thin">+</span>
                         </button>
                       </div>
-                    </div>
+                    
                   </td>
                   <td>
                     <div class="flex justify-center">
@@ -84,10 +84,10 @@
         </div>
       </div>
       <div class="lg:w-1/4">
-        <div class="font-medium bg-primary-blue-light p-4">
+        <div class="mt-4  lg:mt-0 font-medium bg-primary-blue-light p-4">
           <h1><span class="">Subtotal (5 items):</span></h1>
           <span class="flex justify-end">799516 NGN</span>
-          <div class="flex justify-center mt-6">
+          <div class=" flex justify-center mt-6">
             <button
               class="px-2 py-1 md:px-8 md:py-2 bg-primary-blue text-white rounded"
             >
@@ -95,7 +95,7 @@
             </button>
           </div>
         </div>
-        <div class="bg-primary-blue-light p-4 mt-6">
+        <div class="hidden lg:block bg-primary-blue-light p-4 mt-6">
           <h1 class="text-base font-medium my-2">
             You recently viewed this items
           </h1>

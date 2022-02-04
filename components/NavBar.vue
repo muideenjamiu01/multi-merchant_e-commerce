@@ -11,9 +11,9 @@
     </div>
 
     <div class="flex items-center gap-5">
-      <h1 class="text-primary-blue text-lg cursor-pointer hidden md:block">
+      <NuxtLink to="/merchant/createMerchant"><h1 class="text-primary-blue text-lg cursor-pointer hidden md:block">
         Become a seller
-      </h1>
+      </h1></NuxtLink>
      
       <div>
         <div @click="toggleDropdown" class="w-7 h-7  cursor-pointer">

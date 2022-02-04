@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="w-full md:flex">
+  <div class="container mx-auto">
+    <div class="md:flex">
       <div class="md:w-1/4">
         <ContentsMerchantProfileCard />
       </div>
@@ -32,7 +32,7 @@
               >Visitors</span
             >
           </div>
-          <div class="p-4 bg-green-100 px-8 h-20 rounded">
+          <div class="p-4 bg-green-100 px-8 h-20 rounded mt-4 md:mt-0">
             <div class="flex items-center gap-2">
               <div>
                 <!-- <img src="@/assets/images/icons/validate.svg" alt="" /> -->
@@ -58,7 +58,7 @@
               >Orders Fulfilled</span
             >
           </div>
-          <div class="p-4 bg-primary-gold-light px-8 h-20 rounded">
+          <div class="p-4 bg-primary-gold-light px-8 h-20 rounded mt-4 md:mt-0">
             <div class="flex items-center gap-2">
               <div>
                 <!-- <img src="@/assets/images/icons/currency.svg" alt="" /> -->
@@ -84,7 +84,7 @@
               >Earned</span
             >
           </div>
-          <div class="p-4 bg-primary-purple-light px-8 h-20 rounded">
+          <div class="p-4 bg-primary-purple-light px-8 h-20 rounded mt-4 md:mt-0">
             <div class="flex items-center gap-2">
               <div>
                 <!-- <img src="@/assets/images/icons/star.svg" alt="" /> -->
@@ -96,8 +96,8 @@
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M10 13.39L6.24 15.66L7.23 11.38L3.91 8.5L8.29 8.13L10 4.09L11.71 8.13L16.09 8.5L12.77 11.38L13.76 15.66L10 13.39ZM20 7.24L12.81 6.63L10 0L7.19 6.63L0 7.24L5.45 11.97L3.82 19L10 15.27L16.18 19L14.54 11.97L20 7.24Z"
-                    fill="#262626"
+                    d="M10 15.27L16.18 19L14.54 11.97L20 7.24L12.81 6.62L10 0L7.19 6.62L0 7.24L5.45 11.97L3.82 19L10 15.27Z"
+                    fill="#DA30B5"
                   />
                 </svg>
               </div>
@@ -111,6 +111,7 @@
             >
           </div>
         </div>
+
         <div
           class="mt-8 md:flex gap-4 justify-end items-center text-xs font-normal"
         >
@@ -119,240 +120,111 @@
           <span class="bg-primary-blue-light p-3 rounded">this quarter</span>
           <span class="bg-primary-blue-light p-3 rounded">this year</span>
         </div>
-        <div class="mt-10 bg-red-500">III</div>
-        <!-- component -->
-        <div class="bg-white rounded-md w-full">
-          <div class="">
-            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-              <div
-                class="inline-block min-w-full shadow rounded-lg overflow-hidden"
-              >
-                <table class="w-full leading-normal">
-                  <thead>
-                    <tr>
-                      <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                      >
-                        Name
-                      </th>
-                      <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                      >
-                        products
-                      </th>
-                      <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                      >
-                        Created at
-                      </th>
-                      <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                      >
-                        QRT
-                      </th>
-                      <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                      >
-                        Status
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td
-                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                      >
-                        <div class="flex items-center">
-                          <div class="flex-shrink-0 w-10 h-10">
-                            <img
-                              class="w-full h-full rounded-full"
-                              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                              alt=""
-                            />
-                          </div>
-                          <div class="ml-3">
-                            <p class="text-gray-900 whitespace-no-wrap">
-                              Vera Carpenter
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-                      <td
-                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                      >
-                        <p class="text-gray-900 whitespace-no-wrap">Admin</p>
-                      </td>
-                      <td
-                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                      >
-                        <p class="text-gray-900 whitespace-no-wrap">
-                          Jan 21, 2020
-                        </p>
-                      </td>
-                      <td
-                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                      >
-                        <p class="text-gray-900 whitespace-no-wrap">43</p>
-                      </td>
-                      <td
-                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                      >
-                        <span
-                          class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
-                        >
-                          <span
-                            aria-hidden
-                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
-                          ></span>
-                          <span class="relative">Activo</span>
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td
-                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                      >
-                        <div class="flex items-center">
-                          <div class="flex-shrink-0 w-10 h-10">
-                            <img
-                              class="w-full h-full rounded-full"
-                              src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                              alt=""
-                            />
-                          </div>
-                          <div class="ml-3">
-                            <p class="text-gray-900 whitespace-no-wrap">
-                              Blake Bowman
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-                      <td
-                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                      >
-                        <p class="text-gray-900 whitespace-no-wrap">Editor</p>
-                      </td>
-                      <td
-                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                      >
-                        <p class="text-gray-900 whitespace-no-wrap">
-                          Jan 01, 2020
-                        </p>
-                      </td>
+        <div class="mt-8 md:mt-0">
+          <div class="chart-div">
+            <DashboardChart
+              :chartData="chartData"
+              :options="chartOptions"
+              class="line-chart"
+            />
+          </div>
+        </div>
 
-                      <td
-                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                      >
-                        <p class="text-gray-900 whitespace-no-wrap">77</p>
-                      </td>
-                      <td
-                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                      >
-                        <span
-                          class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
-                        >
-                          <span
-                            aria-hidden
-                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
-                          ></span>
-                          <span class="relative">Activo</span>
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td
-                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                      >
-                        <div class="flex items-center">
-                          <div class="flex-shrink-0 w-10 h-10">
-                            <img
-                              class="w-full h-full rounded-full"
-                              src="https://images.unsplash.com/photo-1540845511934-7721dd7adec3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                              alt=""
-                            />
-                          </div>
-                          <div class="ml-3">
-                            <p class="text-gray-900 whitespace-no-wrap">
-                              Dana Moore
-                            </p>
-                          </div>
+        <div class="mt-10 bg-primary-peach p-2">
+          <span>
+            <h1 class="font-normal text-2xl mb-4">Notifications</h1>
+          </span>
+          <div>
+            <div class="overflow-x-auto rounded-lg overflow-y-auto">
+              <table class="w-full table-auto">
+                <thead class="">
+                  <tr class="text-left border-b">
+                    <th
+                      class="border-gray-200 px-4 py-2 text-gray-600 font-bold tracking-wider text-xs"
+                    >
+                      Order ID
+                    </th>
+                    <th
+                      class="border-gray-200 px-4 py-2 text-gray-600 font-bold tracking-wider text-xs"
+                    ></th>
+                    <th
+                      class="border-gray-200 px-4 py-2 text-gray-600 font-bold tracking-wider text-xs"
+                    >
+                      Price
+                    </th>
+                    <th
+                      class="border-gray-200 px-4 py-2 text-gray-600 font-bold tracking-wider text-xs"
+                    >
+                      Date
+                    </th>
+                    <th
+                      class="border-gray-200 px-2 py-2 text-gray-600 font-bold tracking-wider text-xs"
+                    >
+                      Status
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="pt-8">
+                  <tr class="text-left border-b border-gray-300 pb-4">
+                    <td class="font-normal text-sm px-4 py-2">1585297524</td>
+                    <td class="px-4 py-2">
+                      <div class="flex gap-4 pt-4">
+                        <div class="w-24 h-24 bg-gray-200 overflow-hidden">
+                          <img />
                         </div>
-                      </td>
-                      <td
-                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                      >
-                        <p class="text-gray-900 whitespace-no-wrap">Editor</p>
-                      </td>
-                      <td
-                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                      >
-                        <p class="text-gray-900 whitespace-no-wrap">
-                          Jan 10, 2020
-                        </p>
-                      </td>
-
-                      <td
-                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                      >
-                        <p class="text-gray-900 whitespace-no-wrap">64</p>
-                      </td>
-                      <td
-                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                      >
-                        <span
-                          class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight"
-                        >
-                          <span
-                            aria-hidden
-                            class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"
-                          ></span>
-                          <span class="relative">Suspended</span>
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="px-5 py-5 bg-white text-sm">
-                        <div class="flex items-center">
-                          <div class="flex-shrink-0 w-10 h-10">
-                            <img
-                              class="w-full h-full rounded-full"
-                              src="https://images.unsplash.com/photo-1522609925277-66fea332c575?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&h=160&w=160&q=80"
-                              alt=""
-                            />
+                        <div class="flex flex-col">
+                          <div>
+                            <span class="text-sm font-medium">
+                              Women's Los Angeles California Long Sleeve
+                              Sweatshirt Oversized
+                            </span>
                           </div>
-                          <div class="ml-3">
-                            <p class="text-gray-900 whitespace-no-wrap">
-                              Alonzo Cox
-                            </p>
-                          </div>
+                          <div class="text-sm font-normal">size:small</div>
+                          <div class="text-sm font-normal">color:Brown</div>
+                          <div class="text-sm font-normal">Quantity:1</div>
                         </div>
-                      </td>
-                      <td class="px-5 py-5 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">Admin</p>
-                      </td>
-                      <td class="px-5 py-5 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">
-                          Jan 18, 2020
-                        </p>
-                      </td>
-                      <td class="px-5 py-5 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">70</p>
-                      </td>
-                      <td class="px-5 py-5 bg-white text-sm">
-                        <span
-                          class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight"
-                        >
-                          <span
-                            aria-hidden
-                            class="absolute inset-0 bg-red-200 opacity-50 rounded-full"
-                          ></span>
-                          <span class="relative">Inactive</span>
-                        </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+                      </div>
+                    </td>
+                    <td class="font-normal text-sm text-center px-4 py-2">
+                      14483.00
+                    </td>
+                    <td class="font-normal text-sm px-4 py-2">12/01/2022</td>
+                    <td class="font-normal text-sm px-4 py-2 text-red-600">
+                      Awaiting <br />
+                      Drop off
+                    </td>
+                  </tr>
+                  <tr class="text-left border-b border-gray-300 pb-4">
+                    <td class="font-normal text-sm px-4 py-2">1585297524</td>
+                    <td class="px-4 py-2">
+                      <div class="flex gap-4 pt-4">
+                        <div class="w-24 h-24 bg-gray-200 overflow-hidden">
+                          <img />
+                        </div>
+                        <div class="flex flex-col">
+                          <div>
+                            <span class="text-sm font-medium">
+                              Women's Los Angeles California Long Sleeve
+                              Sweatshirt Oversized
+                            </span>
+                          </div>
+                          <div class="text-sm font-normal">size:small</div>
+                          <div class="text-sm font-normal">color:Brown</div>
+                          <div class="text-sm font-normal">Quantity:1</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="font-normal text-sm text-center px-4 py-2">
+                      14483.00
+                    </td>
+                    <td class="font-normal text-sm px-4 py-2">12/01/2022</td>
+                    <td class="font-normal text-sm px-4 py-2 text-red-600">
+                      Returned
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              ​
             </div>
           </div>
         </div>
@@ -361,6 +233,76 @@
   </div>
 </template>
 
-<script></script>
+<script>
+import DashboardChart from "~/components/DashboardChart.vue";
+export default {
+  components: { DashboardChart },
+  data() {
+    return {
+      chartData: {
+        labels: [
+          "01",
+          "02",
+          "03",
+          "04",
+          "05",
+          "06",
+          "07",
+          "08",
+          "09",
+          "10",
+          "11",
+          "12",
+          "13",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30",
+          "31",
+        ],
+        datasets: [
+          {
+            //   label:[ "this week","this month", "this quater", "this year"],
+            borderColor: "green",
+            borderWidth: 2,
+            pontBackgroundColor: "red",
+            pointRadius: 5,
+            pointHoverRadius: 8,
+            pointHoverBorderColor: "blue",
+            fill: false,
+            data: [0, 300, 600, 900, 1200, 1500],
+          },
+        ],
+      },
+      chartOptions: {
+        maintainAspectRatio: false,
+        responsive: true,
+        tooltips: {
+          backgroundColor: "gray",
+          titleFontColor: "#fff",
+          bodyFontColor: "#red",
+          position: "nearest",
+          mode: "nearest",
+          intersects: 0,
+          // bodySpacing:4,
+          // xpadding:20,
+        },
+      },
+    };
+  },
+};
+</script>
 
 <style lang="scss" scoped></style>

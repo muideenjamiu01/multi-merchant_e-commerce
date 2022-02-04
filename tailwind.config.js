@@ -7,6 +7,7 @@ module.exports = {
     "./pages/**/*.vue",
     "./plugins/**/*.{js,ts}",
     "./nuxt.config.{js,ts}",
+	
   ],
   theme: {
     extend: {
@@ -25,7 +26,10 @@ module.exports = {
           black: "#262626",
 		  gold:"#ABA519",
 		  green:"#1EB62D",
-		  purple:"#DA30B5"
+		  purple:"#DA30B5",
+		  peach:"#FFEFEF",
+		  
+		  
         },
       },
     },

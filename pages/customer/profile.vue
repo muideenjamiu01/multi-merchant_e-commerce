@@ -26,7 +26,7 @@
               <span>File type: JPG, PNG or GIF</span>
             </div>
           </div>
-          <div >
+          <div class="shrink-0">
             <img
             src="@/assets/images/icons/profile-picture.jpg"
             alt=""

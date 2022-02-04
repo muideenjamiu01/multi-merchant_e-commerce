@@ -4,7 +4,23 @@
       <div>
         <img src="@/assets/images/logos/logo.svg" alt="youveirfy logo" />
       </div>
-      <NuxtLink to="/" class="text-primary-blue">Become a seller</NuxtLink>
+      <div class="flex justify-center items-center gap-8">
+        <svg
+          width="18"
+          height="21"
+          viewBox="0 0 18 21"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M7 19H11C11 20.1 10.1 21 9 21C7.9 21 7 20.1 7 19ZM18 17V18H0V17L2 15V9C2 5.9 4 3.2 7 2.3V2C7 0.9 7.9 0 9 0C10.1 0 11 0.9 11 2V2.3C14 3.2 16 5.9 16 9V15L18 17ZM14 9C14 6.2 11.8 4 9 4C6.2 4 4 6.2 4 9V16H14V9Z"
+            fill="#262626"
+          />
+        </svg>
+		<div class="rounded-full h-12 w-12 bg-gray-300">
+
+		</div>
+      </div>
     </div>
     <hr class="mt-2" />
     <div class="mt-4">
@@ -228,19 +244,19 @@
                 class="border border-gray-200 t text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
               />
             </div>
-			<div class="md:w-1/2"></div>
+            <div class="md:w-1/2"></div>
           </div>
         </div>
       </div>
-      <div class="flex  mt-6">
+      <div class="flex mt-6">
         <div><input type="radio" class="mr-4" /></div>
         <div class="">
           <p>
             I acknowledge that I have read and hereby accept the terms and
-            conditions in Youstore's <br>
+            conditions in Youstore's <br />
             <span class="text-primary-blue"
-              >third party partners', Terms of Use, Merchant Agreement <span class="text-black">and</span> 
-              Privacy Policy</span
+              >third party partners', Terms of Use, Merchant Agreement
+              <span class="text-black">and</span> Privacy Policy</span
             >
           </p>
         </div>
@@ -260,6 +276,7 @@
 
 <script>
 export default {
+  layout: "merchant",
   methods: {
     thisFileUpload() {
       document.getElementById("fileupload").click();
