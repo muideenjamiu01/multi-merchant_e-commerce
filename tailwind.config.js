@@ -2,6 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: [
+    './src/**/*.{html,js}', './node_modules/tw-elements/dist/js/**/*.js',
     "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
     "./pages/**/*.vue",
@@ -44,5 +45,5 @@ module.exports = {
       128: "32rem",
     },
   },
-  plugins: [],
+  plugins: [require('tw-elements/dist/plugin')],
 };

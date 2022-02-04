@@ -1,26 +1,24 @@
 <template>
-  <div class="signup__page">
-    <div class="skewed-box bg-primary-blue h-full w-full">
+  <div class="signup__page flex justify-center">
+    <div class="skewed-box bg-primary-blue w-full h-full">
     </div>
-      <div class="signup">
+     <div class="signup">
         <nuxt-link to='/'><img src="../../assets/images/logos/login-logo.svg" alt="login-logo"></nuxt-link>
-        <p class="heading">Create your account</p>
-        <input type="text" placeholder="Your Name">
+        <p class="heading ">Merchant Login</p>
+        <input type="email" placeholder="Store Name">
         <input type="email" placeholder="Email Address">
         <input type="password" placeholder="Password">
-        <input type="password" placeholder="Confirm Password">
-        <button class="flex justify-center items-center bg-primary-blue text-white">SIGNUP</button>
-        <p>Already have an account? &nbsp;<span><nuxt-link to="/authentication/login">Sign-In</nuxt-link></span></p>
-        <p>By clicking the signup button you agree to our</p>
-        <p><span> <a href="">Conditions Of Use</a> </span></p>
+        <button class="bg-primary-blue text-white flex justify-center items-center">LOGIN</button>
+        <p>Don't have an account? &nbsp; <span> <nuxt-link to='/authentication/signup'>Sign up here</nuxt-link>  </span> </p>
+        <p><span> <nuxt-link to=''>Forgot your password?</nuxt-link> </span></p>
       </div>
   </div>
 </template>
-
 <script>
-  export default {
-    layout: 'auth'
-  }
+
+export default {
+  layout: 'auth'
+}
 </script>
 
 <style  scoped>
