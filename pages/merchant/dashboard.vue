@@ -5,8 +5,8 @@
         <ContentsMerchantProfileCard />
       </div>
       <div class="md:w-3/4">
-        <div class="w-full md:flex md:gap-x-4">
-          <div class="p-4 bg-primary-blue-sharpen px-8 h-20 rounded">
+        <div class="w-full md:flex md:gap-x-6">
+          <div class="p-4 bg-primary-blue-sharpen px-6 h-20 rounded">
             <div class="flex items-center gap-2">
               <div>
                 <!-- <img src="@/assets/images/icons/users.svg" alt="" /> -->
