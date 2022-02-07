@@ -2,7 +2,7 @@
   <div class="container mx-auto py-4 px-2">
     <div class="w-full md:flex gap-4">
       <div class="md:w-1/4">
-	  	<ContentsCustomerProfileCard/>
+	  	<ContentsCustomerProfileCard />
 	  </div>
       <div class="md:w-3/4">
         <h1 class="text-2xl font-normal text-black">Profile</h1>
