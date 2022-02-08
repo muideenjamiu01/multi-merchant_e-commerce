@@ -11,13 +11,12 @@
           <p>Size: Small</p>
           <p>Color: Brown</p>
           <p>Quantity: 2</p>
-
         </div>
       </div>
       <div class="md:flex items-center md:space-x-6">
-        <p class="mx-5 ">14483.00</p>
-        <p class="mx-10 ">12 / 01 / 2022</p>
-        <p class="mx-1 ">Delivered</p>
+        <p class="mx-5">14483.00</p>
+        <p class="mx-10">12 / 01 / 2022</p>
+        <p class="mx-1">Delivered</p>
       </div>
     </div>
   </div>

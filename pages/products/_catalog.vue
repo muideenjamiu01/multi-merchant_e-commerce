@@ -5,7 +5,9 @@
     </aside>
     <div>
       <main class="">
-        <h1 class="text-2xl font-bold text-primary-black">Women's Fashion</h1>
+        <h1 class="text-2xl font-bold text-primary-black capitalize">
+          {{ $route.params.catalog }}
+        </h1>
         <div class="flex gap-x-4 gap-y-6 flex-wrap mt-4">
           <ContentsProductCard v-for="card in 16" :key="card.id" />
         </div>
