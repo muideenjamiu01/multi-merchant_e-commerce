@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto py-8 xs:px-8">
-    <div class="flex justify-between items-center">
+    <!-- <div class="flex justify-between items-center">
       <div>
         <img src="@/assets/images/logos/logo.svg" alt="youveirfy logo" />
       </div>
@@ -17,12 +17,10 @@
             fill="#262626"
           />
         </svg>
-		<div class="rounded-full h-12 w-12 bg-gray-300">
-
-		</div>
+        <div class="rounded-full h-12 w-12 bg-gray-300"></div>
       </div>
     </div>
-    <hr class="mt-2" />
+    <hr class="mt-2" /> -->
     <div class="mt-4">
       <h1 class="text-2xl font-normal text-black">Merchant Center</h1>
       <p class="text-base font-normal text-black">
@@ -33,7 +31,7 @@
       <h1 class="text-xl">Create Seller Account</h1>
       <hr class="mt-2" />
     </div>
-    <form action="" class="mt-6">
+    <form @submit.prevent="" class="mt-6">
       <div class="w-full">
         <div class="md:flex justify-between gap-8">
           <div class="md:w-1/2">
@@ -263,12 +261,14 @@
       </div>
 
       <div class="flex justify-center items-center">
-        <button
-          type="file"
-          class="mt-4 border-2 rounded-lg font-bold text-white px-20 py-3 bg-primary-blue mr-6"
+        <NuxtLink to="dashboard">
+          <button
+            type="submit"
+            class="mt-4 border-2 rounded-lg font-bold text-white px-20 py-3 bg-primary-blue mr-6"
+          >
+            Get Started
+          </button></NuxtLink
         >
-          Get Started
-        </button>
       </div>
     </form>
   </div>
@@ -276,7 +276,7 @@
 
 <script>
 export default {
-  layout: "merchant",
+  layout: "empty",
   methods: {
     thisFileUpload() {
       document.getElementById("fileupload").click();

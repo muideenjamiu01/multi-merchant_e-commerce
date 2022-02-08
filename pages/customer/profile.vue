@@ -1,9 +1,9 @@
 <template>
-  <div class="container mx-auto py-4 px-2">
+  <div class="py-8 px-4">
     <div class="w-full md:flex gap-4">
       <div class="md:w-1/4">
-	  	<ContentsCustomerProfileCard/>
-	  </div>
+        <ContentsCustomerProfileCard />
+      </div>
       <div class="md:w-3/4">
         <h1 class="text-2xl font-normal text-black">Profile</h1>
         <div>
@@ -16,7 +16,9 @@
             <hr class="mt-2" />
           </div>
         </div>
-        <div class="mt-4 xs:invisible md:visible flex justify-between items-center">
+        <div
+          class="mt-4 xs:invisible md:visible flex justify-between items-center"
+        >
           <div class="md:flex flex-col">
             <h3>Photo</h3>
             <div class="flex flex-col mt-2 text-gray-400">
@@ -28,10 +30,10 @@
           </div>
           <div class="shrink-0">
             <img
-            src="@/assets/images/icons/profile-picture.jpg"
-            alt=""
-            class="w-36 h-36  rounded-full object-cover"
-          />
+              src="@/assets/images/icons/profile-picture.jpg"
+              alt=""
+              class="w-36 h-36 rounded-full object-cover"
+            />
           </div>
 
           <div class="flex gap-4">

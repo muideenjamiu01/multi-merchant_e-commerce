@@ -1,6 +1,7 @@
 <template>
+<div>
   <div
-    class="w-72 bg-primary-blue-light py-8 px-7 hidden xl:block mr-8 text-sm text-center"
+    class="w-72 bg-primary-blue-light py-8 px-7 hidden lg:block mr-8 text-sm text-center"
   >
     <div  class="flex">
         <img src="../../assets/images/logos/merchant-logo.svg" alt="merchant logo" >
@@ -25,17 +26,26 @@
       </NuxtLink>
     </div>
   </div>
+  <span class="iconify" data-icon="dashicons:menu"></span>
+  </div>
 </template>
 
 <script>
 export default {
+  head: {
+    script: {
+      hid: 'Iconify Icons',
+      src: 'https://code.iconify.design/2/2.1.2/iconify.min.js',
+      defer: true
+    }
+  },
   data() {
     return {
       navs: [
         {
           icon: require("@/assets/images/icons/overview-icon.svg"),
           name: "Overview",
-          link: "overview"
+          link: "dashboard"
         },
         {
           icon: require("@/assets/images/icons/products-icon.svg"),

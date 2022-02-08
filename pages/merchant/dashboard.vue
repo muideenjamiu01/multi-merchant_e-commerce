@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto mt-8">
     <div class="md:flex">
       <div class="md:w-1/4">
         <ContentsMerchantProfileCard />
@@ -84,7 +84,9 @@
               >Earned</span
             >
           </div>
-          <div class="p-4 bg-primary-purple-light px-8 h-20 rounded mt-4 md:mt-0">
+          <div
+            class="p-4 bg-primary-purple-light px-8 h-20 rounded mt-4 md:mt-0"
+          >
             <div class="flex items-center gap-2">
               <div>
                 <!-- <img src="@/assets/images/icons/star.svg" alt="" /> -->
@@ -236,6 +238,7 @@
 <script>
 import DashboardChart from "~/components/DashboardChart.vue";
 export default {
+  layout: "merchant",
   components: { DashboardChart },
   data() {
     return {
