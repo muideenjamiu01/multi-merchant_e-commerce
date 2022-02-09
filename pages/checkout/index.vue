@@ -22,7 +22,7 @@
                     id="primary-address"
                     value="Primary address"
                     name="radio"
-                    v-model="SelectedAddress"
+                    v-model.trim="SelectedAddress"
                     class="mr-2 form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-primary-blue checked:border-primary-blue focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer"
                   />
                 </div>
@@ -37,7 +37,7 @@
                     type="radio"
                     id="home-address"
                     value="Home address"
-                    v-model="SelectedAddress"
+                    v-model.trim="SelectedAddress"
                     class="mr-2 form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-primary-blue checked:border-primary-blue focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer"
                   />
                 </div>
@@ -61,7 +61,7 @@
                     type="text"
                     id="street-address"
                     name="street-address"
-                    v-model="streetAddress"
+                    v-model.trim="streetAddress"
                     class="border border-gray-200 t text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
                   />
                 </div>
@@ -91,7 +91,7 @@
                     type="text"
                     id="state"
                     name="state"
-                    v-model="state"
+                    v-model.trim="state"
                     class="border border-gray-200 t text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
                   />
                 </div>
@@ -105,17 +105,19 @@
                     type="text"
                     id="zip-postal-code"
                     name="zip-postal-code"
-                    v-model="zipPostalCode"
+                    v-model.trim="zipPostalCode"
                     class="border border-gray-200 text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
                   />
                 </div>
                 <div class="flex justify-end items-end mt-4">
-                  <button
+                  <!-- <button
                     class="border-2 border-primary-blue rounded-lg font-bold text-primary-blue px-6 py-1 transition duration-300 ease-in-out hover:bg-primary-blue hover:text-white"
                   >
                     Save
-                  </button>
+                  </button> -->
+				  <AppButton buttonText="Save"  color="outlinebutton" size="md" rounded /> 
                 </div>
+				
               </div>
             </div>
           </form>
@@ -133,7 +135,7 @@
                       type="radio"
                       id="auxillary-card"
                       value="Auxillary Card"
-                      v-model="paymentMethod"
+                      v-model.trim="paymentMethod"
                       class="mr-2 form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-primary-blue checked:border-primary-blue focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer"
                     />
                   </div>
@@ -147,7 +149,7 @@
                       type="radio"
                       id="main-account"
                       value="main-account"
-                      v-model="paymentMethod"
+                      v-model.trim="paymentMethod"
                       class="mr-2 form-check-input appearance-none rounded-full h-4 w-4 border border-primary-blue bg-white checked:bg-primary-blue checked:border-primary-blue focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer"
                     />
                   </div>
@@ -174,7 +176,7 @@
                           type="text"
                           id="card-number"
                           name="card-number"
-                          v-model="cardDetails.cardNumber"
+                          v-model.trim="cardDetails.cardNumber"
                           class="border border-gray-200 t text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
                         />
                       </div>
@@ -190,7 +192,7 @@
                           type="text"
                           id="expiry-date"
                           name="expiry"
-                          v-model="cardDetails.expiryDate"
+                          v-model.trim="cardDetails.expiryDate"
                           class="border border-gray-200 text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
                         />
                       </div>
@@ -206,7 +208,7 @@
                           type="text"
                           id="cvv"
                           name="cvv"
-                          v-model="cardDetails.cVV"
+                          v-model.trim="cardDetails.cVV"
                           class="border border-gray-200 t text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
                         />
                       </div>
@@ -220,16 +222,13 @@
                           type="text"
                           id="pin"
                           name="pin"
-                          v-model="cardDetails.pin"
+                          v-model.trim="cardDetails.pin"
                           class="border border-gray-200 text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
                         />
                       </div>
                       <div class="flex justify-end items-end mt-4">
-                        <button
-                          class="border-2 border-primary-blue rounded-lg font-bold text-primary-blue px-6 py-1 transition duration-300 ease-in-out hover:bg-primary-blue hover:text-white"
-                        >
-                          Save
-                        </button>
+                       <AppButton buttonText="Save"  color="outlinebutton" size="md" rounded /> 
+
                       </div>
                     </div>
                   </div>
@@ -269,27 +268,24 @@
                           type="text"
                           id="account-number"
                           name="account-number"
-                          v-model="bankData.accountNumber"
+                          v-model.trim="bankData.accountNumber"
                           class="border border-gray-200 text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
                         />
                       </div>
                       <div class="flex justify-end items-end mt-4">
-                        <button
-                          class="border-2 border-primary-blue rounded-lg font-bold text-primary-blue px-6 py-1 transition duration-300 ease-in-out hover:bg-primary-blue hover:text-white"
-                        >
-                          Save
-                        </button>
+                       <AppButton buttonText="Save"  color="outlinebutton" size="md" rounded /> 
                       </div>
                       <div>
                         <div class="flex space-x-2 justify-center mt-16">
-                          <button
+                          <!-- <button
                             type ="button"
                             data-mdb-ripple="true"
                             data-mdb-ripple-color="light"
                             class="inline-block px-6 py-2.5 bg-primary-blue text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-primary-blue-dark hover:shadow-lg focus:bg-primary-blue focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-blue active:shadow-lg transition duration-150 ease-in-out"
                           >
                             Make Order
-                          </button>
+                          </button> -->
+						  <AppButton buttonText="Make order"  color="fillbutton" size="md" rounded /> 
                         </div>
                         <div class="flex justify-center"></div>
                       </div>
@@ -309,52 +305,54 @@
 </template>
 
 <script>
+import AppButton from "../../components/global/AppButton.vue";
 export default {
-  data() {
-    return {
-      //data for address input
-      SelectedAddress: "", // for radio button
-
-      streetAddress: "",
-      cityLga: "",
-      state: "",
-      zipPostalCode: "",
-
-      //binding of payment input
-      paymentMethod: "", // for radio button
-      cardDetails: {
-        expiryDate: "12/2",
-        cVV: "",
-        pin: "",
-        cardNumber: "",
-      },
-
-      //binding for bank transfer input
-      bankData: {
-        bankName: "",
-        accountNumber: "",
-      },
-    };
-  },
-  methods: {
-    saveAddress() {
-      console.log("this is " + this.streetAddress);
+    data() {
+        return {
+	// 		styleObject: {
+    //     color: "red",
+    //     fontSize: "130px",
+    //   },
+            //data for address input
+            SelectedAddress: "",
+            streetAddress: "",
+            cityLga: "",
+            state: "",
+            zipPostalCode: "",
+            //binding of payment input
+            paymentMethod: "",
+            cardDetails: {
+                expiryDate: "12/2",
+                cVV: "",
+                pin: "",
+                cardNumber: "",
+            },
+            //binding for bank transfer input
+            bankData: {
+                bankName: "",
+                accountNumber: "",
+            },
+        };
     },
-    saveDebitCard() {
-      const cardDetail = {
-        card,
-      };
-      console.log("this is");
+    methods: {
+        saveAddress() {
+            console.log("this is " + this.streetAddress);
+        },
+        saveDebitCard() {
+            const cardDetail = {
+                card,
+            };
+            console.log("this is");
+        },
+        saveBankDetail() {
+            const userAccoutData = {
+                bankName: this.bankData.bankName,
+                accountNumber: this.bankData.accountNumber,
+            };
+            console.log(userAccoutData);
+        },
     },
-    saveBankDetail() {
-      const userAccoutData = {
-        bankName: this.bankData.bankName,
-        accountNumber: this.bankData.accountNumber,
-      };
-
-      console.log(userAccoutData);
-    },
-  },
+    components: { AppButton }
 };
 </script>
 

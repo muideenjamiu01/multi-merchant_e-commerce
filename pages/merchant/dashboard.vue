@@ -234,8 +234,10 @@
 </template>
 
 <script>
+
 import DashboardChart from "~/components/DashboardChart.vue";
 export default {
+	// layout: "merchant",
   components: { DashboardChart },
   data() {
     return {

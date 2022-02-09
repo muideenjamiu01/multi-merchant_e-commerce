@@ -16,9 +16,10 @@
 
       <div class="md:flex items-center md:space-x-6">
         <p>14483.00</p>
-        <button class="bg-primary-blue py-2 px-4 rounded text-white">
+        <!-- <button class="bg-primary-blue py-2 px-4 rounded text-white">
           Add to cart
-        </button>
+        </button> -->
+		<AppButton buttonText="Add to cart"  color="fillbutton" size="md" rounded /> 
       </div>
     </div>
   </div>

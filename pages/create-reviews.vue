@@ -5,7 +5,7 @@
       <h1 class="md:text-3xl font-medium">Write a review</h1>
     </div>
 
-    <div class="md:flex gap-6  mt-6">
+    <div class="md:flex gap-6 mt-6">
       <div class="md:w-1/4">
         <h2 class="md:font-light text-xl">Rate this Item</h2>
         <div class="flex gap-2 mt-4">
@@ -19,7 +19,6 @@
       </div>
 
       <div class="md:w-2/4">
-        
         <div class="">
           <div class="mb-3">
             <label
@@ -36,11 +35,12 @@
           </div>
         </div>
         <div class="flex justify-end">
-          <button
-            class="px-2 py-1 md:px-6 md:py-2 bg-primary-blue text-white rounded"
-          >
-            Submit Review
-          </button>
+          <AppButton
+            buttonText="Submit Review"
+            color="fillbutton"
+            size="md"
+            rounded
+          />
         </div>
       </div>
 

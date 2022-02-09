@@ -116,13 +116,24 @@
     </div>
 
     <div class="flex gap-4 justify-end mt-8">
-      <button class="py-2 px-4 bg-primary-blue text-white rounded">
+      <!-- <button class="py-2 px-4 bg-primary-blue text-white rounded">
         Save and add another
-      </button>
-
-      <button class="py-2 px-4 bg-primary-blue text-white rounded">
+      </button> -->
+      <AppButton
+        buttonText="Save and add another"
+        color="fillbutton"
+        size="md"
+        rounded
+      />
+      <AppButton
+        buttonText="Save Product"
+        color="fillbutton"
+        size="md"
+        rounded
+      />
+      <!-- <button class="py-2 px-4 bg-primary-blue text-white rounded">
         Save Product
-      </button>
+      </button> -->
     </div>
   </div>
 </template>

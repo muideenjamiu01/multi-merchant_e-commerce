@@ -17,9 +17,7 @@
             fill="#262626"
           />
         </svg>
-		<div class="rounded-full h-12 w-12 bg-gray-300">
-
-		</div>
+        <div class="rounded-full h-12 w-12 bg-gray-300"></div>
       </div>
     </div>
     <hr class="mt-2" />
@@ -78,7 +76,7 @@
               <div>Photo / Logo</div>
               <div class="flex items-end justify-center">
                 <input type="file" id="fileupload" hidden />
-                <button
+                <!-- <button
                   id="button"
                   name="button"
                   value="Upload"
@@ -86,7 +84,17 @@
                   class="border-2 border-primary-blue rounded-lg font-bold text-primary-blue px-6 py-1 transition duration-300 ease-in-out hover:bg-primary-blue hover:text-white mr-6"
                 >
                   Upload
-                </button>
+                </button> -->
+                <AppButton
+                  @click.prevent="thisFileUpload()"
+                  id="button"
+                  name="button"
+                  value="Upload"
+                  buttonText="Upload"
+                  color="outlinegray"
+                  size="md"
+                  rounded
+                />
               </div>
             </div>
             <hr class="mt-6" />
@@ -102,15 +110,16 @@
               <div>Banner Photo</div>
               <div class="flex items-end justify-center">
                 <input type="file" id="fileupload" hidden />
-                <button
+              <AppButton
+                  @click.prevent="thisFileUpload()"
                   id="button"
                   name="button"
                   value="Upload"
-                  @click.prevent="thisFileUpload()"
-                  class="border-2 border-primary-blue rounded-lg font-bold text-primary-blue px-6 py-1 transition duration-300 ease-in-out hover:bg-primary-blue hover:text-white mr-6"
-                >
-                  Upload
-                </button>
+                  buttonText="Upload"
+                  color="outlinegray"
+                  size="md"
+                  rounded
+                />
               </div>
             </div>
             <hr class="mt-6" />
@@ -263,12 +272,13 @@
       </div>
 
       <div class="flex justify-center items-center">
-        <button
-          type="file"
+        <!-- <button
+          
           class="mt-4 border-2 rounded-lg font-bold text-white px-20 py-3 bg-primary-blue mr-6"
         >
           Get Started
-        </button>
+        </button> -->
+		<AppButton buttonText="Get Started"  color="fillbutton" size="lg" class="mt-4 mr-6 font-bold" rounded /> 
       </div>
     </form>
   </div>
