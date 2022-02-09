@@ -1,10 +1,10 @@
 <template>
-  <div class="container mx-auto mt-8">
+  <div class=" px-4 py-8 ">
     <div class="md:flex">
-      <div class="md:w-1/4">
+      <div >
         <ContentsMerchantProfileCard />
       </div>
-      <div class="md:w-3/4">
+      <div >
         <div class="w-full md:flex md:gap-x-6">
           <div class="p-4 bg-primary-blue-sharpen px-6 h-20 rounded">
             <div class="flex items-center gap-2">
