@@ -1,30 +1,35 @@
 <template>
-  <div class="signup__page">
-    <div class="skewed-box bg-primary-blue h-full w-full">
+  <div class="signup__page flex justify-center">
+    <div class="skewed-box bg-primary-blue w-full h-full"></div>
+    <div class="signup">
+      <img src="../../assets/images/logos/login-logo.svg" alt="login-logo" />
+      <p class="heading">Sign in to your acount</p>
+      <input type="email" placeholder="Email Address" />
+      <input type="password" placeholder="Password" />
+      <button
+        class="bg-primary-blue text-white flex justify-center items-center"
+      >
+        LOGIN
+      </button>
+      <p>
+        Don't have an account? &nbsp;
+        <span>
+          <nuxt-link to="/auth/signup">Sign up here</nuxt-link>
+        </span>
+      </p>
+      <p>
+        <span> <nuxt-link to="">Forgot your password?</nuxt-link> </span>
+      </p>
     </div>
-      <div class="signup">
-        <nuxt-link to='/'><img src="../../assets/images/logos/login-logo.svg" alt="login-logo"></nuxt-link>
-        <p class="heading">Create your account</p>
-        <input type="text" placeholder="Your Name">
-        <input type="email" placeholder="Email Address">
-        <input type="password" placeholder="Password">
-        <input type="password" placeholder="Confirm Password">
-        <button class="flex justify-center items-center bg-primary-blue text-white">SIGNUP</button>
-        <p>Already have an account? &nbsp;<span><nuxt-link to="/authentication/login">Sign-In</nuxt-link></span></p>
-        <p>By clicking the signup button you agree to our</p>
-        <p><span> <a href="">Conditions Of Use</a> </span></p>
-      </div>
   </div>
 </template>
-
 <script>
-  export default {
-    layout: 'auth'
-  }
+export default {
+  layout: "empty",
+};
 </script>
 
-<style  scoped>
-
+<style scoped>
 .signup__page .heading {
   align-self: center;
   font-weight: bold;
@@ -52,7 +57,7 @@
   border-radius: 8px;
 }
 
-.signup .skewed-logo p{
+.signup .skewed-logo p {
   color: white;
   padding: 0;
   height: 100%;
@@ -69,17 +74,17 @@
   justify-content: center;
   align-items: center;
   padding: 0rem 2rem;
-  height: 90vh; 
+  height: 90vh;
   min-width: 30vw;
   border-left-color: 1px solid black;
   box-shadow: 5px 5px 5px grey;
   border-radius: 3px;
 }
 
-.signup input{
+.signup input {
   padding: 0.5rem 0rem 0.5rem 0.5rem;
   margin-bottom: 1rem;
-  width:80%;
+  width: 80%;
   border: 1px solid grey;
   border-radius: 3px;
 }
@@ -88,9 +93,9 @@
   border: 2px solid black;
 }
 
-.signup button{
+.signup button {
   margin-bottom: 1rem;
-  width:83%;
+  width: 83%;
   height: 2rem;
   border-radius: 3px;
   outline: none;
@@ -109,22 +114,20 @@
   transform: translateY(4px);
 }
 
-.signup p a{
+.signup p a {
   color: #45b2c7;
   text-decoration: none;
 }
-.signup p a:hover{
+.signup p a:hover {
   color: #08cff7;
   text-decoration: none;
 }
 
-.signup p{
+.signup p {
   align-self: flex-start;
   margin-left: 2.5rem;
   margin-bottom: 0.1rem;
   font-size: 0.8rem;
   font-weight: bold;
 }
-
 </style>
-

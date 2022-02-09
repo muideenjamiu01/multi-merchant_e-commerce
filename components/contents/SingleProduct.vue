@@ -21,7 +21,7 @@
         </div>
 
         <select
-          class="focus:outline-none w-32 px-4 py-1.5 border border-gray-400 rounded"
+          class="focus:outline-none w-36 px-4 py-1.5 border border-gray-400 rounded"
         >
           <option value="">Select size</option>
         </select>
@@ -177,9 +177,12 @@
     <div class="mt-8">
       <h1 class="font-bold">49 Comments from verified purchase</h1>
       <ContentsReviews v-for="n in 3" :key="n" />
-      <p class="font-light text-primary-blue-dark mt-6 flex justify-end">
+      <NuxtLink
+        :to="$route.params.product + '/reviews'"
+        class="font-light text-primary-blue-dark mt-6 flex justify-end"
+      >
         See all reviews
-      </p>
+      </NuxtLink>
     </div>
 
     <div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto py-4 px-2">
+  <div class="py-8 px-4">
     <div class="w-full md:flex gap-4">
       <div class="md:w-1/4">
 	  	<ContentsCustomerProfileCard />
