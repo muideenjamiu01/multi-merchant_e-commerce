@@ -16,7 +16,7 @@
             <hr class="mt-2" />
           </div>
         </div>
-        <div class="mt-4 xs:hidden md:block flex justify-between items-center">
+        <div class="mt-4 hidden md:flex  justify-between items-center">
           <div class="md:flex flex-col">
             <h3>Photo</h3>
             <div class="flex flex-col mt-2 text-gray-400">
@@ -35,6 +35,7 @@
           </div>
 
           <div class="flex gap-2">
+             <AppButton buttonText="Cancel"  color="outlinegray" size="md" rounded /> 
              <AppButton buttonText="Save"  color="outlinebutton" size="md" rounded /> 
           </div>
         </div>

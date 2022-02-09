@@ -6,7 +6,7 @@
     </div>
     <div class="md:flex gap-8">
       <div class="md:w-3/4">
-        <div class="md:flex gap-8 border-b p-4 mt-4">
+        <div v-for="item in 5" :key="item" class="md:flex gap-8 border-b p-4 mt-4">
           <div class="w-2/4">
             <div>
               <div class="flex gap-4">
