@@ -26,19 +26,13 @@
       </NuxtLink>
     </div>
   </div>
-  <span class="iconify" data-icon="dashicons:menu"></span>
+  
   </div>
 </template>
 
 <script>
 export default {
-  head: {
-    script: {
-      hid: 'Iconify Icons',
-      src: 'https://code.iconify.design/2/2.1.2/iconify.min.js',
-      defer: true
-    }
-  },
+
   data() {
     return {
       navs: [
