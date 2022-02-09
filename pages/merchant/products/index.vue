@@ -5,13 +5,15 @@
     </aside>
     <main class="w-full text-sm">
       <div class="flex justify-between items-center">
-        <h1 class="text-2xl">Products</h1>
+        <h1 class="text-2xl">
+          Products
+        </h1>
         <NuxtLink to="products/newproduct">
           <!-- <button class="py-2 px-4 bg-primary-blue text-white text-sm rounded">
           Add Product
         </button> -->
           <AppButton
-            buttonText="Add Product"
+            button-text="Add Product"
             color="fillbutton"
             size="md"
             rounded
@@ -24,17 +26,27 @@
         >
           <thead class="py-3 border-b font-medium text-center">
             <tr>
-              <th class="pb-3 text-left">Transaction ID</th>
-              <th class="pb-3">Price</th>
-              <th class="pb-3">Discount (%)</th>
-              <th class="pb-3">Sold</th>
-              <th class="pb-3">Avg. Rating</th>
+              <th class="pb-3 text-left">
+                Transaction ID
+              </th>
+              <th class="pb-3">
+                Price
+              </th>
+              <th class="pb-3">
+                Discount (%)
+              </th>
+              <th class="pb-3">
+                Sold
+              </th>
+              <th class="pb-3">
+                Avg. Rating
+              </th>
             </tr>
           </thead>
           <tbody class="text-center">
             <tr v-for="p in 11" :key="p" class="border-b">
               <td class="flex gap-4 py-3 text-left">
-                <div class="h-24 w-24 bg-primary-gray"></div>
+                <div class="h-24 w-24 bg-primary-gray" />
                 <div>
                   <h1>
                     Women's Los Angeles California Long Sleeve Sweatshirt
@@ -59,6 +71,6 @@
 
 <script>
 export default {
-  layout: "merchant",
-};
+  layout: 'merchant'
+}
 </script>

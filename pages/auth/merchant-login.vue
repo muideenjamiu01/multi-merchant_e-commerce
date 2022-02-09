@@ -1,14 +1,19 @@
 <template>
   <div class="signup__page flex justify-center">
-    <div class="skewed-box bg-primary-blue w-full h-full"></div>
+    <div class="skewed-box bg-primary-blue w-full h-full" />
     <div class="signup">
-      <nuxt-link to="/"
-        ><img src="../../assets/images/logos/login-logo.svg" alt="login-logo"
-      /></nuxt-link>
-      <p class="heading">Merchant Login</p>
-      <input type="email" placeholder="Store Name" />
-      <input type="email" placeholder="Email Address" />
-      <input type="password" placeholder="Password" />
+      <nuxt-link to="/">
+        <img
+          src="../../assets/images/logos/login-logo.svg"
+          alt="login-logo"
+        >
+      </nuxt-link>
+      <p class="heading">
+        Merchant Login
+      </p>
+      <input type="email" placeholder="Store Name">
+      <input type="email" placeholder="Email Address">
+      <input type="password" placeholder="Password">
       <button
         class="bg-primary-blue text-white flex justify-center items-center"
       >
@@ -28,8 +33,8 @@
 </template>
 <script>
 export default {
-  layout: "empty",
-};
+  layout: 'empty'
+}
 </script>
 
 <style scoped>

@@ -1,8 +1,10 @@
 <template>
   <div class="container mx-auto py-4 px-2">
     <div class="flex gap-4 mt-8">
-      <img src="@/assets/images/icons/back-arrow.svg" alt="" />
-      <h1 class="md:text-3xl font-medium">Shopping Cart</h1>
+      <img src="@/assets/images/icons/back-arrow.svg" alt="">
+      <h1 class="md:text-3xl font-medium">
+        Shopping Cart
+      </h1>
     </div>
     <div class="md:flex gap-8">
       <div class="md:w-3/4">
@@ -14,7 +16,7 @@
                   <img
                     src="@/assets/images/icons/profile-picture.jpg"
                     alt="youveirfy logo"
-                  />
+                  >
                 </div>
                 <div class="flex flex-col">
                   <div>
@@ -23,11 +25,19 @@
                       Oversized
                     </h3>
                   </div>
-                  <div class="text-sm font-light">size:small</div>
-                  <div class="text-sm font-light">color:Brown</div>
+                  <div class="text-sm font-light">
+                    size:small
+                  </div>
+                  <div class="text-sm font-light">
+                    color:Brown
+                  </div>
                   <div class="text-primary-blue text-sm font-normal">
-                    <button class="border-r-4 pr-2">Delete</button>
-                    <button class="pl-2">Add to wishlist</button>
+                    <button class="border-r-4 pr-2">
+                      Delete
+                    </button>
+                    <button class="pl-2">
+                      Add to wishlist
+                    </button>
                   </div>
                 </div>
               </div>
@@ -43,7 +53,7 @@
               >
                 {{ counter }}
               </div>
-              <button @click="counter += 1" class="cursor-pointer">
+              <button class="cursor-pointer" @click="counter += 1">
                 <span class="m-auto text-2xl font-thin">+</span>
               </button>
             </div>
@@ -66,7 +76,7 @@
           <span class="flex justify-end">799516 NGN</span>
           <div class="flex justify-center mt-6">
             <AppButton
-              buttonText="Proceed to checkout"
+              button-text="Proceed to checkout"
               color="fillbutton"
               size="md"
               class="w-full"
@@ -89,12 +99,12 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      counter: 0,
-    };
-  },
-};
+      counter: 0
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped></style>

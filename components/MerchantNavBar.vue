@@ -7,14 +7,14 @@
         type="text"
         placeholder="Search Youstore"
         class="focus:outline-none bg-transparent w-full"
-      />
-      <img class="cursor-pointer" src="@/assets/images/icons/search-icon.svg" />
+      >
+      <img class="cursor-pointer" src="@/assets/images/icons/search-icon.svg">
     </div>
 
     <div>
-      <img src="@/assets/images/icons/bell.svg" alt="" />
+      <img src="@/assets/images/icons/bell.svg" alt="">
     </div>
 
-    <div class="w-10 h-10 rounded-full bg-primary-blue-light"></div>
+    <div class="w-10 h-10 rounded-full bg-primary-blue-light" />
   </div>
 </template>

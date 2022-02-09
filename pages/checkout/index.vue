@@ -3,14 +3,20 @@
     <div class="w-full md:flex gap-16 mt-6">
       <div class="md:w-2/3">
         <div>
-          <h1 class="text-2xl font-normal text-black">Checkout</h1>
+          <h1 class="text-2xl font-normal text-black">
+            Checkout
+          </h1>
           <div class="mt-10">
-            <h2 class="text-xl">Shipping Information</h2>
-            <hr class="mt-2" />
+            <h2 class="text-xl">
+              Shipping Information
+            </h2>
+            <hr class="mt-2">
           </div>
         </div>
 
-        <h3 class="mt-6">Use saved address</h3>
+        <h3 class="mt-6">
+          Use saved address
+        </h3>
 
         <div>
           <div class="md:flex justify-between gap-8 mt-4">
@@ -18,13 +24,13 @@
               <div class="flex">
                 <div>
                   <input
-                    type="radio"
                     id="primary-address"
+                    v-model.trim="SelectedAddress"
+                    type="radio"
                     value="Primary address"
                     name="radio"
-                    v-model.trim="SelectedAddress"
                     class="mr-2 form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-primary-blue checked:border-primary-blue focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer"
-                  />
+                  >
                 </div>
                 <label for="primary-address"> Primary address</label>
               </div>
@@ -34,12 +40,12 @@
               <div class="flex">
                 <div>
                   <input
-                    type="radio"
                     id="home-address"
-                    value="Home address"
                     v-model.trim="SelectedAddress"
+                    type="radio"
+                    value="Home address"
                     class="mr-2 form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-primary-blue checked:border-primary-blue focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer"
-                  />
+                  >
                 </div>
                 <label for="home-address">Home address</label>
               </div>
@@ -47,67 +53,73 @@
           </div>
 
           <div class="mt-2">
-            <NuxtLink to="/">Or ship to new address</NuxtLink>
+            <NuxtLink to="/">
+              Or ship to new address
+            </NuxtLink>
           </div>
 
           <form action="" @submit.prevent="saveAddress">
             <div class="md:flex justify-between gap-8">
               <div class="mt-4 md:w-1/2">
                 <div>
-                  <label for="shop-name" class="block mb-2 text-sm font-medium"
-                    >Street Address</label
-                  >
+                  <label
+                    for="shop-name"
+                    class="block mb-2 text-sm font-medium"
+                  >Street Address</label>
                   <input
-                    type="text"
                     id="street-address"
-                    name="street-address"
                     v-model.trim="streetAddress"
+                    type="text"
+                    name="street-address"
                     class="border border-gray-200 t text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
-                  />
+                  >
                 </div>
               </div>
               <div class="mt-4 md:w-1/2">
                 <div>
-                  <label for="shop-name" class="block mb-2 text-sm font-medium"
-                    >City / LGA</label
-                  >
+                  <label
+                    for="shop-name"
+                    class="block mb-2 text-sm font-medium"
+                  >City / LGA</label>
                   <input
-                    type="text"
                     id="city-lga"
-                    name="city-lga"
                     v-model="cityLga"
+                    type="text"
+                    name="city-lga"
                     class="border border-gray-200 text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
-                  />
+                  >
                 </div>
               </div>
             </div>
             <div class="md:flex justify-between gap-8">
               <div class="mt-4 md:w-1/2">
                 <div>
-                  <label for="shop-name" class="block mb-2 text-sm font-medium"
-                    >State</label
-                  >
+                  <label
+                    for="shop-name"
+                    class="block mb-2 text-sm font-medium"
+                  >State</label>
                   <input
-                    type="text"
                     id="state"
-                    name="state"
                     v-model.trim="state"
+                    type="text"
+                    name="state"
                     class="border border-gray-200 t text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
-                  />
+                  >
                 </div>
               </div>
               <div class="mt-4 md:w-1/2">
                 <div>
-                  <label for="shop-name" class="block mb-2 text-sm font-medium"
-                    >Zip / postal code</label
-                  >
+                  <label
+                    for="shop-name"
+                    class="block mb-2 text-sm font-medium"
+                  >Zip / postal code</label>
                   <input
-                    type="text"
                     id="zip-postal-code"
-                    name="zip-postal-code"
                     v-model.trim="zipPostalCode"
+                    type="text"
+                    name="zip-postal-code"
                     class="border border-gray-200 text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
-                  />
+                  >
                 </div>
                 <div class="flex justify-end items-end mt-4">
                   <!-- <button
@@ -115,29 +127,32 @@
                   >
                     Save
                   </button> -->
-				  <AppButton buttonText="Save"  color="outlinebutton" size="md" rounded /> 
+                  <AppButton button-text="Save" color="outlinebutton" size="md" rounded />
                 </div>
-				
               </div>
             </div>
           </form>
           <div class="md:mt-10">
             <div class="mt-10">
-              <h2 class="text-xl">Payment</h2>
-              <hr class="mt-2" />
+              <h2 class="text-xl">
+                Payment
+              </h2>
+              <hr class="mt-2">
             </div>
-            <h3 class="mt-6">Use saved details</h3>
+            <h3 class="mt-6">
+              Use saved details
+            </h3>
             <div class="md:flex justify-between gap-8 mt-4">
               <div class="md:w-1/2">
                 <div class="flex">
                   <div>
                     <input
-                      type="radio"
                       id="auxillary-card"
-                      value="Auxillary Card"
                       v-model.trim="paymentMethod"
+                      type="radio"
+                      value="Auxillary Card"
                       class="mr-2 form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-primary-blue checked:border-primary-blue focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer"
-                    />
+                    >
                   </div>
                   <label for="auxillary-card">Auxillary card</label>
                 </div>
@@ -146,12 +161,12 @@
                 <div class="flex">
                   <div>
                     <input
-                      type="radio"
                       id="main-account"
-                      value="main-account"
                       v-model.trim="paymentMethod"
+                      type="radio"
+                      value="main-account"
                       class="mr-2 form-check-input appearance-none rounded-full h-4 w-4 border border-primary-blue bg-white checked:bg-primary-blue checked:border-primary-blue focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer"
-                    />
+                    >
                   </div>
                   <label for="main-account">Main account</label>
                 </div>
@@ -160,8 +175,10 @@
             <div class="md:flex justify-between gap-8 mt-4">
               <div class="md:w-1/2">
                 <div class="mt-6">
-                  <h2 class="text-xl">Use Debit Card</h2>
-                  <hr class="mt-2" />
+                  <h2 class="text-xl">
+                    Use Debit Card
+                  </h2>
+                  <hr class="mt-2">
                 </div>
                 <form action="" @submit.prevent="saveDebitCard">
                   <div class="md:flex justify-between gap-4">
@@ -170,15 +187,14 @@
                         <label
                           for="card-number"
                           class="block mb-2 text-sm font-medium"
-                          >Card number</label
-                        >
+                        >Card number</label>
                         <input
-                          type="text"
                           id="card-number"
-                          name="card-number"
                           v-model.trim="cardDetails.cardNumber"
+                          type="text"
+                          name="card-number"
                           class="border border-gray-200 t text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
-                        />
+                        >
                       </div>
                     </div>
                     <div class="mt-4 md:w-1/2">
@@ -186,49 +202,49 @@
                         <label
                           for="expiry"
                           class="block mb-2 text-sm font-medium"
-                          >Expiry</label
-                        >
+                        >Expiry</label>
                         <input
-                          type="text"
                           id="expiry-date"
-                          name="expiry"
                           v-model.trim="cardDetails.expiryDate"
+                          type="text"
+                          name="expiry"
                           class="border border-gray-200 text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
-                        />
+                        >
                       </div>
                     </div>
                   </div>
                   <div class="md:flex justify-between gap-4">
                     <div class="mt-4 md:w-1/2">
                       <div>
-                        <label for="cvv" class="block mb-2 text-sm font-medium"
-                          >cvv</label
-                        >
+                        <label
+                          for="cvv"
+                          class="block mb-2 text-sm font-medium"
+                        >cvv</label>
                         <input
-                          type="text"
                           id="cvv"
-                          name="cvv"
                           v-model.trim="cardDetails.cVV"
+                          type="text"
+                          name="cvv"
                           class="border border-gray-200 t text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
-                        />
+                        >
                       </div>
                     </div>
                     <div class="mt-4 md:w-1/2">
                       <div>
-                        <label for="pin" class="block mb-2 text-sm font-medium"
-                          >Pin</label
-                        >
+                        <label
+                          for="pin"
+                          class="block mb-2 text-sm font-medium"
+                        >Pin</label>
                         <input
-                          type="text"
                           id="pin"
-                          name="pin"
                           v-model.trim="cardDetails.pin"
+                          type="text"
+                          name="pin"
                           class="border border-gray-200 text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
-                        />
+                        >
                       </div>
                       <div class="flex justify-end items-end mt-4">
-                       <AppButton buttonText="Save"  color="outlinebutton" size="md" rounded /> 
-
+                        <AppButton button-text="Save" color="outlinebutton" size="md" rounded />
                       </div>
                     </div>
                   </div>
@@ -236,8 +252,10 @@
               </div>
               <div class="md:w-1/2">
                 <div class="mt-6">
-                  <h2 class="text-xl">Use Bank Transfer</h2>
-                  <hr class="mt-2" />
+                  <h2 class="text-xl">
+                    Use Bank Transfer
+                  </h2>
+                  <hr class="mt-2">
                 </div>
                 <form action="" @submit.prevent="saveBankDetail">
                   <div class="md:flex justify-between gap-4">
@@ -246,15 +264,14 @@
                         <label
                           for="bank-name"
                           class="block mb-2 text-sm font-medium"
-                          >Bank Name</label
-                        >
+                        >Bank Name</label>
                         <input
-                          type="text"
                           id="bank-name"
-                          name="bank-name"
                           v-model="bankData.bankName"
+                          type="text"
+                          name="bank-name"
                           class="border border-gray-200 t text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
-                        />
+                        >
                       </div>
                     </div>
                     <div class="mt-4 md:w-1/2">
@@ -262,18 +279,17 @@
                         <label
                           for="account-number"
                           class="block mb-2 text-sm font-medium"
-                          >Account Number</label
-                        >
+                        >Account Number</label>
                         <input
-                          type="text"
                           id="account-number"
-                          name="account-number"
                           v-model.trim="bankData.accountNumber"
+                          type="text"
+                          name="account-number"
                           class="border border-gray-200 text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
-                        />
+                        >
                       </div>
                       <div class="flex justify-end items-end mt-4">
-                       <AppButton buttonText="Save"  color="outlinebutton" size="md" rounded /> 
+                        <AppButton button-text="Save" color="outlinebutton" size="md" rounded />
                       </div>
                       <div>
                         <div class="flex space-x-2 justify-center mt-16">
@@ -285,9 +301,9 @@
                           >
                             Make Order
                           </button> -->
-						  <AppButton buttonText="Make order"  color="fillbutton" size="md" rounded /> 
+                          <AppButton button-text="Make order" color="fillbutton" size="md" rounded />
                         </div>
-                        <div class="flex justify-center"></div>
+                        <div class="flex justify-center" />
                       </div>
                     </div>
                   </div>
@@ -305,55 +321,55 @@
 </template>
 
 <script>
-import AppButton from "../../components/global/AppButton.vue";
+import AppButton from '../../components/global/AppButton.vue'
 export default {
-    data() {
-        return {
-	// 		styleObject: {
+  components: { AppButton },
+  data () {
+    return {
+      // 		styleObject: {
     //     color: "red",
     //     fontSize: "130px",
     //   },
-            //data for address input
-            SelectedAddress: "",
-            streetAddress: "",
-            cityLga: "",
-            state: "",
-            zipPostalCode: "",
-            //binding of payment input
-            paymentMethod: "",
-            cardDetails: {
-                expiryDate: "12/2",
-                cVV: "",
-                pin: "",
-                cardNumber: "",
-            },
-            //binding for bank transfer input
-            bankData: {
-                bankName: "",
-                accountNumber: "",
-            },
-        };
+      // data for address input
+      SelectedAddress: '',
+      streetAddress: '',
+      cityLga: '',
+      state: '',
+      zipPostalCode: '',
+      // binding of payment input
+      paymentMethod: '',
+      cardDetails: {
+        expiryDate: '12/2',
+        cVV: '',
+        pin: '',
+        cardNumber: ''
+      },
+      // binding for bank transfer input
+      bankData: {
+        bankName: '',
+        accountNumber: ''
+      }
+    }
+  },
+  methods: {
+    saveAddress () {
+      console.log('this is ' + this.streetAddress)
     },
-    methods: {
-        saveAddress() {
-            console.log("this is " + this.streetAddress);
-        },
-        saveDebitCard() {
-            const cardDetail = {
-                card,
-            };
-            console.log("this is");
-        },
-        saveBankDetail() {
-            const userAccoutData = {
-                bankName: this.bankData.bankName,
-                accountNumber: this.bankData.accountNumber,
-            };
-            console.log(userAccoutData);
-        },
+    saveDebitCard () {
+      const cardDetail = {
+        card
+      }
+      console.log('this is')
     },
-    components: { AppButton }
-};
+    saveBankDetail () {
+      const userAccoutData = {
+        bankName: this.bankData.bankName,
+        accountNumber: this.bankData.accountNumber
+      }
+      console.log(userAccoutData)
+    }
+  }
+}
 </script>
 
 <style>
