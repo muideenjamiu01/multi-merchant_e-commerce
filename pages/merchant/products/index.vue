@@ -6,11 +6,17 @@
     <main class="w-full text-sm">
       <div class="flex justify-between items-center">
         <h1 class="text-2xl">Products</h1>
-        <NuxtLink to="products/newproduct"
-          ><button class="py-2 px-4 bg-primary-blue text-white text-sm rounded">
-            Add Product
-          </button></NuxtLink
-        >
+        <NuxtLink to="products/newproduct">
+          <!-- <button class="py-2 px-4 bg-primary-blue text-white text-sm rounded">
+          Add Product
+        </button> -->
+          <AppButton
+            buttonText="Add Product"
+            color="fillbutton"
+            size="md"
+            rounded
+          />
+        </NuxtLink>
       </div>
       <div>
         <table

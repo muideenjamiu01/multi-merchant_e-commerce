@@ -2,23 +2,21 @@
   <div class="py-8 px-4">
     <div class="w-full md:flex gap-4">
       <div class="md:w-1/4">
-        <ContentsCustomerProfileCard />
-      </div>
+	  	<ContentsCustomerProfileCard />
+	  </div>
       <div class="md:w-3/4">
         <h1 class="text-2xl font-normal text-black">Profile</h1>
         <div>
           <div class="flex justify-between items-center">
             <h3>Your Name</h3>
-            <button class="border px-4 py-2">Edit</button>
+            <AppButton buttonText="Edit"  color="outlinegray" size="md" rounded /> 
           </div>
           <div class="mt-4">
             <h2 class="text-xl">Muideen Muhammed Jamiu</h2>
             <hr class="mt-2" />
           </div>
         </div>
-        <div
-          class="mt-4 xs:invisible md:visible flex justify-between items-center"
-        >
+        <div class="mt-4 hidden md:flex  justify-between items-center">
           <div class="md:flex flex-col">
             <h3>Photo</h3>
             <div class="flex flex-col mt-2 text-gray-400">
@@ -30,21 +28,21 @@
           </div>
           <div class="shrink-0">
             <img
-              src="@/assets/images/icons/profile-picture.jpg"
-              alt=""
-              class="w-36 h-36 rounded-full object-cover"
-            />
+            src="@/assets/images/icons/profile-picture.jpg"
+            alt=""
+            class="w-20 h-20  rounded-full object-cover"
+          />
           </div>
 
-          <div class="flex gap-4">
-            <button class="border px-4 py-2">Cancel</button>
-            <button class="border px-4 py-2">Save</button>
+          <div class="flex gap-2">
+             <AppButton buttonText="Cancel"  color="outlinegray" size="md" rounded /> 
+             <AppButton buttonText="Save"  color="outlinebutton" size="md" rounded /> 
           </div>
         </div>
         <div class="mt-4">
           <div class="flex justify-between items-center">
             <h3>Email</h3>
-            <button class="border px-4 py-2">Edit</button>
+            <AppButton buttonText="Edit"  color="outlinegray" size="md" rounded /> 
           </div>
           <div class="mt-4">
             <h2 class="text-xl">lloyd.lane@example.com</h2>
@@ -54,7 +52,7 @@
         <div class="mt-4">
           <div class="flex justify-between items-center">
             <h3>Phone</h3>
-            <button class="border px-4 py-2">Edit</button>
+            <AppButton buttonText="Edit"  color="outlinegray" size="md" rounded /> 
           </div>
           <div class="mt-4">
             <h2 class="text-xl">+234-816-421-0941</h2>
@@ -64,7 +62,7 @@
         <div class="mt-6">
           <div class="flex justify-between items-center">
             <h3>Shipping Information</h3>
-            <button class="border px-4 py-2">Edit</button>
+            <AppButton buttonText="Edit"  color="outlinegray" size="md" rounded /> 
           </div>
           <div class="mt-2 md:flex justify-between gap-8">
             <div class="md:w-1/2">
@@ -156,16 +154,8 @@
                     />
                   </div>
                   <div class="flex justify-end items-end mt-4 gap-4">
-                    <button
-                      class="border-2 border-primary-blue rounded-lg font-bold text-primary-blue px-6 py-1 transition duration-300 ease-in-out hover:bg-primary-blue hover:text-white"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      class="border-2 border-primary-blue rounded-lg font-bold text-primary-blue px-6 py-1 transition duration-300 ease-in-out hover:bg-primary-blue hover:text-white"
-                    >
-                      Save
-                    </button>
+                    <AppButton buttonText="Cancel"  color="outlinebutton" size="md" rounded /> 
+                    <AppButton buttonText="Save"  color="outlinebutton" size="md" rounded /> 
                   </div>
                 </div>
               </div>
@@ -182,7 +172,7 @@
                 <div class="flex justify-between items-center">
                   <h2 class="text-xl">Debit Card</h2>
                   <div>
-                    <button class="border py-1 px-4">Edit</button>
+                    <AppButton buttonText="Edit"  color="outlinegray" size="md" rounded /> 
                   </div>
                 </div>
                 <hr class="mt-2" />
@@ -272,16 +262,8 @@
                     />
                   </div>
                   <div class="flex justify-end items-end mt-4 gap-4">
-                    <button
-                      class="border-2 border-primary-blue rounded-lg font-bold text-primary-blue px-6 py-1 transition duration-300 ease-in-out hover:bg-primary-blue hover:text-white"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      class="border-2 border-primary-blue rounded-lg font-bold text-primary-blue px-6 py-1 transition duration-300 ease-in-out hover:bg-primary-blue hover:text-white"
-                    >
-                      Save
-                    </button>
+                   <AppButton buttonText="Cancel"  color="outlinebutton" size="md" rounded /> 
+                  <AppButton buttonText="Save"  color="outlinebutton" size="md" rounded /> 
                   </div>
                 </div>
               </div>
@@ -291,7 +273,7 @@
                 <div class="flex justify-between items-center">
                   <h2 class="text-xl">Bank Transfer</h2>
                   <div>
-                    <button class="border py-1 px-4">Edit</button>
+                   <AppButton buttonText="Edit"  color="outlinegray" size="md" rounded /> 
                   </div>
                 </div>
                 <hr class="mt-2" />
@@ -351,16 +333,8 @@
                     />
                   </div>
                   <div class="flex justify-end items-end mt-4 gap-4">
-                    <button
-                      class="border-2 border-primary-blue rounded-lg font-bold text-primary-blue px-6 py-1 transition duration-300 ease-in-out hover:bg-primary-blue hover:text-white"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      class="border-2 border-primary-blue rounded-lg font-bold text-primary-blue px-6 py-1 transition duration-300 ease-in-out hover:bg-primary-blue hover:text-white"
-                    >
-                      Save
-                    </button>
+                    <AppButton buttonText="Cancel"  color="outlinebutton" size="md" rounded /> 
+                    <AppButton buttonText="Save"  color="outlinebutton" size="md" rounded /> 
                   </div>
                 </div>
               </div>

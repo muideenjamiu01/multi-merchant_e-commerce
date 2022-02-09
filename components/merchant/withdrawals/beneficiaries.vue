@@ -2,12 +2,13 @@
   <div class="mt-12">
     <div class="flex justify-between items-center">
       <h1 class="text-2xl">Beneficiaries</h1>
-      <button
+      <!-- <button
         @click="toggleAddNew"
         class="bg-primary-blue text-white text-sm py-2 px-4 rounded"
       >
         New
-      </button>
+      </button> -->
+	  <AppButton @click ="toggleAddNew" buttonText="New"  color="fillbutton" size="sm" rounded /> 
     </div>
 
     <div
@@ -42,11 +43,13 @@
             </div>
           </div>
           <div class="text-sm flex justify-end mt-8">
-            <button @click="toggleAddNew" class="py-2 px-4">Cancel</button>
-
-            <button class="py-2 px-4 bg-primary-blue text-white rounded">
+            <!-- <button @click="toggleAddNew" class="py-2 px-4">Cancel</button> -->
+			
+			<AppButton @click="toggleAddNew" buttonText="Cancel"  color="outlinegray" size="md" rounded /> 
+            <!-- <button class="py-2 px-4 bg-primary-blue text-white rounded">
               Add Beneficiary
-            </button>
+            </button> -->
+			<AppButton buttonText="Add Beneficiary"  color="fillbutton" size="md" rounded /> 
           </div>
         </form>
       </div>

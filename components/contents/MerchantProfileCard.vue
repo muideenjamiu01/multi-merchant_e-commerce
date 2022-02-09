@@ -14,7 +14,7 @@
 
     <div class="space-y-6 mt-6 pt-4 border-t">
       <NuxtLink
-        :to="nav.link"
+        :to="'/merchant/' + nav.link"
         v-for="nav in navs"
         :key="nav.name"
         class="flex items-center space-x-5 font-light cursor-pointer"
@@ -26,19 +26,13 @@
       </NuxtLink>
     </div>
   </div>
-  <span class="iconify" data-icon="dashicons:menu"></span>
+  
   </div>
 </template>
 
 <script>
 export default {
-  head: {
-    script: {
-      hid: 'Iconify Icons',
-      src: 'https://code.iconify.design/2/2.1.2/iconify.min.js',
-      defer: true
-    }
-  },
+
   data() {
     return {
       navs: [

@@ -15,11 +15,12 @@
         <p>3400.00 NGN</p>
         <p class="text-primary-gray-light ml-2.5">-18%</p>
       </div>
-      <button
+      <!-- <button
         class="bg-primary-blue rounded-sm font-light text-white w-32 py-2 focus:outline-none"
       >
         Add to cart
-      </button>
+      </button> -->
+	  <AppButton buttonText="Add to cart"  color="fillbutton" size="md" rounded /> 
     </div>
   </NuxtLink>
 </template>

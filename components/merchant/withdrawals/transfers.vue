@@ -2,12 +2,13 @@
   <div class="mt-8">
     <div class="flex justify-between items-center">
       <h1 class="text-2xl">Transfers</h1>
-      <button
+      <!-- <button
         @click="toggleNewTransferModal"
         class="bg-primary-blue text-white text-sm py-2 px-4 rounded"
       >
         New Transfer
-      </button>
+      </button> -->
+	  <AppButton @click="toggleNewTransferModal" buttonText="New Transfer"  color="fillbutton" size="md" rounded /> 
     </div>
 
     <div
@@ -59,18 +60,21 @@
           </div>
 
           <div class="text-sm flex justify-between mt-8">
-            <button @click="toggleNewTransferModal" class="py-2 px-4">
+            <!-- <button @click="toggleNewTransferModal" class="py-2 px-4">
               Cancel
-            </button>
+            </button> -->
+			<AppButton buttonText="Cancel"  color="outlinegray" size="md" rounded /> 
             <div>
-              <button
+              <!-- <button
                 class="py-2 px-4 border border-primary-blue text-primary-blue rounded"
               >
                 Save and Transfer
-              </button>
-              <button class="py-2 px-4 bg-primary-blue text-white rounded">
+              </button> -->
+			  <AppButton buttonText="Save and Tranfer"  color="outlinebutton" size="md" rounded /> 
+              <!-- <button class="py-2 px-4 bg-primary-blue text-white rounded">
                 Transfer
-              </button>
+              </button> -->
+			  <AppButton buttonText="Transfer"  color="fillbutton" size="md" rounded /> 
             </div>
           </div>
         </form>
