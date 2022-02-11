@@ -1,14 +1,16 @@
 <template>
-  <div class="signup__page flex justify-center">
+  <div class="signup__page bg-primary-blue flex justify-center ">
     <div class="skewed-box bg-primary-blue w-full h-full"></div>
-    <div class="signup">
-      <img src="../../assets/images/logos/login-logo.svg" alt="login-logo" />
+    <div class="signup max-w-2xl">
+      <div class="flex w-full justify-center"><img src="../../assets/images/logos/login-logo.svg" alt="login-logo"/></div>
       <p class="heading">Sign in to your acount</p>
-      <input type="email" placeholder="Email Address" />
-      <input type="password" placeholder="Password" />
-      <button
-        class="bg-primary-blue text-white flex justify-center items-center"
-      >
+      <div class="flex flex-col text-left">
+        <label for="">Email</label>
+        <input class="w-full" type="email"/>
+        <label for="">Password</label>
+        <input type="password"/>
+      </div>
+      <button class="flex bg-primary-blue text-white justify-center items-center">
         LOGIN
       </button>
       <p>
@@ -72,19 +74,17 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 0rem 2rem;
-  height: 90vh;
-  min-width: 30vw;
+  padding: 0rem 48px;
+  height: 532px;
+  min-width: 470px;
   border-left-color: 1px solid black;
-  box-shadow: 5px 5px 5px grey;
+  box-shadow: 2px 2px 2px grey;
   border-radius: 3px;
 }
 
 .signup input {
   padding: 0.5rem 0rem 0.5rem 0.5rem;
   margin-bottom: 1rem;
-  width: 80%;
   border: 1px solid grey;
   border-radius: 3px;
 }
@@ -94,13 +94,11 @@ export default {
 }
 
 .signup button {
-  margin-bottom: 1rem;
-  width: 83%;
+  margin: 1rem 0 1rem 0;
   height: 2rem;
   border-radius: 3px;
   outline: none;
   border: none;
-  box-shadow: 5px 5px 5px #999;
 }
 
 .signup button:hover {
@@ -125,8 +123,7 @@ export default {
 
 .signup p {
   align-self: flex-start;
-  margin-left: 2.5rem;
-  margin-bottom: 0.1rem;
+  margin: 1rem 0 0.5rem 0;
   font-size: 0.8rem;
   font-weight: bold;
 }
