@@ -2,19 +2,24 @@
   <div class="signup__page">
     <div class="skewed-box bg-primary-blue h-full w-full" />
     <div class="signup">
-      <img src="../../assets/images/logos/login-logo.svg" alt="login-logo">
-      <p class="heading">
-        Create your account
-      </p>
-      <input type="text" placeholder="Your Name">
-      <input type="email" placeholder="Email Address">
-      <input type="password" placeholder="Password">
-      <input type="password" placeholder="Confirm Password">
-      <button
+      <img src="../../assets/images/logos/login-logo.svg" alt="login-logo" />
+      <p class="heading">Create your account</p>
+      <input type="text" placeholder="Your Name" />
+      <input type="email" placeholder="Email Address" />
+      <input type="password" placeholder="Password" />
+      <input type="password" placeholder="Confirm Password" />
+      <!-- <button
         class="flex justify-center items-center bg-primary-blue text-white"
       >
         SIGNUP
-      </button>
+      </button> -->
+	   <AppButton
+        class="mt-3 uppercase"
+        buttonText="signup"
+        color="fillbutton"
+        size="sm"
+        rounded
+      />
       <p>
         Already have an account? &nbsp;<span><nuxt-link to="/auth/login">Sign-In</nuxt-link></span>
       </p>

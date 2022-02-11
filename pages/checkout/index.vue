@@ -127,7 +127,7 @@
                   >
                     Save
                   </button> -->
-                  <AppButton button-text="Save" color="outlinebutton" size="md" rounded />
+				  <AppButton buttonText="Save"  color="outlinebutton" size="sm" rounded /> 
                 </div>
               </div>
             </div>
@@ -244,7 +244,8 @@
                         >
                       </div>
                       <div class="flex justify-end items-end mt-4">
-                        <AppButton button-text="Save" color="outlinebutton" size="md" rounded />
+                       <AppButton buttonText="Save"  color="outlinebutton" size="sm" rounded /> 
+
                       </div>
                     </div>
                   </div>
@@ -289,7 +290,7 @@
                         >
                       </div>
                       <div class="flex justify-end items-end mt-4">
-                        <AppButton button-text="Save" color="outlinebutton" size="md" rounded />
+                       <AppButton buttonText="Save"  color="outlinebutton" size="sm" rounded /> 
                       </div>
                       <div>
                         <div class="flex space-x-2 justify-center mt-16">

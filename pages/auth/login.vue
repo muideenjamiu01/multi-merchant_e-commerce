@@ -12,7 +12,14 @@
       </div>
       <button class="flex bg-primary-blue text-white justify-center items-center">
         LOGIN
-      </button>
+      </button> -->
+      <AppButton
+        class="mt-3 uppercase"
+        buttonText="login"
+        color="fillbutton"
+        size="sm"
+        rounded
+      />
       <p>
         Don't have an account? &nbsp;
         <span>
