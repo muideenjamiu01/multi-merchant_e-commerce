@@ -80,7 +80,7 @@
 
           <div class="flex flex-col md:flex-row w-full mt-5 mb-5 font-bold">  <!-- main grid top row contains 3 colums with 4 boxes inside-->
 
-            <div class="flex flex-col w-full sm:w-1/3 h-3/6 bg-white shadow-lg mr-5 mb-5 px-4"> <!-- card 1-->
+          <div class="flex flex-col md:flex-row w-full mt-5 mb-5 font-bold">  <!-- main grid top row contains 3 colums with 4 boxes inside-->
 
                 <h1 >PHONES & TABLETS</h1>
                 <div class="flex w-full px-2">
@@ -117,6 +117,22 @@
                 </div>
                 <h3 class="text-primary-blue pb-2">Shop now</h3>
 
+            <h1>Phones & Tablets</h1>
+            <div class="flex w-full">
+              <div class="mb-3 mr-3 hover:border">
+                <img
+                  class="w-auto mx-auto h-auto"
+                  src="../assets/images/test-images/phones/phones1.jpg"
+                  alt="fashion"
+                >
+              </div>
+              <div class="mb-3 hover:border">
+                <img
+                  class="w-auto mx-auto h-auto"
+                  src="../assets/images/test-images/phones/phones2.jpg"
+                  alt="fashion"
+                >
+              </div>
             </div>
           
              <div class="flex flex-col w-full sm:w-1/3 h-3/6 bg-white shadow-lg mr-5 mb-5 px-4"> <!-- card 2-->
@@ -195,7 +211,45 @@
                 </div>
                 <h3 class="text-primary-blue pb-2">Shop now</h3>
 
+                <h1>COMPUTING</h1>
+                <div class="flex w-full px-2">
+                  <div class="mb-3 mr-3 hover:border-4">
+                    <img
+                      class="w-auto mx-auto h-auto"
+                      src="../assets/images/test-images/computing/computing1.jpg"
+                      alt="fashion"
+                    />
+                  </div>
+                  <div class="mb-3 hover:border-4">
+                    <img
+                      class="w-auto mx-auto h-auto"
+                      src="../assets/images/test-images/computing/computing2.jpg"
+                      alt="fashion"
+                    />
+                  </div>
+                </div>
+                <div class="flex w-full px-2">
+                  <div class="mb-3 mr-3 hover:border-4">
+                    <img
+                      class="w-auto mx-auto h-auto"
+                      src="../assets/images/test-images/computing/computing3.jpg"
+                      alt="fashion"
+                    />
+                  </div>
+                  <div class="mb-3 hover:border-4">
+                    <img
+                      class="w-auto mx-auto h-auto"
+                      src="../assets/images/test-images/computing/computing4.jpg"
+                      alt="fashion"
+                    />
+                  </div>
+                </div>
+                <h3 class="text-primary-blue pb-2">Shop now</h3>
+
             </div>
+            <h3 class="">
+              Shop now
+            </h3>
           </div>
           
           <div class="flex flex-col md:flex-row w-full mt-5 mb-5 font-bold">  <!-- main grid top row contains 3 colums with 4 boxes inside-->
@@ -313,6 +367,26 @@
                   <h3 class="text-primary-blue pb-2">Shop now</h3>
 
               </div>
+            </div>
+            <h3 class="">
+              Shop now
+            </h3>
+          </div>
+
+        </main>
+
+        <aside class=" w-1/4 h-full text-center justify-between px-4 font-bold"> <!-- aside grid contains 3 rows -->
+          <div class=" h-1/3 my-5 px-10 pb-3 border border-zinc-200 py-2">
+            <h1 class="my-1 mx-5">Sign in for the best experience</h1>
+            <ButtonsSignin/>
+          </div>
+          <div class="bg-pink-200 h-1/3 my-5 py-2">
+            <h1 class="my-1 px-4">Delivered to your doorstep wherever you are in Nigeria</h1>
+            <img class="my-5 px-4" src="../assets/images/test-images/people.png" alt="">
+          </div>
+          <div class="flex flex-col justify-center bg-indigo-200 h-1/3 px-50 my-5 py-2">
+            <h1 class="my-1 mx-5">Easy Returns</h1>
+            <img src="../assets/images/test-images/box.png" alt="">
           </div>
 
         </main>
