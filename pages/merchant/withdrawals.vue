@@ -13,6 +13,6 @@
 
 <script>
 export default {
-  layout: "merchant",
-};
+  layout: 'merchant'
+}
 </script>

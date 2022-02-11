@@ -27,8 +27,8 @@
 </template>
 <script>
 export default {
-  layout: "empty",
-};
+  layout: 'empty'
+}
 </script>
 
 <style scoped>
