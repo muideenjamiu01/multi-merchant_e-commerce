@@ -4,7 +4,9 @@
       <ContentsCustomerProfileCard />
     </aside>
     <main class="w-full">
-      <h1 class="font-bold mb-10 mt-8">Your Orders</h1>
+      <h1 class="font-bold mb-10 mt-8">
+        Your Orders
+      </h1>
       <ContentsCustomerOrderSummary />
       <div class="font-bold justify-end md:flex items-center md:space-x-6">
         <p>Price</p>
