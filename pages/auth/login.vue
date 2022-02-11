@@ -2,17 +2,22 @@
   <div class="signup__page flex justify-center">
     <div class="skewed-box bg-primary-blue w-full h-full" />
     <div class="signup">
-      <img src="../../assets/images/logos/login-logo.svg" alt="login-logo">
-      <p class="heading">
-        Sign in to your acount
-      </p>
-      <input type="email" placeholder="Email Address">
-      <input type="password" placeholder="Password">
-      <button
+      <img src="../../assets/images/logos/login-logo.svg" alt="login-logo" />
+      <p class="heading">Sign in to your acount</p>
+      <input type="email" placeholder="Email Address" />
+      <input type="password" placeholder="Password" />
+      <!-- <button 
         class="bg-primary-blue text-white flex justify-center items-center"
       >
         LOGIN
-      </button>
+      </button> -->
+      <AppButton
+        class="mt-3 uppercase"
+        buttonText="login"
+        color="fillbutton"
+        size="sm"
+        rounded
+      />
       <p>
         Don't have an account? &nbsp;
         <span>
