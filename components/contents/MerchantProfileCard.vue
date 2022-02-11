@@ -1,8 +1,7 @@
 <template>
 <div>
   <div
-    class="w-72 bg-primary-blue-light py-8 px-7 hidden lg:block mr-8 text-sm text-center"
-  >
+    class="w-72 bg-primary-blue-light py-8 px-7 hidden lg:block mr-8 text-sm text-center">
     <div  class="flex">
         <img src="../../assets/images/logos/merchant-logo.svg" alt="merchant logo" >
         <div class="flex flex-col text-left mx-4 my-4 ">
@@ -26,19 +25,12 @@
       </NuxtLink>
     </div>
   </div>
-  <span class="iconify" data-icon="dashicons:menu"></span>
   </div>
 </template>
 
 <script>
 export default {
-  head: {
-    script: {
-      hid: 'Iconify Icons',
-      src: 'https://code.iconify.design/2/2.1.2/iconify.min.js',
-      defer: true
-    }
-  },
+
   data() {
     return {
       navs: [
