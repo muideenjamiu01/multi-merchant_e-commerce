@@ -5,7 +5,7 @@
         <ContentsMerchantProfileCard />
       </div>
       <div >
-        <div class="w-full md:flex md:gap-x-6">
+        <div class="w-full md:flex md:gap-x-">
           <div class="p-4 bg-primary-blue-sharpen px-6 h-20 rounded">
             <div class="flex items-center gap-2">
               <div>
@@ -115,12 +115,13 @@
         </div>
 
         <div
-          class="mt-8 md:flex gap-4 justify-end items-center text-xs font-normal"
+          class="mt-8 md:flex gap-2 justify-end items-center text-xs font-normal"
         >
-          <span class="bg-primary-blue-light p-3 rounded">this week</span>
-          <span class="bg-primary-blue-light p-3 rounded">this month</span>
-          <span class="bg-primary-blue-light p-3 rounded">this quarter</span>
-          <span class="bg-primary-blue-light p-3 rounded">this year</span>
+		  <AppButton buttonText="this week" class="bg-primary-blue-light"   size="sm" rounded /> 
+		  <AppButton buttonText="this month"  class="bg-primary-blue-light" size="sm" rounded /> 
+		  <AppButton buttonText="this quarter" class="bg-primary-blue-light"  size="sm" rounded /> 
+		  <AppButton buttonText="this year" class="bg-primary-blue-light "  size="sm" rounded /> 
+          
         </div>
         <div class="mt-8 md:mt-0">
           <div class="chart-div">

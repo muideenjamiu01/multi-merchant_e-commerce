@@ -9,7 +9,7 @@
         <div>
           <div class="flex justify-between items-center">
             <h3>Your Name</h3>
-            <AppButton buttonText="Edit"  color="outlinegray" size="md" rounded /> 
+            <AppButton buttonText="Edit"  color="outlinegray" size="sm" rounded /> 
           </div>
           <div class="mt-4">
             <h2 class="text-xl">Muideen Muhammed Jamiu</h2>

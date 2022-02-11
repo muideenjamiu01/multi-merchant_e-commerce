@@ -8,11 +8,18 @@
       <input type="email" placeholder="Email Address" />
       <input type="password" placeholder="Password" />
       <input type="password" placeholder="Confirm Password" />
-      <button
+      <!-- <button
         class="flex justify-center items-center bg-primary-blue text-white"
       >
         SIGNUP
-      </button>
+      </button> -->
+	   <AppButton
+        class="mt-3 uppercase"
+        buttonText="signup"
+        color="fillbutton"
+        size="sm"
+        rounded
+      />
       <p>
         Already have an account? &nbsp;<span
           ><nuxt-link to="/auth/login">Sign-In</nuxt-link></span

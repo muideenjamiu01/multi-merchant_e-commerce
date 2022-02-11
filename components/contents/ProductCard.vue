@@ -20,7 +20,7 @@
       >
         Add to cart
       </button> -->
-	  <AppButton buttonText="Add to cart"  color="fillbutton" size="md" rounded /> 
+	  <AppButton buttonText="Add to cart"  color="fillbutton" size="sm" rounded /> 
     </div>
   </NuxtLink>
 </template>

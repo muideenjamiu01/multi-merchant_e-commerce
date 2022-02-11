@@ -20,14 +20,14 @@
                 <span class="font-light text-sm">-18%</span>
               </div>
               <div>
-				  <AppButton
-                class="mt-3"
-                buttonText="add to cart"
-                color="fillbutton"
-                size="md"
-                rounded
-              />
-			  </div>
+                <AppButton
+                  class="mt-3"
+                  buttonText="add to cart"
+                  color="fillbutton"
+                  size="sm"
+                  rounded
+                />
+              </div>
             </div>
           </div>
         </div>
