@@ -4,7 +4,9 @@
       <ContentsMerchantProfileCard />
     </aside>
     <main class="text-sm w-full">
-      <h1 class="text-2xl">Transactions</h1>
+      <h1 class="text-2xl">
+        Transactions
+      </h1>
 
       <div>
         <table
@@ -12,17 +14,25 @@
         >
           <thead class="py-3 border-b font-medium text-center">
             <tr>
-              <th class="pb-3 text-left">Transaction ID</th>
-              <th class="pb-3">Price</th>
-              <th class="pb-3">Date of Purchase</th>
-              <th class="pb-3">Status</th>
+              <th class="pb-3 text-left">
+                Transaction ID
+              </th>
+              <th class="pb-3">
+                Price
+              </th>
+              <th class="pb-3">
+                Date of Purchase
+              </th>
+              <th class="pb-3">
+                Status
+              </th>
             </tr>
           </thead>
           <tbody class="text-center">
             <tr v-for="p in 11" :key="p" class="border-b">
               <td class="flex gap-4 py-3 text-left">
                 <h1>1585297524</h1>
-                <div class="h-24 w-24 bg-primary-gray"></div>
+                <div class="h-24 w-24 bg-primary-gray" />
                 <div>
                   <h1>
                     Women's Los Angeles California Long Sleeve Sweatshirt
@@ -45,9 +55,8 @@
   </div>
 </template>
 
-
 <script>
 export default {
-  layout: "merchant",
-};
+  layout: 'merchant'
+}
 </script>

@@ -3,11 +3,13 @@
     <div class="bg-primary-blue-light p-4">
       <div class="mt-4 flex gap-4">
         <div>
-          <img src="" alt="" class="w-28 h-28" />
+          <img src="" alt="" class="w-28 h-28">
         </div>
         <div>
           <div>
-            <h4 class="font-light text-sm">Product name</h4>
+            <h4 class="font-light text-sm">
+              Product name
+            </h4>
             <div class="">
               <div class="flex justify-between">
                 <span class="font-light text-sm">stars rating </span>
@@ -38,7 +40,7 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style lang="scss" scoped></style>

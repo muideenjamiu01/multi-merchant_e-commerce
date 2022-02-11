@@ -1,6 +1,6 @@
 <template>
   <div class="signup__page flex justify-center">
-    <div class="skewed-box bg-primary-blue w-full h-full"></div>
+    <div class="skewed-box bg-primary-blue w-full h-full" />
     <div class="signup">
       <img src="../../assets/images/logos/login-logo.svg" alt="login-logo" />
       <p class="heading">Sign in to your acount</p>
@@ -32,8 +32,8 @@
 </template>
 <script>
 export default {
-  layout: "empty",
-};
+  layout: 'empty'
+}
 </script>
 
 <style scoped>

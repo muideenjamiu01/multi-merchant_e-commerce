@@ -1,6 +1,6 @@
 <template>
   <div class="signup__page">
-    <div class="skewed-box bg-primary-blue h-full w-full"></div>
+    <div class="skewed-box bg-primary-blue h-full w-full" />
     <div class="signup">
       <img src="../../assets/images/logos/login-logo.svg" alt="login-logo" />
       <p class="heading">Create your account</p>
@@ -21,9 +21,7 @@
         rounded
       />
       <p>
-        Already have an account? &nbsp;<span
-          ><nuxt-link to="/auth/login">Sign-In</nuxt-link></span
-        >
+        Already have an account? &nbsp;<span><nuxt-link to="/auth/login">Sign-In</nuxt-link></span>
       </p>
       <p>By clicking the signup button you agree to our</p>
       <p>
@@ -35,8 +33,8 @@
 
 <script>
 export default {
-  layout: "empty",
-};
+  layout: 'empty'
+}
 </script>
 
 <style scoped>
