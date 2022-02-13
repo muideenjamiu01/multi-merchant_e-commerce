@@ -1,101 +1,29 @@
-<template >
-    <div class="z-0 px-12">
-        <!-- carousel section -->
-      <div
-        id="carouselExampleCrossfade"
-        class="w-full carousel slide carousel-fade carousel-dark relative"
-        data-bs-ride="carousel" >
-        <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCrossfade"
-            data-bs-slide-to="0"
-            class="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCrossfade"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCrossfade"
-            data-bs-slide-to="2"
-            aria-label="Slide 3">
-          </button>
-        </div>
-        <div class="carousel-inner relative w-full overflow-hidden h-96">
-          <div class="cascade carousel-item active float-left w-full">
-            <img
-              src="../assets/images/test-images/landing-page-image.png"
-              class="block w-full h-96"
-              alt="Fashion"
-            />
-            <div class="overlay h-full font-bold text-6xl"> <div class="overlay-font">Quality Products at the Best Prices</div> </div>
-
-          </div>
-          <div class="cascade carousel-item float-left w-full">
-            <img
-              src="../assets/images/test-images/landing-page-image3.jpg"
-              class="block w-full h-96"
-              alt="Home"
-            />
-          </div>
-          <div class="cascade carousel-item float-left w-full">
-            <img
-              src="../assets/images/test-images/landing-page-image2.png"
-              class="block w-full h-96"
-              alt="5k store"
-            />
-          </div>
-          
-        </div>
-        <button
-          class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
-          type="button"
-          data-bs-target="#carouselExampleCrossfade"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
-          type="button"
-          data-bs-target="#carouselExampleCrossfade"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
+<template>
+    <div class="z-0 px-12 bg-slate-200 pb-[920px] md:pb-36 md:min-h-screen">
+      <Carousel class="hidden md:block"/>
 
 
           <!-- grid section -->
-      <div class="flex w-full mt-16"> 
+      <div class="flex flex-col-reverse md:w-full md:flex md:flex-row md:mt-16"> 
       
-        <main class="flex flex-col justify-between w-3/4 h-max  md:mr-5 md:pr-5"> <!-- main grid contains contains top and bottom rows -->
+        <main class="flex flex-col w-full pt-[20px] md:pt-0 md:w-3/4 md:justify-between md:mr-5 md:pr-5"> <!-- main grid contains contains top and bottom rows -->
 
-          <div class="flex flex-col md:flex-row w-full mb-5 ">  <!-- main top row-->
-            <LandingFashion />
+          <div class="flex flex-col w-full md:mb-5 md:flex-row">  <!-- main top row-->
+            <LandingFashion class="mt-0"/>
             <LandingFashion />
             <LandingFashion />
           </div>
           
-          <div class="flex flex-col h-420 md:flex-row w-full pb-5 ">  <!-- main bottom row-->
+          <div class="flex flex-col h-420 w-full pb-5 md:flex-row">  <!-- main bottom row-->
             <LandingFashion />
             <LandingFashion />
             <LandingFashion />
-           
           </div>
 
         </main>
 
-        <aside class=" flex flex-col w-1/4 h-full text-center pl-4"> <!-- aside grid contains 3 rows -->
-          <div class=" h-44 border p-6 bg-white rounded">
+        <aside class="flex flex-col pt-6 text-center pl-4 hidden md:justify-between md:block md:w-1/4 md:pt-0"> <!-- aside grid contains 3 rows -->
+          <div class="h-44 border p-6 bg-white rounded">
             <h1 class="my-1 mx-5">Sign in for the best experience</h1>
             <ButtonsSignin/>
           </div>
@@ -103,7 +31,8 @@
             <h1 class="my-1">Delivered to your doorstep wherever you are in Nigeria</h1>
             <img class="my-5 px-4" src="../assets/images/test-images/people.png" alt="">
           </div>
-          <div class="bg-indigo-200 h-60  my-5 pt-5 rounded">
+          <div class="bg-indigo-200 h-[260px] mt-5 pt-5 rounded"
+          >
             <h1 class="mb-11">Easy Returns</h1>
             <img src="../assets/images/test-images/box.png" alt="cardboard boxes">
           </div>
