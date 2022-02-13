@@ -1,14 +1,14 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   content: [
     './src/**/*.{html,js}', './node_modules/tw-elements/dist/js/**/*.js',
-    "./components/**/*.{js,vue,ts}",
-    "./layouts/**/*.vue",
-    "./pages/**/*.vue",
-    "./plugins/**/*.{js,ts}",
-    "./nuxt.config.{js,ts}",
-	
+    './components/**/*.{js,vue,ts}',
+    './layouts/**/*.vue',
+    './pages/**/*.vue',
+    './plugins/**/*.{js,ts}',
+    './nuxt.config.{js,ts}'
+
   ],
   theme: {
     extend: {
@@ -40,18 +40,19 @@ module.exports = {
        }
     },
     screens: {
-      xs: "475px",
-      ...defaultTheme.screens,
+      xs: '475px',
+      ...defaultTheme.screens
     },
     minWidth: {
-      88: "22rem",
+      88: '22rem'
     },
     fontFamily: {
-      "br-sonoma": ["'BR Sonoma'"],
+      'br-sonoma': ["'BR Sonoma'"]
     },
     maxHeight: {
-      128: "32rem",
-    },
+      128: '32rem'
+    }
   },
-  plugins: [require('tw-elements/dist/plugin')],
-};
+  plugins: [require('tw-elements/dist/plugin')]
+
+}

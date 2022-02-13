@@ -1,0 +1,23 @@
+name: Tests
+
+on:
+  pull_request:
+    branches:
+      - staging
+
+jobs:
+  test:
+    name: Tests
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: yarn
+      - name: Installation
+        run: yarn
+      - name: Test
+        run: yarn test
