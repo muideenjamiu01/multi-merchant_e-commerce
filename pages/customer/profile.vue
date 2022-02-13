@@ -11,7 +11,7 @@
         <div>
           <div class="flex justify-between items-center">
             <h3>Your Name</h3>
-            <AppButton button-text="Edit" color="outlinegray" size="md" rounded />
+            <AppButton buttonText="Edit"  color="outlinegray" size="sm" rounded /> 
           </div>
           <div class="mt-4">
             <h2 class="text-xl">
@@ -161,8 +161,8 @@
                     >
                   </div>
                   <div class="flex justify-end items-end mt-4 gap-4">
-                    <AppButton button-text="Cancel" color="outlinebutton" size="md" rounded />
-                    <AppButton button-text="Save" color="outlinebutton" size="md" rounded />
+                    <AppButton button-text="Cancel" color="outlinebutton" size="sm" rounded />
+                    <AppButton button-text="Save" color="outlinebutton" size="sm" rounded />
                   </div>
                 </div>
               </div>
@@ -181,7 +181,7 @@
                     Debit Card
                   </h2>
                   <div>
-                    <AppButton button-text="Edit" color="outlinegray" size="md" rounded />
+                    <AppButton button-text="Edit" color="outlinegray" size="sm" rounded />
                   </div>
                 </div>
                 <hr class="mt-2">

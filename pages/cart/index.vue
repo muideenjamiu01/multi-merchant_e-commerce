@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto py-4 px-2">
-    <div class="flex gap-4 mt-8">
+    <div @click="goBack" class="flex gap-4 mt-8">
       <img src="@/assets/images/icons/back-arrow.svg" alt="" />
       <h1 class="md:text-3xl font-medium">Shopping Cart</h1>
     </div>
@@ -65,28 +65,23 @@
           <h1><span class="">Subtotal (5 items):</span></h1>
           <span class="">799516 NGN</span>
         </div>
+
+        <AppButton class="mt-3" buttonText="add to cart" color="" size="" />
       </div>
       <div class="md:w-1/4">
-        <div class="mt-4 lg:mt-0 font-medium bg-primary-blue-light p-8">
+        <div class="mt-4 lg:mt-0 font-medium bg-primary-blue-light p-6">
           <h1><span class="">Subtotal (5 items):</span></h1>
           <span class="flex justify-end">799516 NGN</span>
-          <div class="flex justify-center mt-6">
+
+          <div class="flex justify-center items-center mt-6">
             <AppButton
-              button-text="Proceed to checkout"
+              buttonText="Proceed to checkout"
               color="fillbutton"
               size="md"
-              class="w-full"
-              rounded
+              class="w-full text-center"
             />
           </div>
-        </div>
-        <div class="hidden lg:block bg-primary-blue-light p-2 mt-6">
-          <h1 class="text-base font-medium my-2">
-            You recently viewed this items
-          </h1>
-          <div v-for="product in 5" :key="product" class=" ">
-            <ContentsAddToCart />
-          </div>
+          <ContentsAddToCart />
         </div>
       </div>
     </div>
@@ -108,6 +103,10 @@ export default {
   methods: {
     removeFromCart() {
       this.$store.commit("removeFromCart");
+    },
+
+    goBack() {
+      this.$router.go(-1);
     },
   },
 };

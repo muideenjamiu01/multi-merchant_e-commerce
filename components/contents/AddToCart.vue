@@ -24,9 +24,9 @@
               <div>
                 <AppButton
                   class="mt-3"
-                  button-text="add to cart"
+                  buttonText="add to cart"
                   color="fillbutton"
-                  size="md"
+                  size="sm"
                   rounded
                 />
               </div>

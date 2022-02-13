@@ -1,5 +1,9 @@
 <template>
   <button
+	:is="to ? 'nuxt-link' : href ? 'a' : 'button'"
+    :to="to"
+    :href="href"
+    v-on="$listeners"
     :class="[
       {
         'bg-primary-blue text-white border-bg-primary-blue hover:bg-primary-blue-dark hover:border-bg-primary-blue hover:text-white':
@@ -16,12 +20,12 @@
       },
 
       { 'h-8 text-sm px-4': size === 'sm'},
-      { 'h-10 px-6': size === 'md' },
-      { 'h-12 text-lg  px-32': size === 'lg' },
-      {'rounded-lg': round},
+      { 'py-2 px-6': size === 'md' },
+      { 'h-12 text-lg  px-32': size ===  'lg' },
+	  {'rounded-lg': round},
       {'rounded': rounded },
     ]"
-    v-on="$listeners"
+   
   >
     <slot>{{ buttonText }}</slot>
   </button>
@@ -42,13 +46,16 @@ export default {
       type: String,
       default: ''
     },
-    rounded: Boolean,
-    round: Boolean
-  },
-  data () {
-    return {
-      sizes: ['lg', 'md', 'sm']
-    }
+	to: {
+        type: String,
+        default: null,
+      },
+      href: {
+        type: String,
+        default: null,
+      },
+	rounded:Boolean,
+	round:Boolean,
   },
 
   computed: {
