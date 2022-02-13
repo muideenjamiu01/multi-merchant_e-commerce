@@ -2,7 +2,7 @@
   <div class="signup__page bg-primary-blue flex justify-center ">
     <div class="skewed-box bg-primary-blue w-full h-full"></div>
     <div class="signup max-w-2xl">
-      <div class="flex w-full justify-center"><img src="../../assets/images/logos/login-logo.svg" alt="login-logo"/></div>
+      <nuxt-link to="/"><div class="flex w-full justify-center"><img src="../../assets/images/logos/login-logo.svg" alt="login-logo"/></div></nuxt-link>
       <p class="heading">Sign in to your acount</p>
       <div class="flex flex-col text-left">
         <label for="">Email</label>

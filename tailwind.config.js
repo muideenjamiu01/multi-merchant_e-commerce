@@ -34,6 +34,10 @@ module.exports = {
 		  
         },
       },
+      height: {
+        '420': '420px',
+        '420': '420px',
+       }
     },
     screens: {
       xs: "475px",
