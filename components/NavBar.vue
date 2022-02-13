@@ -7,12 +7,12 @@
         src="../assets/images/logos/login-logo.svg"
         class="hidden sm:block"
         alt="login-logo"
-      >
+      />
       <img
         src="@/assets/images/logos/small-logo.svg"
         class="sm:hidden w-10 h-10"
         alt=""
-      >
+      />
     </nuxt-link>
     <div
       class="bg-primary-blue-light px-3 py-2 hidden lg:flex justify-between items-center rounded w-full max-w-xl"
@@ -21,8 +21,8 @@
         type="text"
         placeholder="Search Youstore"
         class="focus:outline-none bg-transparent w-full"
-      >
-      <img class="cursor-pointer" src="@/assets/images/icons/search-icon.svg">
+      />
+      <img class="cursor-pointer" src="@/assets/images/icons/search-icon.svg" />
     </div>
 
     <div class="flex items-center gap-5">
@@ -71,31 +71,31 @@
             <div class="px-4 py-4">
               <ul>
                 <NuxtLink to="/customer/profile">
-                  <li class="cursor-pointer mb-4">
-                    My Account
-                  </li>
+                  <li class="cursor-pointer mb-4">My Account</li>
                 </NuxtLink>
                 <NuxtLink to="/customer/orders">
-                  <li class="cursor-pointer mb-4">
-                    Orders
-                  </li>
+                  <li class="cursor-pointer mb-4">Orders</li>
                 </NuxtLink>
                 <NuxtLink to="/customer/wishlist">
-                  <li class="cursor-pointer mb-4">
-                    Wishlist
-                  </li>
+                  <li class="cursor-pointer mb-4">Wishlist</li>
                 </NuxtLink>
               </ul>
             </div>
           </div>
         </div>
       </div>
-      <NuxtLink to="/cart">
+      <NuxtLink to="/cart" class="relative">
         <img
           class="cursor-pointer"
           src="@/assets/images/icons/cart-icon.svg"
           alt="Checkout image"
+        />
+        <div
+          v-if="cartItems"
+          class="h-5 w-5 bg-primary-blue rounded-full flex items-center justify-center text-white text-xs absolute -top-2 -right-2"
         >
+          <h1>{{ cartItems }}</h1>
+        </div>
       </NuxtLink>
     </div>
   </div>
@@ -108,15 +108,20 @@ export default {
     // Footer,
     // AppHeader
   },
-  data () {
+  data() {
     return {
-      dropdown: false
-    }
+      dropdown: false,
+    };
   },
   methods: {
-    toggleDropdown () {
-      this.dropdown = !this.dropdown
-    }
-  }
-}
+    toggleDropdown() {
+      this.dropdown = !this.dropdown;
+    },
+  },
+  computed: {
+    cartItems() {
+      return this.$store.state.cartItems;
+    },
+  },
+};
 </script>
