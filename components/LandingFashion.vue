@@ -17,7 +17,7 @@
         />
       </div>
     </div>
-    <div class="flex  w-full h-32  px-2 ">
+    <div class="flex w-full h-32 px-2">
       <div class="mb-2 mr-2 w-32 h-32 hover:border-4 border-sky-500 bg-slate-300">
         <img
           class="h-full w-full"

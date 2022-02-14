@@ -10,9 +10,7 @@
         <label for="">Password</label>
         <input type="password"/>
       </div>
-      <button class="flex bg-primary-blue text-white justify-center items-center">
-        LOGIN
-      </button> -->
+      
       <AppButton
         class="mt-3 uppercase"
         buttonText="login"
