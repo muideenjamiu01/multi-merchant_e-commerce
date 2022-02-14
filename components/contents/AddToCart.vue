@@ -22,7 +22,7 @@
                 <span class="font-light text-sm">-18%</span>
               </div>
               <div>
-        <app-button class="mt-3" variant="contained" size="small">
+        <app-button class="mt-3" variant="contained" fullWidth size="small">
           Add to cart
         </app-button>
                 <!-- <AppButton

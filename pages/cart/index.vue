@@ -75,7 +75,7 @@
           <span class="flex justify-end">799516 NGN</span>
 
           <div class="flex justify-center items-center mt-6">
-        <app-button color="primary" variant='contained'>Proceed to checkout</app-button>
+        <app-button color="primary" variant='contained' fullWidth>Proceed to checkout</app-button>
             <!-- <AppButton
               buttonText=""
               color="fillbutton"

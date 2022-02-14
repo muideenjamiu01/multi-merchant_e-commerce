@@ -273,7 +273,7 @@
         </div>
       </div>
 
-      <div class="flex justify-center items-center">
+      <div class="flex justify-center items-center mt-8">
           <app-button to="dashboard" uppercase variant="contained" size="large">
           Get Started
           </app-button>
