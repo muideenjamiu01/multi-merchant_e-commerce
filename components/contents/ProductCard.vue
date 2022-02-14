@@ -22,19 +22,20 @@
       >
         Add to cart
       </button> -->
-      <AppButton
-        @click.stop="addToCart"
-        button-text="Add to cart"
-        color="fillbutton"
-        size="md"
-        rounded
-      />
+        <app-button variant="contained" size="small" fullWidth>
+          Add to cart
+        </app-button>
     </div>
   </div>
 </template>
 
 <script>
+import AppButton from "@/components/buttons/Button.vue"
+
 export default {
+    components: {
+      'app-button': AppButton
+    },
   props: ["product"],
   methods: {
     viewProduct() {

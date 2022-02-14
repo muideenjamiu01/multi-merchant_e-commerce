@@ -10,7 +10,9 @@
       >
         New Transfer
       </button> -->
-      <AppButton button-text="New Transfer" color="fillbutton" size="md" rounded @click="toggleNewTransferModal" />
+      <app-button fullWidth size="sm" variant="contained" @click="toggleNewTransferModal">
+        New Transfer
+      </app-button>
     </div>
 
     <div
@@ -68,21 +70,24 @@
           </div>
 
           <div class="text-sm flex justify-between mt-8">
-            <!-- <button @click="toggleNewTransferModal" class="py-2 px-4">
+            <app-button variant="outlined" color="secondary">
               Cancel
-            </button> -->
-            <AppButton button-text="Cancel" color="outlinegray" size="md" rounded />
+            </app-button>
             <div>
               <!-- <button
                 class="py-2 px-4 border border-primary-blue text-primary-blue rounded"
               >
                 Save and Transfer
               </button> -->
-              <AppButton button-text="Save and Tranfer" color="outlinebutton" size="md" rounded />
+              <app-button variant="outlined" color="success">
+                Save and Tranfer
+                </app-button>
               <!-- <button class="py-2 px-4 bg-primary-blue text-white rounded">
                 Transfer
               </button> -->
-              <AppButton button-text="Transfer" color="fillbutton" size="md" rounded />
+              <app-button variant="contained" color="success">
+                Transfer
+                </app-button>
             </div>
           </div>
         </form>
@@ -141,7 +146,12 @@
 </template>
 
 <script>
-export default {
+import AppButton from "@/components/buttons/Button.vue"
+
+  export default {
+    components: {
+      'app-button': AppButton
+    },
   data () {
     return {
       beneficiaries: ['Marvin Walters', 'Marilyn Munroe'],

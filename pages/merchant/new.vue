@@ -91,16 +91,13 @@
                 >
                   Upload
                 </button> -->
-                <AppButton
-                  id="button"
+                <app-button id="button"
                   name="button"
                   value="Upload"
-                  button-text="Upload"
-                  color="outlinegray"
-                  size="md"
-                  rounded
                   @click.prevent="thisFileUpload()"
-                />
+                   variant="outlined" color="secondary" size="small">
+                     Upload
+                </app-button>
               </div>
             </div>
             <hr class="mt-6">
@@ -114,16 +111,13 @@
               <div>Banner Photo</div>
               <div class="flex items-end justify-center">
                 <input id="fileupload" type="file" hidden>
-                <AppButton
-                  id="button"
+                <app-button id="button"
                   name="button"
                   value="Upload"
-                  button-text="Upload"
-                  color="outlinegray"
-                  size="md"
-                  rounded
                   @click.prevent="thisFileUpload()"
-                />
+                   variant="outlined" color="secondary" size="small">
+                     Upload
+                </app-button>
               </div>
             </div>
             <hr class="mt-6">
@@ -280,17 +274,22 @@
       </div>
 
       <div class="flex justify-center items-center">
-        <NuxtLink to="dashboard">
-          <AppButton button-text="Get Started" color="fillbutton" size="lg" class="mt-4 mr-6 font-bold" rounded />
-        </NuxtLink>
+          <app-button to="dashboard" uppercase variant="contained" size="large">
+          Get Started
+          </app-button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import AppButton from "@/components/buttons/Button.vue"
+
 export default {
   layout: 'empty',
+    components: {
+      'app-button': AppButton
+    },
   methods: {
     thisFileUpload () {
       document.getElementById('fileupload').click()

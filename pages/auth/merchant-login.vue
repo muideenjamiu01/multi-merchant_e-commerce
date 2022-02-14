@@ -14,11 +14,9 @@
       <input type="email" placeholder="Store Name">
       <input type="email" placeholder="Email Address">
       <input type="password" placeholder="Password">
-      <button
-        class="bg-primary-blue text-white flex justify-center items-center"
-      >
+      <app-button fullWidth uppercase size="large" variant="contained" class="mt-3">
         LOGIN
-      </button>
+      </app-button>
       <p>
         Don't have an account? &nbsp;
         <span>
@@ -32,10 +30,16 @@
   </div>
 </template>
 <script>
-export default {
-  layout: 'empty'
+import AppButton from "@/components/buttons/Button.vue"
+
+  export default {
+  layout: 'empty',
+    components: {
+      'app-button': AppButton
+    },
 }
 </script>
+
 
 <style scoped>
 .signup__page .heading {

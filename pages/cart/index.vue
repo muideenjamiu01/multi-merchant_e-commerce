@@ -89,12 +89,12 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      counter: 0,
-    };
-  },
+import AppButton from "@/components/buttons/Button.vue"
+
+  export default {
+    components: {
+      'app-button': AppButton
+    },
   computed: {
     cartItems() {
       return this.$store.state.cartItems;

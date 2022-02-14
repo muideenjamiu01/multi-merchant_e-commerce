@@ -8,18 +8,16 @@
       <input type="email" placeholder="Email Address" />
       <input type="password" placeholder="Password" />
       <input type="password" placeholder="Confirm Password" />
-      <!-- <button
-        class="flex justify-center items-center bg-primary-blue text-white"
-      >
-        SIGNUP
-      </button> -->
-	   <AppButton
+      <app-button fullWidth uppercase size="large" variant="contained" class="mt-3">
+        signup
+      </app-button>
+	   <!-- <AppButton
         class="mt-3 uppercase"
-        buttonText="signup"
+        buttonText=""
         color="fillbutton"
         size="sm"
         rounded
-      />
+      /> -->
       <p>
         Already have an account? &nbsp;<span><nuxt-link to="/auth/login">Sign-In</nuxt-link></span>
       </p>
@@ -32,8 +30,13 @@
 </template>
 
 <script>
-export default {
-  layout: 'empty'
+import AppButton from "@/components/buttons/Button.vue"
+
+  export default {
+  layout: 'empty',
+    components: {
+      'app-button': AppButton
+    },
 }
 </script>
 
@@ -99,27 +102,6 @@ export default {
 
 .signup input:hover {
   border: 2px solid black;
-}
-
-.signup button {
-  margin-bottom: 1rem;
-  width: 83%;
-  height: 2rem;
-  border-radius: 3px;
-  outline: none;
-  border: none;
-  box-shadow: 5px 5px 5px #999;
-}
-
-.signup button:hover {
-  cursor: pointer;
-  background-color: #08cff7;
-}
-
-.signup button:active {
-  background-color: #08cff7;
-  box-shadow: 5px 5px 5px #999;
-  transform: translateY(4px);
 }
 
 .signup p a {
