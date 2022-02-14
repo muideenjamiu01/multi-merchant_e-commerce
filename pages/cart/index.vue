@@ -7,7 +7,7 @@
     <div class="md:flex gap-8">
       <div class="md:w-3/4">
         <div
-          v-for="item in 5"
+          v-for="item in cartItems"
           :key="item"
           class="md:flex gap-8 border-b p-4 mt-4"
         >
@@ -30,7 +30,9 @@
                   <div class="text-sm font-light">size:small</div>
                   <div class="text-sm font-light">color:Brown</div>
                   <div class="text-primary-blue text-sm font-normal">
-                    <button class="border-r-4 pr-2">Delete</button>
+                    <button @click="removeFromCart" class="border-r-4 pr-2">
+                      Delete
+                    </button>
                     <button class="pl-2">Add to wishlist</button>
                   </div>
                 </div>
@@ -93,8 +95,16 @@ export default {
       counter: 0,
     };
   },
-
+  computed: {
+    cartItems() {
+      return this.$store.state.cartItems;
+    },
+  },
   methods: {
+    removeFromCart() {
+      this.$store.commit("removeFromCart");
+    },
+
     goBack() {
       this.$router.go(-1);
     },
