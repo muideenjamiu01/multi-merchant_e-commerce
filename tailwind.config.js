@@ -14,6 +14,15 @@ module.exports = {
     extend: {
       colors: {
         primary: {
+        white: colors.white,
+        primary: {
+          100: "#EBF8FE", // customer-aside-bg
+          200: "#C0E4ED",
+          300: "#91D1DE",
+          400: "#46B2C8", // btn-bg
+          500: "#2F8B9D", // links
+          600: "#1C535E", // hover:links
+          700: "#0E2A2F", // merchant-aside-bg,
           blue: "#46B2C8",
           "blue-light": "#EEF4F5",
           "blue-sharpen": "#ebf8fe",
@@ -33,6 +42,12 @@ module.exports = {
 		  
 		  
         },
+        secondary: colors.slate,
+        success: colors.emerald,
+        warning: colors.yellow,
+      error: colors.red,
+        info: colors.cyan
+      }
       },
       height: {
         '420': '420px',
