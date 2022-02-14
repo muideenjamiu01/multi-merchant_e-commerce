@@ -22,19 +22,17 @@
           <option value="">Select size</option>
         </select>
 
-        <!-- <button
-          class="bg-primary-blue text-white text-sm py-2 w-full rounded mt-6"
-        >
+        <app-button class="mt-6" variant="contained" fullWidth>
           Add to cart
-        </button> -->
-        <AppButton
+        </app-button>
+        <!-- <AppButton
           @click="addToCart"
           button-text="Add to cart"
           color="fillbutton"
           size=""
           class="w-full py-2 mt-6"
           rounded
-        />
+        /> -->
         <div class="text-sm mt-4">
           <p>
             Proin eleifend est id velit hendrerit rhoncus. Mauris pulvinar quis
@@ -216,7 +214,12 @@
 
 <script>
 import { mapGetters } from "vuex";
+import AppButton from "@/components/buttons/Button.vue"
+
 export default {
+    components: {
+      'app-button': AppButton
+    },
   methods: {
     addToCart() {
       this.$store.commit("addItemToCart");

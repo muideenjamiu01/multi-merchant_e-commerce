@@ -133,20 +133,12 @@
           </div>
         </div>
         <div class="text-right">
-          <!-- <ButtonsCancelButton/>
-                    <ButtonsSaveButton/> -->
-          <AppButton
-            button-text="Cancel"
-            color="outlinegray"
-            size="md"
-            rounded
-          />
-          <AppButton
-            button-text="Save"
-            color="outlinebutton"
-            size="md"
-            rounded
-          />
+        <app-button variant="outlined" size="small" color="secondary">
+        Cancel
+        </app-button>
+        <app-button variant="outlined" size="small" color="success">
+        Save
+        </app-button>
         </div>
       </form>
       <form class="mt-5">
@@ -242,20 +234,12 @@
         </div>
 
         <div class="text-right">
-          <!-- <ButtonsCancelButton />
-          <ButtonsSaveButton /> -->
-          <AppButton
-            button-text="Cancel"
-            color="outlinegray"
-            size="md"
-            rounded
-          />
-          <AppButton
-            button-text="Save"
-            color="outlinebutton"
-            size="md"
-            rounded
-          />
+        <app-button variant="outlined" size="small" color="secondary">
+        Cancel
+        </app-button>
+        <app-button variant="outlined" size="small" color="success">
+        Save
+        </app-button>
         </div>
       </form>
       <form>
@@ -325,20 +309,12 @@
           </div>
         </div>
         <div class="text-right">
-          <!-- <ButtonsCancelButton />
-          <ButtonsSaveButton /> -->
-          <AppButton
-            button-text="Cancel"
-            color="outlinegray"
-            size="md"
-            rounded
-          />
-          <AppButton
-            button-text="Save"
-            color="outlinebutton"
-            size="md"
-            rounded
-          />
+        <app-button variant="outlined" size="small" color="secondary">
+        Cancel
+        </app-button>
+        <app-button variant="outlined" size="small" color="success">
+        Save
+        </app-button>
         </div>
       </form>
     </main>
@@ -346,7 +322,12 @@
 </template>
 
 <script>
-export default {
-  layout: 'merchant'
-}
+import AppButton from "@/components/buttons/Button.vue"
+
+  export default {
+  layout: 'merchant',
+    components: {
+      'app-button': AppButton
+    }
+  }
 </script>
