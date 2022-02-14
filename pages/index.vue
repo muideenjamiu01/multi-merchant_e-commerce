@@ -25,7 +25,9 @@
         <aside class="flex flex-col pt-6 text-center pl-4 hidden md:justify-between md:block md:w-1/4 md:pt-0"> <!-- aside grid contains 3 rows -->
           <div class="h-44 border p-6 bg-white rounded">
             <h1 class="my-1 mx-5">Sign in for the best experience</h1>
-            <app-button fullWidth uppercase variant="contained" />
+            <app-button to="/auth/signup" fullWidth uppercase variant="contained">
+            Sign In
+            </app-button>
             <!-- <ButtonsSignin/> -->
           </div>
           <div class="bg-pink-200 h-96 my-5 py-6 px-6 rounded">

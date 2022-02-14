@@ -203,7 +203,7 @@
                     Debit Card
                   </h2>
                   <div>
-                    <AppButton button-text="Edit" color="outlinegray" size="sm" rounded />
+                  <app-button color="secondary" variant='outlined' size="small">Edit</app-button>
                   </div>
                 </div>
                 <hr class="mt-2">
@@ -309,7 +309,7 @@
                     Bank Transfer
                   </h2>
                   <div>
-                    <AppButton button-text="Edit" color="outlinegray" size="md" rounded />
+                  <app-button color="secondary" variant='outlined' size="small">Edit</app-button>
                   </div>
                 </div>
                 <hr class="mt-2">

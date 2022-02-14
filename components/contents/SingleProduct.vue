@@ -214,6 +214,8 @@
 
 <script>
 import { mapGetters } from "vuex";
+import AppButton from "@/components/buttons/Button.vue"
+
 export default {
     components: {
       'app-button': AppButton
