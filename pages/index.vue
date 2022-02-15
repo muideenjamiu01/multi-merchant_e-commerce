@@ -10,10 +10,10 @@
 
           <div class="flex flex-col w-full md:mb-5 md:flex-row">  <!-- main top row-->
             <LandingFashion class="mt-0"/>
-            <LandingFashion />
+            <LandingGaming />
             <LandingFashion />
           </div>
-          
+          Gaming
           <div class="flex flex-col h-420 w-full pb-5 md:flex-row">  <!-- main bottom row-->
             <LandingFashion />
             <LandingFashion />

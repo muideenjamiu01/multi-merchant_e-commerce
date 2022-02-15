@@ -5,14 +5,14 @@
       <div class="mb-2 mr-2 w-3/6 h-32 hover:border-4 border-sky-500 bg-slate-300">
         <img
           class="h-full w-full"
-          src="../assets/images/test-images/fashion/fashion1.jpg"
+          src="../assets/images/test-images/gaming/gaming1.jpg"
           alt="fashion"
         />              
       </div>
       <div class="mb-2 w-3/6 h-32 hover:border-4 border-sky-500 bg-slate-300">
         <img
           class="h-full w-full"
-          src="../assets/images/test-images/fashion/fashion2.jpg"
+          src="../assets/images/test-images/gaming/gaming2.jpg"
           alt="fashion"
         />
       </div>
@@ -21,14 +21,14 @@
       <div class="mb-2 mr-2 w-32 h-32 hover:border-4 border-sky-500 bg-slate-300">
         <img
           class="h-full w-full"
-          src="../assets/images/test-images/fashion/fashion3.jpg"
+          src="../assets/images/test-images/gaming/gaming3.jpg"
           alt="fashion"
         />
       </div>
       <div class="mb-2 w-32 h-32 hover:border-4 border-sky-500 bg-slate-300">
         <img
           class="h-full w-full"
-          src="../assets/images/test-images/fashion/fashion44.jpg"
+          src="../assets/images/test-images/gaming/gaming4.jpg"
           alt="fashion"
         />
       </div>
