@@ -16,11 +16,21 @@
 
       <div class="md:flex items-center md:space-x-6">
         <p>14483.00</p>
-        <!-- <button class="bg-primary-blue py-2 px-4 rounded text-white">
+        <app-button variant="contained">
           Add to cart
-        </button> -->
-        <AppButton button-text="Add to cart" color="fillbutton" size="md" rounded />
+        </app-button>
+        <!-- <AppButton button-text="Add to cart" color="fillbutton" size="md" rounded /> -->
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import AppButton from "@/components/buttons/Button.vue"
+
+export default {
+    components: {
+      'app-button': AppButton
+    }
+}
+</script>

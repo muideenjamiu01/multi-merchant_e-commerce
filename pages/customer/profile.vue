@@ -11,7 +11,10 @@
         <div>
           <div class="flex justify-between items-center">
             <h3>Your Name</h3>
-            <AppButton buttonText="Edit"  color="outlinegray" size="sm" rounded /> 
+            <app-button color="secondary" size="small" variant="outlined">
+              Edit
+            </app-button>
+            <!-- <AppButton buttonText=""  color="outlinegray" size="sm" rounded />  -->
           </div>
           <div class="mt-4">
             <h2 class="text-xl">
@@ -37,14 +40,23 @@
           </div>
 
           <div class="flex gap-2">
-            <AppButton button-text="Cancel" color="outlinegray" size="md" rounded />
-            <AppButton button-text="Save" color="outlinebutton" size="md" rounded />
+            <app-button color="secondary" size="small" variant="outlined">
+              Cancel
+            </app-button>
+            <app-button color="success" size="small" variant="outlined">
+              Save
+            </app-button>
+            <!-- <AppButton button-text="" color="outlinegray" size="md" rounded />
+            <AppButton button-text="" color="outlinebutton" size="md" rounded /> -->
           </div>
         </div>
         <div class="mt-4">
           <div class="flex justify-between items-center">
             <h3>Email</h3>
-            <AppButton button-text="Edit" color="outlinegray" size="md" rounded />
+            <app-button color="secondary" size="small" variant="outlined">
+              Edit
+            </app-button>
+            <!-- <AppButton button-text="Edit" color="outlinegray" size="md" rounded /> -->
           </div>
           <div class="mt-4">
             <h2 class="text-xl">
@@ -56,7 +68,10 @@
         <div class="mt-4">
           <div class="flex justify-between items-center">
             <h3>Phone</h3>
-            <AppButton button-text="Edit" color="outlinegray" size="md" rounded />
+            <app-button color="secondary" size="small" variant="outlined">
+              Edit
+            </app-button>
+            <!-- <AppButton button-text="Edit" color="outlinegray" size="md" rounded /> -->
           </div>
           <div class="mt-4">
             <h2 class="text-xl">
@@ -68,7 +83,10 @@
         <div class="mt-6">
           <div class="flex justify-between items-center">
             <h3>Shipping Information</h3>
-            <AppButton button-text="Edit" color="outlinegray" size="md" rounded />
+            <app-button color="secondary" size="small" variant="outlined">
+              Edit
+            </app-button>
+            <!-- <AppButton button-text="Edit" color="outlinegray" size="md" rounded /> -->
           </div>
           <div class="mt-2 md:flex justify-between gap-8">
             <div class="md:w-1/2">
@@ -161,8 +179,12 @@
                     >
                   </div>
                   <div class="flex justify-end items-end mt-4 gap-4">
-                    <AppButton button-text="Cancel" color="outlinebutton" size="sm" rounded />
-                    <AppButton button-text="Save" color="outlinebutton" size="sm" rounded />
+            <app-button color="secondary" size="small" variant="outlined">
+              Cancel
+            </app-button>
+            <app-button color="success" size="small" variant="outlined">
+              Save
+            </app-button>
                   </div>
                 </div>
               </div>
@@ -181,7 +203,7 @@
                     Debit Card
                   </h2>
                   <div>
-                    <AppButton button-text="Edit" color="outlinegray" size="sm" rounded />
+                  <app-button color="secondary" variant='outlined' size="small">Edit</app-button>
                   </div>
                 </div>
                 <hr class="mt-2">
@@ -270,8 +292,12 @@
                     >
                   </div>
                   <div class="flex justify-end items-end mt-4 gap-4">
-                    <AppButton button-text="Cancel" color="outlinebutton" size="md" rounded />
-                    <AppButton button-text="Save" color="outlinebutton" size="md" rounded />
+                    <app-button color="secondary" size="small" variant="outlined">
+              Cancel
+            </app-button>
+            <app-button color="success" size="small" variant="outlined">
+              Save
+            </app-button>
                   </div>
                 </div>
               </div>
@@ -283,7 +309,7 @@
                     Bank Transfer
                   </h2>
                   <div>
-                    <AppButton button-text="Edit" color="outlinegray" size="md" rounded />
+                  <app-button color="secondary" variant='outlined' size="small">Edit</app-button>
                   </div>
                 </div>
                 <hr class="mt-2">
@@ -342,8 +368,12 @@
                     >
                   </div>
                   <div class="flex justify-end items-end mt-4 gap-4">
-                    <AppButton button-text="Cancel" color="outlinebutton" size="md" rounded />
-                    <AppButton button-text="Save" color="outlinebutton" size="md" rounded />
+                    <app-button color="secondary" size="small" variant="outlined">
+              Cancel
+            </app-button>
+            <app-button color="success" size="small" variant="outlined">
+              Save
+            </app-button>
                   </div>
                 </div>
               </div>
@@ -356,7 +386,14 @@
 </template>
 
 <script>
-export default {}
+import AppButton from "@/components/buttons/Button.vue"
+
+  export default {
+  layout: 'merchant',
+    components: {
+      'app-button': AppButton
+    }
+  }
 </script>
 
 <style lang="scss" scoped></style>

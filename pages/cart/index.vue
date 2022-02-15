@@ -7,7 +7,7 @@
     <div class="md:flex gap-8">
       <div class="md:w-3/4">
         <div
-          v-for="item in 5"
+          v-for="item in cartItems"
           :key="item"
           class="md:flex gap-8 border-b p-4 mt-4"
         >
@@ -30,7 +30,9 @@
                   <div class="text-sm font-light">size:small</div>
                   <div class="text-sm font-light">color:Brown</div>
                   <div class="text-primary-blue text-sm font-normal">
-                    <button class="border-r-4 pr-2">Delete</button>
+                    <button @click="removeFromCart" class="border-r-4 pr-2">
+                      Delete
+                    </button>
                     <button class="pl-2">Add to wishlist</button>
                   </div>
                 </div>
@@ -64,7 +66,8 @@
           <span class="">799516 NGN</span>
         </div>
 
-        <AppButton class="mt-3" buttonText="add to cart" color="" size="" />
+        <app-button class="mt-3" color="secondary" variant='outlined' size="small">add to cart</app-button>
+
       </div>
       <div class="md:w-1/4">
         <div class="mt-4 lg:mt-0 font-medium bg-primary-blue-light p-6">
@@ -72,12 +75,13 @@
           <span class="flex justify-end">799516 NGN</span>
 
           <div class="flex justify-center items-center mt-6">
-            <AppButton
-              buttonText="Proceed to checkout"
+        <app-button color="primary" variant='contained' fullWidth>Proceed to checkout</app-button>
+            <!-- <AppButton
+              buttonText=""
               color="fillbutton"
               size="md"
               class="w-full text-center"
-            />
+            /> -->
           </div>
           <ContentsAddToCart />
         </div>
@@ -87,14 +91,22 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      counter: 0,
-    };
-  },
+import AppButton from "@/components/buttons/Button.vue"
 
+  export default {
+    components: {
+      'app-button': AppButton
+    },
+  computed: {
+    cartItems() {
+      return this.$store.state.cartItems;
+    },
+  },
   methods: {
+    removeFromCart() {
+      this.$store.commit("removeFromCart");
+    },
+
     goBack() {
       this.$router.go(-1);
     },

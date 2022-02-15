@@ -22,13 +22,16 @@
                 <span class="font-light text-sm">-18%</span>
               </div>
               <div>
-                <AppButton
-                  class="mt-3"
+        <app-button class="mt-3" variant="contained" fullWidth size="small">
+          Add to cart
+        </app-button>
+                <!-- <AppButton
+                  
                   buttonText="add to cart"
                   color="fillbutton"
                   size="sm"
                   rounded
-                />
+                /> -->
               </div>
             </div>
           </div>
@@ -40,7 +43,13 @@
 </template>
 
 <script>
-export default {}
+import AppButton from "@/components/buttons/Button.vue"
+
+export default {
+    components: {
+      'app-button': AppButton
+    }
+}
 </script>
 
 <style lang="scss" scoped></style>

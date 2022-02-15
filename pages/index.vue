@@ -25,7 +25,10 @@
         <aside class="flex flex-col pt-6 text-center pl-4 hidden md:justify-between md:block md:w-1/4 md:pt-0"> <!-- aside grid contains 3 rows -->
           <div class="h-44 border p-6 bg-white rounded">
             <h1 class="my-1 mx-5">Sign in for the best experience</h1>
-            <ButtonsSignin/>
+            <app-button to="/auth/signup" fullWidth uppercase variant="contained">
+            Sign In
+            </app-button>
+            <!-- <ButtonsSignin/> -->
           </div>
           <div class="bg-pink-200 h-96 my-5 py-6 px-6 rounded">
             <h1 class="my-1">Delivered to your doorstep wherever you are in Nigeria</h1>
@@ -46,11 +49,11 @@
 
 
 <script>
+import AppButton from "@/components/buttons/Button.vue"
 
   export default {
-    layout: 'landing',
-    
     name: 'IndexPage',
+    layout: 'landing',
     head: {
       title: 'YouStore',
       meta: [
@@ -63,7 +66,10 @@
        script: [
         { hid: 'tailwind-elements', src: 'https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js', defer: true }
       ]
-    }
+    },
+    components: {
+      'app-button': AppButton
+    },
   }
 
 

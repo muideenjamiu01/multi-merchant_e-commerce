@@ -101,11 +101,18 @@
         <div
           class="mt-8 md:flex gap-2 justify-end items-center text-xs font-normal"
         >
-		  <AppButton buttonText="this week" class="bg-primary-blue-light"   size="sm" rounded /> 
-		  <AppButton buttonText="this month"  class="bg-primary-blue-light" size="sm" rounded /> 
-		  <AppButton buttonText="this quarter" class="bg-primary-blue-light"  size="sm" rounded /> 
-		  <AppButton buttonText="this year" class="bg-primary-blue-light "  size="sm" rounded /> 
-          
+        <app-button size="small" variant="outlined">
+        this week
+        </app-button>
+        <app-button size="small" variant="outlined">
+        this month
+        </app-button>
+        <app-button size="small" variant="outlined">
+        this quarter
+        </app-button>
+        <app-button size="small" variant="outlined">
+        this year
+        </app-button>
         </div>
         <div class="mt-8 md:mt-0">
           <div class="chart-div">
@@ -240,11 +247,15 @@
 </template>
 
 <script>
-
+import AppButton from "@/components/buttons/Button.vue"
 import DashboardChart from '~/components/DashboardChart.vue'
+
 export default {
-  components: { DashboardChart },
   layout: 'merchant',
+    components: {
+      DashboardChart,
+      'app-button': AppButton
+    },
   data () {
     return {
       chartData: {
