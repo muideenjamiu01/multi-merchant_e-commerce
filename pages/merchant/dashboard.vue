@@ -5,8 +5,8 @@
         <ContentsMerchantProfileCard />
       </div>
       <div >
-        <div class="w-full md:flex md:gap-x-6">
-          <div class="p-4 bg-primary-blue-sharpen px-6 h-20 rounded">
+        <div class="w-full grid grid-rows-4  md:grid-cols-4 md:grid-rows-none  gap-x-4">
+          <div class="p-2 bg-primary-blue-sharpen   rounded">
             <div class="flex items-center gap-2">
               <div>
                 <!-- <img src="@/assets/images/icons/users.svg" alt="" /> -->
@@ -28,7 +28,7 @@
             </div>
             <span class="font-medium text-sm flex justify-center items-center">Visitors</span>
           </div>
-          <div class="p-4 bg-green-100 px-8 h-20 rounded mt-4 md:mt-0">
+          <div class="p-2  bg-green-100   rounded mt-4 md:mt-0">
             <div class="flex items-center gap-2">
               <div>
                 <!-- <img src="@/assets/images/icons/validate.svg" alt="" /> -->
@@ -50,7 +50,7 @@
             </div>
             <span class="font-medium text-sm flex justify-center items-center">Orders Fulfilled</span>
           </div>
-          <div class="p-4 bg-primary-gold-light px-8 h-20 rounded mt-4 md:mt-0">
+          <div class="p-2 bg-primary-gold-light   rounded mt-4 md:mt-0">
             <div class="flex items-center gap-2">
               <div>
                 <!-- <img src="@/assets/images/icons/currency.svg" alt="" /> -->
@@ -73,7 +73,7 @@
             <span class="font-medium text-sm flex justify-center items-center">Earned</span>
           </div>
           <div
-            class="p-4 bg-primary-purple-light px-8 h-20 rounded mt-4 md:mt-0"
+            class="p-2 bg-primary-purple-light  rounded mt-4 md:mt-0"
           >
             <div class="flex items-center gap-2">
               <div>

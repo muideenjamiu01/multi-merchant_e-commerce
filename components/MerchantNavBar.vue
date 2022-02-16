@@ -28,10 +28,7 @@
         <img src="@/assets/images/icons/bell.svg" alt="" />
       </div>
 
-    <div>
-      <img src="@/assets/images/icons/bell.svg" alt="">
-    </div>
-
+    
     <div class="w-10 h-10 rounded-full bg-primary-blue-light" />
   </div>
 

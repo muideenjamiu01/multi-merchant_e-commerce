@@ -4,14 +4,10 @@
       <img src="@/assets/images/icons/back-arrow.svg" alt="" />
       <h1 class="md:text-3xl font-medium">Shopping Cart</h1>
     </div>
-    <div class="md:flex gap-8">
-      <div class="md:w-3/4">
-        <div
-          v-for="item in cartItems"
-          :key="item"
-          class="md:flex gap-8 border-b p-4 mt-4"
-        >
-          <div class="w-2/4">
+    <div class="md:flex justify-between gap-8">
+      <div class="md:w-3/4" v-if="cartItems">
+        <div v-for="item in cartItems" :key="item" class="md:flex gap-8 border-b p-4 mt-4">
+          <div class="md:w-2/4">
             <div>
               <div class="flex gap-4">
                 <div class="w-24 h-24 overflow-hidden">
@@ -39,7 +35,7 @@
               </div>
             </div>
           </div>
-          <div class="w-1/4">
+          <div class="md:w-1/4">
             <div class="flex justify-center items-center gap-4">
               <button @click="counter -= 1">
                 <span class="m-auto text-2xl font-thin">-</span>
@@ -54,7 +50,7 @@
               </button>
             </div>
           </div>
-          <div class="w-1/4">
+          <div class="md:w-1/4">
             <div class="flex">
               <span class="text-base font-light">14387.00</span>
             </div>
@@ -66,16 +62,20 @@
           <span class="">799516 NGN</span>
         </div>
 
-        <app-button class="mt-3" color="secondary" variant='outlined' size="small">add to cart</app-button>
-
+        <!-- <app-button class="mt-3" color="secondary" variant='outlined' size="small">add to cart</app-button> -->
       </div>
+	  <div v-else class="text-center">
+		  <h1 class=" font-semibold text-4xl text-gray-400">No Items In Cart</h1>
+	  </div>
       <div class="md:w-1/4">
-        <div class="mt-4 lg:mt-0 font-medium bg-primary-blue-light p-6">
+        <div class="mt-4 lg:mt-0 font-medium bg-primary-blue-light p-6" v-if="cartItems">
           <h1><span class="">Subtotal (5 items):</span></h1>
           <span class="flex justify-end">799516 NGN</span>
 
           <div class="flex justify-center items-center mt-6">
-        <app-button color="primary" variant='contained' fullWidth>Proceed to checkout</app-button>
+            <app-button color="primary" variant="contained" fullWidth to="/checkout"
+              >Proceed to checkout</app-button
+            >
             <!-- <AppButton
               buttonText=""
               color="fillbutton"
@@ -83,20 +83,33 @@
               class="w-full text-center"
             /> -->
           </div>
-          <ContentsAddToCart />
+          
         </div>
+		<div v-else></div>
+		<div class="mt-6 bg-primary-blue-light p-4">
+			<div>
+				<h3 class="pt-2 text-sm font-medium text-black" >You recently viewed this items</h3>
+			</div>
+			<ContentsAddToCart v-for="n in 4" :key="n" />
+		</div>
+		
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import AppButton from "@/components/buttons/Button.vue"
+import AppButton from "@/components/buttons/Button.vue";
 
-  export default {
-    components: {
-      'app-button': AppButton
-    },
+export default {
+  components: {
+    "app-button": AppButton,
+  },
+  data() {
+    return {
+      counter: 0,
+    };
+  },
   computed: {
     cartItems() {
       return this.$store.state.cartItems;
