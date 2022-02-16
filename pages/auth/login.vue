@@ -10,16 +10,14 @@
         <label for="">Password</label>
         <input type="password"/>
       </div>
-      <app-button fullWidth uppercase size="large" variant="contained" class="mt-3">
-        LOGIN
-      </app-button>
-      <!-- <AppButton
-        class="uppercase"
+
+      <AppButton
+        class="mt-3 uppercase"
         buttonText="login"
         color="fillbutton"
         size="sm"
         rounded
-      /> -->
+      />
       <p>
         Don't have an account? &nbsp;
         <span>
