@@ -17,27 +17,26 @@
         </div>
 
         <select
-          class="focus:outline-none w-36 px-4 py-1.5 border border-gray-400 rounded"
+          class="
+            focus:outline-none
+            w-36
+            px-4
+            py-1.5
+            border border-gray-400
+            rounded
+          "
         >
           <option value="">Select size</option>
         </select>
 
         <app-button
-          @click="addToCart"
+          @click="addProductToCart(product)"
           class="mt-6"
           variant="contained"
           fullWidth
         >
           Add to cart
         </app-button>
-        <!-- <AppButton
-          @click="addToCart"
-          button-text="Add to cart"
-          color="fillbutton"
-          size=""
-          class="w-full py-2 mt-6"
-          rounded
-        /> -->
         <div class="text-sm mt-4">
           <p>
             Proin eleifend est id velit hendrerit rhoncus. Mauris pulvinar quis
@@ -66,7 +65,16 @@
       </div>
 
       <div
-        class="min-w-88 bg-primary-blue-light px-7 py-2.5 pb-10 font-light mt-8 xl:mt-0"
+        class="
+          min-w-88
+          bg-primary-blue-light
+          px-7
+          py-2.5
+          pb-10
+          font-light
+          mt-8
+          xl:mt-0
+        "
       >
         <h1 class="font-medium">Delivery and Shipping</h1>
         <p class="tex-xs mt-10">
@@ -76,12 +84,30 @@
         <h1 class="mt-6">Choose your location</h1>
 
         <select
-          class="focus:outline-none w-full px-6 py-2.5 mt-4 bg-transparent border border-gray-500 rounded"
+          class="
+            focus:outline-none
+            w-full
+            px-6
+            py-2.5
+            mt-4
+            bg-transparent
+            border border-gray-500
+            rounded
+          "
         >
           <option value="">Lagos</option>
         </select>
         <select
-          class="focus:outline-none w-full px-6 py-2.5 mt-4 bg-transparent border border-gray-500 rounded"
+          class="
+            focus:outline-none
+            w-full
+            px-6
+            py-2.5
+            mt-4
+            bg-transparent
+            border border-gray-500
+            rounded
+          "
         >
           <option value="">Lekki - Ajah (Sangotedo)</option>
         </select>
@@ -218,7 +244,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import AppButton from "@/components/buttons/Button.vue";
 
 export default {
@@ -226,14 +252,8 @@ export default {
     "app-button": AppButton,
   },
   methods: {
-    addToCart() {
-      this.$store.commit("addItemToCart");
-    },
+    ...mapActions("cart", ["addProductToCart"]),
   },
-  mounted() {
-    this.$store.dispatch("productItems/getLimitedProducts");
-  },
-  computed: mapGetters({ products: "productItems/limitedProducts" }),
 };
 </script>
 
