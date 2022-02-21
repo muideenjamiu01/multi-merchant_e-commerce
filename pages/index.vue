@@ -29,8 +29,8 @@
       >
         <!-- aside grid contains 3 rows -->
         <div class="h-44 border p-6 bg-white rounded">
-          <h1 class="my-1 mx-5">Sign in for the best experience</h1>
-          <ButtonsSignin />
+          <h1 class="my-1 mx-5">{{message}}</h1>
+          <ButtonsSignin  />
         </div>
         <div class="bg-pink-200 h-96 my-5 py-6 px-6 rounded">
           <h1 class="my-1">
@@ -75,6 +75,30 @@ export default {
       },
     ],
   },
+  data() {
+    return {
+      message:""
+    }
+  },
+  async mounted() {
+    try { 
+      const response = await fetch(
+        "http://localhost:8000/api/user", {
+          headers: {'Content-Type': 'application/json'},
+          credentials: 'include',
+        }
+      )
+      const content = await response.json();
+      console.log("index-page", content); 
+      this.message = `Welcome ${content.name.toUpperCase()}, your unique I.D. is ${content.id}`;
+      this.$nuxt.$emit('auth', true)
+    }
+    catch(e) {
+      this.message = `Signin in to get exclusive offers`;
+      this.$nuxt.$emit('auth', false);
+      
+    }
+  }
 };
 </script>
 

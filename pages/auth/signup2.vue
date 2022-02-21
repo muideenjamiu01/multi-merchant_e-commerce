@@ -2,37 +2,61 @@
   <div class="signup__page bg-primary-blue flex justify-center ">
     <div class="skewed-box bg-primary-blue w-full h-full"></div>
     <div class="signup max-w-2xl">
-      <nuxt-link to="/"><div class="flex w-full justify-center"><img src="../../assets/images/logos/login-logo.svg" alt="login-logo"/></div></nuxt-link>
-      <p class="heading">Sign in to your acount</p>
-      <div class="flex flex-col text-left">
-        <label for="">Email</label>
-        <input class="w-full" type="email"/>
-        <label for="">Password</label>
-        <input type="password"/>
-      </div>
-      
-      <AppButton
+        <nuxt-link to="/">
+            <div class="flex w-full justify-center">
+                <img src="../../assets/images/logos/login-logo.svg" alt="login-logo"/>
+            </div>
+        </nuxt-link>
+        <p class="heading">Create your account</p>
+
+        <form @submit.prevent="submit"  class="flex flex-col text-left">
+            <label for="name">Name</label>
+            <input v-model="name" name="name" class="w-full" type="text"/>
+            <label for="email">Email</label>
+            <input v-model="email" name="email" class="w-full" type="email"/>
+            <label for="password">Password</label>
+            <input v-model="password" name="password" type="password"/>
+            <button class="bg-black text-white" type="submit">Signup</button>
+        </form>
+
+        <!-- <AppButton
         class="mt-3 uppercase"
         buttonText="login"
         color="fillbutton"
         size="sm"
         rounded
-      />
-      <p>
-        Don't have an account? &nbsp;
-        <span>
-          <nuxt-link to="/auth/signup">Sign up here</nuxt-link>
-        </span>
-      </p>
-      <p>
-        <span> <nuxt-link to="">Forgot your password?</nuxt-link> </span>
-      </p>
+      /> -->
+        <p>Already have an account? &nbsp;<span><nuxt-link to="/auth/login2">Sign-In</nuxt-link></span></p>
+        <p>By clicking the signup button you agree to our</p>
+        <p><span> <a href="">Conditions Of Use</a></span></p>
     </div>
   </div>
 </template>
+
 <script>
 export default {
-  layout: 'empty',
+    layout: 'empty',
+    data () {
+        return {
+            name: "",
+            email:"",
+            password:""
+        }
+    },
+    methods: {
+        async submit() {
+            await fetch('http://localhost:8000/api/register',{
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    name: this.name,
+                    email: this.email,
+                    password: this.password
+                })
+            }).then(res=> console.log(res)).then(res=> console.log(this.name, this.email, this.password)).then(console.log("signup page succesfull"));
+            await this.$router.push('/auth/login2');
+        }
+    }
 
   
 }
