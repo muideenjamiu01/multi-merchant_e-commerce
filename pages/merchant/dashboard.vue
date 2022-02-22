@@ -293,7 +293,7 @@ export default {
         ],
         datasets: [
           {
-            //   label:[ "this week","this month", "this quater", "this year"],
+              label:'',
             borderColor: 'green',
             borderWidth: 2,
             pontBackgroundColor: 'red',
@@ -308,6 +308,9 @@ export default {
       chartOptions: {
         maintainAspectRatio: false,
         responsive: true,
+		legend:{
+			display: false
+		},
         tooltips: {
           backgroundColor: 'gray',
           titleFontColor: '#fff',

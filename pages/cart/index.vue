@@ -8,7 +8,7 @@
       <div class="md:w-3/4" v-if="cartItems">
         <div v-for="item in cartItems" :key="item" class="md:flex gap-8 border-b p-4 mt-4">
           <div class="md:w-2/4">
-            <div>
+            <div class="w-full">
               <div class="flex gap-4">
                 <div class="w-24 h-24 overflow-hidden">
                   <img
@@ -64,11 +64,11 @@
 
         <!-- <app-button class="mt-3" color="secondary" variant='outlined' size="small">add to cart</app-button> -->
       </div>
-	  <div v-else class="text-center">
-		  <h1 class=" font-semibold text-4xl text-gray-400">No Items In Cart</h1>
+	  <div v-else class="text-center w-full">
+		  <h3 class=" font-semibold text-2xl text-gray-400">No Items In Cart</h3>
 	  </div>
       <div class="md:w-1/4">
-        <div class="mt-4 lg:mt-0 font-medium bg-primary-blue-light p-6" v-if="cartItems">
+        <div class="mt-4 lg:mt-0 font-medium bg-primary-blue-light p-6 mb-6" v-if="cartItems">
           <h1><span class="">Subtotal (5 items):</span></h1>
           <span class="flex justify-end">799516 NGN</span>
 
@@ -86,7 +86,7 @@
           
         </div>
 		<div v-else></div>
-		<div class="mt-6 bg-primary-blue-light p-4">
+		<div class="bg-primary-blue-light p-4">
 			<div>
 				<h3 class="pt-2 text-sm font-medium text-black" >You recently viewed this items</h3>
 			</div>
@@ -105,7 +105,7 @@ export default {
   components: {
     "app-button": AppButton,
   },
-  data() {
+  data:function(){
     return {
       counter: 0,
     };

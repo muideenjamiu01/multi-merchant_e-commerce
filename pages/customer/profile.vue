@@ -6,69 +6,98 @@
       </div>
       <div class="md:w-3/4">
         <h1 class="text-2xl font-normal text-black">Profile</h1>
-        <div>
-          <div class="flex justify-between items-center">
-            <div class="mt-4  flex flex-col border-b w-full">
-              <label>Your Name</label>
-              <input type="text" class="mt-4 outline-0" placeholder="Your ame" />
-              
-            </div>
+        <form action="" @submit.prevent="saveProfile">
+          <div>
+            <div class="flex justify-between items-center">
+              <div class="mt-4 flex flex-col border-b w-full">
+                <label>Your Name</label>
+                <div v-if="editing">
+                  <input
+                    type="text"
+                    class="mt-4 outline-0"
+                    v-model.trim="profile.UserName"
+                  />
+                </div>
+              </div>
 
-            <app-button color="secondary" size="small" variant="outlined">
-              Edit
-            </app-button>
-            <!-- <AppButton buttonText=""  color="outlinegray" size="sm" rounded />  -->
-          </div>
-        </div>
-        <div class="mt-4 hidden md:flex justify-between items-center">
-          <div class="md:flex flex-col">
-            <h3>Photo</h3>
-            <div class="flex flex-col mt-2 text-gray-400">
-              <span
-                >Recommended size is a square image of not more than 150kb</span
+              <app-button
+                v-if="!editing"
+                @click="EditButton()"
+                color="secondary"
+                size="small"
+                variant="outlined"
               >
-              <span>File type: JPG, PNG or GIF</span>
+                Edit
+              </app-button>
+              <!-- <AppButton buttonText=""  color="outlinegray" size="sm" rounded />  -->
             </div>
           </div>
-          <div class="shrink-0">
-            <img
-              src="@/assets/images/icons/profile-picture.jpg"
-              alt=""
-              class="w-20 h-20 rounded-full object-cover"
-            />
-          </div>
+          <div class="mt-4 hidden md:flex justify-between items-center">
+            <div class="md:flex flex-col">
+              <h3>Photo</h3>
+              <div class="flex flex-col mt-2 text-gray-400">
+                <span
+                  >Recommended size is a square image of not more than
+                  150kb</span
+                >
+                <span>File type: JPG, PNG or GIF</span>
+              </div>
+            </div>
+            <div class="shrink-0">
+              <img
+                src="@/assets/images/icons/profile-picture.jpg"
+                alt=""
+                class="w-20 h-20 rounded-full object-cover"
+              />
+			  
+            </div>
 
-          <div class="flex gap-2">
-            <app-button color="secondary" size="small" variant="outlined">
-              Cancel
-            </app-button>
-            <app-button color="success" size="small" variant="outlined">
-              Save
-            </app-button>
-            <!-- <AppButton button-text="" color="outlinegray" size="md" rounded />
+            <div class="flex gap-2">
+              <app-button
+                @click="CancelButton"
+                color="secondary"
+                size="small"
+                variant="outlined"
+              >
+                Cancel
+              </app-button>
+              <app-button
+                type="submit"
+                color="success"
+                size="small"
+                variant="outlined"
+              >
+                Save
+              </app-button>
+              <!-- <AppButton button-text="" color="outlinegray" size="md" rounded />
             <AppButton button-text="" color="outlinebutton" size="md" rounded /> -->
-          </div>
-        </div>
-        <div class="mt-4">
-           <div class="flex justify-between items-center">
-            <div class="mt-4  flex flex-col border-b w-full">
-              <label>Email</label>
-              <input type="text" class="mt-4 outline-0" placeholder="Your ame" />
-              
             </div>
-
-            <app-button color="secondary" size="small" variant="outlined">
-              Edit
-            </app-button>
-            <!-- <AppButton buttonText=""  color="outlinegray" size="sm" rounded />  -->
           </div>
-          
-        </div>
-		 <div class="flex justify-between items-center">
-            <div class="mt-4  flex flex-col border-b w-full">
+          <div class="mt-4">
+            <div class="flex justify-between items-center">
+              <div class="mt-4 flex flex-col border-b w-full">
+                <label>Email</label>
+                <input
+                  type="text"
+                  class="mt-4 outline-0"
+                  v-model.trim="profile.Email"
+                />
+              </div>
+
+              <app-button color="secondary" size="small" variant="outlined">
+                Edit
+              </app-button>
+              <!-- <AppButton buttonText=""  color="outlinegray" size="sm" rounded />  -->
+            </div>
+          </div>
+          <div class="flex justify-between items-center">
+            <div class="mt-4 flex flex-col border-b w-full">
               <label>Phone</label>
-              <input type="text" class="mt-4 outline-0" placeholder="Your ame" />
-              
+              <input
+                type="text"
+                class="mt-4 outline-0"
+                v-model.trim="profile.Phone"
+              />
             </div>
 
             <app-button color="secondary" size="small" variant="outlined">
@@ -76,20 +105,25 @@
             </app-button>
             <!-- <AppButton buttonText=""  color="outlinegray" size="sm" rounded />  -->
           </div>
-        <div class="mt-4">
-           <div class="flex justify-between items-center">
-            <div class="mt-4  flex flex-col border-b w-full">
-              <label>Address</label>
-              <input type="text" class="mt-4 outline-0" placeholder="Your ame" />
-              
-            </div>
+          <div class="mt-4">
+            <div class="flex justify-between items-center">
+              <div class="mt-4 flex flex-col border-b w-full">
+                <label>Address</label>
+                <input
+                  type="text"
+                  class="mt-4 outline-0"
+                  v-model.trim="profile.Address"
+                />
+              </div>
 
-            <app-button color="secondary" size="small" variant="outlined">
-              Edit
-            </app-button>
-            <!-- <AppButton buttonText=""  color="outlinegray" size="sm" rounded />  -->
+              <app-button color="secondary" size="small" variant="outlined">
+                Edit
+              </app-button>
+              <!-- <AppButton buttonText=""  color="outlinegray" size="sm" rounded />  -->
+            </div>
           </div>
-        </div>
+        </form>
+
         <!-- <div class="mt-6">
          
           <div class="mt-2 md:flex justify-between gap-8">
@@ -117,7 +151,7 @@
                   id="username-error"
                   type="text"
                   placeholder="Home Address"
-                  class="border border-gray-200 text-sm ring-primary-blue focus:border-primary-blue block w-full p-2.5"
+                  class="border border-gray-200 text-sm focus:outline-primary-blue block w-full p-2.5"
                 />
                 <p class="mt-2 text-sm text-gray-400">
                   A name that helps you identify the address.
@@ -198,6 +232,7 @@
             </div>
           </div>
         </div> -->
+        
         <div class="mt-8">
           <div class="flex justify-between items-center">
             <h3>Payment Channels</h3>
@@ -238,7 +273,7 @@
                   id="username-error"
                   type="text"
                   placeholder="Auxillary card"
-                  class="border border-gray-200 text-sm ring-primary-blue focus:border-primary-blue block w-full p-2.5"
+                  class="border border-gray-200 text-sm focus:outline-primary-blue block w-full p-2.5"
                 />
                 <p class="mt-2 text-sm text-gray-400">
                   A name that helps you identify the card.
@@ -255,7 +290,7 @@
                     <input
                       id="username-error"
                       type="text"
-                      class="border border-gray-200 t text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
+                      class="border border-gray-200  text-sm focus:outline-primary-blue block w-full p-2.5"
                     />
                   </div>
                 </div>
@@ -269,7 +304,7 @@
                     <input
                       id="username-error"
                       type="text"
-                      class="border border-gray-200 text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
+                      class="border border-gray-200 text-sm focus:outline-primary-blue block w-full p-2.5"
                     />
                   </div>
                 </div>
@@ -285,7 +320,7 @@
                     <input
                       id="username-error"
                       type="text"
-                      class="border border-gray-200 t text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
+                      class="border border-gray-200  text-sm focus:outline-primary-blue block w-full p-2.5"
                     />
                   </div>
                 </div>
@@ -299,7 +334,7 @@
                     <input
                       id="username-error"
                       type="text"
-                      class="border border-gray-200 text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
+                      class="border border-gray-200 text-sm focus:outline-primary-blue block w-full p-2.5"
                     />
                   </div>
                   <div class="flex justify-end items-end mt-4 gap-4">
@@ -351,7 +386,7 @@
                   id="username-error"
                   type="text"
                   placeholder="Home Address"
-                  class="border border-gray-200 text-sm ring-primary-blue focus:border-primary-blue block w-full p-2.5"
+                  class="border border-gray-200 text-sm focus:outline-primary-blue block w-full p-2.5"
                 />
                 <p class="mt-2 text-sm text-gray-400">
                   A name that helps you identify the address.
@@ -369,7 +404,7 @@
                     <input
                       id="username-error"
                       type="text"
-                      class="border border-gray-200 t text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
+                      class="border border-gray-200 text-sm focus:outline-primary-blue block w-full p-2.5"
                     />
                   </div>
                 </div>
@@ -383,7 +418,7 @@
                     <input
                       id="username-error"
                       type="text"
-                      class="border border-gray-200 text-sm focus:ring-gray-200 focus:border-gray-200 block w-full p-2.5"
+                      class="border border-gray-200 text-sm focus:outline-primary-blue block w-full p-2.5"
                     />
                   </div>
                   <div class="flex justify-end items-end mt-4 gap-4">
@@ -415,6 +450,34 @@ export default {
   layout: "merchant",
   components: {
     "app-button": AppButton,
+  },
+  data() {
+    return {
+      editing: false,
+      profile: {
+        UserName: "jamie",
+        Email: "",
+        Phone: "",
+        Address: "",
+      },
+      user: [],
+    };
+  },
+  methods: {
+    EditButton() {
+      this.profile.UserName;
+    },
+    CancelButton() {
+      this.profile.UserName = "";
+      this.profile.Email = "";
+      this.profile.Phone = "";
+      this.profile.Address = "";
+    },
+    saveProfile() {
+      this.EditProfile.UserName = this.profile[index].UserName;
+      this.CancelButton();
+      console.log("profile saved");
+    },
   },
 };
 </script>
