@@ -24,8 +24,8 @@
     </div>
 
     <div class="flex items-center gap-5">
-      <nuxt-link to="/merchant/new"
-        ><h1 class="text-primary-blue text-lg cursor-pointer hidden md:block">
+      <nuxt-link to="/auth/merchant-login2">
+        <h1 class="text-primary-blue text-lg cursor-pointer hidden md:block">
           Become a seller
         </h1></nuxt-link
       >
@@ -114,6 +114,7 @@
       this.$nuxt.$on ('auth', auth => {this.auth = auth})
       this.$nuxt.$on ('auth', auth => console.log(auth))
     },
+    
     methods: {
       toggleDropdown() {
         this.dropdown = !this.dropdown;
@@ -128,10 +129,6 @@
         );
         await this.$router.push('auth/login2')
       }
-    },
-    components: {
-      // Footer,
-      // AppHeader
     },
   };
 </script>

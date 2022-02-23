@@ -1,34 +1,23 @@
 <template>
-  <div class="signup__page bg-primary-blue flex justify-center ">
-    <div class="skewed-box bg-primary-blue w-full h-full"></div>
-    <div class="signup max-w-2xl">
-        <nuxt-link to="/">
-            <div class="flex w-full justify-center">
-                <img src="../../assets/images/logos/login-logo.svg" alt="login-logo"/>
-            </div>
-        </nuxt-link>
-        <p class="heading">Create your account</p>
-
+  <div class="flex justify-center relative">
+    <div class="z-0 absolute skewed-box bg-primary-blue h-[43.688rem] w-full"></div>
+    <div class="container bg-white rounded z-10 h-[44.625] w-[31.25rem] mt-[218px] mb-[171px] px-[48px] pb-[48px] pt-[58px]">
+        <nuxt-link to="/"><div class="flex w-full justify-center"><img src="../../assets/images/logos/login-logo.svg" alt="login-logo"/></div></nuxt-link>
+        <p class="text-center font-light text-base mt-[25px] mb-[32px]">Create your account</p>
         <form @submit.prevent="submit"  class="flex flex-col text-left">
-            <label for="name">Name</label>
-            <input v-model="name" name="name" class="w-full" type="text"/>
-            <label for="email">Email</label>
-            <input v-model="email" name="email" class="w-full" type="email"/>
-            <label for="password">Password</label>
-            <input v-model="password" name="password" type="password"/>
-            <button class="bg-black text-white" type="submit">Signup</button>
+            <label class="text-base mb-[8px]" for="name">Name</label>
+            <input class="w-[25.25rem] h-[2.669rem] mb-[24px] px-[1rem]" v-model="name" name="name" type="text" required/>
+            <label class="text-base mb-[8px]" for="email">Email</label>
+            <input class="w-[25.25rem] h-[2.669rem] mb-[24px] px-[1rem]" v-model="email" name="email" type="email" required/>
+            <label class="text-base mb-[8px]" for="password">Password</label>
+            <input class="w-[25.25rem] h-[2.669rem] mb-[32px] px-[1rem]" v-model="password" name="password" type="password" required/>
+            <label class="text-base mb-[8px]" for="password">Password</label>
+            <input class="w-[25.25rem] h-[2.669rem] mb-[32px] px-[1rem]" name="password" type="password"/>
+            <button class="bg-primary-blue text-white rounded w-[25.25rem] h-[2.5rem] mb-[32px]" type="submit">SIGN UP</button>
         </form>
 
-        <!-- <AppButton
-        class="mt-3 uppercase"
-        buttonText="login"
-        color="fillbutton"
-        size="sm"
-        rounded
-      /> -->
-        <p>Already have an account? &nbsp;<span><nuxt-link to="/auth/login2">Sign-In</nuxt-link></span></p>
-        <p>By clicking the signup button you agree to our</p>
-        <p><span> <a href="">Conditions Of Use</a></span></p>
+        <p class="font-light text-sm mb-[16px]">Already have an  account?<span class="text-primary-blue text-sm ml-[10px]"><nuxt-link to="/auth/login2">Sign in</nuxt-link></span></p>
+        <p class="font-light text-sm mb-[16px]">By clicking the sign up button, you agree to our<span class="font-light text-sm text-primary-blue ml-[8px] mb-[48px]"> <nuxt-link to="">conditions of use</nuxt-link> </span></p>
     </div>
   </div>
 </template>
@@ -63,99 +52,13 @@ export default {
 </script>
 
 <style scoped>
-.signup__page .heading {
-  align-self: center;
-  font-weight: bold;
-  margin: 1rem 1rem 2rem 1rem;
-}
-
-.signup__page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  height: 100vh;
-}
-
 .skewed-box {
-  clip-path: polygon(0 0, 100% 0, 100% 34%, 0 56%);
-}
-
-.skewed-logo {
-  background-color: #45b2c7;
-  clip-path: polygon(100% 0, 100% 74%, 70% 100%, 0 100%, 0 0);
-  width: 8rem;
-  padding: 1rem 2rem 1rem 0rem;
-  height: 2rem;
-  border-radius: 8px;
-}
-
-.signup .skewed-logo p {
-  color: white;
-  padding: 0;
-  height: 100%;
-  margin: 0rem 0.7rem;
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
-.signup {
-  position: absolute;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0rem 48px;
-  height: 532px;
-  min-width: 470px;
-  border-left-color: 1px solid black;
-  box-shadow: 2px 2px 2px grey;
-  border-radius: 3px;
-}
-
-.signup input {
-  padding: 0.5rem 0rem 0.5rem 0.5rem;
-  margin-bottom: 1rem;
-  border: 1px solid grey;
-  border-radius: 3px;
-}
-
-.signup input:hover {
-  border: 2px solid black;
-}
-
-.signup button {
-  margin: 1rem 0 1rem 0;
-  height: 2rem;
-  border-radius: 3px;
-  outline: none;
-  border: none;
-}
-
-.signup button:hover {
-  cursor: pointer;
-  background-color: #08cff7;
-}
-
-.signup button:active {
-  background-color: #08cff7;
-  box-shadow: 5px 5px 5px #999;
-  transform: translateY(4px);
-}
-
-.signup p a {
-  color: #45b2c7;
-  text-decoration: none;
-}
-.signup p a:hover {
-  color: #08cff7;
-  text-decoration: none;
-}
-
-.signup p {
-  align-self: flex-start;
-  margin: 1rem 0 0.5rem 0;
-  font-size: 0.8rem;
-  font-weight: bold;
-}
+        clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
+    }
+    .container {
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+    }
+    input {
+        border: 1px solid #E1E3E3;
+    }
 </style>
