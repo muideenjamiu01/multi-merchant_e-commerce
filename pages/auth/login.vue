@@ -2,7 +2,7 @@
   <div class="signup__page bg-primary-blue flex justify-center ">
     <div class="skewed-box bg-primary-blue w-full h-full"></div>
     <div class="signup max-w-2xl">
-      <nuxt-link to="/"><div class="flex w-full justify-center"><img src="../../assets/images/logos/login-logo.svg" alt="login-logo"/></div></nuxt-link>
+      <div class="flex w-full justify-center"><img src="../../assets/images/logos/login-logo.svg" alt="login-logo"/></div>
       <p class="heading">Sign in to your acount</p>
       <div class="flex flex-col text-left">
         <label for="">Email</label>
@@ -10,7 +10,7 @@
         <label for="">Password</label>
         <input type="password"/>
       </div>
-      
+
       <AppButton
         class="mt-3 uppercase"
         buttonText="login"
@@ -31,10 +31,13 @@
   </div>
 </template>
 <script>
-export default {
-  layout: 'empty',
+import AppButton from "@/components/buttons/Button.vue"
 
-  
+  export default {
+  layout: 'empty',
+    components: {
+      'app-button': AppButton
+    },
 }
 </script>
 
@@ -98,25 +101,6 @@ export default {
 
 .signup input:hover {
   border: 2px solid black;
-}
-
-.signup button {
-  margin: 1rem 0 1rem 0;
-  height: 2rem;
-  border-radius: 3px;
-  outline: none;
-  border: none;
-}
-
-.signup button:hover {
-  cursor: pointer;
-  background-color: #08cff7;
-}
-
-.signup button:active {
-  background-color: #08cff7;
-  box-shadow: 5px 5px 5px #999;
-  transform: translateY(4px);
 }
 
 .signup p a {

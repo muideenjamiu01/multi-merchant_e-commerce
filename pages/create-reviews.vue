@@ -38,12 +38,9 @@
           </div>
         </div>
         <div class="flex justify-end">
-          <AppButton
-            button-text="Submit Review"
-            color="fillbutton"
-            size="md"
-            rounded
-          />
+          <app-button variant="contained">
+          Submit Review
+          </app-button>
         </div>
       </div>
 
@@ -55,7 +52,13 @@
 </template>
 
 <script>
-export default {}
+import AppButton from "@/components/buttons/Button.vue"
+
+  export default {
+    components: {
+      'app-button': AppButton
+    }
+  }
 </script>
 
 <style lang="scss" scoped></style>

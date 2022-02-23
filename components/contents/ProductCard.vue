@@ -1,32 +1,57 @@
 <template>
-  <NuxtLink to="/productname">
-    <div class="w-48 h-48 bg-primary-gray cursor-pointer">
-      <img src="" alt="">
+  <div>
+    <div @click="viewProduct" class="h-48 cursor-pointer">
+      <img :src="product.image" class="w-full h-full" :alt="product.title" />
     </div>
-    <div class="text-sm mt-2">
-      <h1 class="font-light text-base text-primary-black cursor-pointer">
-        Product name
+    <div @click="viewProduct" class="text-sm mt-2 w-full">
+      <h1
+        class="
+          font-medium
+          text-xl text-secondary-900
+          hover:text-black
+          cursor-pointer
+          whitespace-nowrap
+          overflow-hidden
+          text-ellipsis
+        "
+      >
+        {{ product.title }}
       </h1>
       <div class="flex items-center">
-        <p class="text-2xl font-bold">
-          ******
-        </p>
-        <p class="text-primary-blue ml-2.5">
-          213
-        </p>
+        <p class="text-2xl font-bold">******</p>
+        <p class="text-primary-blue ml-2.5">213</p>
       </div>
       <div class="flex items-center font-light my-2">
-        <p>3400.00 NGN</p>
-        <p class="text-primary-gray-light ml-2.5">
-          -18%
-        </p>
+        <p>{{ product.price }} dollars</p>
+        <p class="text-primary-gray-light ml-2.5">-18%</p>
       </div>
-      <!-- <button
-        class="bg-primary-blue rounded-sm font-light text-white w-32 py-2 focus:outline-none"
-      >
-        Add to cart
-      </button> -->
-	  <AppButton buttonText="Add to cart"  color="fillbutton" size="sm" rounded /> 
     </div>
-  </NuxtLink>
+    <app-button
+      @click="addProductToCart(product)"
+      variant="contained"
+      size="small"
+    >
+      Add to cart
+    </app-button>
+  </div>
 </template>
+
+<script>
+import { mapActions } from "vuex";
+import AppButton from "@/components/buttons/Button.vue";
+
+export default {
+  components: {
+    "app-button": AppButton,
+  },
+  props: ["product"],
+  methods: {
+    ...mapActions("cart", ["addProductToCart"]),
+    viewProduct() {
+      this.$router.push(
+        "/" + this.product.title.toLowerCase().split(" ").join("-")
+      );
+    },
+  },
+};
+</script>

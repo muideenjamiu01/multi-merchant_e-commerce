@@ -120,30 +120,35 @@
     </div>
 
     <div class="flex gap-4 justify-end mt-8">
-      <!-- <button class="py-2 px-4 bg-primary-blue text-white rounded">
+      <app-button variant="contained" color="success">
         Save and add another
-      </button> -->
-      <AppButton
-        button-text="Save and add another"
+      </app-button>
+      <!-- <AppButton
+        app-button-text="Save and add another"
         color="fillbutton"
         size="md"
         rounded
       />
       <AppButton
-        button-text="Save Product"
+        app-button-text="Save Product"
         color="fillbutton"
         size="md"
         rounded
-      />
-      <!-- <button class="py-2 px-4 bg-primary-blue text-white rounded">
+      /> -->
+      <app-button variant="outlined" color="success">
         Save Product
-      </button> -->
+      </app-button>
     </div>
   </div>
 </template>
 
 <script>
-export default {
+import AppButton from "@/components/buttons/Button.vue"
+
+  export default {
+    components: {
+      'app-button': AppButton
+    },
   data () {
     return {
       categories: [

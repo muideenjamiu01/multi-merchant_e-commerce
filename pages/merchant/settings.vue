@@ -351,7 +351,12 @@
 </template>
 
 <script>
-export default {
-  layout: 'merchant'
-}
+import AppButton from "@/components/buttons/Button.vue"
+
+  export default {
+  layout: 'merchant',
+    components: {
+      'app-button': AppButton
+    }
+  }
 </script>

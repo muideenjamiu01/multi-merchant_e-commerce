@@ -127,7 +127,9 @@
                   >
                     Save
                   </button> -->
-				  <AppButton buttonText="Save"  color="outlinebutton" size="sm" rounded /> 
+				  <app-button size="small" variant="outlined" color="success" />
+          Save
+                       </app-button>
                 </div>
               </div>
             </div>
@@ -244,7 +246,9 @@
                         >
                       </div>
                       <div class="flex justify-end items-end mt-4">
-                       <AppButton buttonText="Save"  color="outlinebutton" size="sm" rounded /> 
+				  <app-button size="small" variant="outlined" color="success" />
+          Save
+                       </app-button>
 
                       </div>
                     </div>
@@ -290,7 +294,9 @@
                         >
                       </div>
                       <div class="flex justify-end items-end mt-4">
-                       <AppButton buttonText="Save"  color="outlinebutton" size="sm" rounded /> 
+                       <app-button variant="contained">
+                       Save
+                       </app-button>
                       </div>
                       <div>
                         <div class="flex space-x-2 justify-center mt-16">
@@ -302,7 +308,9 @@
                           >
                             Make Order
                           </button> -->
-                          <AppButton button-text="Make order" color="fillbutton" size="md" rounded />
+                          <app-button variant="contained" />
+                          Make order
+                       </app-button>
                         </div>
                         <div class="flex justify-center" />
                       </div>
@@ -322,9 +330,12 @@
 </template>
 
 <script>
-import AppButton from '../../components/global/AppButton.vue'
-export default {
-  components: { AppButton },
+import AppButton from "@/components/buttons/Button.vue"
+
+  export default {
+    components: {
+      'app-button': AppButton
+    },
   data () {
     return {
       // 		styleObject: {

@@ -12,12 +12,9 @@
           <!-- <button class="py-2 px-4 bg-primary-blue text-white text-sm rounded">
           Add Product
         </button> -->
-          <AppButton
-            button-text="Add Product"
-            color="fillbutton"
-            size="md"
-            rounded
-          />
+          <app-button to="products/newproduct" size="small" variant="contained">
+          Add Product
+        </app-button>
         </NuxtLink>
       </div>
       <div>
@@ -70,7 +67,12 @@
 </template>
 
 <script>
-export default {
-  layout: 'merchant'
-}
+import AppButton from "@/components/buttons/Button.vue"
+
+  export default {
+  layout: 'merchant',
+    components: {
+      'app-button': AppButton
+    }
+  }
 </script>

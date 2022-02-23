@@ -10,7 +10,10 @@
       >
         New
       </button> -->
-      <AppButton button-text="New" color="fillbutton" size="sm" rounded @click="toggleAddNew" />
+      <!-- <AppButton button-text="New" color="fillbutton" size="sm" rounded @click="toggleAddNew" /> -->
+      <app-button variant="contained" size="small" @click="toggleAddNew" >
+        New
+      </app-button>
     </div>
 
     <div
@@ -47,13 +50,15 @@
             </div>
           </div>
           <div class="text-sm flex justify-end mt-8">
-            <!-- <button @click="toggleAddNew" class="py-2 px-4">Cancel</button> -->
-
-            <AppButton button-text="Cancel" color="outlinegray" size="md" rounded @click="toggleAddNew" />
+            <app-button variant="outlined" color="secondary" @click="toggleAddNew" />
+              Cancel
+            </app-button>
             <!-- <button class="py-2 px-4 bg-primary-blue text-white rounded">
               Add Beneficiary
             </button> -->
-            <AppButton button-text="Add Beneficiary" color="fillbutton" size="md" rounded />
+            <app-button variant="contained">
+              Add Beneficiary
+            </app-button>
           </div>
         </form>
       </div>
@@ -98,7 +103,13 @@
 </template>
 
 <script>
-export default {
+import AppButton from "@/components/buttons/Button.vue"
+
+  export default {
+  layout: 'empty',
+    components: {
+      'app-button': AppButton
+    },
   data () {
     return {
       newBeneficiaryModal: false
