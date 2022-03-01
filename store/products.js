@@ -1,9 +1,11 @@
 export const state = () => ({
   products: [],
+  singleProduct: {}
 });
 
 export const getters = {
   products: (state) => state.products,
+  singleProduct: (state) => state.singleProduct
 };
 
 export const actions = {
@@ -12,6 +14,9 @@ export const actions = {
 
     commit("setProducts", response.data);
   },
+  getSingleProduct({commit}, index) {
+    commit("setSingleProduct", index)
+  }
 };
 
 export const mutations = {
@@ -22,4 +27,7 @@ export const mutations = {
     const product = state.products.find((product) => product.id === id);
     product.inventory--;
   },
+  setSingleProduct(state, index) {
+    state.singleProduct = state.products[index]
+  }
 };

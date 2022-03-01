@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div @click="viewProduct" class="h-48 cursor-pointer">
+    <div @click="viewProduct(index)" class="h-48 cursor-pointer">
       <img :src="product.image" class="w-full h-full" :alt="product.title" />
     </div>
     <div @click="viewProduct" class="text-sm mt-2 w-full">
@@ -44,13 +44,17 @@ export default {
   components: {
     "app-button": AppButton,
   },
-  props: ["product"],
+  props: {
+      product: {},
+      index:{}
+    },
   methods: {
     ...mapActions("cart", ["addProductToCart"]),
-    viewProduct() {
+    viewProduct(index) {
       this.$router.push(
         "/" + this.product.title.toLowerCase().split(" ").join("-")
       );
+      this.$store.dispatch("products/getSingleProduct", index);
     },
   },
 };
