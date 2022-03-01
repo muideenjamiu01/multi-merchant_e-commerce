@@ -9,9 +9,10 @@
       </h1>
       <div class="grid-list mt-4">
         <ContentsProductCard
-          v-for="product in products"
+          v-for="(product, index) in products"
           :key="product.id"
           :product="product"
+          :index="index"
         />
       </div>
     </main>
@@ -28,6 +29,7 @@ export default {
   },
   methods: {
     ...mapActions(["fetchProducts"]),
+    ...mapActions({getSingleProduct: 'products/getSingleProduct'})
   },
 };
 </script>
