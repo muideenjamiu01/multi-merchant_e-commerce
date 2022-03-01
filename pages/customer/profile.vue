@@ -44,12 +44,21 @@
               </div>
             </div>
             <div class="shrink-0">
-              <img
-                src="@/assets/images/icons/profile-picture.jpg"
-                alt=""
-                class="w-20 h-20 rounded-full object-cover"
-              />
-			  
+				<label for="image-upload"><div 
+                class="w-20 h-20 rounded-full object-cover bg-gray-200 text-xs font-thin flex justify-center items-center"
+               
+              >
+			  select <br> image
+                
+				
+              </div></label>
+				<input
+                  type="file"  id="image-upload" accept="image/*"  @change="onImgChange" hidden
+                  
+                />
+              
+              
+              
             </div>
 
             <div class="flex gap-2">
@@ -232,7 +241,7 @@
             </div>
           </div>
         </div> -->
-        
+
         <div class="mt-8">
           <div class="flex justify-between items-center">
             <h3>Payment Channels</h3>
@@ -290,7 +299,7 @@
                     <input
                       id="username-error"
                       type="text"
-                      class="border border-gray-200  text-sm focus:outline-primary-blue block w-full p-2.5"
+                      class="border border-gray-200 text-sm focus:outline-primary-blue block w-full p-2.5"
                     />
                   </div>
                 </div>
@@ -320,7 +329,7 @@
                     <input
                       id="username-error"
                       type="text"
-                      class="border border-gray-200  text-sm focus:outline-primary-blue block w-full p-2.5"
+                      class="border border-gray-200 text-sm focus:outline-primary-blue block w-full p-2.5"
                     />
                   </div>
                 </div>
@@ -454,6 +463,9 @@ export default {
   data() {
     return {
       editing: false,
+      
+		  file: null,
+		  image:null,
       profile: {
         UserName: "jamie",
         Email: "",
@@ -464,6 +476,12 @@ export default {
     };
   },
   methods: {
+	  
+	onImgChange(){
+		
+	},
+		
+
     EditButton() {
       this.profile.UserName;
     },
