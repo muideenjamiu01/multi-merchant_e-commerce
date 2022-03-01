@@ -9,15 +9,15 @@
         <main class="flex flex-col w-full pt-[20px] md:pt-0 md:w-3/4 md:justify-between md:mr-5 md:pr-5"> <!-- main grid contains contains top and bottom rows -->
 
           <div class="flex flex-col w-full md:mb-5 md:flex-row">  <!-- main top row-->
-            <LandingFashion class="mt-0"/>
-            <LandingGaming />
-            <LandingFashion />
+            <LandingFashion name="fashion"/>
+            <LandingFashion name="phones" />
+            <LandingFashion name="computing" />
           </div>
-          Gaming
+          
           <div class="flex flex-col h-420 w-full pb-5 md:flex-row">  <!-- main bottom row-->
-            <LandingFashion />
-            <LandingFashion />
-            <LandingFashion />
+            <LandingFashion name="gaming" />
+            <LandingFashion name="home" />
+            <LandingFashion name="electronics" />
           </div>
 
         </main>
