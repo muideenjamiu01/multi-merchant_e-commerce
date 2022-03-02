@@ -1,6 +1,6 @@
 <template>
   <div class="z-0 px-12 bg-slate-200 pb-[920px] md:pb-36 md:min-h-screen">
-    <Carousel class="hidden md:block" />
+    <Carousel class="hidden md:block"/>
 
     <!-- grid section -->
     <div class="flex flex-col-reverse md:w-full md:flex md:flex-row md:mt-16">
@@ -107,12 +107,12 @@ export default {
         }
       )
       const content = await response.json();
-      console.log("index-page", content); 
+      console.log("mounted index-page", content); 
       this.message = `Welcome ${content.name.toUpperCase()}, your unique I.D. is ${content.id}`;
       this.$nuxt.$emit('auth', true)
     }
     catch(e) {
-      this.message = `Signin in to get exclusive offers`;
+      this.message = `Sign in to get exclusive offers`;
       this.$nuxt.$emit('auth', false);
     }
   },
@@ -126,6 +126,7 @@ export default {
           }
         );
         await this.$router.push('auth/login2')
+        alert("Signed out")
       }
     },
 };
