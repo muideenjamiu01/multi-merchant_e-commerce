@@ -91,10 +91,10 @@
           alt="Checkout image"
         />
         <div
-          v-if="cartItems"
+          v-if="itemsCount"
           class="h-5 w-5 bg-primary-blue rounded-full flex items-center justify-center text-white text-xs absolute -top-2 -right-2"
         >
-          <h1>{{ cartItems }}</h1>
+          <h1>{{ itemsCount }}</h1>
         </div>
       </NuxtLink>
     </div>
@@ -103,6 +103,7 @@
 
 <script>
 // import Footer from "../base/Footer.vue";
+import { mapGetters } from "vuex";
 export default {
   components: {
     // Footer,
@@ -119,9 +120,9 @@ export default {
     },
   },
   computed: {
-    cartItems() {
-      return this.$store.state.cartItems;
-    },
+    ...mapGetters({
+      itemsCount: "cart/cartItemsCount",
+    }),
   },
 };
 </script>
