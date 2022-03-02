@@ -22,7 +22,7 @@
 
         </main>
 
-        <aside class="flex flex-col pt-6 text-center pl-4 hidden md:justify-between md:block md:w-1/4 md:pt-0"> <!-- aside grid contains 3 rows -->
+      <aside class="flex flex-col pt-6 text-center pl-4 hidden md:justify-between md:block md:w-1/4 md:pt-0"> <!-- aside grid contains 3 rows -->
           <div class="h-44 border p-6 bg-white rounded">
             <h1 class="my-1 mx-5">Sign in for the best experience</h1>
             <app-button to="/auth/signup" fullWidth uppercase variant="contained">
@@ -30,59 +30,96 @@
             </app-button>
             <!-- <ButtonsSignin/> -->
           </div>
-          <div class="bg-pink-200 h-96 my-5 py-6 px-6 rounded">
-            <h1 class="my-1">Delivered to your doorstep wherever you are in Nigeria</h1>
-            <img class="my-5 px-4" src="../assets/images/test-images/people.png" alt="">
-          </div>
-          <div class="bg-indigo-200 h-[260px] mt-5 pt-5 rounded"
-          >
-            <h1 class="mb-11">Easy Returns</h1>
-            <img src="../assets/images/test-images/box.png" alt="cardboard boxes">
-          </div>
-        </aside>
 
-      </div>
+         
+          <div class="flex flex-col items-center bg-pink-200 h-96 my-5 py-6 px-6 rounded">
+            <h1 class="my-1">
+              Delivered to your doorstep wherever you are in Nigeria
+            </h1>
+            <img
+              class="my-5 w-60 h-64"
+              src="../assets/images/test-images/people.png"
+              alt=""
+            />
+          </div>
 
-      
+          <div class="bg-indigo-200 h-[260px] mt-5 pt-[20px] pb-[30px] rounded">
+            <h1 class="mb-[46.4px]">Easy Returns</h1>
+            <img
+              class="mx-[auto]"
+              src="../assets/images/test-images/box.png"
+              alt="cardboard boxes"
+            />
+          </div>
+      </aside>
     </div>
+  </div>
 </template>
 
-
 <script>
-import AppButton from "@/components/buttons/Button.vue"
-
-  export default {
-    name: 'IndexPage',
-    layout: 'landing',
-    head: {
-      title: 'YouStore',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'the Best Online Shop in Africa'
+export default {
+  layout: "landing",
+  name: "landingPage",
+  head: {
+    title: "YouStore",
+    meta: [
+      {
+        hid: "description",
+        name: "description",
+        content: "the Best Online Shop in Africa",
+      },
+    ],
+    script: [
+      {
+        hid: "tailwind-elements",
+        src: "https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js",
+        defer: true,
+      },
+    ],
+  },
+  data() {
+    return {
+      message:"",
+      auth: false
+    }
+  },
+  async mounted() {
+    this.$nuxt.$on ('auth', auth => {this.auth = auth})
+    this.$nuxt.$on ('auth', auth => console.log(auth))
+    try { 
+      const response = await fetch(
+        "http://localhost:8000/api/user", {
+          headers: {'Content-Type': 'application/json'},
+          credentials: 'include',
         }
-      ],
-       script: [
-        { hid: 'tailwind-elements', src: 'https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js', defer: true }
-      ]
+      )
+      const content = await response.json();
+      console.log("mounted index-page", content); 
+      this.message = `Welcome ${content.name.toUpperCase()}, your unique I.D. is ${content.id}`;
+      this.$nuxt.$emit('auth', true)
+    }
+    catch(e) {
+      this.message = `Sign in to get exclusive offers`;
+      this.$nuxt.$emit('auth', false);
+    }
+  },
+  methods: {
+      async logout () {
+        await fetch(
+          'http://localhost:8000/api/logout', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            credentials: 'include',
+          }
+        );
+        await this.$router.push('auth/login2')
+        alert("Signed out")
+      }
     },
-    components: {
-      'app-button': AppButton
-    },
-  }
-
-
+};
 </script>
 
 <style scoped>
-
-
-
-
-
-
-
 .cascade {
   position: relative;
   width: 100%;
@@ -94,24 +131,24 @@ import AppButton from "@/components/buttons/Button.vue"
 }
 
 .overlay {
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute; 
-  bottom: 0; 
+  position: absolute;
+  bottom: 0;
   background: rgba(0, 0, 0, 0.5); /* Black see-through */
   width: 100%;
-  transition: .5s ease;
-  opacity:0;
+  transition: 0.5s ease;
+  opacity: 0;
   color: white;
   text-align: center;
 }
+
 .overlay-font {
-width: 50%;
+  width: 50%;
 }
 
 .cascade:hover .overlay {
   opacity: 1;
 }
-
 </style>
