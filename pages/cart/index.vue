@@ -82,10 +82,10 @@
         <h1 class="">{{ `Subtotal (${itemsCount} items):` }}</h1>
 
         <p class="flex justify-end font-medium">
-          {{ (parseFloat(totalPrice) * 100) / 100 }} NGN
+         $ {{ (parseFloat(totalPrice) * 100) / 100 }}
         </p>
 
-        <app-button class="mt-6" color="primary" variant="contained" fullWidth
+        <app-button @click="$router.push('/checkout')" class="mt-6" color="primary" variant="contained" fullWidth
           >Checkout</app-button
         >
         <!-- <ContentsAddToCart /> -->
@@ -120,3 +120,4 @@ export default {
     },
   }
 } 
+</script>
