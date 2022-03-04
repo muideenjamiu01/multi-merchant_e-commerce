@@ -29,28 +29,14 @@
                 <label for="primary-address"> Primary address</label>
               </div>
             </div>
-
-            <div class="mt-4 md:mt-0 md:md:w-1/2">
-              <div class="flex">
-                <div>
-                  <input
-                    id="home-address"
-                    v-model.trim="SelectedAddress"
-                    type="radio"
-                    value="Home address"
-                    class="mr-2 form-check-input appearance-none rounded-full h-4 w-4 border border-primary-blue bg-white checked:bg-primary-blue checked:border-primary-blue focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer"
-                  />
-                </div>
-                <label for="home-address">Home address</label>
-              </div>
-            </div>
           </div>
 
-          <div class="mt-2">
-            <NuxtLink to="/"> Or ship to new address </NuxtLink>
+          <div class="mt-2" >
+			  <button @click="openModal">Or ship to new address</button>
+            <new-address-modal v-model="modalOpen"> </new-address-modal> 
           </div>
 
-          <form action="" @submit.prevent="saveAddress">
+          <!-- <form action="" @submit.prevent="saveAddress">
             <div class="md:flex justify-between gap-8">
               <div class="mt-4 md:w-1/2">
                 <div>
@@ -110,11 +96,7 @@
                   />
                 </div>
                 <div class="flex justify-end items-end mt-4">
-                  <!-- <button
-                    class="border-2 border-primary-blue rounded-lg font-bold text-primary-blue px-6 py-1 transition duration-300 ease-in-out hover:bg-primary-blue hover:text-white"
-                  >
-                    Save
-                  </button> -->
+                  
                   <app-button
                     size="small"
                     variant="outlined"
@@ -126,13 +108,44 @@
                 </div>
               </div>
             </div>
-          </form>
+          </form> -->
           <div class="md:mt-10">
             <div class="mt-10">
               <h2 class="text-xl">Payment</h2>
               <hr class="mt-2" />
             </div>
             <section>
+              <div class="flex justify-between items-center mt-6">
+                <span>Subtotal</span>
+                <span>402080.00</span>
+              </div>
+              <div class="mt-6 flex justify-between border-b pb-2">
+                <p class="">Shipping Method</p>
+                <select name="" id="" class="" v-model="shippingFee">
+                  <option value="500">Standard Shipping ₦500</option>
+                  <option value="1000">Fast Shipping ₦1000</option>
+                </select>
+              </div>
+              <div class="flex justify-between items-center mt-6">
+                <span class="font-semibold">Total</span>
+                <span class="text-primary-blue font-medium"> 462080.00</span>
+              </div>
+              <div class="mt-8 flex justify-center">
+                <app-button 
+                  @click.prevent="initializePaystack"
+                  type="submit"
+                  size="medium"
+                  variant="contained"
+                  color="success"
+                  >Proceed To Make Payment</app-button
+                >
+                <!-- <router-link to="/login" class="btn btn-dark mt-5" v-else
+                  >Login to CheckOut</router-link
+                >  -->
+              </div>
+            </section>
+
+            <!-- <section>
               <form @submit.prevent="initializePaystack">
                 <div class="md:flex justify-between gap-8">
                   <div class="mt-4 md:w-1/2">
@@ -174,21 +187,11 @@
                       >
                     </div>
 
-                    <!-- <div class="flex justify-end items-end mt-4">
-                     
-                      <app-button
-                        size="small"
-                        variant="outlined"
-                        color="success"
-                        type="submit"
-                      >
-                        Save
-                      </app-button>
-                    </div> -->
+                    
                   </div>
                 </div>
               </form>
-            </section>
+            </section> -->
           </div>
         </div>
       </div>
@@ -200,18 +203,22 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
+import NewAddressModal from '~/components/newAddressModal.vue';
 export default {
-  components: {},
+  components: {NewAddressModal},
   data() {
     return {
       email: "",
       amount: "",
       props: [],
       SelectedAddress: "",
-      streetAddress: "",
-      cityLga: "",
-      state: "",
-      zipPostalCode: "",
+      modalOpen: false
+	//   streetAddress: "",
+    //   cityLga: "",
+    //   state: "",
+    //   zipPostalCode: "",
     };
   },
   computed: {
@@ -230,11 +237,14 @@ export default {
     saveAddress() {
       console.log();
     },
+	openModal(){
+		this.modalOpen = !this.modalOpen;
+	},
     initializePaystack() {
       this.$paystack({
         key: "pk_test_1439df5ec859471cd4e3d8405a5b7dea45667b48", // Replace with your public key.
-        email: this.email,
-        amount: this.amount * 100,
+        email: 'jamiu@youverify.co',
+        amount: 20 * 100,
         ref: "",
         currency: "NGN",
         callback: () => {

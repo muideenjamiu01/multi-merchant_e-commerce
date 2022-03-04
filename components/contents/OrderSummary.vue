@@ -27,8 +27,8 @@
         <span>402080.00</span>
       </div>
       <div class="flex justify-between items-center mt-4">
-        <span>Shipping and handling</span>
-        <span>2080.00</span>
+        <span>Delivery fee</span>
+        <span>1000.00</span>
       </div>
       <p class="text-gray-400 text-xs">
         International Shipping (8-10 <br />
@@ -38,55 +38,20 @@
         <span>Total</span>
         <span>462080.00</span>
       </div>
-      <div class="mt-10">
-        <button type="submit" @click.prevent="initializePaystack">Make Payment</button>
-      </div>
+      
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+
 export default {
 	computed: {
-		...mapGetters({
-			email:'getUserEmail',
-			length: 'getNumberOfProducts',
-			total:'getTotal'
-
-		}),
-    reference() {
-      let text = "";
-      let possible =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-      for (let i = 0; i < 10; i++)
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-      return text;
-    },
+		
+    
   },
    methods: {
-    
-    initializePaystack() {
-      this.$paystack({
-        key: "pk_test_1439df5ec859471cd4e3d8405a5b7dea45667b48", // Replace with your public key.
-        email: this.email,
-        amount: this.amount * 100,
-        ref: "",
-        currency: "NGN",
-        callback: () => {
-          // Do something.
-          console.log(response);
-        },
-        onClose: () => {
-          // Do something.
-
-          console.log("Payment Closed");
-        },
-      });
-    },
-}
+   }
 }
 </script>
 

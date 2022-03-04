@@ -242,7 +242,7 @@
           </div>
         </div> -->
 
-        <div class="mt-8">
+        <!-- <div class="mt-8">
           <div class="flex justify-between items-center">
             <h3>Payment Channels</h3>
           </div>
@@ -446,7 +446,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

@@ -1,12 +1,14 @@
 <template>
-  <div class=" px-4 py-8 ">
+  <div class="px-4 py-8">
     <div class="md:flex">
       <div>
         <ContentsMerchantProfileCard />
       </div>
-      <div >
-        <div class="w-full grid grid-rows-4  md:grid-cols-4 md:grid-rows-none  gap-x-4">
-          <div class="p-2 bg-primary-blue-sharpen   rounded">
+      <div>
+        <div
+          class="w-full grid grid-rows-4 md:grid-cols-4 md:grid-rows-none gap-x-4"
+        >
+          <div class="p-2 bg-primary-blue-sharpen rounded">
             <div class="flex items-center gap-2">
               <div>
                 <!-- <img src="@/assets/images/icons/users.svg" alt="" /> -->
@@ -24,11 +26,15 @@
                 </svg>
               </div>
               <span class="text-lg font-medium">251 </span>
-              <span class="font-normal text-xs text-blue-">+112 this month</span>
+              <span class="font-normal text-xs text-blue-"
+                >+112 this month</span
+              >
             </div>
-            <span class="font-medium text-sm flex justify-center items-center">Visitors</span>
+            <span class="font-medium text-sm flex justify-center items-center"
+              >Visitors</span
+            >
           </div>
-          <div class="p-2  bg-green-100   rounded mt-4 md:mt-0">
+          <div class="p-2 bg-green-100 rounded mt-4 md:mt-0">
             <div class="flex items-center gap-2">
               <div>
                 <!-- <img src="@/assets/images/icons/validate.svg" alt="" /> -->
@@ -46,11 +52,15 @@
                 </svg>
               </div>
               <span class="text-lg font-medium">91</span>
-              <span class="font-normal text-xs text-primary-green">+49 this month</span>
+              <span class="font-normal text-xs text-primary-green"
+                >+49 this month</span
+              >
             </div>
-            <span class="font-medium text-sm flex justify-center items-center">Orders Fulfilled</span>
+            <span class="font-medium text-sm flex justify-center items-center"
+              >Orders Fulfilled</span
+            >
           </div>
-          <div class="p-2 bg-primary-gold-light   rounded mt-4 md:mt-0">
+          <div class="p-2 bg-primary-gold-light rounded mt-4 md:mt-0">
             <div class="flex items-center gap-2">
               <div>
                 <!-- <img src="@/assets/images/icons/currency.svg" alt="" /> -->
@@ -67,14 +77,16 @@
                   />
                 </svg>
               </div>
-              <span class="text-lg font-medium">189000</span>
-              <span class="font-normal text-xs text-primary-gold">+12200 this month</span>
+              <span class="text-lg font-medium">1890</span>
+              <span class="font-normal text-xs text-primary-gold"
+                >+122 this month</span
+              >
             </div>
-            <span class="font-medium text-sm flex justify-center items-center">Earned</span>
+            <span class="font-medium text-sm flex justify-center items-center"
+              >Earned</span
+            >
           </div>
-          <div
-            class="p-2 bg-primary-purple-light  rounded mt-4 md:mt-0"
-          >
+          <div class="p-2 bg-primary-purple-light rounded mt-4 md:mt-0">
             <div class="flex items-center gap-2">
               <div>
                 <!-- <img src="@/assets/images/icons/star.svg" alt="" /> -->
@@ -92,16 +104,28 @@
                 </svg>
               </div>
               <span class="text-lg font-medium">4.3</span>
-              <span class="font-normal text-xs text-primary-purple">+37 this month</span>
+              <span class="font-normal text-xs text-primary-purple"
+                >+37 this month</span
+              >
             </div>
-            <span class="font-medium text-sm flex justify-center items-center">Average Rating</span>
+            <span class="font-medium text-sm flex justify-center items-center"
+              >Average Rating</span
+            >
           </div>
         </div>
 
-        <div
+        <!-- <div
           class="mt-8 md:flex gap-2 justify-end items-center text-xs font-normal"
         >
-        <app-button size="small" variant="outlined">
+          <!-- <button
+            style="margin-bottom: 30px"
+            class="button"
+			
+            @click="randomize"
+          >
+            Randomize Chart
+          </button> -->
+          <!-- <app-button size="small" variant="outlined">
         this week
         </app-button>
         <app-button size="small" variant="outlined">
@@ -113,8 +137,8 @@
         <app-button size="small" variant="outlined">
         this year
         </app-button>
-        </div>
-        <div class="mt-8 md:mt-0">
+        </div>-->
+        <div class="mt-8 md:mt-10">
           <div class="chart-div">
             <DashboardChart
               :chart-data="chartData"
@@ -160,13 +184,11 @@
                 </thead>
                 <tbody class="pt-8">
                   <tr class="text-left border-b border-gray-300 pb-4">
-                    <td class="font-normal text-sm px-4 py-2">
-                      1585297524
-                    </td>
+                    <td class="font-normal text-sm px-4 py-2">1585297524</td>
                     <td class="px-4 py-2">
                       <div class="flex gap-4 pt-4">
                         <div class="w-24 h-24 bg-gray-200 overflow-hidden">
-                          <img>
+                          <img />
                         </div>
                         <div class="flex flex-col">
                           <div>
@@ -175,37 +197,27 @@
                               Sweatshirt Oversized
                             </span>
                           </div>
-                          <div class="text-sm font-normal">
-                            size:small
-                          </div>
-                          <div class="text-sm font-normal">
-                            color:Brown
-                          </div>
-                          <div class="text-sm font-normal">
-                            Quantity:1
-                          </div>
+                          <div class="text-sm font-normal">size:small</div>
+                          <div class="text-sm font-normal">color:Brown</div>
+                          <div class="text-sm font-normal">Quantity:1</div>
                         </div>
                       </div>
                     </td>
                     <td class="font-normal text-sm text-center px-4 py-2">
                       14483.00
                     </td>
-                    <td class="font-normal text-sm px-4 py-2">
-                      12/01/2022
-                    </td>
+                    <td class="font-normal text-sm px-4 py-2">12/01/2022</td>
                     <td class="font-normal text-sm px-4 py-2 text-red-600">
-                      Awaiting <br>
+                      Awaiting <br />
                       Drop off
                     </td>
                   </tr>
                   <tr class="text-left border-b border-gray-300 pb-4">
-                    <td class="font-normal text-sm px-4 py-2">
-                      1585297524
-                    </td>
+                    <td class="font-normal text-sm px-4 py-2">1585297524</td>
                     <td class="px-4 py-2">
                       <div class="flex gap-4 pt-4">
                         <div class="w-24 h-24 bg-gray-200 overflow-hidden">
-                          <img>
+                          <img />
                         </div>
                         <div class="flex flex-col">
                           <div>
@@ -214,24 +226,16 @@
                               Sweatshirt Oversized
                             </span>
                           </div>
-                          <div class="text-sm font-normal">
-                            size:small
-                          </div>
-                          <div class="text-sm font-normal">
-                            color:Brown
-                          </div>
-                          <div class="text-sm font-normal">
-                            Quantity:1
-                          </div>
+                          <div class="text-sm font-normal">size:small</div>
+                          <div class="text-sm font-normal">color:Brown</div>
+                          <div class="text-sm font-normal">Quantity:1</div>
                         </div>
                       </div>
                     </td>
                     <td class="font-normal text-sm text-center px-4 py-2">
                       14483.00
                     </td>
-                    <td class="font-normal text-sm px-4 py-2">
-                      12/01/2022
-                    </td>
+                    <td class="font-normal text-sm px-4 py-2">12/01/2022</td>
                     <td class="font-normal text-sm px-4 py-2 text-red-600">
                       Returned
                     </td>
@@ -247,84 +251,148 @@
 </template>
 
 <script>
-import AppButton from "@/components/buttons/Button.vue"
-import DashboardChart from '~/components/DashboardChart.vue'
+import AppButton from "@/components/buttons/Button.vue";
+import DashboardChart from "~/components/DashboardChart.vue";
 
 export default {
-  layout: 'merchant',
-    components: {
-      DashboardChart,
-      'app-button': AppButton
-    },
-  data () {
+  layout: "merchant",
+  components: {
+    DashboardChart,
+    "app-button": AppButton,
+  },
+  data() {
     return {
       chartData: {
         labels: [
-          '01',
-          '02',
-          '03',
-          '04',
-          '05',
-          '06',
-          '07',
-          '08',
-          '09',
-          '10',
-          '11',
-          '12',
-          '13',
-          '15',
-          '16',
-          '17',
-          '18',
-          '19',
-          '20',
-          '21',
-          '22',
-          '23',
-          '24',
-          '25',
-          '26',
-          '27',
-          '28',
-          '29',
-          '30',
-          '31'
+          "January",
+          "Febuary",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
         ],
         datasets: [
           {
-              label:'',
-            borderColor: 'green',
-            borderWidth: 2,
-            pontBackgroundColor: 'red',
-            pointRadius: 5,
-            pointHoverRadius: 8,
-            pointHoverBorderColor: 'blue',
-            fill: false,
-            data: [0, 300, 600, 900, 1200, 1500]
-          }
-        ]
+            label: "Visitors",
+            borderColor: "#21A2DA",
+            borderWidth: 1,
+            pointBackgroundColor: "white",
+            pointRadius: 2,
+            pointHoverRadius: 3,
+            pointHoverBorderColor: "#46B2C8",
+            backgroundColor: "#ebf8fe",
+            data: [4000,1500, 251, 2500, 3000, 80, 40, 30, 20, 30, 20, 10],
+          },
+          {
+            label: "Orders",
+            borderColor: "#1EB62D",
+            borderWidth: 1,
+            pointBackgroundColor: "white",
+            pointRadius: 2,
+            pointHoverRadius: 3,
+            pointHoverBorderColor: "#46B2C8",
+            backgroundColor: "#e8f8ea",
+            data: [1000, 6500, 91, 32, 42, 53, 60, 65, 70],
+          },
+          {
+            label: "Earned",
+            borderColor: "#ABA519",
+            borderWidth: 1,
+            pointBackgroundColor: "white",
+            pointRadius: 2,
+            pointHoverRadius: 3,
+            pointHoverBorderColor: "#46B2C8",
+            backgroundColor: "#f8f6da",
+            data: [500, 1000, 1500, 2000, 2500, 3000,3500,4000,4500,5000,5500,5500,6000,6500],
+          },
+        ],
       },
       chartOptions: {
         maintainAspectRatio: false,
         responsive: true,
-		legend:{
-			display: false
-		},
+        legend: {
+          display: false,
+        },
         tooltips: {
-          backgroundColor: 'gray',
-          titleFontColor: '#fff',
-          bodyFontColor: '#red',
-          position: 'nearest',
-          mode: 'nearest',
-          intersects: 0
+          backgroundColor: "gray",
+          titleFontColor: "#fff",
+          bodyFontColor: "#red",
+          position: "nearest",
+          mode: "nearest",
+          intersects: 0,
           // bodySpacing:4,
           // xpadding:20,
-        }
-      }
-    }
-  }
-}
+        },
+      },
+    };
+  },
+//   method: {
+//     randomize() {
+// 		console.log('ploting')
+//       this.chartData = {
+//         labels: [
+//           "January",
+//           "February",
+//           "March",
+//           "April",
+//           "May",
+//           "June",
+
+//           "July",
+//           "August",
+//           "September",
+//           "October",
+//           "November",
+//           "December",
+//         ],
+//         datasets: [
+//           {
+//             label: "Visitors",
+//             borderColor: "#21A2DA",
+//             borderWidth: 1,
+//             pointBackgroundColor: "white",
+//             pointRadius: 2,
+//             pointHoverRadius: 3,
+//             pointHoverBorderColor: "#46B2C8",
+//             backgroundColor: "#ebf8fe",
+//             data: [...Array(10)].map((e) => this.getRandomInt()),
+//           },
+//           {
+//             label: "Orders",
+//             borderColor: "#1EB62D",
+//             borderWidth: 1,
+//             pointBackgroundColor: "white",
+//             pointRadius: 2,
+//             pointHoverRadius: 3,
+//             pointHoverBorderColor: "#46B2C8",
+//             backgroundColor: "#e8f8ea",
+//             data: [...Array(10)].map((e) => this.getRandomInt()),
+//           },
+//           {
+//             label: "Earned",
+//             borderColor: "#ABA519",
+//             borderWidth: 1,
+//             pointBackgroundColor: "white",
+//             pointRadius: 2,
+//             pointHoverRadius: 3,
+//             pointHoverBorderColor: "#46B2C8",
+//             backgroundColor: "#f8f6da",
+//             data: [...Array(10)].map((e) => this.getRandomInt()),
+//           },
+//         ],
+//       };
+//     },
+//     getRandomInt() {
+//       return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
+//     },
+//   },
+};
 </script>
 
 <style lang="scss" scoped></style>
