@@ -27,7 +27,7 @@
           <h1 class="my-1 mx-5">{{message}}</h1>
           <div>
             <div class="px-4 py-4 w-full" v-if="!auth" >
-                <nuxt-link to="/auth/login2">
+                <nuxt-link to="/auth/login">
                   <button class="bg-primary-blue py-2 text-white font-light w-full rounded-sm">
                     Sign In
                   </button>
@@ -123,7 +123,7 @@ export default {
             credentials: 'include',
           }
         );
-        await this.$router.push('auth/login2')
+        await this.$router.push('auth/login')
         alert("Signed out")
       }
     },

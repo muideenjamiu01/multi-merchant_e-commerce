@@ -20,7 +20,7 @@
                 <button class="bg-primary-blue text-white rounded w-[25.25rem] h-[2.5rem] mb-[32px]"  :disabled="invalid" type="submit">LOGIN</button>
             </form>
         </ValidationObserver>
-        <p class="font-light text-base mb-[16px]">Don't have an account?<span class="text-primary-blue ml-[10px]"><nuxt-link to="/auth/signup2">Sign up here</nuxt-link></span></p>
+        <p class="font-light text-base mb-[16px]">Don't have an account?<span class="text-primary-blue ml-[10px]"><nuxt-link to="/auth/signup">Sign up here</nuxt-link></span></p>
         <p><span class="font-light text-base text-primary-blue mb-[48px]"> <nuxt-link to="">Forgot your password?</nuxt-link> </span></p>
     </div>
   </div>
@@ -67,7 +67,7 @@
                     
                 } catch (err) {
                     console.log(err)
-                    await this.$router.push('/auth/login2');
+                    await this.$router.push('/auth/login');
                     alert('Could not contact server!')
                 }
             }

@@ -26,7 +26,7 @@
     </div>
 
     <div class="flex items-center gap-5">
-      <nuxt-link to="/auth/merchant-login2">
+      <nuxt-link to="/auth/merchant-login">
         <h1 class="text-primary-blue text-lg cursor-pointer hidden md:block">
           Become a seller
         </h1>
