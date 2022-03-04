@@ -1,5 +1,6 @@
 <template>
-   <div class="flex flex-col w-80 h-420 p-6 my-3 mx-auto bg-white shadow-lg md:mr-5 shadow rounded md:my-0 md:w-1/3"> <!-- card 1 bottom row-->
+   <div class="flex flex-col w-80 h-420 p-6 my-3 mx-auto bg-white shadow-lg md:mr-5 shadow rounded md:my-0 md:w-1/3"> 
+   <!-- 
     <h1 class="mb-6 font-bold">FASHION</h1>
     <div class="flex w-full h-32 px-2 mb-2">
       <div class="mb-2 mr-2 w-3/6 h-32 hover:border-4 border-sky-500 bg-slate-300">
@@ -34,9 +35,10 @@
       </div>
     </div>
     <h3 class="text-primary-blue mt-8">Shop now</h3>
-  </div>
+     -->
+  </div>  
 </template>
- 
+
 
  <style scoped>
 

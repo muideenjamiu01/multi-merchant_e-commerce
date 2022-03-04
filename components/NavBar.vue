@@ -26,7 +26,7 @@
     </div>
 
     <div class="flex items-center gap-5">
-      <nuxt-link to="/merchant/new">
+      <nuxt-link to="/auth/merchant-login2">
         <h1 class="text-primary-blue text-lg cursor-pointer hidden md:block">
           Become a seller
         </h1>
@@ -67,7 +67,7 @@
                 </button>
               </nuxt-link>
             </div>
-            <div class="border-t" />
+            <div class="border-t"/>
             <div class="px-4 py-4">
               <ul>
                 <NuxtLink to="/customer/profile">

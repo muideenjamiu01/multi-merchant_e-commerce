@@ -2,24 +2,23 @@ export default {
 	mode: 'universal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'youstore-frontend',
+    title: "youstore-frontend",
     htmlAttrs: {
-      lang: 'en'
+      lang: "en",
     },
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { hid: "description", name: "description", content: "" },
+      { name: "format-detection", content: "telephone=no" },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-	
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
   //Customize the progress-bar color
   loading: {color:'#46B2C8', height:'4px', duration: 5000},
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/assets/css/tailwind.css'],
+  css: ["@/assets/css/tailwind.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -32,7 +31,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxt/postcss8'
+    "@nuxt/postcss8",
     // https://go.nuxtjs.dev/eslint
     // '@nuxtjs/eslint-module'
   ],
@@ -41,13 +40,17 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-	'nuxt-paystack'
+	'nuxt-paystack',
+	"@nuxtjs/auth-next",
   ],
+   auth: {
+    // Options
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/'
+    baseURL: "/",
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -55,8 +58,8 @@ export default {
     postcss: {
       plugins: {
         tailwindcss: {},
-        autoprefixer: {}
-      }
-    }
-  }
-}
+        autoprefixer: {},
+      },
+    },
+  },
+};

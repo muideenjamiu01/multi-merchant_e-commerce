@@ -28,7 +28,7 @@
         <div class="carousel-inner relative w-full overflow-hidden h-96">
           <div class="cascade carousel-item active float-left w-full">
             <img
-              src="../assets/images/test-images/landing-page-image.png"
+              src="../assets/images/test-images/landing-page-image.jpg"
               class="block w-full h-96"
               alt="Fashion"
             />

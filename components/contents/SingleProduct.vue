@@ -1,18 +1,20 @@
 <template>
   <div class="font-light py-8 px-4 text-primary-black">
     <div class="xl:flex xl:space-x-8">
-      <div class="flex flex-col space-y-4">
+      <!-- <div class="flex flex-col space-y-4">
         <div v-for="n in 5" :key="n" class="border-2 border-black h-14 w-14" />
+      </div> -->
+      <div class=" w-full h-96 max-w-lg">
+        <img :src="singleProduct.image" class="w-full h-full" alt="">
       </div>
-      <div class="border-2 border-black w-full h-96 max-w-lg" />
       <div>
-        <h1 class="text-xl capitalize">{{ $route.params.product }}</h1>
+        <h1 class="text-xl capitalize">{{ singleProduct.category }}</h1>
         <div class="flex items-center">
           <p class="text-2xl font-bold">******</p>
-          <p class="text-primary-blue-dark ml-2.5 text-sm">3209 ratings</p>
+          <p class="text-primary-blue-dark ml-2.5 text-sm">{{singleProduct.rating.count}} ratings</p>
         </div>
         <div class="flex mt-6">
-          <p class="font-medium text-lg">3400.00 NGN</p>
+          <p class="font-medium text-lg">{{singleProduct.price}} NGN</p>
           <p class="text-primary-gray-light text-sm font-light ml-2.5">-23%</p>
         </div>
 
@@ -30,7 +32,7 @@
         </select>
 
         <app-button
-          @click="addProductToCart(product)"
+          @click="addProductToCart(singleProduct)"
           class="mt-6"
           variant="contained"
           fullWidth
@@ -161,32 +163,8 @@
     <div class="mt-24 lg:flex lg:space-x-8">
       <div>
         <h1 class="text-xl mb-3">Product Description</h1>
-        <p class="mb-8">
-          Nam tellus eros, placerat eget quam at, gravida finibus magna. Quisque
-          pellentesque efficitur ex, vitae efficitur odio dignissim sit amet.
-          Nulla feugiat massa tortor, ac congue libero rutrum sit amet. Donec
-          tristique nisi eget lacus efficitur, quis placerat metus consectetur.
-          Donec pulvinar nisi id nulla tempor commodo. Etiam nec feugiat nunc.
-          Praesent porta a elit sit amet egestas. Aliquam pulvinar varius quam
-          auctor ultrices. Vivamus blandit dolor nec tortor egestas, sed
-          scelerisque turpis cursus. Suspendisse sit amet tempor nisi. Sed ac
-          velit sed nisi egestas ornare hendrerit eu erat. Sed sit amet lacus id
-          risus eleifend commodo pellentesque non diam. Interdum et malesuada
-          fames ac ante ipsum primis in faucibus. Morbi iaculis egestas
-          sagittis. Nunc lacinia, elit ac cursus cursus, mi risus lacinia mi,
-          quis auctor felis augue eget nisl.
-        </p>
-
         <p>
-          Nulla facilisi. Phasellus ac lacus augue. Quisque faucibus odio metus,
-          a fermentum enim elementum sed. Vivamus ullamcorper rutrum dui.
-          Curabitur blandit non purus a laoreet. Vivamus quis nulla in nulla
-          tempus elementum. Suspendisse eget est urna. Ut eu turpis id quam
-          rhoncus ultrices eget vitae justo. Nunc bibendum nulla sed luctus
-          rutrum. Aenean auctor pharetra ex, in vehicula tortor dignissim quis.
-          Etiam consequat pretium turpis, quis porttitor dui accumsan eget. Duis
-          vulputate tortor malesuada, accumsan elit a, rhoncus eros. Aenean
-          vestibulum pharetra arcu, vitae ultrices sem ullamcorper vitae.
+         {{singleProduct.description}}
         </p>
       </div>
 
@@ -254,6 +232,8 @@ export default {
   methods: {
     ...mapActions("cart", ["addProductToCart"]),
   },
+  computed: mapGetters({ singleProduct: "products/singleProduct" }),
+  
 };
 </script>
 

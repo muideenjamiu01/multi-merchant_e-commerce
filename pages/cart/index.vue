@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto py-4 px-2">
+  <div class="max-w-7xl mx-auto py-4 px-4">
     <div @click="goBack" class="flex gap-4 mt-8">
       <img src="@/assets/images/icons/back-arrow.svg" alt="" />
       <h1 class="md:text-3xl font-medium">Shopping Cart</h1>
@@ -52,13 +52,7 @@
                 >-
               </app-button>
               <div
-                class="
-                  text-center
-                  font-semibold
-                  text-md text-gray-400
-                  flex
-                  items-center
-                "
+                class="text-center font-semibold text-md text-gray-400 flex items-center"
               >
                 {{ item.quantity }}
               </div>
@@ -73,13 +67,6 @@
             </div>
           </div>
         </div>
-
-        <div class="mt-12 flex justify-end gap-2 font-medium text-xl">
-          <h1>
-            <span class="">{{ `Subtotal (${itemsCount} items):` }}</span>
-          </h1>
-          <span class="">{{ (parseFloat(totalPrice) * 100) / 100 }} NGN</span>
-        </div>
       </div>
 
       <div v-else class="flex justify-center w-full">
@@ -88,16 +75,20 @@
         </h4>
       </div>
 
-      <div v-show="itemsCount" class="mt-4 lg:mt-0 md:w-1/4 bg-primary-100 p-6">
-        <p class="font-medium">{{ itemsCount }}</p>
+      <div
+        v-show="itemsCount"
+        class="mt-4 lg:mt-0 md:w-1/4 bg-primary-100 p-4 self-start"
+      >
+        <h1 class="">{{ `Subtotal (${itemsCount} items):` }}</h1>
+
         <p class="flex justify-end font-medium">
-          {{ (parseFloat(totalPrice) * 100) / 100 }}
+          {{ (parseFloat(totalPrice) * 100) / 100 }} NGN
         </p>
 
         <app-button class="mt-6" color="primary" variant="contained" fullWidth
-          >Proceed to checkout</app-button
+          >Checkout</app-button
         >
-        <ContentsAddToCart />
+        <!-- <ContentsAddToCart /> -->
       </div>
     </div>
   </div>
