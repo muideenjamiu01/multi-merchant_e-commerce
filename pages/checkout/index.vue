@@ -117,7 +117,7 @@
             <section>
               <div class="flex justify-between items-center mt-6">
                 <span>Subtotal</span>
-                <span>402080.00</span>
+                <span>NGN {{totalPrice * 500}}</span>
               </div>
               <div class="mt-6 flex justify-between border-b pb-2">
                 <p class="">Shipping Method</p>
@@ -128,7 +128,7 @@
               </div>
               <div class="flex justify-between items-center mt-6">
                 <span class="font-semibold">Total</span>
-                <span class="text-primary-blue font-medium"> 462080.00</span>
+                <span class="text-primary-blue font-medium"> NGN {{sumTotal}}</span>
               </div>
               <div class="mt-8 flex justify-center">
                 <app-button 
@@ -195,15 +195,15 @@
           </div>
         </div>
       </div>
-      <div class="md:w-1/3">
+      <!-- <div class="md:w-1/3">
         <ContentsOrderSummary />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 
 import NewAddressModal from '~/components/newAddressModal.vue';
 export default {
@@ -214,7 +214,8 @@ export default {
       amount: "",
       props: [],
       SelectedAddress: "",
-      modalOpen: false
+      modalOpen: false,
+      shippingFee: ''
 	//   streetAddress: "",
     //   cityLga: "",
     //   state: "",
@@ -222,6 +223,14 @@ export default {
     };
   },
   computed: {
+     ...mapGetters({
+      cart: "cart/cartProducts",
+      totalPrice: "cart/cartTotalPrice",
+      itemsCount: "cart/cartItemsCount",
+    }),
+    sumTotal() {
+      return (this.totalPrice + this.shippingFee) * 500
+    },
     reference() {
       let text = "";
       let possible =
@@ -244,7 +253,7 @@ export default {
       this.$paystack({
         key: "pk_test_1439df5ec859471cd4e3d8405a5b7dea45667b48", // Replace with your public key.
         email: 'jamiu@youverify.co',
-        amount: 20 * 100,
+        amount: Math.floor(this.sumTotal * 100),
         ref: "",
         currency: "NGN",
         callback: () => {
