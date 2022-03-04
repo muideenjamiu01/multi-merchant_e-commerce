@@ -253,7 +253,7 @@ export default {
       this.$paystack({
         key: "pk_test_1439df5ec859471cd4e3d8405a5b7dea45667b48", // Replace with your public key.
         email: 'jamiu@youverify.co',
-        amount: Math.floor(this.sumTotal),
+        amount: Math.floor(this.sumTotal * 100),
         ref: "",
         currency: "NGN",
         callback: () => {
