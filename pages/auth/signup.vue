@@ -105,7 +105,7 @@
       <p class="font-light text-sm mb-[16px]">
         Already have an account?<span
           class="text-primary-blue text-sm ml-[10px]"
-          ><nuxt-link to="/auth/login2">Sign in</nuxt-link></span
+          ><nuxt-link to="/auth/login">Sign in</nuxt-link></span
         >
       </p>
       <p class="font-light text-sm mb-[16px]">
@@ -150,7 +150,7 @@ export default {
         .then((res) => res.json())
         .then((res) => console.log(res))
         .then(alert("Signup Succesfull!"));
-      await this.$router.push("/auth/login2");
+      await this.$router.push("/auth/login");
     },
   },
   components: {
