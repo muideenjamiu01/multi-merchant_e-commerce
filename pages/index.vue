@@ -23,14 +23,25 @@
         </main>
 
       <aside class="flex flex-col pt-6 text-center pl-4 hidden md:justify-between md:block md:w-1/4 md:pt-0"> <!-- aside grid contains 3 rows -->
-          <div class="h-44 border p-6 bg-white rounded">
-            <h1 class="my-1 mx-5">Sign in for the best experience</h1>
-            <app-button to="/auth/signup" fullWidth uppercase variant="contained">
-            Sign In
-            </app-button>
-            <!-- <ButtonsSignin/> -->
+        <div class="h-44 border p-6 bg-white rounded">
+          <h1 class="my-1 mx-5">{{message}}</h1>
+          <div>
+            <div class="px-4 py-4 w-full" v-if="!auth" >
+                <nuxt-link to="/auth/login">
+                  <button class="bg-primary-blue py-2 text-white font-light w-full rounded-sm">
+                    Sign In
+                  </button>
+                </nuxt-link>
+            </div>
+            <div class="px-4 py-4 w-full" v-if="auth" @click="logout">
+                <a href="#">
+                  <button class="bg-rose-400 py-2 text-white font-light w-full rounded-sm">
+                    Sign Out
+                  </button>
+                </a>
+            </div>
           </div>
-
+        </div>
          
           <div class="flex flex-col items-center bg-pink-200 h-96 my-5 py-6 px-6 rounded">
             <h1 class="my-1">
@@ -112,7 +123,7 @@ export default {
             credentials: 'include',
           }
         );
-        await this.$router.push('auth/login2')
+        await this.$router.push('auth/login')
         alert("Signed out")
       }
     },
