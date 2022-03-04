@@ -16,7 +16,7 @@
       <p class="text-center font-light text-base mt-[25px] mb-[32px]">
         Create your account
       </p>
-      <ValidationObserver v-slot="{ invalid }">
+      <ValidationObserver  v-slot="{ invalid }">
         <form @submit.prevent="submit" class="flex flex-col text-left">
           <ValidationProvider
             name="First Name"
@@ -25,7 +25,7 @@
           >
             <label class="text-base mb-[8px]" for="name">First Name</label>
             <input
-              class="w-[25.25rem] h-[2.669rem] mb-[24px] px-[1rem]"
+              class="w-[25.25rem] h-[2.669rem] mb-1 px-[1rem]"
               v-model="firstName"
               type="text"
             />
@@ -36,10 +36,11 @@
             name="Last Name"
             rules="required||alpha"
             v-slot="{ errors }"
+            class="mt-[10px]"
           >
             <label class="text-base mb-[8px]" for="name">Last Name</label>
             <input
-              class="w-[25.25rem] h-[2.669rem] mb-[24px] px-[1rem]"
+              class="w-[25.25rem] h-[2.669rem] mb-1 px-[1rem]"
               v-model="lastName"
               type="text"
             />
@@ -50,10 +51,11 @@
             name="E-mail"
             rules="required||email"
             v-slot="{ errors }"
+            class="mt-[10px]"
           >
             <label class="text-base mb-[8px]" for="email">E-mail</label>
             <input
-              class="w-[25.25rem] h-[2.669rem] mb-[24px] px-[1rem]"
+              class="w-[25.25rem] h-[2.669rem] mb-1 px-[1rem]"
               v-model="email"
               type="email"
             />
@@ -64,10 +66,11 @@
             name="Password"
             rules="min:6||required"
             v-slot="{ errors }"
+            class="mt-[10px]"
           >
             <label class="text-base mb-[8px]" for="password">Password</label>
             <input
-              class="w-[25.25rem] h-[2.669rem] mb-[32px] px-[1rem]"
+              class="w-[25.25rem] h-[2.669rem] mb-1 px-[1rem]"
               v-model="password"
               name="password"
               type="password"
@@ -80,12 +83,13 @@
             name="Password"
             rules="min:6||required"
             v-slot="{ errors }"
+            class="mt-[10px]"
           >
             <label class="text-base mb-[8px]" for="password"
               >Confirm Password</label
             >
             <input
-              class="w-[25.25rem] h-[2.669rem] mb-[32px] px-[1rem]"
+              class="w-[25.25rem] h-[2.669rem] mb-1 px-[1rem]"
               name="password"
               type="password"
             />
@@ -93,7 +97,7 @@
           </ValidationProvider>
 
           <button
-            class="bg-primary-blue text-white rounded w-[25.25rem] h-[2.5rem] mb-[32px]"
+            class="bg-primary-blue text-white rounded w-[25.25rem] h-[2.5rem] mt-[32px] mb-[32px]"
             :disabled="invalid"
             type="submit"
           >

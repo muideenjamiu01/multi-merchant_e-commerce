@@ -24,7 +24,7 @@
     </div>
 
     <div class="flex items-center gap-5">
-      <nuxt-link to="/auth/merchant-login2">
+      <nuxt-link to="/auth/merchant-login">
         <h1 class="text-primary-blue text-lg cursor-pointer hidden md:block">
           Become a seller
         </h1></nuxt-link
@@ -57,7 +57,7 @@
             class="bg-white w-60 absolute top-20 right-4 rounded-sm"
           >
             <div class="px-4 py-4" v-if="!auth">
-              <nuxt-link to="/auth/login2">
+              <nuxt-link to="/auth/login">
                 <button
                   class="bg-primary-blue py-2 text-white font-light w-full rounded-sm"
                 >
@@ -127,7 +127,7 @@
             credentials: 'include',
           }
         );
-        await this.$router.push('auth/login2')
+        await this.$router.push('auth/login')
       }
     },
   };

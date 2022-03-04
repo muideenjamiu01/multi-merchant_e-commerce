@@ -1,29 +1,25 @@
 <template>
   <div class="flex justify-center relative">
-    <div class="z-0 absolute skewed-box bg-primary-blue h-[40rem] w-full"></div>
-    <div class="container bg-white rounded z-10 h-[37.25rem] w-[32.25rem] mt-[218px] mb-[171px] px-[48px] pb-[48px] pt-[58px]">
+    <div class="z-0 absolute skewed-box bg-primary-blue h-[35.688rem] w-full"></div>
+    <div class="container bg-white rounded z-10 h-[35.25rem] w-[32.25rem] mt-[218px] mb-[171px] px-[48px] pb-[48px] pt-[58px]">
         <nuxt-link to="/"><div class="flex w-full justify-center"><img src="../../assets/images/logos/login-logo.svg" alt="login-logo"/></div></nuxt-link>
-        <p class="text-center font-light text-base mt-[25px] mb-[32px]">Sign in to your acount</p>
+        <h1 class="font-bold text-base mt-[45px]">Password assistance</h1>
+        <p class="font-light text-base mt-[15px] mb-[52px]">Please enter the e-mail address associated with your Jumia account. We will send you a link to this e-mail address to reset your password.</p>
         <ValidationObserver v-slot="{ invalid }">
             <form @submit.prevent="onSubmit"  class="flex flex-col text-left">
-                <ValidationProvider name="Email" rules="email||required" v-slot="{ errors }">
-                    <label class="text-base mb-[8px]" for="email">Email</label>
-                    <input class="w-[25.25rem] h-[2.669rem] mb-3 px-[1rem]" v-model="email" name="email" type="email"/>
-                    <span class="text-xs text-red-900 mt-5">{{errors[0]}}</span>
-                </ValidationProvider>
-                <ValidationProvider class="mt-[24px]" name="Password" rules="min:6||required" v-slot="{ errors }">
-                    <label class="text-base mb-[8px]" for="password">Password</label>
-                    <input class="w-[25.25rem] h-[2.669rem] mb-3 px-[1rem]" v-model="password" name="password" type="password"/>
-                    <span class="text-xs text-red-900">{{ errors[0]}}</span>
-                </ValidationProvider>
-                <button class="bg-primary-blue text-white rounded w-[25.25rem] h-[2.5rem] mt-[24px] mb-[32px]"  :disabled="invalid" type="submit">LOGIN</button>
+                <ValidationProvider  name="Email" rules="email||required" v-slot="{ errors }">
+                    <input class="h-[2.669rem] px-[1rem] mb-[5px] w-full" v-model="email" name="email" type="email" placeholder="Enter your e-mail address"/>
+                    <span class="text-xs text-red-900 ml-5 ">{{errors[0]}}</span>
+                </ValidationProvider >
+                <button class="bg-primary-blue text-white rounded h-[2.5rem] mt-[30px] mb-[30px] w-full"  :disabled="invalid" type="submit">RESET PASSWORD</button>
             </form>
         </ValidationObserver>
-        <p class="font-light text-base mb-[16px]">Don't have an account?<span class="text-primary-blue ml-[10px]"><nuxt-link to="/auth/signup">Sign up here</nuxt-link></span></p>
-        <p><span class="font-light text-base text-primary-blue mb-[48px]"> <nuxt-link to="/auth/forgot-password">Forgot your password?</nuxt-link> </span></p>
+        <nuxt-link to="/auth/login" class="flex w-full justify-center"><button class="bg-white text-primary-blue rounded hover:bg-primary-blue hover:text-white hover:p-[5px]">RETURN TO LOGIN</button></nuxt-link>
+    
     </div>
   </div>
 </template>
+
 <script>
     import { ValidationObserver, ValidationProvider } from "vee-validate/dist/vee-validate.full.esm"
 
