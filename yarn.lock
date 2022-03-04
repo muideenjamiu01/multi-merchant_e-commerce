@@ -6097,6 +6097,11 @@ num2fraction@^1.2.2:
   resolved "https://registry.npmjs.org/num2fraction/-/num2fraction-1.2.2.tgz"
   integrity sha1-b2gragJ6Tp3fpFZM0lidHU5mnt4=
 
+nuxt-paystack@^0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/nuxt-paystack/-/nuxt-paystack-0.0.12.tgz#27c62c8c455d0a898f6c989e9255b08365b5a095"
+  integrity sha512-IaxC8cc1u0WQJXreS4joHgi5QMFPZWy6LIfmbUoKsO7c9M2gKhZkU1ig8Eu77h40U8J0J4Utwt3i+38R3ijqOw==
+
 nuxt@^2.15.8:
   version "2.15.8"
   resolved "https://registry.npmjs.org/nuxt/-/nuxt-2.15.8.tgz"
@@ -9028,10 +9033,19 @@ vue-no-ssr@^1.1.1:
   resolved "https://registry.npmjs.org/vue-no-ssr/-/vue-no-ssr-1.1.1.tgz"
   integrity sha512-ZMjqRpWabMPqPc7gIrG0Nw6vRf1+itwf0Itft7LbMXs2g3Zs/NFmevjZGN1x7K3Q95GmIjWbQZTVerxiBxI+0g==
 
+<<<<<<< HEAD
+vue-paystack@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/vue-paystack/-/vue-paystack-2.0.4.tgz#0da3428b4c020d2f14a6b25cd3c3b3a1d01a5b40"
+  integrity sha512-EwIvuWpQ5MuvKjqv3AZ0NqHdFHZrUGynUn6aCAi1pj62mazBCVUZk/I0ISnPKVIM39weUUUIDUEXIKhJcezT7w==
+  dependencies:
+    vue "^2.6.7"
+=======
 vue-notification@^1.3.20:
   version "1.3.20"
   resolved "https://registry.npmjs.org/vue-notification/-/vue-notification-1.3.20.tgz"
   integrity sha512-vPj67Ah72p8xvtyVE8emfadqVWguOScAjt6OJDEUdcW5hW189NsqvfkOrctxHUUO9UYl9cTbIkzAEcPnHu+zBQ==
+>>>>>>> aee9a621ca35bd214dd683fcb91cf13b9582c918
 
 vue-router@^3.5.1:
   version "3.5.3"
@@ -9073,7 +9087,7 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue@^2.6.12, vue@^2.6.14:
+vue@^2.6.12, vue@^2.6.14, vue@^2.6.7:
   version "2.6.14"
   resolved "https://registry.npmjs.org/vue/-/vue-2.6.14.tgz"
   integrity sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ==

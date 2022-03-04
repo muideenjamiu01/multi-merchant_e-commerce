@@ -44,7 +44,7 @@
               </div>
             </div>
           </div>
-          <div class="w-1/4">
+          <div class="md:w-1/4">
             <div class="flex justify-center items-center gap-4">
               <app-button
                 @click="removeProductFromCart({ productId: item.product.id })"
@@ -61,7 +61,7 @@
               </app-button>
             </div>
           </div>
-          <div class="w-1/4">
+          <div class="md:w-1/4">
             <div class="flex">
               <span class="text-base font-light">{{ item.product.price }}</span>
             </div>
@@ -118,8 +118,5 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
-  },
-};
-</script>
-
-<style lang="scss" scoped></style>
+  }
+} 
