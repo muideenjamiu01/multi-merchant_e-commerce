@@ -3,7 +3,7 @@
     <div class="bg-primary-blue-light p-4">
       <div class="mt-4 flex gap-4">
         <div>
-          <img src="" alt="" class="w-28 h-28">
+          <img src="" alt="" class="w-16 h-24">
         </div>
         <div>
           <div>
@@ -15,14 +15,14 @@
                 <span class="font-light text-sm">stars rating </span>
                 <span class="text-primary-blue font-light text-sm">213</span>
               </div>
-              <div class="flex justify-between">
-                <div>
+              <div class="flex gap-2">
+                
                   <span class="font-light text-sm">5000.00 NGN</span>
-                </div>
-                <span class="font-light text-sm">-18%</span>
+                
+                <span class="font-light text-sm text-gray-400">-18%</span>
               </div>
               <div>
-        <app-button class="mt-3" variant="contained" fullWidth size="small">
+        <app-button class="mt-2" variant="contained" fullWidth size="small">
           Add to cart
         </app-button>
                 <!-- <AppButton

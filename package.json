@@ -18,6 +18,7 @@
     "core-js": "^3.19.3",
     "eslint": "^8.7.0",
     "nuxt": "^2.15.8",
+    "nuxt-paystack": "^0.0.12",
     "tw-elements": "^1.0.0-alpha10",
     "vee-validate": "3",
     "vue": "^2.6.14",

@@ -10,7 +10,7 @@
       >
         New Transfer
       </button> -->
-      <app-button fullWidth size="sm" variant="contained" @click="toggleNewTransferModal">
+      <app-button  size="sm" class="py-4 px-4" variant="contained" @click="toggleNewTransferModal">
         New Transfer
       </app-button>
     </div>

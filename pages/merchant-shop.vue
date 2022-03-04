@@ -62,7 +62,8 @@
 export default {
   data () {
     return {
-      selectedComponent: 'ContentsStore'
+      selectedComponent: 'ContentsStore',
+	  
     }
   }
 
