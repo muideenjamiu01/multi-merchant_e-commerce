@@ -207,6 +207,7 @@ import { mapGetters } from "vuex";
 
 import NewAddressModal from '~/components/newAddressModal.vue';
 export default {
+  middleware: 'auth',
   components: {NewAddressModal},
   data() {
     return {
