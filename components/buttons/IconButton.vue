@@ -34,23 +34,23 @@ export default {
     // The background color of the button. Default is primary
     color: {
       type: String,
-      default: "primary",
-      validator: function (value) {
-        return (
-          [
-            "success",
-            "warning",
-            "error",
-            "info",
-            "primary",
-          ].indexOf(value) !== -1
-        );
-      },
+      default: "secondary",
+      // validator: function (value) {
+      //   return (
+      //     [
+      //       "success",
+      //       "warning",
+      //       "error",
+      //       "info",
+      //       "primary",
+      //     ].indexOf(value) !== -1
+      //   );
+      // },
     },
   },
   computed: {
     baseStyles() {
-      return "inline-flex items-center justify-center relative box-border outline-0 border-0 m-0 select-none bg-transparent no-underline leading-none rounded transition-colors";
+      return "inline-flex items-center justify-center relative box-border outline-0 border-0 m-0 select-none bg-transparent no-underline !leading-none rounded-full transition-colors";
     },
     sizeStyles() {
       return {
@@ -61,12 +61,12 @@ export default {
     },
     styles() {
         return {
-          "hover:bg-primary-100 text-primary-400": this.primary === 'primary',
-          "hover:bg-warning-100 text-warning-900": this.warning === 'warning',
-          "hover:bg-success-100 text-success-900": this.sucess === 'sucess',
-          "hover:bg-error-100 text-error-900": this.error === 'error',
-          "hover:bg-info-100 text-info-900": this.info === 'info',
-          "hover:bg-secondary-100 text-secondary-600": this.secondary === 'secondary',
+          "hover:bg-primary-100 text-primary-500": this.primary === 'primary',
+          "hover:bg-warning-50 text-warning-900": this.warning === 'warning',
+          "hover:bg-success-50 text-success-900": this.sucess === 'sucess',
+          "hover:bg-error-50 text-error-900": this.error === 'error',
+          "hover:bg-info-50 text-info-900": this.info === 'info',
+          "hover:bg-secondary-50 text-secondary-900": this.secondary === 'secondary',
         }
     },
     disabledStyle() {

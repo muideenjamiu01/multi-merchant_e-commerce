@@ -16,50 +16,80 @@
       <p class="text-center font-light text-base mt-[25px] mb-[32px]">
         Create your account
       </p>
+      <div v-if="error" class="flex relative items-center text-error-900 my-4 rounded bg-error-50 w-full">
+          <span class="text-center flex-grow p-2">{{ error }}</span>
+          <icon-button @click="closeErrorMessage" size="small" class="hover:bg-error-100 rounded-full">
+              <cancel-icon></cancel-icon>
+          </icon-button>
+        </div>
       <ValidationObserver v-slot="{ invalid }">
-        <form @submit.prevent="submit" class="flex flex-col text-left">
+        <form @submit.prevent="onSubmit" class="flex flex-col text-left">
+
+        <div class="mb-6">
           <ValidationProvider
-            name="First Name"
+            name="firstName"
             rules="required||alpha"
             v-slot="{ errors }"
           >
-            <label class="text-base mb-[8px]" for="name">First Name</label>
+            <label class="text-base mb-[8px]" for="firstName">First Name</label>
             <input
-              class="w-[25.25rem] h-[2.669rem] mb-[24px] px-[1rem]"
-              v-model="firstName"
+              class="w-[25.25rem] h-[2.669rem] px-[1rem]"
+              v-model="input.firstName"
               type="text"
             />
-            <span class="text-xs text-red-900">{{ errors[0] }}</span>
+            <span class="text-xs text-error-900">{{ errors[0] }}</span>
           </ValidationProvider>
-
+          </div>
+          
+        <div class="mb-6">
           <ValidationProvider
-            name="Last Name"
+            name="lastName"
             rules="required||alpha"
             v-slot="{ errors }"
           >
-            <label class="text-base mb-[8px]" for="name">Last Name</label>
+            <label class="text-base mb-[8px]" for="lastName">Last Name</label>
             <input
-              class="w-[25.25rem] h-[2.669rem] mb-[24px] px-[1rem]"
-              v-model="lastName"
+              class="w-[25.25rem] h-[2.669rem] px-[1rem]"
+              v-model="input.lastName"
               type="text"
             />
-            <span class="text-xs text-red-900">{{ errors[0] }}</span>
+            <span class="text-xs text-error-900">{{ errors[0] }}</span>
           </ValidationProvider>
-
+          </div>
+          
+        <div class="mb-6">
           <ValidationProvider
-            name="E-mail"
+            name="email"
             rules="required||email"
             v-slot="{ errors }"
           >
-            <label class="text-base mb-[8px]" for="email">E-mail</label>
+            <label class="text-base mb-[8px]" for="email">Email</label>
             <input
-              class="w-[25.25rem] h-[2.669rem] mb-[24px] px-[1rem]"
-              v-model="email"
+              class="w-[25.25rem] h-[2.669rem] px-[1rem]"
+              v-model="input.email"
               type="email"
             />
-            <span class="text-xs text-red-900">{{ errors[0] }}</span>
+            <span class="text-xs text-error-900">{{ errors[0] }}</span>
           </ValidationProvider>
-
+          </div>
+          
+        <div class="mb-6">
+          <ValidationProvider
+            name="phone"
+            rules="required||digits:11"
+            v-slot="{ errors }"
+          >
+            <label class="text-base mb-[8px]" for="phone">Phone</label>
+            <input
+              class="w-[25.25rem] h-[2.669rem] px-[1rem]"
+              v-model="input.phone"
+              type="phone"
+            />
+            <span class="text-xs text-error-900">{{ errors[0] }}</span>
+          </ValidationProvider>
+          </div>
+          
+        <div class="mb-6">
           <ValidationProvider
             name="Password"
             rules="min:6||required"
@@ -67,38 +97,20 @@
           >
             <label class="text-base mb-[8px]" for="password">Password</label>
             <input
-              class="w-[25.25rem] h-[2.669rem] mb-[32px] px-[1rem]"
-              v-model="password"
+              class="w-[25.25rem] h-[2.669rem] px-[1rem]"
+              v-model="input.password"
               name="password"
               type="password"
               required
             />
-            <span class="text-xs text-red-900">{{ errors[0] }}</span>
+            <span class="text-xs text-error-900">{{ errors[0] }}</span>
           </ValidationProvider>
+          </div>
 
-          <ValidationProvider
-            name="Password"
-            rules="min:6||required"
-            v-slot="{ errors }"
-          >
-            <label class="text-base mb-[8px]" for="password"
-              >Confirm Password</label
-            >
-            <input
-              class="w-[25.25rem] h-[2.669rem] mb-[32px] px-[1rem]"
-              name="password"
-              type="password"
-            />
-            <span class="text-xs text-red-900">{{ errors[0] }}</span>
-          </ValidationProvider>
-
-          <button
-            class="bg-primary-blue text-white rounded w-[25.25rem] h-[2.5rem] mb-[32px]"
-            :disabled="invalid"
-            type="submit"
-          >
-            SIGN UP
-          </button>
+        <app-button class="" type="submit" variant="contained" color="primary" size="large" :disabled="loading" fullWidth uppercase>
+            {{loading ? 'Loading' : 'Signup'}}
+            <loading-spinner v-if="loading" size="small" color="white" class="mx-4"></loading-spinner>
+        </app-button>
         </form>
       </ValidationObserver>
 
@@ -124,38 +136,51 @@ import {
   ValidationObserver,
   ValidationProvider,
 } from "vee-validate/dist/vee-validate.full.esm";
+import IconButton from "@/components/buttons/IconButton.vue"
+import CancelIcon from "@/components/svg/Cancel.vue"
+import Spinner from "@/components/Loading/Spinners.vue"
 
 export default {
   layout: "empty",
-  data() {
-    return {
-        firstName: "",
-        lastName: "",
-        name: ``,
-        email: "",
-        password: "",
-    };
-  },
-  methods: {
-    async submit() {
-      await fetch("http://localhost:8000/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: `${this.firstName} ${this.lastName}`,
-          email: this.email,
-          password: this.password,
-        }),
-      })
-        .then((res) => res.json())
-        .then((res) => console.log(res))
-        .then(alert("Signup Succesfull!"));
-      await this.$router.push("/auth/login");
-    },
-  },
   components: {
     ValidationObserver,
     ValidationProvider,
+      "icon-button": IconButton,
+      "cancel-icon": CancelIcon,
+      "loading-spinner": Spinner
+  },
+  data() {
+    return {
+      loading: false,
+      error: null,
+      input: {
+        firstName: "",
+        lastName: "",
+        phone: ``,
+        email: "",
+        password: ""
+      },
+    };
+  },
+  methods: {
+    async onSubmit() {
+        this.loading = true
+      try {
+        const res = await this.$axios.post('/auth/register', this.input);
+        Object.keys(this.input).forEach(key => ({ [this.input[key]]: '' }))
+        const response = await this.$auth.setUserToken(res.data.token)
+        this.$auth.setUser(response.data.user);
+        // this.$toast.success('User set!')
+      } catch (err) {
+        this.error = err.response.data.message
+      }
+      finally {
+        this.loading = false
+      }
+    },
+    closeErrorMessage() {
+        this.error = null
+    }
   },
 };
 </script>

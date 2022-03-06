@@ -37,8 +37,8 @@ export default {
     imgSize: function() {
         return {
             'w-6 h-6 text-base': this.size === "small",
-            'w-8 h-8 text-xl': this.size === "medium",
-            'w-10 h-10 text-2xl': this.size === "large"
+            'w-10 h-10 text-xl': this.size === "medium",
+            'w-14 h-14 text-2xl': this.size === "large"
         }
     }
   }

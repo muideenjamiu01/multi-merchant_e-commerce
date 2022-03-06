@@ -69,7 +69,6 @@
 
 <script>
 export default {
-  layout: "landing",
   name: "landingPage",
   head: {
     title: "YouStore",
