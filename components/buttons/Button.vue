@@ -2,7 +2,7 @@
   <NuxtLink role="button" v-if="to" :to="to" :class="[ {'w-full': fullWidth, [disabledStyle]: disabled}, baseStyles, sizeStyles, textTransform, styles]">
     <slot></slot>
   </NuxtLink>
-  <button type="button" v-else v-on="$listeners" :class="[ {'w-full': fullWidth, [disabledStyle]: disabled}, baseStyles, sizeStyles, textTransform, styles]">
+  <button type="button" v-else v-on="$listeners" :disabled="disabled" :class="[ {'w-full': fullWidth, [disabledStyle]: disabled}, baseStyles, sizeStyles, textTransform, styles]">
     <slot></slot>
   </button>
 </template>
@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     baseStyles() {
-      return "inline-flex align-center justify-center relative box-border outline-0 m-0 select-none no-underline font-medium leading-[1.75] tracking-[0.02285em] rounded transition-colors"
+      return "inline-flex items-center justify-center relative box-border outline-0 m-0 select-none no-underline font-medium leading-[1.75] tracking-[0.02285em] rounded transition-colors"
     },
     sizeStyles() {
       return {
@@ -92,7 +92,7 @@ export default {
           break;
         default:
           classes = {
-            'bg-transparent hover:bg-primary-100 text-primary-800 border-0':this.color === "primary",
+            'bg-transparent hover:bg-primary-100 text-primary-500 border-0':this.color === "primary",
             'bg-transparent hover:bg-secondary-50 text-secondary-800 border-0':this.color === "secondary",
             'bg-transparent hover:bg-success-50 text-success-800 border-0':this.color === "success",
             'bg-transparent hover:bg-warning-50 text-warning-800 border-0':this.color === "warning",
