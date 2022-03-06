@@ -1,7 +1,7 @@
 <template>
     <div class="z-0 px-12 bg-slate-200 pb-[920px] md:pb-36 md:min-h-screen">
       <Carousel class="hidden md:block"/>
-
+     
 
           <!-- grid section -->
       <div class="flex flex-col-reverse md:w-full md:flex md:flex-row md:mt-16"> 
@@ -125,7 +125,8 @@ export default {
         );
         await this.$router.push('auth/login')
         alert("Signed out")
-      }
+      },
+      
     },
 };
 </script>

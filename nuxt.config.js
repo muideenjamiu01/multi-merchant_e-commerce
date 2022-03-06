@@ -1,5 +1,4 @@
 export default {
-	mode: 'universal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "youstore-frontend",
@@ -15,15 +14,14 @@ export default {
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
   //Customize the progress-bar color
-  loading: {color:'#46B2C8', height:'4px', duration: 5000},
+  loading: { color: "#46B2C8", height: "4px", duration: 5000 },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ["@/assets/css/tailwind.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-	'~plugins/core-component.js'
-
+    "~plugins/core-component.js",
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -39,11 +37,25 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-	'nuxt-paystack',
-	"@nuxtjs/auth-next",
+    "@nuxtjs/axios",
+    "nuxt-paystack",
+    "@nuxtjs/auth-next",
+    "@nuxtjs/toast",
   ],
-   auth: {
+
+  toast: {
+      position: 'top-center',
+      register: [ // Register custom toasts
+        {
+          name: 'my-error',
+          message: 'Oops...Something went wrong',
+          options: {
+            type: 'error'
+          }
+        }
+      ]
+  },
+  auth: {
     // Options
   },
 
@@ -54,7 +66,7 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {  
+  build: {
     postcss: {
       plugins: {
         tailwindcss: {},

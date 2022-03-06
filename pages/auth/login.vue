@@ -4,6 +4,8 @@
     <div class="container bg-white rounded z-10 h-[37.25rem] w-[32.25rem] mt-[218px] mb-[171px] px-[48px] pb-[48px] pt-[58px]">
         <nuxt-link to="/"><div class="flex w-full justify-center"><img src="../../assets/images/logos/login-logo.svg" alt="login-logo"/></div></nuxt-link>
         <p class="text-center font-light text-base mt-[25px] mb-[32px]">Sign in to your acount</p>
+
+
         <ValidationObserver v-slot="{ invalid }">
             <form @submit.prevent="onSubmit"  class="flex flex-col text-left">
                 <ValidationProvider name="Email" rules="email||required" v-slot="{ errors }">
@@ -16,7 +18,7 @@
                     <input class="w-[25.25rem] h-[2.669rem] mb-3 px-[1rem]" v-model="password" name="password" type="password"/>
                     <span class="text-xs text-red-900">{{ errors[0]}}</span>
                 </ValidationProvider>
-                <button class="bg-primary-blue text-white rounded w-[25.25rem] h-[2.5rem] mt-[24px] mb-[32px]"  :disabled="invalid" type="submit">LOGIN</button>
+                <button  class="bg-primary-blue text-white rounded w-[25.25rem] h-[2.5rem] mt-[24px] mb-[32px]"  :disabled="invalid" type="submit">LOGIN</button>
             </form>
         </ValidationObserver>
         <p class="font-light text-base mb-[16px]">Don't have an account?<span class="text-primary-blue ml-[10px]"><nuxt-link to="/auth/signup">Sign up here</nuxt-link></span></p>
@@ -57,19 +59,34 @@
                     const content = await response.json();
                     console.log("login-page", content.message);
                     if (content.message == 'Invalid credentials!') { 
-                        alert("Wrong email or password!");
+                        this.$toast.error('Wrong email or password!', { 
+                            theme: "bubble", 
+                            position: "top-right", 
+                            duration : 2000
+                        })
                     } 
                     else {
                         this.$router.push('/')
-                        alert("Signed in succesfully")
+                        this.$toast.success('Successfully authenticated', { 
+                            theme: "bubble", 
+                            position: "top-right", 
+                            duration : 2000
+                        })
+
+                        
                     }
                     
                 } catch (err) {
                     console.log(err)
                     await this.$router.push('/auth/login');
-                    alert('Could not contact server!')
+                    this.$toast.error('Error while authenticating', { 
+                            theme: "bubble", 
+                            position: "top-right", 
+                            duration : 2000
+                        })
                 }
-            }
+            },
+           
         }
     }
 </script>
