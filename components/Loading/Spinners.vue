@@ -16,23 +16,29 @@ export default {
           type: String,
           default: 'small'
     },
-      color: {
-          type: String,
-          default: 'secondary'
-  },
+    // The background color of the button. Default is primary
+    color: {
+      type: String,
+      default: "white",
+      validator: function (value) {
+        return ['inherit', 'white', 'primary','secondary'].indexOf(value) !== -1
+      }
+    }
   },
   computed: {
       sizeclass() {
         return {
-            'w-4 h-4': this.size === 'small', 
-        'w-6 h-6': this.size === 'medium',  
-        'w-8 h-8': this.size === 'large'}
+            'w-3 h-3': this.size === 'small',
+        'w-6 h-6': this.size === 'medium', 
+        'w-8 h-8': this.size === 'large'
+        }
         },
       colorclass() {
           return {
-            'bg-primary-400': this.color === "primary",
-            'bg-secondary-300': this.color === "secondary",
-            'bg-white': this.color === "white",
+            'text-primary-400 before:bg-primary-400': this.color === "primary",
+            'text-secondary-500 before:bg-secondary-500': this.color === "secondary",
+            'text-inherit before:bg-inherit': this.color === "inherit",
+            'text-white before:bg-white': this.color === "white",
         }
         }
   },
@@ -41,7 +47,7 @@ export default {
 
 <style>
 .loader {
-  animation: loader 1.5s infinite linear both;
+  animation: loader 1s infinite linear both;
 }
 
 .loader-dot {
@@ -51,8 +57,8 @@ export default {
 .loader-dot:before {
   content: '';
   display: block;
-  width: 25%;
-  height: 25%;
+  width: 35%;
+  height: 35%;
   border-radius: 100%;
   animation: loader-dot-before 1.5s infinite ease-in-out both; 
 }

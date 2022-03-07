@@ -22,9 +22,9 @@ export default {
     color: {
       type: String,
       default: 'inherit',
-      validator: function (value) {
-        return ['success', 'warning', 'error', 'info', 'primary', 'secondary'].indexOf(value) !== -1
-      }
+      // validator: function (value) {
+      //   return ['success', 'warning', 'error', 'info', 'primary', 'secondary'].indexOf(value) !== -1
+      // }
     }
   },
   computed: {
@@ -38,12 +38,12 @@ export default {
     colorStyle () {
       return {
         "text-primary-600": this.color === 'primary',
-        "text-secondary-800": this.color === 'secondary',
-        "text-success-800": this.color === 'success',
-        "text-warning-800": this.color === 'warning',
-        "text-error-800": this.color === 'error',
-        "text-info-800": this.color === 'info',
-        "inherit": this.color === 'inherit'
+        "text-secondary-900": this.color === 'secondary',
+        "text-success-900": this.color === 'success',
+        "text-warning-900": this.color === 'warning',
+        "text-error-900": this.color === 'error',
+        "text-info-900": this.color === 'info',
+        "text-inherit": this.color === 'inherit'
       }
     }
   }

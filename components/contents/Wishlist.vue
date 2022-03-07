@@ -1,36 +1,61 @@
 <template>
   <div class="text-sm font-light pt-4 border-t border-gray-100 mb-6">
-    <div class="md:flex items-center justify-between">
-      <div class="md:flex">
-        <div class="w-24 h-24 bg-primary-gray mr-4" />
+    <div
+      v-for="product in products"
+      :key="product.id"
+      class="md:flex items-center justify-between"
+    >
+      <div class="sm:flex">
+        <div class="w-24 h-24 mr-4">
+          <img :src="getProductPhoto(product.images)" :alt="product.title" class="w-full h-full" />
+        </div>
         <div class="space-y-0.5">
           <h1 class="font-medium">
-            Women's Los Angeles California Long Sleeve Sweatshirt Oversized Bat
-            Crew...
+            {{ product.name }}
           </h1>
-          <p>Size: Small</p>
-          <p>Color: Brown</p>
-          <span class="cursor-pointer text-red-600 font-medium">Delete</span>
+          <p v-if="product.sizes">Size: {{product.sizes}}</p>
+          <p v-if="product.colors">Color: {{product.colors}}</p>
+          <app-button
+            @click="toggleWishlist(product.id)"
+            size="small"
+            color="error"
+          >
+            Delete
+          </app-button>
         </div>
       </div>
 
       <div class="md:flex items-center md:space-x-6">
-        <p>14483.00</p>
-        <app-button variant="contained">
+        <p>{{ product.price }}</p>
+        <app-button @click="addProductToCart(product)" variant="contained">
           Add to cart
         </app-button>
-        <!-- <AppButton button-text="Add to cart" color="fillbutton" size="md" rounded /> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import AppButton from "@/components/buttons/Button.vue"
+import { mapActions } from "vuex";
+import AppButton from "@/components/buttons/Button.vue";
 
 export default {
-    components: {
-      'app-button': AppButton
+  props: {
+    products: {
+      type: Array,
+      required: true,
+    },
+  },
+  components: {
+    "app-button": AppButton,
+  },
+  methods: {
+    ...mapActions("wishlist", ["toggleWishlist"]),
+    ...mapActions("cart", ["addProductToCart"]),
+    getProductPhoto(images) {
+      const photos = JSON.parse(images)
+      return photos[photos.length - 1]
     }
-}
+  },
+};
 </script>
