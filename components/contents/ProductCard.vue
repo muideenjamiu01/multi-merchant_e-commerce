@@ -1,7 +1,7 @@
 <template>
   <div>
     <div @click="viewProduct(index)" class="h-48 cursor-pointer">
-      <img :src="product.image" class="w-full h-full" :alt="product.title" />
+      <img :src="getProductImage(product.images)" class="w-full h-full" :alt="product.name" />
     </div>
     <div @click="viewProduct" class="text-sm mt-2 w-full">
       <h1
@@ -15,7 +15,7 @@
           text-ellipsis
         "
       >
-        {{ product.title }}
+        {{ product.name }}
       </h1>
       <div class="flex items-center">
         <p class="text-2xl font-bold">******</p>
@@ -23,7 +23,7 @@
       </div>
       <div class="flex items-center font-light my-2">
         <p>{{ product.price }} dollars</p>
-        <p class="text-primary-gray-light ml-2.5">-18%</p>
+        <p class="text-primary-gray-light ml-2.5">{{product.discount}}</p>
       </div>
     </div>
     <app-button
@@ -45,16 +45,20 @@ export default {
     "app-button": AppButton,
   },
   props: {
-      product: {},
-      index:{}
-    },
+    product: {},
+    index: {},
+  },
   methods: {
     ...mapActions("cart", ["addProductToCart"]),
     viewProduct(index) {
       this.$router.push(
-        "/" + this.product.title.toLowerCase().split(" ").join("-")
+        "/" + this.product.name.toLowerCase().split(" ").join("-")
       );
       this.$store.dispatch("products/getSingleProduct", index);
+    },
+    getProductImage(images) {
+      const photos = JSON.parse(images);
+      return photos[photos.length - 1];
     },
   },
 };
