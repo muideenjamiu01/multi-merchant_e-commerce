@@ -1,5 +1,4 @@
 export default {
-	mode: 'universal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "youstore-frontend",
@@ -43,18 +42,44 @@ export default {
 	'nuxt-paystack',
 	"@nuxtjs/auth-next",
   ],
-   auth: {
-    // Options
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+          global: true,
+          maxAge: 60 * 60 * 24
+        },
+        user: {
+          property: 'user',
+          // autoFetch: false
+        },
+        endpoints: {
+          login: { url: '/auth/login', method: 'post' },
+          logout: { url: '/auth/logout', method: 'get' },
+          user: { url: '/auth/user', method: 'get' }
+        }
+      },
+    },
+    token: {
+      prefix: 'token.',
+      global: true,
+    },
+    localStorage: {
+      prefix: 'ys.'
+    },
+    redirect: {
+      login: '/auth/login',
+      logout: '/',
+      callback: '/auth/login',
+      home: '/'
+    }
   },
-
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: "/",
+    baseURL: 'http://localhost:5000/api',
   },
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {  
+  build: {
     postcss: {
       plugins: {
         tailwindcss: {},

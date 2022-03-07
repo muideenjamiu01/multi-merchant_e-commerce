@@ -1,7 +1,9 @@
 <template>
-  <div class="max-w-7xl mx-auto font-br-sonoma">
+  <div class="font-br-sonoma">
     <NavBar />
-    <nuxt class="min-h-screen" />
-    <Footer />
+    <div class="max-w-7xl mx-auto">
+      <nuxt class="min-h-screen" />
+      <Footer />
+    </div>
   </div>
 </template>
