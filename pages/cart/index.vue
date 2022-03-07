@@ -15,12 +15,12 @@
             <div>
               <div class="flex gap-4">
                 <div class="w-24 h-24 overflow-hidden">
-                  <img :src="item.product.image" :alt="item.product.title" />
+                  <img :src="getProductPhoto(item.product.images)" :alt="item.product.title" class="w-full h-full" />
                 </div>
                 <div class="flex flex-col">
                   <div>
                     <h3 class="text-base font-light">
-                      {{ item.product.title }}
+                      {{ item.product.name }}
                     </h3>
                   </div>
                   <div class="text-sm font-light">size:small</div>
@@ -118,6 +118,10 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
+    getProductPhoto(images) {
+      const photos = JSON.parse(images)
+      return photos[photos.length - 1]
+    }
   }
 } 
 </script>
