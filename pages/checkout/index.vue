@@ -31,9 +31,9 @@
             </div>
           </div>
 
-          <div class="mt-2" >
-			  <button @click="openModal">Or ship to new address</button>
-            <new-address-modal v-model="modalOpen"> </new-address-modal> 
+          <div class="mt-2">
+            <button @click="openModal">Or ship to new address</button>
+            <new-address-modal v-model="modalOpen"> </new-address-modal>
           </div>
 
           <!-- <form action="" @submit.prevent="saveAddress">
@@ -117,7 +117,7 @@
             <section>
               <div class="flex justify-between items-center mt-6">
                 <span>Subtotal</span>
-                <span>NGN {{totalPrice * 500}}</span>
+                <span>NGN {{ totalPrice }}</span>
               </div>
               <div class="mt-6 flex justify-between border-b pb-2">
                 <p class="">Shipping Method</p>
@@ -128,10 +128,12 @@
               </div>
               <div class="flex justify-between items-center mt-6">
                 <span class="font-semibold">Total</span>
-                <span class="text-primary-blue font-medium"> NGN {{sumTotal}}</span>
+                <span class="text-primary-blue font-medium">
+                  NGN {{ sumTotal }}</span
+                >
               </div>
               <div class="mt-8 flex justify-center">
-                <app-button 
+                <app-button
                   @click.prevent="initializePaystack"
                   type="submit"
                   size="medium"
@@ -205,10 +207,10 @@
 <script>
 import { mapGetters } from "vuex";
 
-import NewAddressModal from '~/components/newAddressModal.vue';
+import NewAddressModal from "~/components/newAddressModal.vue";
 export default {
-  middleware: 'auth',
-  components: {NewAddressModal},
+  middleware: "auth",
+  components: { NewAddressModal },
   data() {
     return {
       email: "",
@@ -216,21 +218,21 @@ export default {
       props: [],
       SelectedAddress: "",
       modalOpen: false,
-      shippingFee: ''
-	//   streetAddress: "",
-    //   cityLga: "",
-    //   state: "",
-    //   zipPostalCode: "",
+      shippingFee: "",
+      //   streetAddress: "",
+      //   cityLga: "",
+      //   state: "",
+      //   zipPostalCode: "",
     };
   },
   computed: {
-     ...mapGetters({
+    ...mapGetters({
       cart: "cart/cartProducts",
       totalPrice: "cart/cartTotalPrice",
       itemsCount: "cart/cartItemsCount",
     }),
     sumTotal() {
-      return (this.totalPrice + this.shippingFee) * 500
+      return Number(this.totalPrice) + Number(this.shippingFee);
     },
     reference() {
       let text = "";
@@ -247,14 +249,14 @@ export default {
     saveAddress() {
       console.log();
     },
-	openModal(){
-		this.modalOpen = !this.modalOpen;
-	},
+    openModal() {
+      this.modalOpen = !this.modalOpen;
+    },
     initializePaystack() {
       this.$paystack({
         key: "pk_test_1439df5ec859471cd4e3d8405a5b7dea45667b48", // Replace with your public key.
-        email: 'jamiu@youverify.co',
-        amount: Math.floor(this.sumTotal * 100),
+        email: "jamiu@youverify.co",
+        amount: Math.floor(this.sumTotal),
         ref: "",
         currency: "NGN",
         callback: () => {
