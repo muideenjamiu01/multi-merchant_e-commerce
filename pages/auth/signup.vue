@@ -22,7 +22,7 @@
               <cancel-icon></cancel-icon>
           </icon-button>
         </div>
-      <ValidationObserver v-slot="{ invalid }">
+      <ValidationObserver>
         <form @submit.prevent="onSubmit" class="flex flex-col text-left">
 
         <div class="mb-6">
@@ -159,7 +159,7 @@ export default {
       input: {
         firstName: "",
         lastName: "",
-        phone: ``,
+        phone: "",
         email: "",
         password: ""
       },
@@ -173,7 +173,7 @@ export default {
         Object.keys(this.input).forEach(key => ({ [this.input[key]]: '' }))
         const response = await this.$auth.setUserToken(res.data.token)
         this.$auth.setUser(response.data.user);
-        // this.$toast.success('User set!')
+        this.$toast.success('Registration Succesful!!')
       } catch (err) {
         this.error = err.response.data.message
       }

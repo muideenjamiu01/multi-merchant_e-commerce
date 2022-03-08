@@ -107,14 +107,11 @@
     data() {
       return {
         dropdown: false,
-        auth: false
       };
     },
     mounted() {
       this.$nuxt.$on ('auth', auth => {this.auth = auth})
-      this.$nuxt.$on ('auth', auth => console.log(auth))
     },
-    
     methods: {
       toggleDropdown() {
         this.dropdown = !this.dropdown;
