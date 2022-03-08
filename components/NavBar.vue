@@ -68,9 +68,13 @@
       </app-button>
 
       <div v-if="isAuthenticated" class="">
+        <div class="flex" >
         <app-button class="rounded-full hover:!bg-transparent" size="small" @click="toggleDropdown">
-          <user-avatar class="w-8 h-8" :src="user.photo" :alt="user.firstName" />
+          <user-avatar class="w-8 h-8" :src="user.photo" :alt="user.firstName"/>
         </app-button>
+        <h1 class="mt-[15px]" v-if="$auth.loggedIn">Hi, {{$auth.user.firstName.toUpperCase()}}</h1>
+        <h1 v-else></h1>
+        </div>
         <div
           v-if="dropdown"
           class="bg-transparent fixed inset-0"
@@ -167,6 +171,7 @@ export default {
     async logout() {
       await this.$auth.logout();
       this.$router.push("/auth/login");
+      this.$toast.show('Successfully Signed Out')
     },
   },
 };

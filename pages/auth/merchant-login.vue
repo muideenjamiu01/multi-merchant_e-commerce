@@ -14,7 +14,8 @@
             <button class="bg-primary-blue text-white rounded w-[25.25rem] h-[2.5rem] mb-[32px]" type="submit">LOGIN</button>
         </form>
         <p class="font-light text-base mb-[16px]">Don't have a seller account?<span class="text-primary-blue ml-[10px]"><nuxt-link to="/merchant/new">Create one here</nuxt-link></span></p>
-        <p><span class="font-light text-base text-primary-blue mb-[48px]"> <nuxt-link to="">Forgot your password?</nuxt-link> </span></p>
+        <p><span class="font-light text-base text-primary-blue mb-[48px]"> <nuxt-link to="/auth/forgot-password">Forgot your password?</nuxt-link> </span></p>
+
     </div>
   </div>
 </template>
