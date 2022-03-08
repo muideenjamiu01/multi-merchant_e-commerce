@@ -456,7 +456,8 @@
 import AppButton from "@/components/buttons/Button.vue";
 
 export default {
-  layout: "merchant",
+  middleware: 'auth',
+  // layout: "merchant",
   components: {
     "app-button": AppButton,
   },

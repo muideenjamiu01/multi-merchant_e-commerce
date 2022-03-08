@@ -4,10 +4,26 @@
       <ContentsCustomerProfileCard />
     </aside>
     <main class="w-full">
-      <h1 class="text-2xl mb-10">
-        Your Wishlist
-      </h1>
-      <ContentsWishlist v-for="n in 12" :key="n" />
+      <h1 class="text-2xl mb-10">Your Wishlist</h1>
+      <ContentsWishlist :products="wishlist" />
     </main>
   </div>
 </template>
+
+<script>
+import { mapGetters, mapActions } from "vuex";
+
+export default {
+  computed: mapGetters({
+    wishlist: "wishlist/products",
+    errors: "wishlist/errors",
+    isLoading: "wishlist/isLoading",
+  }),
+  mounted() {
+      this.$store.dispatch("wishlist/fetchWishlist");
+  },
+  methods: {
+    ...mapActions(["fetchWishlist"]),
+  },
+};
+</script>
