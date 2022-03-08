@@ -4,29 +4,28 @@
       <!-- <div class="flex flex-col space-y-4">
         <div v-for="n in 5" :key="n" class="border-2 border-black h-14 w-14" />
       </div> -->
-      <div class=" w-full h-96 max-w-lg">
-        <img :src="singleProduct.image" class="w-full h-full" alt="">
+      <div class="w-full h-96 max-w-lg">
+        <img
+          :src="getProductImage(singleProduct.images)"
+          class="w-full h-full"
+          alt=""
+        />
       </div>
       <div>
         <h1 class="text-xl capitalize">{{ singleProduct.category }}</h1>
         <div class="flex items-center">
           <p class="text-2xl font-bold">******</p>
-          <p class="text-primary-blue-dark ml-2.5 text-sm">{{singleProduct.rating.count}} ratings</p>
+          <p class="text-primary-blue-dark ml-2.5 text-sm">
+            {{ singleProduct.inventory }} ratings
+          </p>
         </div>
         <div class="flex mt-6">
-          <p class="font-medium text-lg">{{singleProduct.price}} NGN</p>
+          <p class="font-medium text-lg">{{ singleProduct.price }} NGN</p>
           <p class="text-primary-gray-light text-sm font-light ml-2.5">-23%</p>
         </div>
 
         <select
-          class="
-            focus:outline-none
-            w-36
-            px-4
-            py-1.5
-            border border-gray-400
-            rounded
-          "
+          class="focus:outline-none w-36 px-4 py-1.5 border border-gray-400 rounded"
         >
           <option value="">Select size</option>
         </select>
@@ -67,16 +66,7 @@
       </div>
 
       <div
-        class="
-          min-w-88
-          bg-primary-blue-light
-          px-7
-          py-2.5
-          pb-10
-          font-light
-          mt-8
-          xl:mt-0
-        "
+        class="min-w-88 bg-primary-blue-light px-7 py-2.5 pb-10 font-light mt-8 xl:mt-0"
       >
         <h1 class="font-medium">Delivery and Shipping</h1>
         <p class="tex-xs mt-10">
@@ -86,30 +76,12 @@
         <h1 class="mt-6">Choose your location</h1>
 
         <select
-          class="
-            focus:outline-none
-            w-full
-            px-6
-            py-2.5
-            mt-4
-            bg-transparent
-            border border-gray-500
-            rounded
-          "
+          class="focus:outline-none w-full px-6 py-2.5 mt-4 bg-transparent border border-gray-500 rounded"
         >
           <option value="">Lagos</option>
         </select>
         <select
-          class="
-            focus:outline-none
-            w-full
-            px-6
-            py-2.5
-            mt-4
-            bg-transparent
-            border border-gray-500
-            rounded
-          "
+          class="focus:outline-none w-full px-6 py-2.5 mt-4 bg-transparent border border-gray-500 rounded"
         >
           <option value="">Lekki - Ajah (Sangotedo)</option>
         </select>
@@ -164,7 +136,7 @@
       <div>
         <h1 class="text-xl mb-3">Product Description</h1>
         <p>
-         {{singleProduct.description}}
+          {{ singleProduct.description }}
         </p>
       </div>
 
@@ -231,9 +203,12 @@ export default {
   },
   methods: {
     ...mapActions("cart", ["addProductToCart"]),
+    getProductImage(images) {
+      const photos = JSON.parse(images);
+      return photos[photos.length - 1];
+    },
   },
   computed: mapGetters({ singleProduct: "products/singleProduct" }),
-  
 };
 </script>
 

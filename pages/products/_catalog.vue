@@ -7,11 +7,11 @@
       <h1 class="text-2xl font-bold text-primary-black capitalize">
         {{ $route.params.catalog }}
       </h1>
-      <loading-spinner v-if="true" size="large" />
+      <loading-spinner v-if="loading" size="large" />
       <p v-else-if="errors" class="text-2xl text-secondary-600">
         An error occurred.
       </p>
-      <div v-else class="grid-list mt-4">
+      <div class="grid-list mt-4">
         <ContentsProductCard
           v-for="(product, index) in products"
           :key="product.id"

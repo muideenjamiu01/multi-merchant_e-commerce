@@ -1,5 +1,6 @@
 export const state = () => ({
   products: [],
+  singleProduct: {},
   pagination: null,
   loading: false,
   errors: null,
@@ -7,6 +8,7 @@ export const state = () => ({
 
 export const getters = {
   products: (state) => state.products,
+  singleProduct: (state) => state.singleProduct,
   pagination: (state) => state.pagination,
   loading: (state) => state.loading,
   errors: (state) => state.errors,
