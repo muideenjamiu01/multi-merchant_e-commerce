@@ -15,7 +15,11 @@
             <div>
               <div class="flex gap-4">
                 <div class="w-24 h-24 overflow-hidden">
-                  <img :src="getProductPhoto(item.product.images)" :alt="item.product.title" class="w-full h-full" />
+                  <img
+                    :src="getProductPhoto(item.product.images)"
+                    :alt="item.product.title"
+                    class="w-full h-full"
+                  />
                 </div>
                 <div class="flex flex-col">
                   <div>
@@ -84,10 +88,15 @@
         <h1 class="">{{ `Subtotal (${itemsCount} items):` }}</h1>
 
         <p class="flex justify-end font-medium">
-         $ {{ (parseFloat(totalPrice) * 100) / 100 }}
+          NGN {{ (parseFloat(totalPrice) * 100) / 100 }}
         </p>
 
-        <app-button @click="$router.push('/checkout')" class="mt-6" color="primary" variant="contained" fullWidth
+        <app-button
+          @click="$router.push('/checkout')"
+          class="mt-6"
+          color="primary"
+          variant="contained"
+          fullWidth
           >Checkout</app-button
         >
         <!-- <ContentsAddToCart /> -->
@@ -122,9 +131,9 @@ export default {
       this.$router.go(-1);
     },
     getProductPhoto(images) {
-      const photos = JSON.parse(images)
-      return photos[photos.length - 1]
-    }
-  }
-} 
+      const photos = JSON.parse(images);
+      return photos[photos.length - 1];
+    },
+  },
+};
 </script>

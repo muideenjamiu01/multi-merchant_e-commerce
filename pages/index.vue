@@ -1,8 +1,6 @@
 <template>
     <div class="z-0 px-12 bg-slate-200 pb-[920px] md:pb-36 md:min-h-screen">
       <Carousel class="hidden md:block"/>
-
-
           <!-- grid section -->
       <div class="flex flex-col-reverse md:w-full md:flex md:flex-row md:mt-16"> 
       
@@ -23,24 +21,21 @@
         </main>
 
       <aside class="flex flex-col pt-6 text-center pl-4 hidden md:justify-between md:block md:w-1/4 md:pt-0"> <!-- aside grid contains 3 rows -->
-        <div class="h-44 border p-6 bg-white rounded">
-          <h1 class="my-1 mx-5">{{message}}</h1>
-          <div>
-            <div class="px-4 py-4 w-full" v-if="!auth" >
-                <nuxt-link to="/auth/login">
-                  <button class="bg-primary-blue py-2 text-white font-light w-full rounded-sm">
-                    Sign In
-                  </button>
-                </nuxt-link>
-            </div>
-            <div class="px-4 py-4 w-full" v-if="auth" @click="logout">
-                <a href="#">
-                  <button class="bg-rose-400 py-2 text-white font-light w-full rounded-sm">
-                    Sign Out
-                  </button>
-                </a>
-            </div>
-          </div>
+        <div v-if="$auth.loggedIn"  class="h-44 border p-6 bg-white rounded">
+          <h1 >Welcome {{$auth.user.firstName}}</h1>
+              <!-- <nuxt-link to="/auth/login"> -->
+                <button @click="logout" class="bg-rose-400 py-2 mt-[30px] text-white font-light w-full rounded-sm">
+                  Sign out
+                </button>
+              <!-- </nuxt-link> -->
+        </div>
+        <div v-else class="h-44 border p-6 bg-white rounded">
+          <h1>Sign in for the best experience </h1>
+              <nuxt-link to="/auth/login">
+                <button class="bg-primary-blue py-2 mt-[30px] text-white font-light w-full rounded-sm">
+                  Sign In
+                </button>
+              </nuxt-link>
         </div>
          
           <div class="flex flex-col items-center bg-pink-200 h-96 my-5 py-6 px-6 rounded">
@@ -87,45 +82,14 @@ export default {
       },
     ],
   },
-  data() {
-    return {
-      message:"",
-      auth: false
-    }
-  },
-  async mounted() {
-    this.$nuxt.$on ('auth', auth => {this.auth = auth})
-    this.$nuxt.$on ('auth', auth => console.log(auth))
-    try { 
-      const response = await fetch(
-        "http://localhost:8000/api/user", {
-          headers: {'Content-Type': 'application/json'},
-          credentials: 'include',
-        }
-      )
-      const content = await response.json();
-      console.log("mounted index-page", content); 
-      this.message = `Welcome ${content.name.toUpperCase()}, your unique I.D. is ${content.id}`;
-      this.$nuxt.$emit('auth', true)
-    }
-    catch(e) {
-      this.message = `Sign in to get exclusive offers`;
-      this.$nuxt.$emit('auth', false);
-    }
-  },
   methods: {
-      async logout () {
-        await fetch(
-          'http://localhost:8000/api/logout', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            credentials: 'include',
-          }
-        );
-        await this.$router.push('auth/login')
-        alert("Signed out")
-      }
+    async logout() {
+      await this.$auth.logout();
+      this.$router.push("/auth/login");
+      this.$toast.show('Successfully Signed Out')
+
     },
+  },
 };
 </script>
 
