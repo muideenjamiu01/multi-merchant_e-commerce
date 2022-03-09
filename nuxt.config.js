@@ -76,7 +76,7 @@ export default {
     }
   },
   axios: {
-    baseURL: 'http://localhost:5000/api',
+    baseURL: 'https://youstore-server.herokuapp.com/api',
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
