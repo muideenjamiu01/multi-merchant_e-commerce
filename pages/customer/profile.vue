@@ -10,19 +10,19 @@
           <div>
             <div class="flex justify-between items-center">
               <div class="mt-4 flex flex-col border-b w-full">
-                <label>Your Name</label>
-                <div v-if="editing">
+                <div id="editField"><label id="para">Your Name</label></div>
+                <div>
                   <input
                     type="text"
                     class="mt-4 outline-0"
-                    v-model.trim="profile.UserName"
+                    v-model.trim="profile.name"
+                    ref="input"
                   />
                 </div>
               </div>
 
               <app-button
-                v-if="!editing"
-                @click="EditButton()"
+                @click="edit"
                 color="secondary"
                 size="small"
                 variant="outlined"
@@ -43,22 +43,24 @@
                 <span>File type: JPG, PNG or GIF</span>
               </div>
             </div>
+            
             <div class="shrink-0">
-				<label for="image-upload"><div 
-                class="w-20 h-20 rounded-full object-cover bg-gray-200 text-xs font-thin flex justify-center items-center"
-               
+              <label for="image-upload"
+                ><div
+                  @click="onPickImage"
+                  class="w-20 h-20 rounded-full object-cover bg-gray-200 text-xs font-thin flex justify-center items-center"
+                >
+                  select <br />
+                  image
+                </div></label
               >
-			  select <br> image
-                
-				
-              </div></label>
-				<input
-                  type="file"  id="image-upload" accept="image/*"  @change="onImgChange" hidden
-                  
-                />
-              
-              
-              
+              <input
+                type="file"
+                ref="fileInput"
+                accept="image/*"
+                @change="onImgChange"
+                hidden
+              />
             </div>
 
             <div class="flex gap-2">
@@ -71,6 +73,7 @@
                 Cancel
               </app-button>
               <app-button
+                @click="saveProfile"
                 type="submit"
                 color="success"
                 size="small"
@@ -89,14 +92,12 @@
                 <input
                   type="text"
                   class="mt-4 outline-0"
-                  v-model.trim="profile.Email"
+                  v-model.trim="profile.email"
+				  disabled
                 />
               </div>
 
-              <app-button color="secondary" size="small" variant="outlined">
-                Edit
-              </app-button>
-              <!-- <AppButton buttonText=""  color="outlinegray" size="sm" rounded />  -->
+               
             </div>
           </div>
           <div class="flex justify-between items-center">
@@ -105,7 +106,7 @@
               <input
                 type="text"
                 class="mt-4 outline-0"
-                v-model.trim="profile.Phone"
+                v-model.trim="profile.phone"
               />
             </div>
 
@@ -121,7 +122,7 @@
                 <input
                   type="text"
                   class="mt-4 outline-0"
-                  v-model.trim="profile.Address"
+                  v-model.trim="profile.address"
                 />
               </div>
 
@@ -456,32 +457,41 @@
 import AppButton from "@/components/buttons/Button.vue";
 
 export default {
-  middleware: 'auth',
+  middleware: "auth",
   // layout: "merchant",
   components: {
     "app-button": AppButton,
   },
   data() {
     return {
-      editing: false,
-      
-		  file: null,
-		  image:null,
+      image: null,
       profile: {
-        UserName: "jamie",
-        Email: "",
-        Phone: "",
-        Address: "",
+        name: `${this.$auth.user.firstName} ${this.$auth.user.lastName}`,
+        email: this.$auth.user.email,
+        phone: this.$auth.user.phone,
+        address: "27 mathew street,yaba lagos",
       },
       user: [],
     };
   },
   methods: {
-	  
-	onImgChange(){
-		
-	},
-		
+    edit() {
+    //   document.getElementById("input").focus();
+	  this.$refs.input.focus();
+    },
+    onPickImage() {
+      this.$refs.fileInput.click();
+    },
+    onImgChange(event) {
+      const files = event.target.files;
+      let filename = files[0].name;
+      const fileReader = new FileReader();
+      fileReader.addEventListener("load", () => {
+        this.imageUrl = fileReader.result;
+      });
+      fileReader.readAsDataURL(files[0]);
+      this.image = files[0];
+    },
 
     EditButton() {
       this.profile.UserName;
@@ -493,8 +503,6 @@ export default {
       this.profile.Address = "";
     },
     saveProfile() {
-      this.EditProfile.UserName = this.profile[index].UserName;
-      this.CancelButton();
       console.log("profile saved");
     },
   },
