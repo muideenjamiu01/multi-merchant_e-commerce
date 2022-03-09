@@ -25,5 +25,14 @@
 <script>
 export default {
   middleware: 'auth',
+  computed: {
+    ...mapGetters({
+      orders: "orders/getOrders",
+    }),
+  },
+  mounted() {
+    const orders = window.localStorage.getItem("ys-orders");
+    this.$store.commit("orders/setOrders", orders);
+  },
 }
 </script>

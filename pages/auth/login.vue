@@ -37,7 +37,7 @@
         <form @submit.prevent="onSubmit" class="flex flex-col text-left">
             <label class="text-base mb-[8px]" for="email">Email</label>
             <input
-            class="w-[25.25rem] h-[2.669rem] mb-[24px] px-[1rem]"
+            class="w-[26.25rem] h-[2.669rem] mb-[24px] px-[1rem]"
             v-model="input.email"
             name="email"
             type="email"
@@ -45,7 +45,7 @@
 
             <label class="text-base mb-[8px]" for="password">Password</label>
             <input
-            class="w-[25.25rem] h-[2.669rem] mb-[24px] px-[1rem]"
+            class="w-[26.25rem] h-[2.669rem] mb-[24px] px-[1rem]"
             v-model="input.password"
             name="password"
             type="password"
@@ -56,14 +56,14 @@
             <loading-spinner v-if="loading" size="small" color="white" class="mx-4"></loading-spinner>
         </app-button>
         </form>
-      <p class="font-light text-base mb-[16px]">
+      <p class="font-light text-base my-[16px]">
         Don't have an account?<span class="text-primary-blue ml-[10px]"
           ><nuxt-link to="/auth/signup">Sign up here</nuxt-link></span
         >
       </p>
       <p>
         <span class="font-light text-base text-primary-blue mb-[48px]">
-          <nuxt-link to="">Forgot your password?</nuxt-link>
+          <nuxt-link to="/auth/forgot-password">Forgot your password?</nuxt-link>
         </span>
       </p>
     </div>
@@ -97,14 +97,17 @@ export default {
     async onSubmit() {
         this.loading = true
       try {
+         this.$toast.show('Logging in...')
         const response = await this.$auth.loginWith("local", {
           data: this.input,
         });
         this.$auth.setUser(response.data.user);
-          this.input.email = ''
-          this.input.password = ''
+        this.input.email = '';
+        this.input.password = '';
+        this.$toast.success('Successfully authenticated')
       } catch (err) {
         this.error = err.response.data.message
+        this.$toast.error('Error while authenticating')
       }
       finally {
             this.loading = false

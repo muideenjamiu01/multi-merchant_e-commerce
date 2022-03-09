@@ -22,7 +22,7 @@
               <cancel-icon></cancel-icon>
           </icon-button>
         </div>
-      <ValidationObserver v-slot="{ invalid }">
+      <ValidationObserver>
         <form @submit.prevent="onSubmit" class="flex flex-col text-left">
 
         <div class="mb-6">
@@ -33,23 +33,23 @@
           >
             <label class="text-base mb-[8px]" for="firstName">First Name</label>
             <input
-              class="w-[25.25rem] h-[2.669rem] px-[1rem]"
+              class="w-[25.25rem] h-[2.669rem] mb-1 px-[1rem]"
               v-model="input.firstName"
               type="text"
             />
             <span class="text-xs text-error-900">{{ errors[0] }}</span>
           </ValidationProvider>
           </div>
-          
         <div class="mb-6">
           <ValidationProvider
             name="lastName"
             rules="required||alpha"
             v-slot="{ errors }"
+            class="mt-[10px]"
           >
             <label class="text-base mb-[8px]" for="lastName">Last Name</label>
             <input
-              class="w-[25.25rem] h-[2.669rem] px-[1rem]"
+              class="w-[25.25rem] h-[2.669rem] mb-1 px-[1rem]"
               v-model="input.lastName"
               type="text"
             />
@@ -62,10 +62,11 @@
             name="email"
             rules="required||email"
             v-slot="{ errors }"
+            class="mt-[10px]"
           >
             <label class="text-base mb-[8px]" for="email">Email</label>
             <input
-              class="w-[25.25rem] h-[2.669rem] px-[1rem]"
+              class="w-[25.25rem] h-[2.669rem] mb-1 px-[1rem]"
               v-model="input.email"
               type="email"
             />
@@ -78,10 +79,11 @@
             name="phone"
             rules="required||digits:11"
             v-slot="{ errors }"
+            class="mt-[10px]"
           >
             <label class="text-base mb-[8px]" for="phone">Phone</label>
             <input
-              class="w-[25.25rem] h-[2.669rem] px-[1rem]"
+              class="w-[25.25rem] h-[2.669rem] mb-1 px-[1rem]"
               v-model="input.phone"
               type="phone"
             />
@@ -94,10 +96,11 @@
             name="Password"
             rules="min:6||required"
             v-slot="{ errors }"
+            class="mt-[10px]"
           >
             <label class="text-base mb-[8px]" for="password">Password</label>
             <input
-              class="w-[25.25rem] h-[2.669rem] px-[1rem]"
+              class="w-[25.25rem] h-[2.669rem] mb-1 px-[1rem]"
               v-model="input.password"
               name="password"
               type="password"
@@ -156,7 +159,7 @@ export default {
       input: {
         firstName: "",
         lastName: "",
-        phone: ``,
+        phone: "",
         email: "",
         password: ""
       },
@@ -170,7 +173,7 @@ export default {
         Object.keys(this.input).forEach(key => ({ [this.input[key]]: '' }))
         const response = await this.$auth.setUserToken(res.data.token)
         this.$auth.setUser(response.data.user);
-        // this.$toast.success('User set!')
+        this.$toast.success('Registration Succesful!!')
       } catch (err) {
         this.error = err.response.data.message
       }
