@@ -2,7 +2,7 @@
   <div>
     <div class="hidden lg:block bg-primary-blue-light w-96 p-4">
       <h1 class="pt-2">Order Summary</h1>
-      <p class="my-3 text-gray-400">{{ length }} items in cart</p>
+      <p class="my-3 text-gray-400">{{ item.length }} items in cart</p>
       <div>
         <div
           v-for="item in 3"
