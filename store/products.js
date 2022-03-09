@@ -41,7 +41,7 @@ export const actions = {
 
 export const mutations = {
   setProducts(state, payload) {
-    state.products = payload;
+    state.products = [payload];
   },
   setPagination(state, payload) {
     state.pagination = payload;

@@ -52,7 +52,7 @@ export default {
         },
         user: {
           property: 'user',
-          // autoFetch: false
+          autoFetch: false
         },
         endpoints: {
           login: { url: '/auth/login', method: 'post' },
@@ -76,7 +76,8 @@ export default {
     }
   },
   axios: {
-    baseURL: 'http://localhost:5000/api',
+    // baseURL: 'http://localhost:5000/api',
+    baseURL: 'https://youstore-server.herokuapp.com/api'
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
