@@ -10,13 +10,11 @@
           <img :src="getProductPhoto(product.images)" :alt="product.title" class="w-full h-full" />
         </div>
         <div class="space-y-0.5">
-          <h1 class="font-medium">
+          <h3 class="text-md font-medium">
             {{ product.name }}
-          </h1>
-          <p v-if="product.sizes">Size: {{product.sizes}}</p>
-          <p v-if="product.colors">Color: {{product.colors}}</p>
+          </h3>
           <app-button
-            @click="toggleWishlist(product.id)"
+            @click="removeFromWishlist(product.id)"
             size="small"
             color="error"
           >
@@ -50,7 +48,7 @@ export default {
     "app-button": AppButton,
   },
   methods: {
-    ...mapActions("wishlist", ["toggleWishlist"]),
+    ...mapActions("wishlist", ["removeFromWishlist"]),
     ...mapActions("cart", ["addProductToCart"]),
     getProductPhoto(images) {
       const photos = JSON.parse(images)

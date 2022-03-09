@@ -40,7 +40,9 @@
                       size="small"
                       >Delete</app-button
                     >
-                    <app-button size="small" class="pl-2"
+                    <app-button
+                      @click="addToWishlist(item.product.id)"
+                       size="small" class="pl-2"
                       >Add to wishlist</app-button
                     >
                   </div>
@@ -124,6 +126,7 @@ export default {
   },
   methods: {
     ...mapActions("cart", ["addProductToCart", "removeProductFromCart"]),
+    ...mapActions("wishlist", ["addToWishlist"]),
     goBack() {
       this.$router.go(-1);
     },
