@@ -44,24 +44,25 @@
               </div>
             </div>
             
-            <div class="shrink-0">
-              <label for="image-upload"
-                ><div
-                  @click="onPickImage"
-                  class="w-20 h-20 rounded-full object-cover bg-gray-200 text-xs font-thin flex justify-center items-center"
-                >
-                  select <br />
-                  image
-                </div></label
-              >
+            <div>
+				<div  @click="selectImage" class="w-32 h-32 rounded-full object-cover bg-gray-200">
+              <img
+			  	  :style="{ 'background-image': `url(${previewImage})` }"
+				 class="w-32 h-32 rounded-full object-cover bg-gray-200 outline-nione"
+                  
+                />
+					
+                
               <input
                 type="file"
                 ref="fileInput"
                 accept="image/*"
-                @change="onImgChange"
-                hidden
+                @input="onImgChange"
+                class="hidden"
+				hidden
               />
             </div>
+			</div>
 
             <div class="flex gap-2">
               <app-button
@@ -107,10 +108,11 @@
                 type="text"
                 class="mt-4 outline-0"
                 v-model.trim="profile.phone"
+				ref="phone"
               />
             </div>
 
-            <app-button color="secondary" size="small" variant="outlined">
+            <app-button @click="edit" color="secondary" size="small" variant="outlined">
               Edit
             </app-button>
             <!-- <AppButton buttonText=""  color="outlinegray" size="sm" rounded />  -->
@@ -464,7 +466,8 @@ export default {
   },
   data() {
     return {
-      image: null,
+      previewImage: null,
+
       profile: {
         name: `${this.$auth.user.firstName} ${this.$auth.user.lastName}`,
         email: this.$auth.user.email,
@@ -478,19 +481,23 @@ export default {
     edit() {
     //   document.getElementById("input").focus();
 	  this.$refs.input.focus();
+	  this.$refs.phone.focus();
     },
-    onPickImage() {
+    selectImage() {
       this.$refs.fileInput.click();
     },
-    onImgChange(event) {
-      const files = event.target.files;
-      let filename = files[0].name;
-      const fileReader = new FileReader();
-      fileReader.addEventListener("load", () => {
-        this.imageUrl = fileReader.result;
-      });
-      fileReader.readAsDataURL(files[0]);
-      this.image = files[0];
+    onImgChange() {
+      let input = this.$refs.fileInput
+        let file = input.files
+		if (file && file[0]) {
+          let reader = new FileReader
+          reader.onload = e => {
+            this.previewImage = e.target.result
+          }
+          reader.readAsDataURL(file[0])
+          this.$emit('input', file[0])
+        }
+     
     },
 
     EditButton() {

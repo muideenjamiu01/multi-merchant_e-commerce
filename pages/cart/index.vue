@@ -42,7 +42,8 @@
                     >
                     <app-button
                       @click="addToWishlist(item.product.id)"
-                       size="small" class="pl-2"
+                      size="small"
+                      class="pl-2"
                       >Add to wishlist</app-button
                     >
                   </div>
@@ -92,7 +93,7 @@
         </p>
 
         <app-button
-          @click="$router.push('/checkout')"
+          @click="checkout"
           class="mt-6"
           color="primary"
           variant="contained"
@@ -108,6 +109,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import AppButton from "@/components/buttons/Button.vue";
+import axios from 'axios'
 
 export default {
   components: {
@@ -133,6 +135,20 @@ export default {
     getProductPhoto(images) {
       const photos = JSON.parse(images);
       return photos[photos.length - 1];
+    },
+    checkout() {
+      let payload = {
+        customerId: this.$auth.user.firstName,
+        customerEmail: this.$auth.user.email,
+        products: [
+          { name: this.$auth.user.firstName, id: " 6225f03ad11fa8f700b8b876", quantity: 1 },
+        ],
+        total: 5000,
+      };
+	  let res = axios.post('https://youstore-orders.herokuapp.com/orders/', payload);
+	  let data = res.data
+	  console.log(data)
+      this.$router.push("/checkout");
     },
   },
 };
