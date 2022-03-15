@@ -6,8 +6,10 @@
       </aside>
       <div>
         <main class="">
-          <div class="flex gap-x-4 gap-y-6 flex-wrap ">
-            <ContentsProductCard v-for="card in 16" :key="card.id" />
+          <div class="grid-list ">
+            <ContentsProductCard v-for="(product, index) in products"
+          :key="product.id" :product="product"
+          :index="index" />
           </div>
         </main>
       </div>
@@ -16,7 +18,24 @@
 </template>
 
 <script>
-export default {}
+import { mapGetters, mapActions } from "vuex";
+export default { computed: mapGetters({
+    products: "products/products",
+    errors: "products/errors",
+    loading: "products/loading",
+  }),
+  created() {
+    this.$store.dispatch("products/fetchProducts");
+  },
+  methods: {
+    ...mapActions(["fetchProducts"]),
+    ...mapActions({ getSingleProduct: "products/getSingleProduct" }),
+  },}
 </script>
 
-<style></style>
+<style>
+.grid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}</style>
