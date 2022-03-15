@@ -4,13 +4,7 @@
       <h1 class="text-2xl">
         Transfers
       </h1>
-      <!-- <button
-        @click="toggleNewTransferModal"
-        class="bg-primary-blue text-white text-sm py-2 px-4 rounded"
-      >
-        New Transfer
-      </button> -->
-      <app-button  size="sm" class="py-4 px-4" variant="contained" @click="toggleNewTransferModal">
+      <app-button size="small" variant="contained" @click="toggleNewTransferModal">
         New Transfer
       </app-button>
     </div>
@@ -99,45 +93,30 @@
     >
       <thead class="py-3 border-b">
         <tr class="font-medium">
-          <th class="pb-3">
-            Transfer ID
-          </th>
-          <th class="pb-3">
-            Account Name
-          </th>
-          <th class="pb-3">
-            Account Number
-          </th>
-          <th class="pb-3">
-            Amount (NGN)
-          </th>
-          <th class="pb-3">
-            Date
-          </th>
-          <th class="pb-3">
-            Status
+          <th v-for="name in columns" :key="name" class="pb-3">
+            {{name}}
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="w in 10" :key="w" class="border-b cursor-pointer">
+        <tr v-for="row in data" :key="row.id" class="border-b cursor-pointer">
           <td class="w-40 py-3">
-            3798480273
+            {{row.id}}
           </td>
           <td class="w-40 py-3">
-            Marvin Walters
+            {{row.accountName}}
           </td>
           <td class="w-40 py-3">
-            4839052885
+            {{row.accountNo}}
           </td>
           <td class="w-40 py-3">
-            403900.00
+            {{row.amount}}
           </td>
           <td class="w-40 py-3">
-            18 / 01 / 2022
+            {{row.created_on}}
           </td>
           <td class="w-40 py-3">
-            Pending
+            {{row.status}}
           </td>
         </tr>
       </tbody>
@@ -152,6 +131,7 @@ import AppButton from "@/components/buttons/Button.vue"
     components: {
       'app-button': AppButton
     },
+    props: ['columns', 'data'],
   data () {
     return {
       beneficiaries: ['Marvin Walters', 'Marilyn Munroe'],

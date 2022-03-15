@@ -3,16 +3,29 @@
     <aside>
       <ContentsMerchantProfileCard />
     </aside>
-    <main class="w-full text-sm">
+    <main class="w-full">
       <MerchantWithdrawalsStats />
-      <MerchantWithdrawalsTransfers />
-      <MerchantWithdrawalsBeneficiaries />
+      <MerchantWithdrawalsTransfers :columns="['Transfer ID', 'Account Name', 'Account Number', 'Amount (NGN)', 'Date', 'Status']" :data="items" />
     </main>
   </div>
 </template>
 
 <script>
+import {mapGetters, mapActions} from 'vuex'
+
 export default {
-  layout: 'merchant'
+  layout: 'merchant',
+  // middleware: 'auth',
+  computed: mapGetters({
+    items: "withdrawals/withdrawals",
+    errors: "withdrawals/errors",
+    loading: "withdrawals/loading",
+  }),
+  created() {
+    this.$store.dispatch("withdrawals/fetchWithdrawals");
+  },
+  methods: {
+    ...mapActions(["fetchWithdrawals"]),
+  },
 }
 </script>
