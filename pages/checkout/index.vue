@@ -138,12 +138,10 @@
                   type="submit"
                   size="medium"
                   variant="contained"
-                  color="success"
+                  color="primary"
                   >Proceed To Make Payment</app-button
                 >
-                <!-- <router-link to="/login" class="btn btn-dark mt-5" v-else
-                  >Login to CheckOut</router-link
-                >  -->
+                
               </div>
             </section>
 
@@ -246,6 +244,10 @@ export default {
     },
   },
   methods: {
+	  getUserEmail(){
+		
+		
+	  },
     saveAddress() {
       console.log();
     },
@@ -255,8 +257,8 @@ export default {
     initializePaystack() {
       this.$paystack({
         key: "pk_test_1439df5ec859471cd4e3d8405a5b7dea45667b48", // Replace with your public key.
-        email: "jamiu@youverify.co",
-        amount: Math.floor(this.sumTotal),
+        email:this.$auth.user.email,
+        amount: Math.floor(this.sumTotal * 100),
         ref: "",
         currency: "NGN",
         callback: () => {
