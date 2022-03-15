@@ -5,7 +5,7 @@
     </aside>
     <main class="w-full">
       <section class="antialiased text-gray-600 h-screen">
-        <div class="flex flex-col ">
+        <div class="flex flex-col">
           <!-- Table -->
           <div class="w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
             <header class="px-5 py-4 border-b border-gray-100">
@@ -46,7 +46,7 @@
                     </tr>
                   </thead>
                   <tbody class="text-sm divide-y divide-gray-100">
-                    <tr v-for="customer in customers" :key="customer.id">
+                    <tr v-for="customer in pageOfItems" :key="customer.id">
                       <td class="p-2 whitespace-nowrap">
                         <div class="flex items-center">
                           <div class="font-medium text-gray-800">
@@ -82,17 +82,66 @@
               </div>
             </div>
           </div>
+          
+            <div class="pb-0 pt-3 text-center">
+              
+              <jw-pagination 
+                class="rounded-xl text-white pb-0 pt-3" 
+                :items="customers" 
+                @changePage="onChangePage" 
+                :labels="customLabels"
+                :styles="customStyles"
+                
+                >
+              </jw-pagination>
+
+            </div>
+        
         </div>
       </section>
     </main>
+    
   </div>
 </template>
 
 <script>
+
+  import JwPagination from "jw-vue-pagination/lib/JwPagination";
+  const customStyles = {
+    ul: {
+        borderRadius: '10px'
+
+    },
+    li: {
+        color: 'white',
+        display: 'inline-flex',
+        flexDirection: 'row',
+        backgroundColor: '#46b2c8',
+        borderRadius: '10px',
+        marginLeft: '5px'
+    },
+    a: {
+        color: 'white',
+        borderRadius: '10px'
+    },
+   
+};
+  
+  const customLabels = {
+      first: '<<',
+      last: '>>',
+      previous: '<',
+      next: '>'
+  };
+
+
 export default {
   layout: 'merchant',
   data () {
     return {
+      customStyles,
+      customLabels,
+      pageOfItems: [],
       customers: [
         { name: 'Manos', id: 1 },
         { name: 'Zino', id: 2 },
@@ -103,10 +152,31 @@ export default {
         { name: 'Feline', id: 7 },
         { name: 'Samuel', id: 8 },
         { name: 'Charles', id: 9 },
-        { name: 'Favour', id: 10 }
+        { name: 'Favour', id: 10 },
+        { name: 'Manos', id: 11 },
+        { name: 'Zino', id: 12 },
+        { name: 'Uyo', id: 13 },
+        { name: 'Kaka', id: 14 },
+        { name: 'Chima', id: 15 },
+        { name: 'Charles', id: 16 },
+        { name: 'Feline', id: 17 },
+        { name: 'Samuel', id: 18 },
+        { name: 'Charles', id: 19 },
+        { name: 'Favour', id: 20 }
       ]
     }
-  }
+  },
+
+  methods: {
+    onChangePage(p) {
+      // update page of items
+      this.pageOfItems = p;
+    },
+  },
+  
+  components: {
+    JwPagination,
+  },
 }
 
 </script>
