@@ -1,27 +1,27 @@
 <template>
-  <div class="mt-8">
-    <div class="flex justify-between items-center">
-      <h1 class="text-2xl">
-        Transfers
-      </h1>
+  <div class="my-8 shadow">
+    <div class="whites relative flex items-center px-4 sm:px-0 sm:min-h-[64px] min-h-[56px] sm:pl-4 sm:pr-2">
+      <span class="text-2xl capitalize font-medium m-0 flex-[1_1_100%]">
+        {{title}}
+      </span>
       <app-button size="small" variant="contained" @click="toggleNewTransferModal">
-        New Transfer
+        Make Transfer
       </app-button>
     </div>
 
     <div
       v-if="transferModal"
-      class="fixed inset-0 bg-black bg-opacity-20 flex justify-center items-center text-sm"
+      class="fixed inset-0 bg-black/30 flex justify-center items-center z-10 text-sm"
       @click="toggleNewTransferModal"
     >
-      <div class="bg-white w-full max-w-md" @click.stop="">
+      <div class="bg-white p-4 w-full max-w-md" @click.stop="">
         <h1 class="p-4 border-b font-medium text-base">
           Make Transfer
         </h1>
         <form class="p-4" @submit.prevent="">
           <div class="mb-4">
             <h1 class="text-base">
-              Transfer to:
+              Transfer to saved account details:
             </h1>
             <div class="space-y-2">
               <div
@@ -63,75 +63,57 @@
             </div>
           </div>
 
-          <div class="text-sm flex justify-between mt-8">
+          <div class="flex justify-end mt-8">
             <app-button variant="outlined" color="secondary">
               Cancel
             </app-button>
-            <div>
-              <!-- <button
-                class="py-2 px-4 border border-primary-blue text-primary-blue rounded"
-              >
-                Save and Transfer
-              </button> -->
-              <app-button variant="outlined" color="success">
-                Save and Tranfer
-                </app-button>
-              <!-- <button class="py-2 px-4 bg-primary-blue text-white rounded">
-                Transfer
-              </button> -->
               <app-button variant="contained" color="success">
                 Transfer
                 </app-button>
-            </div>
           </div>
         </form>
       </div>
     </div>
 
-    <table
-      class="text-primary-black text-sm mt-7 text-left w-full max-h-128 overflow-scroll"
-    >
-      <thead class="py-3 border-b">
-        <tr class="font-medium">
-          <th v-for="name in columns" :key="name" class="pb-3">
-            {{name}}
+    <div class="w-full overflow-x-auto">
+    <table class="table w-full border-collapse">
+      <thead class="table-head">
+        <tr class="text-inherit table-row align-middle outline-0">
+          <th v-for="name in columns" :key="name" class="font-medium text-sm leading-6 table-cell text-center p-4 border-b border-solid border-b-secondary-200 tracking-[0.01em] text-secondary-800">
+            <span class="relative p-0 border-0 m-0 bg-transparent box-border outline-0 rounded-none select-none align-middle no-underline text-inherit inline-flex justify-start items-center">{{name}}</span>
           </th>
         </tr>
       </thead>
-      <tbody>
-        <tr v-for="row in data" :key="row.id" class="border-b cursor-pointer">
-          <td class="w-40 py-3">
+      <tbody class="table-body">
+        <tr v-for="row in data" :key="row.id" class="text-inherit table-row align-middle outline-0">
+          <td class="td border-b border-solid border-b-secondary-200 text-secondary-800">
             {{row.id}}
           </td>
-          <td class="w-40 py-3">
+          <td class="td border-b border-solid border-b-secondary-200 text-secondary-800">
             {{row.accountName}}
           </td>
-          <td class="w-40 py-3">
+          <td class="td border-b border-solid border-b-secondary-200 text-secondary-800">
             {{row.accountNo}}
           </td>
-          <td class="w-40 py-3">
-            {{row.amount}}
+          <td class="td border-b border-solid border-b-secondary-200 text-secondary-800">
+            {{Math.ceil(row.amount / 100)}}
           </td>
-          <td class="w-40 py-3">
+          <td class="td border-b border-solid border-b-secondary-200 text-secondary-800">
             {{row.created_on}}
           </td>
-          <td class="w-40 py-3">
+          <td class="td border-b border-solid border-b-secondary-200 text-secondary-800">
             {{row.status}}
           </td>
         </tr>
       </tbody>
     </table>
+    </div>
   </div>
 </template>
 
 <script>
-import AppButton from "@/components/buttons/Button.vue"
-
   export default {
-    components: {
-      'app-button': AppButton
-    },
-    props: ['columns', 'data'],
+    props: ['title', 'columns', 'data'],
   data () {
     return {
       beneficiaries: ['Marvin Walters', 'Marilyn Munroe'],
@@ -141,7 +123,32 @@ import AppButton from "@/components/buttons/Button.vue"
   methods: {
     toggleNewTransferModal () {
       this.transferModal = !this.transferModal
-    }
+    },
   }
 }
 </script>
+
+<style scoped>
+.table {
+  display: table;
+  border-spacing: 0;
+  min-width: 650px;
+}
+
+.table-head {
+  display: table-header-group;
+}
+
+.table-body {
+  display: table-row-group;
+}
+
+.td {
+    font-size: 0.875rem;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+    vertical-align: inherit;
+    text-align: center;
+    padding: 16px;
+  }
+</style>

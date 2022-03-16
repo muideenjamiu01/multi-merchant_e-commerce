@@ -5,7 +5,7 @@
     </aside>
     <main class="w-full">
       <MerchantWithdrawalsStats />
-      <MerchantWithdrawalsTransfers :columns="['Transfer ID', 'Account Name', 'Account Number', 'Amount (NGN)', 'Date', 'Status']" :data="items" />
+      <MerchantWithdrawalsTransfers title="Withdrawals" :columns="['Transfer ID', 'Account Name', 'Account Number', 'Amount (NGN)', 'Transfer Date', 'Status']" :data="items" />
     </main>
   </div>
 </template>
@@ -26,6 +26,6 @@ export default {
   },
   methods: {
     ...mapActions(["fetchWithdrawals"]),
-  },
+  }
 }
 </script>
