@@ -3,16 +3,17 @@
     <div
       class="w-72 bg-primary-blue-light py-8 px-7 hidden lg:block mr-8 text-sm text-center"
     >
-      <div class="flex">
-        <img src="../../assets/images/logos/merchant-logo.svg" alt="merchant logo">
+      <div class="flex flex-col ">
+        <img v-if="!$auth.user" src="../../assets/images/logos/merchant-logo.svg" alt="merchant logo">
+        <img class="ml-[50px] " v-else :src="$auth.user.photo" width="100px" height="100px" alt="merchant logo">
+         
         <div class="flex flex-col text-left mx-4 my-4 ">
-          <h1 class="text-2xl font-medium ">
-            Store Name
-          </h1>
-          <p class="">
-            Merchant ID: 30949293
+          <p class="font-medium ">
+            Address: &nbsp {{$auth.user.address}}
           </p>
-          <p>Test Mode</p>
+          <p >
+            Merchant ID: &nbsp {{$auth.user.id}}
+          </p>
         </div>
       </div>
 
