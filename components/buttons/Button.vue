@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     baseStyles() {
-      return "inline-flex items-center justify-center relative box-border outline-0 m-0 select-none no-underline font-medium leading-[1.75] tracking-[0.02285em] rounded transition-colors"
+      return "inline-flex items-center justify-center relative box-border outline-0 m-0 select-none whitespace-nowrap no-underline font-medium leading-[1.75] tracking-[0.02285em] rounded transition-colors"
     },
     sizeStyles() {
       return {
