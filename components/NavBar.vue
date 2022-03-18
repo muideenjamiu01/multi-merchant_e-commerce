@@ -60,11 +60,20 @@
       </div>
 
       <app-button
+        v-if="!$auth.loggedIn"
         to="/merchant/new"
         color="primary"
         class="hidden md:flex mr-4"
       >
         Become a merchant
+      </app-button>
+      <app-button
+        v-else
+        to="/merchant/dashboard"
+        color="primary"
+        class="hidden md:flex mr-4"
+      >
+        Merchant Dashboard
       </app-button>
 
       <!-- <div class=""> -->

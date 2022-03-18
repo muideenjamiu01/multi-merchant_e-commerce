@@ -10,7 +10,7 @@
       <h1 class="text-xl">Create Seller Account</h1>
       <hr class="mt-2" />
     </div>
-    <form class="mt-6" @submit.prevent="getStarted">
+    <form class="mt-6" @submit.prevent="createMerchant">
       <div class="w-full">
         <div class="md:flex justify-between gap-8">
           <div class="md:w-1/2">
@@ -22,7 +22,7 @@
                 id="username-error"
                 type="text"
                 class="border text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model.trim="sellerAccountDetails.nameOfStore"
+                v-model.trim="sellerAccountDetails.storeName"
               />
               <p class="mt-2 text-sm text-gray-400">
                 Choose a unique name for your online shop: this is the name that
@@ -142,7 +142,7 @@
                 id="username-error"
                 type="text"
                 class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model.trim="sellerAccountDetails.phoneNumber"
+                v-model.trim="sellerAccountDetails.phoneNo"
               />
               <p class="mt-2 text-sm text-gray-400">
                 When we need to contact you urgently, this is the number we will
@@ -155,13 +155,13 @@
           <div class="mt-4 md:w-1/2">
             <div>
               <label for="shop-name" class="block mb-2 text-sm font-medium"
-                >Additional Phone Number</label
+                >Address</label
               >
               <input
                 id="username-error"
                 type="text"
                 class="border border-gray-200 text-sm focus:outline-primary-blue duration-200 block w-full p-2.5"
-                v-model.trim="sellerAccountDetails.additionalNumber"
+                v-model.trim="sellerAccountDetails.address"
               />
               <p class="mt-2 text-sm text-gray-400">
                 Another number where we can reach you ?
@@ -199,7 +199,7 @@
                 id="confirm password"
                 type="password"
                 class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model.trim="sellerAccountDetails.confirmPassword"
+                
               />
             </div>
           </div>
@@ -217,6 +217,7 @@
                 id="bank-name"
                 type="text"
                 class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
+				v-model.trim="sellerAccountDetails.bankName"
               />
             </div>
             <div class="mt-4 md:w-1/2">
@@ -227,6 +228,7 @@
                 id="account-name"
                 type="text"
                 class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
+				v-model.trim="sellerAccountDetails.accountName"
               />
             </div>
           </div>
@@ -239,6 +241,7 @@
                 id="account-number"
                 type="text"
                 class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
+				v-model.trim="sellerAccountDetails.accountNo"
               />
             </div>
             <div class="md:w-1/2" />
@@ -246,7 +249,15 @@
         </div>
       </div>
       <div class="flex mt-6">
-        <div><input type="radio" v-model="pick"  class="mr-4" /></div>
+        <div>
+          <input
+            type="radio"
+            id="terms"
+            value="yes"
+            v-model="sellerAccountDetails.terms"
+            class="mr-4"
+          />
+        </div>
         <div class="">
           <p>
             I acknowledge that I have read and hereby accept the terms and
@@ -260,13 +271,7 @@
       </div>
 
       <div class="flex justify-center items-center mt-8">
-        <app-button
-          type="submit"
-          to="dashboard"
-          uppercase
-          variant="contained"
-          size="large"
-        >
+        <app-button type="submit" uppercase variant="contained" size="large">
           Get Started
         </app-button>
       </div>
@@ -276,6 +281,7 @@
 
 <script>
 import AppButton from "@/components/buttons/Button.vue";
+import axios from "axios";
 
 export default {
   layout: "empty",
@@ -285,33 +291,57 @@ export default {
   data() {
     return {
       sellerAccountDetails: {
-        nameOfStore: "",
+        storeName: "",
         email: "",
-        logoImg: "",
-        bannerImg: "",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png",
+        banner: "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png",
         fullName: "",
-        phoneNumber: "",
-        additionalNumber: "",
+        phoneNo: "",
+        address: "",
         password: "",
-        confirmPassword: "",
-      },
-      bankDetails: {
         bankName: "",
         accountName: "",
-        accountNumber: "",
+        accountNo: "",
+        // terms: false,
       },
-	  
     };
   },
   methods: {
     thisFileUpload() {
       document.getElementById("fileupload").click();
     },
-    getStarted() {
-      console.log("seller account details is submmited");
+	 async createMerchant() {
+        this.loading = true
+      try {
+        const res = await this.$axios.post('/merchants', this.sellerAccountDetails);
+        Object.keys(this.sellerAccountDetails).forEach(key => ({ [this.sellerAccountDetails[key]]: '' }))
+        const response = await this.$auth.setUserToken(res.data.token)
+        this.$auth.setUser(response.data.user);
+        this.$toast.success('Registration Succesful!!')
+		
+      } catch (err) {
+		  this.error = err.response.data.message
+      }
+      finally {
+		  this.loading = false
+		  this.$router.push("/merchant/products/newproduct");
+      }
+
     },
-	// when checked:
-     
+    closeErrorMessage() {
+        this.error = null
+    },
+    // createMerchant() {
+    //   let res = axios.post(
+    //     "https://youstore-server.herokuapp.com/api/merchants",
+    //     this.sellerAccountDetails
+    //   );
+    //   let data = res.data;
+    //   console.log(data);
+
+    //   this.$router.push("/merchant/products/newproduct");
+    // },
+    // when checked:
   },
 };
 </script>

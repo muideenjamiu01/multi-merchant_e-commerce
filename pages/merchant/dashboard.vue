@@ -89,7 +89,6 @@
           <div class="p-2 bg-primary-purple-light rounded mt-4 md:mt-0">
             <div class="flex items-center gap-2">
               <div>
-                <!-- <img src="@/assets/images/icons/star.svg" alt="" /> -->
                 <svg
                   width="20"
                   height="19"
@@ -114,30 +113,6 @@
           </div>
         </div>
 
-        <!-- <div
-          class="mt-8 md:flex gap-2 justify-end items-center text-xs font-normal"
-        >
-          <!-- <button
-            style="margin-bottom: 30px"
-            class="button"
-			
-            @click="randomize"
-          >
-            Randomize Chart
-          </button> -->
-          <!-- <app-button size="small" variant="outlined">
-        this week
-        </app-button>
-        <app-button size="small" variant="outlined">
-        this month
-        </app-button>
-        <app-button size="small" variant="outlined">
-        this quarter
-        </app-button>
-        <app-button size="small" variant="outlined">
-        this year
-        </app-button>
-        </div>-->
         <div class="mt-8 md:mt-10">
           <div class="chart-div">
             <DashboardChart
@@ -255,6 +230,7 @@ import AppButton from "@/components/buttons/Button.vue";
 import DashboardChart from "~/components/DashboardChart.vue";
 
 export default {
+//   middleware: "auth",
   layout: "merchant",
   middleware: 'auth-merchant',
   components: {
@@ -288,7 +264,7 @@ export default {
             pointHoverRadius: 3,
             pointHoverBorderColor: "#46B2C8",
             backgroundColor: "#ebf8fe",
-            data: [4000,1500, 251, 2500, 3000, 80, 40, 30, 20, 30, 20, 10],
+            data: [4000, 1500, 251, 2500, 3000, 80, 40, 30, 20, 30, 20, 10],
           },
           {
             label: "Orders",
@@ -310,7 +286,10 @@ export default {
             pointHoverRadius: 3,
             pointHoverBorderColor: "#46B2C8",
             backgroundColor: "#f8f6da",
-            data: [500, 1000, 1500, 2000, 2500, 3000,3500,4000,4500,5000,5500,5500,6000,6500],
+            data: [
+              500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500,
+              5500, 6000, 6500,
+            ],
           },
         ],
       },
@@ -333,66 +312,6 @@ export default {
       },
     };
   },
-//   method: {
-//     randomize() {
-// 		console.log('ploting')
-//       this.chartData = {
-//         labels: [
-//           "January",
-//           "February",
-//           "March",
-//           "April",
-//           "May",
-//           "June",
-
-//           "July",
-//           "August",
-//           "September",
-//           "October",
-//           "November",
-//           "December",
-//         ],
-//         datasets: [
-//           {
-//             label: "Visitors",
-//             borderColor: "#21A2DA",
-//             borderWidth: 1,
-//             pointBackgroundColor: "white",
-//             pointRadius: 2,
-//             pointHoverRadius: 3,
-//             pointHoverBorderColor: "#46B2C8",
-//             backgroundColor: "#ebf8fe",
-//             data: [...Array(10)].map((e) => this.getRandomInt()),
-//           },
-//           {
-//             label: "Orders",
-//             borderColor: "#1EB62D",
-//             borderWidth: 1,
-//             pointBackgroundColor: "white",
-//             pointRadius: 2,
-//             pointHoverRadius: 3,
-//             pointHoverBorderColor: "#46B2C8",
-//             backgroundColor: "#e8f8ea",
-//             data: [...Array(10)].map((e) => this.getRandomInt()),
-//           },
-//           {
-//             label: "Earned",
-//             borderColor: "#ABA519",
-//             borderWidth: 1,
-//             pointBackgroundColor: "white",
-//             pointRadius: 2,
-//             pointHoverRadius: 3,
-//             pointHoverBorderColor: "#46B2C8",
-//             backgroundColor: "#f8f6da",
-//             data: [...Array(10)].map((e) => this.getRandomInt()),
-//           },
-//         ],
-//       };
-//     },
-//     getRandomInt() {
-//       return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
-//     },
-//   },
 };
 </script>
 
