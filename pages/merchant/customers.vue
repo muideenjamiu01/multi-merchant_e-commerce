@@ -91,6 +91,7 @@
 <script>
 export default {
   layout: 'merchant',
+  middleware: 'auth-merchant',
   data () {
     return {
       customers: [

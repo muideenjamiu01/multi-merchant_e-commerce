@@ -351,12 +351,8 @@
 </template>
 
 <script>
-import AppButton from "@/components/buttons/Button.vue"
-
   export default {
   layout: 'merchant',
-    components: {
-      'app-button': AppButton
-    }
+  middleware: 'auth-merchant',
   }
 </script>
