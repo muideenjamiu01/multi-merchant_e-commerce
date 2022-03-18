@@ -24,13 +24,33 @@
       <img class="cursor-pointer" src="@/assets/images/icons/search-icon.svg">
     </div>
     <div class="flex gap-4 items-center">
+      <p v-if="!$auth.loggedIn">Guest</p>
+      <p v-else>Hi, {{$auth.user.firstName.toUpperCase()}} {{$auth.user.lastName.toUpperCase()}}</p>
       <div>
         <img src="@/assets/images/icons/bell.svg" alt="" />
       </div>
 
     
-    <div class="w-10 h-10 rounded-full bg-primary-blue-light" />
+    <div v-if="!$auth.loggedIn" class="w-10 h-10 rounded-full bg-primary-blue-light" />
+    <app-button v-else class="rounded-full hover:!bg-transparent" size="small">
+      <user-avatar class="w-8 h-8" :src="$auth.user.photo" :alt="$auth.user.firstName"/>
+    </app-button>
+
   </div>
 
   </div>
 </template>
+
+<script>
+import UserAvatar from "@/components/Avatar";
+import AppButton from "@/components/buttons/Button";
+
+
+
+export default {
+  components: {
+    "app-button": AppButton,
+    "user-avatar": UserAvatar,
+  },
+}
+</script>
