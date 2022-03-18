@@ -113,7 +113,7 @@
           <input type="color" class="" />
         </div>
       </div>
-      <div v-if="category == computing" class="w-full">
+      <div v-if="category == 'computing'" class="w-full">
         <label>Sub-category</label>
         <p class="text-xs text-primary-gray-text">
           Select a subcategory for this product.
