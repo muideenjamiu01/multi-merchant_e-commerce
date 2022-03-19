@@ -9,12 +9,9 @@
           Products
         </h1>
         <NuxtLink to="products/newproduct">
-          <!-- <button class="py-2 px-4 bg-primary-blue text-white text-sm rounded">
-          Add Product
-        </button> -->
-          <app-button to="products/newproduct" size="small" variant="contained">
-          Add Product
-        </app-button>
+          <app-button  size="small" variant="contained">
+            Add Product
+          </app-button>
         </NuxtLink>
       </div>
       <div>
@@ -23,13 +20,17 @@
         >
           <thead class="py-3 border-b font-medium text-center">
             <tr>
-              <th class="pb-3 text-left">
-                Transaction ID
+              <th class="pb-3 text-left text-center">
+                S/No.
+              </th>
+              
+              <th class="pb-3 text-left text-center">
+                Description
               </th>
               <th class="pb-3">
                 Price
               </th>
-              <th class="pb-3">
+              <th class="pb-3 text-center">
                 Discount (%)
               </th>
               <th class="pb-3">
@@ -41,38 +42,112 @@
             </tr>
           </thead>
           <tbody class="text-center">
-            <tr v-for="p in 11" :key="p" class="border-b">
+            <tr v-for="(product, index) in products" :key="product.id" class="border-b">
+               <td> {{ index+1 }}</td>
               <td class="flex gap-4 py-3 text-left">
-                <div class="h-24 w-24 bg-primary-gray" />
+                  <img :src="getProductImage(product.images)" width="65px" height="65px" :alt="product.name">
                 <div>
                   <h1>
-                    Women's Los Angeles California Long Sleeve Sweatshirt
-                    Oversized Bat...
+                    {{product.name}}
                   </h1>
-                  <p>Sizes: xxs, xs, sm, md, lg, xl, xxl</p>
-                  <p>Colors: brown, beige, lemon green, navy blue, black</p>
-                  <p>Quantity: 24</p>
+                  <p>productSizes</p>
+                  <div>Color: 
+                    <p width="5px" height="5px" style="background-color:red; display:inline"> 
+                    </p>
+                  </div>
+                  <p> Quantity: {{product.inventory}}</p>
                 </div>
               </td>
-              <td>14483.00</td>
-              <td>4</td>
-              <td>10</td>
-              <td>3.6</td>
+              <td> {{product.price}}</td>
+              <td> {{product.discount}}</td>
+              <td> {{product.sold}}</td>
+              <td>product.avgRating</td>
             </tr>
           </tbody>
+         
         </table>
+        <div class="pb-0 pt-3 text-center">
+          <jw-pagination 
+            class="rounded-xl text-white pb-0 pt-3" 
+            :items="products" 
+            @changePage="onChangePage" 
+            :labels="customLabels"
+            :styles="customStyles"
+            >
+          </jw-pagination>
+        </div>
       </div>
     </main>
   </div>
 </template>
 
 <script>
-import AppButton from "@/components/buttons/Button.vue"
+  import AppButton from "@/components/buttons/Button.vue"
+  import { mapGetters, mapActions } from "vuex";
+  import JwPagination from "jw-vue-pagination/lib/JwPagination";
+   const customStyles = {
+    ul: {
+        borderRadius: '10px'
+
+    },
+    li: {
+        color: 'white',
+        display: 'inline-flex',
+        flexDirection: 'row',
+        backgroundColor: '#46b2c8',
+        borderRadius: '10px',
+        marginLeft: '5px'
+    },
+    a: {
+        color: 'white',
+        borderRadius: '10px'
+    },
+   
+  };
+  
+  const customLabels = {
+      first: '<<',
+      last: '>>',
+      previous: '<',
+      next: '>'
+  };
 
   export default {
-  layout: 'merchant',
-    components: {
-      'app-button': AppButton
-    }
+    layout: 'merchant',
+    data () {
+    return {
+      customStyles,
+      customLabels,
+      pageOfItems: [],
+      }
+    },
+      components: {
+        'app-button': AppButton,
+          JwPagination,
+      },
+        computed: mapGetters({
+        products: "products/products",
+        loading: "products/loading",
+        errors: "products/errors",
+      }),
+        mounted() {
+          console.log(this.products);
+          this.$store.dispatch("products/fetchProducts")
+      },
+      methods: {
+        onChangePage(p) {
+          // update page of items
+          this.pageOfItems = p;
+        },
+        ...mapActions(["fetchProducts"]),
+        getProductImage(images) {
+          const photos = JSON.parse(images);
+          return photos[photos.length - 1];
+        },
+        getProductColor(color) {
+          const colors = JSON.parse(color);
+          return color[colors.length - 1];
+        },
+      },
   }
 </script>
