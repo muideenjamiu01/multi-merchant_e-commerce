@@ -5,9 +5,7 @@
     </aside>
     <main class="w-full text-sm">
       <div class="flex justify-between items-center">
-        <h1 class="text-2xl">
-          Products
-        </h1>
+        <h1 class="text-2xl">Products</h1>
         <NuxtLink to="products/newproduct">
           <app-button  size="small" variant="contained">
             Add Product
@@ -59,9 +57,9 @@
                 </div>
               </td>
               <td> {{product.price}}</td>
-              <td> {{product.discount}}</td>
-              <td> {{product.sold}}</td>
-              <td>product.avgRating</td>
+              <td>{{ Math.floor(Math.random() * 40) }}%</td>
+              <td>{{ product.sold }}</td>
+              <td>{{ Math.floor(Math.random() * 5) }}</td>
             </tr>
           </tbody>
          
