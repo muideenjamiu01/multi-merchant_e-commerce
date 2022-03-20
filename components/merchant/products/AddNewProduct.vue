@@ -131,18 +131,7 @@
       <app-button variant="contained" color="success">
         Save and add another
       </app-button>
-      <!-- <AppButton
-        app-button-text="Save and add another"
-        color="fillbutton"
-        size="md"
-        rounded
-      />
-      <AppButton
-        app-button-text="Save Product"
-        color="fillbutton"
-        size="md"
-        rounded
-      /> -->
+    
       <app-button @click="addNewProduct" variant="outlined" color="success">
         Save Product
       </app-button>
@@ -167,26 +156,28 @@ export default {
         "Scanner",
         "Keyboard",
       ],
-      category: "",
       name: "",
-      price: "",
-      discount: "",
-      quantity: "",
       description: "",
+      category: "",
+      quantity: "50",
+      price: "",
+      color: "",
+      size: "",
     };
   },
   methods: {
     async addNewProduct() {
       try {
         await this.$axios.post(
-          "https://youstore-server.herokuapp.com/api/products",
+          "https://youstore-products.herokuapp.com/v1/products",
           {
-            category: this.category,
             name: this.name,
-            price: this.price,
-            discount: this.discount,
-            quantity: this.quantity,
             description: this.description,
+            category: this.category,
+            quantity: this.quantity,
+            price: this.price,
+            color: this.color,
+            size: this.size,
           }
         );
         this.$store.dispatch("products/fetchProducts");

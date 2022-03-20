@@ -19,7 +19,7 @@ export const actions = {
     commit("setLoading", true);
     try {
       const response = await this.$axios.get(
-        "https://youstore-server.herokuapp.com/api/products",
+        "https://youstore-products.herokuapp.com/v1/products",
         {
           params: {
             page: 1,
@@ -27,11 +27,10 @@ export const actions = {
           },
         }
       );
-
-      const { _links, items, meta } = response.data;
-
-      commit("setProducts", items);
-      commit("setPagination", { ...meta, ..._links });
+        
+      const { docs, pagination } = response.data.data;
+      commit("setProducts", docs);
+      commit("setPagination", pagination );
     } catch (error) {
       commit("setError", error.message);
     } finally {
