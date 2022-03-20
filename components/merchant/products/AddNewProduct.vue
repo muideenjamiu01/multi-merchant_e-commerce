@@ -156,29 +156,28 @@ export default {
         "Scanner",
         "Keyboard",
       ],
-      category: "",
-      sub_category: "sub",
-      slug: "slug",
       name: "",
-      price: "",
-      discount: "",
-      quantity: "",
       description: "",
+      category: "",
+      quantity: "50",
+      price: "",
+      color: "",
+      size: "",
     };
   },
   methods: {
     async addNewProduct() {
       try {
         await this.$axios.post(
-          "https://youstore-server.herokuapp.com/api/products",
+          "https://youstore-products.herokuapp.com/v1/products",
           {
-            category: this.category,
-            sub_category: this.sub_category,
-            slug: this.slug,
             name: this.name,
-            price: this.price,
-            discount: this.discount,
             description: this.description,
+            category: this.category,
+            quantity: this.quantity,
+            price: this.price,
+            color: this.color,
+            size: this.size,
           }
         );
         this.$store.dispatch("products/fetchProducts");

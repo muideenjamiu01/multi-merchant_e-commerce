@@ -43,17 +43,20 @@
             <tr v-for="(product, index) in products" :key="product.id" class="border-b">
                <td> {{ index+1 }}</td>
               <td class="flex gap-4 py-3 text-left">
-                  <img :src="getProductImage(product.images)" width="65px" height="65px" :alt="product.name">
+                  <img 
+                  :src="getProductImage(product.images)" 
+                  width="65px" height="65px" 
+                  :alt="product.name">
                 <div>
                   <h1>
                     {{product.name}}
                   </h1>
-                  <p>productSizes</p>
-                  <div>Color: 
+                  <p>{{product.sizes}}</p>
+                  <div>Color: {{product.color}}
                     <p width="5px" height="5px" style="background-color:red; display:inline"> 
                     </p>
                   </div>
-                  <p> Quantity: {{product.inventory}}</p>
+                  <p> Quantity: {{product.quantity}}</p>
                 </div>
               </td>
               <td> {{product.price}}</td>
@@ -129,8 +132,8 @@
         errors: "products/errors",
       }),
         mounted() {
-          console.log(this.products);
           this.$store.dispatch("products/fetchProducts")
+
       },
       methods: {
         onChangePage(p) {
@@ -139,13 +142,13 @@
         },
         ...mapActions(["fetchProducts"]),
         getProductImage(images) {
-          const photos = JSON.parse(images);
-          return photos[photos.length - 1];
+         
+          return  `https://www.cnet.com/a/img/resize/bf0ae84431f323812b4579499e23ee54870e5cc6/2022/03/15/25776d32-cf18-422e-9094-f5b4f991de56/mac-studio-and-mac-studio-display-002-copy.jpg?auto=webp&fit=crop&height=236&width=420`
         },
-        getProductColor(color) {
-          const colors = JSON.parse(color);
-          return color[colors.length - 1];
-        },
+        // getProductColor(color) {
+        //   const colors = JSON.parse(color);
+        //   return color[colors.length - 1];
+        // },
       },
   }
 </script>
