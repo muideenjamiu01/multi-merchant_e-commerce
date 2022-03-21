@@ -67,7 +67,7 @@
             <app-button variant="outlined" color="secondary">
               Cancel
             </app-button>
-              <app-button variant="contained" color="success">
+              <app-button variant="contained" color="success" class="pl-4">
                 Transfer
                 </app-button>
           </div>
@@ -99,7 +99,7 @@
             {{Math.ceil(row.amount / 100)}}
           </td>
           <td class="td border-b border-solid border-b-secondary-200 text-secondary-800">
-            {{row.created_on}}
+            {{new Date(row.created_on).toLocaleDateString("en-US")}}
           </td>
           <td class="td border-b border-solid border-b-secondary-200 text-secondary-800">
             {{row.status}}
