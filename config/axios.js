@@ -1,10 +1,11 @@
 import axios from '@nuxtjs/axios'
 
 export default axios.create({
-  baseUrl: 'http://localhost:5000/api',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    Authorization: ''
+  },
+  params: {
+    user_key: '4fbc6c112a19f295d08dfc27f36333b6',
   }
 })

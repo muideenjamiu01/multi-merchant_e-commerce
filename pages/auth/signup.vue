@@ -1,135 +1,159 @@
 <template>
-  <div class="flex justify-center relative">
+  <div
+    class="
+      relative
+      w-full
+      h-full
+      after:fixed
+      after:h-[70vh]
+      after:-z-10
+      after:top-0
+      after:-skew-y-12
+      after:origin-top-left
+      after:bg-primary-400
+      after:w-full
+    "
+  >
     <div
-      class="z-0 absolute skewed-box bg-primary-blue h-[43.688rem] w-full"
-    ></div>
-    <div
-      class="container bg-white rounded z-10 h-[44.625] w-[31.25rem] mt-[218px] mb-[171px] px-[48px] pb-[48px] pt-[58px]"
+      class="
+        min-h-[100vh]
+        border-box
+        flex
+        w-full
+        flex-row flex-wrap
+        items-center
+        justify-center
+      "
     >
-      <nuxt-link to="/"
-        ><div class="flex w-full justify-center">
-          <img
-            src="../../assets/images/logos/login-logo.svg"
-            alt="login-logo"
-          /></div
-      ></nuxt-link>
-      <p class="text-center font-light text-base mt-[25px] mb-[32px]">
-        Create your account
-      </p>
-      <div v-if="error" class="flex relative items-center text-error-900 my-4 rounded bg-error-50 w-full">
-          <span class="text-center flex-grow p-2">{{ error }}</span>
-          <icon-button @click="closeErrorMessage" size="small" class="hover:bg-error-100 rounded-full">
+      <div
+        class="
+          box-border
+          m-0
+          flex-0
+          max-w-full
+          flex-row
+          grow
+          basis-0
+          flex
+          justify-center
+        "
+      >
+        <div
+          class="
+            w-full
+            px-6
+            py-10
+            sm:m-8
+            bg-white
+            shadow
+            sm:px-10 sm:py-12
+            max-w-lg
+          "
+        >
+          <div class="h-10">
+            <nuxt-link to="/" class="mr-6">
+              <brand-logo class="!w-full !h-full" />
+            </nuxt-link>
+          </div>
+
+          <p class="text-center font-medium my-6">Create your account</p>
+
+          <div
+            v-if="error"
+            class="
+              flex
+              relative
+              items-center
+              text-error-900
+              my-4
+              rounded
+              bg-error-50
+              w-full
+            "
+          >
+            <span class="text-center flex-grow p-2">{{ error }}</span>
+            <icon-button
+              @click="closeErrorMessage"
+              size="small"
+              class="hover:bg-error-100 rounded-full"
+            >
               <cancel-icon></cancel-icon>
-          </icon-button>
+            </icon-button>
+          </div>
+
+          <ValidationObserver slim>
+            <form @submit.prevent="createUser" class="w-full">
+              <ValidationProvider
+                v-for="field in fields"
+                :key="field.name"
+                v-slot="{ errors }"
+                :name="field.name.split('_').join(' ')"
+                :rules="field.rules"
+                slim
+              >
+                <div class="mb-4">
+                  <label class="mb-2 capitalize" :for="field.name">{{
+                    field.name.split("_").join(" ")
+                  }}</label>
+                  <input
+                    class="
+                      w-full
+                      flex
+                      items-center
+                      outline-0
+                      border border-secondary-200
+                      rounded-md
+                      shadow-sm
+                      focus:outline-none
+                      focus:border-primary-200
+                      focus:ring-primary-200
+                      focus:ring-1
+                      sm:text-sm
+                      p-2
+                    "
+                    v-model="field.value"
+                    :type="field.type"
+                    :id="field.name"
+                  />
+                  <span class="text-xs text-error-800">{{ errors[0] }}</span>
+                </div>
+              </ValidationProvider>
+
+              <app-button
+                type="submit"
+                class="mt-2"
+                variant="contained"
+                color="primary"
+                size="large"
+                :disabled="loading"
+                fullWidth
+                uppercase
+              >
+                {{ loading ? "Loading" : "Signup" }}
+                <loading-spinners
+                  v-if="loading"
+                  size="small"
+                  color="white"
+                  class="mx-4"
+                ></loading-spinners>
+              </app-button>
+            </form>
+          </ValidationObserver>
+
+          <p class="text-sm my-4">
+            Already have an account?<span class="text-primary-500 text-sm ml-2"
+              ><nuxt-link to="/auth/login">Sign in</nuxt-link></span
+            >
+          </p>
+          <p class="text-sm mt-4">
+            By clicking the sign up button, you agree to our<span
+              class="text-sm text-primary-500 ml-2"
+            >
+              <nuxt-link to="#">conditions of use</nuxt-link>
+            </span>
+          </p>
         </div>
-      <ValidationObserver>
-        <form @submit.prevent="onSubmit" class="flex flex-col text-left">
-
-        <div class="mb-6">
-          <ValidationProvider
-            name="firstName"
-            rules="required||alpha"
-            v-slot="{ errors }"
-          >
-            <label class="text-base mb-[8px]" for="firstName">First Name</label>
-            <input
-              class="w-[25.25rem] h-[2.669rem] mb-1 px-[1rem]"
-              v-model="input.firstName"
-              type="text"
-            />
-            <span class="text-xs text-error-900">{{ errors[0] }}</span>
-          </ValidationProvider>
-          </div>
-        <div class="mb-6">
-          <ValidationProvider
-            name="lastName"
-            rules="required||alpha"
-            v-slot="{ errors }"
-            class="mt-[10px]"
-          >
-            <label class="text-base mb-[8px]" for="lastName">Last Name</label>
-            <input
-              class="w-[25.25rem] h-[2.669rem] mb-1 px-[1rem]"
-              v-model="input.lastName"
-              type="text"
-            />
-            <span class="text-xs text-error-900">{{ errors[0] }}</span>
-          </ValidationProvider>
-          </div>
-          
-        <div class="mb-6">
-          <ValidationProvider
-            name="email"
-            rules="required||email"
-            v-slot="{ errors }"
-            class="mt-[10px]"
-          >
-            <label class="text-base mb-[8px]" for="email">Email</label>
-            <input
-              class="w-[25.25rem] h-[2.669rem] mb-1 px-[1rem]"
-              v-model="input.email"
-              type="email"
-            />
-            <span class="text-xs text-error-900">{{ errors[0] }}</span>
-          </ValidationProvider>
-          </div>
-          
-        <div class="mb-6">
-          <ValidationProvider
-            name="phone"
-            rules="required||digits:11"
-            v-slot="{ errors }"
-            class="mt-[10px]"
-          >
-            <label class="text-base mb-[8px]" for="phone">Phone</label>
-            <input
-              class="w-[25.25rem] h-[2.669rem] mb-1 px-[1rem]"
-              v-model="input.phone"
-              type="phone"
-            />
-            <span class="text-xs text-error-900">{{ errors[0] }}</span>
-          </ValidationProvider>
-          </div>
-          
-        <div class="mb-6">
-          <ValidationProvider
-            name="Password"
-            rules="min:6||required"
-            v-slot="{ errors }"
-            class="mt-[10px]"
-          >
-            <label class="text-base mb-[8px]" for="password">Password</label>
-            <input
-              class="w-[25.25rem] h-[2.669rem] mb-1 px-[1rem]"
-              v-model="input.password"
-              name="password"
-              type="password"
-              required
-            />
-            <span class="text-xs text-error-900">{{ errors[0] }}</span>
-          </ValidationProvider>
-          </div>
-
-        <app-button class="" type="submit" variant="contained" color="primary" size="large" :disabled="loading" fullWidth uppercase>
-            {{loading ? 'Loading' : 'Signup'}}
-            <loading-spinner v-if="loading" size="small" color="white" class="mx-4"></loading-spinner>
-        </app-button>
-        </form>
-      </ValidationObserver>
-
-      <p class="font-light text-sm mb-[16px]">
-        Already have an account?<span
-          class="text-primary-blue text-sm ml-[10px]"
-          ><nuxt-link to="/auth/login">Sign in</nuxt-link></span
-        >
-      </p>
-      <p class="font-light text-sm mb-[16px]">
-        By clicking the sign up button, you agree to our<span
-          class="font-light text-sm text-primary-blue ml-[8px] mb-[48px]"
-        >
-          <nuxt-link to="">conditions of use</nuxt-link>
-        </span>
-      </p>
+      </div>
     </div>
   </div>
 </template>
@@ -139,63 +163,103 @@ import {
   ValidationObserver,
   ValidationProvider,
 } from "vee-validate/dist/vee-validate.full.esm";
-import IconButton from "@/components/buttons/IconButton.vue"
-import CancelIcon from "@/components/svg/Cancel.vue"
-import Spinner from "@/components/Loading/Spinners.vue"
+import CancelIcon from "@/components/svg/Cancel.vue";
+import BrandLogo from "@/components/svg/Logo";
 
 export default {
   layout: "empty",
   components: {
     ValidationObserver,
     ValidationProvider,
-      "icon-button": IconButton,
-      "cancel-icon": CancelIcon,
-      "loading-spinner": Spinner
+    "cancel-icon": CancelIcon,
+    "brand-logo": BrandLogo,
   },
   data() {
     return {
       loading: false,
       error: null,
-      input: {
-        firstName: "",
-        lastName: "",
-        phone: "",
-        email: "",
-        password: ""
+      fields: {
+        firstName: {
+          value: "",
+          name: "first_name",
+          rules: "required||alpha",
+          type: "text",
+        },
+        lastName: {
+          value: "",
+          name: "last_name",
+          rules: "required||alpha",
+          type: "text",
+        },
+        email: {
+          value: "",
+          name: "email",
+          rules: "required||email",
+          type: "email",
+        },
+        phoneNo: {
+          value: "",
+          name: "phone",
+          rules: "required||digits:11",
+          type: "text",
+        },
+        address: {
+          value: "",
+          name: "address",
+          rules: "required",
+          type: "text",
+        },
+        password: {
+          value: "",
+          name: "password",
+          rules: "min:6||required",
+          type: "password",
+        },
       },
     };
   },
   methods: {
-    async onSubmit() {
-        this.loading = true
+    async createUser() {
+      this.loading = true;
+      const values = {};
+      Object.entries(this.fields).forEach((field) => {
+        values[field[0]] = field[1].value;
+      });
+
       try {
-        const res = await this.$axios.post('/auth/register', this.input);
-        Object.keys(this.input).forEach(key => ({ [this.input[key]]: '' }))
-        const response = await this.$auth.setUserToken(res.data.token)
-        this.$auth.setUser(response.data.user);
-        this.$toast.success('Registration Succesful!!')
+        await this.$axios.post("/api/users/v1/customers/", values, {
+          params: {
+            user_key: "4fbc6c112a19f295d08dfc27f36333b6",
+          },
+        });
+
+        const { email, password } = this.fields;
+
+        await this.$auth.loginWith("local", {
+          data: { email: email.value, password: password.value },
+          params: {
+            userType: "customer",
+            user_key: "4fbc6c112a19f295d08dfc27f36333b6",
+          },
+        });
+        
+        (this.fields.firstName.value = ""),
+        (this.fields.lastName.value = ""),
+        (this.fields.email.value = ""),
+        (this.fields.address.value = ""),
+        (this.fields.phoneNo.value = ""),
+        (this.fields.password.value = "");
+
+        this.$toast.success("Registration Succesful!!");
       } catch (err) {
-        this.error = err.response.data.message
-      }
-      finally {
-        this.loading = false
+        this.error = err.response.data.msg;
+      } finally {
+        this.loading = false;
       }
     },
     closeErrorMessage() {
-        this.error = null
-    }
+      this.error = null;
+    },
   },
 };
 </script>
-
-<style scoped>
-.skewed-box {
-  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
-}
-.container {
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
-}
-input {
-  border: 1px solid #e1e3e3;
-}
-</style>
