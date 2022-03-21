@@ -1,87 +1,172 @@
 <template>
-  <div class="flex justify-center relative">
-    <div
-      class="z-0 absolute skewed-box bg-primary-blue h-[35.688rem] w-full"
-    ></div>
+  <div
+    class="
+      relative
+      w-full
+      h-full
+      after:fixed
+      after:h-[70vh]
+      after:-z-10
+      after:top-0
+      after:-skew-y-12
+      after:origin-top-left
+      after:bg-primary-400
+      after:w-full
+    "
+  >
     <div
       class="
-        container
-        bg-white
-        rounded
-        z-10
-        h-[35.25rem]
-        w-[32.25rem]
-        mt-[218px]
-        mb-[171px]
-        px-[48px]
-        pb-[48px]
-        pt-[58px]
+        min-h-[100vh]
+        border-box
+        flex
+        w-full
+        flex-row flex-wrap
+        items-center
+        justify-center
       "
     >
-      <nuxt-link to="/"
-        ><div class="flex w-full justify-center">
-          <img
-            src="../../assets/images/logos/login-logo.svg"
-            alt="login-logo"
-          /></div
-      ></nuxt-link>
-      <p class="text-center font-light text-base mt-[25px] mb-[32px]">
-        Sign in to your acount
-      </p>
-      <div v-if="error" class="flex relative items-center text-error-900 my-4 rounded bg-error-50 w-full">
-          <span class="text-center flex-grow p-2">{{ error }}</span>
-          <icon-button @click="closeErrorMessage" size="small" class="hover:bg-error-100 rounded-full">
-              <cancel-icon></cancel-icon>
-          </icon-button>
-        </div>
-        <form @submit.prevent="onSubmit" class="flex flex-col text-left">
-            <label class="text-base mb-[8px]" for="email">Email</label>
-            <input
-            class="w-[26.25rem] h-[2.669rem] mb-[24px] px-[1rem]"
-            v-model="input.email"
-            name="email"
-            type="email"
-            />
-
-            <label class="text-base mb-[8px]" for="password">Password</label>
-            <input
-            class="w-[26.25rem] h-[2.669rem] mb-[24px] px-[1rem]"
-            v-model="input.password"
-            name="password"
-            type="password"
-            />
-
-        <app-button class="" type="submit" variant="contained" color="primary" size="large" :disabled="loading" fullWidth uppercase>
-            {{loading ? 'Loading' : 'login'}}
-            <loading-spinner v-if="loading" size="small" color="white" class="mx-4"></loading-spinner>
-        </app-button>
-        </form>
-      <p class="font-light text-base my-[16px]">
-        Don't have an account?<span class="text-primary-blue ml-[10px]"
-          ><nuxt-link to="/auth/signup">Sign up here</nuxt-link></span
+      <div
+        class="
+          box-border
+          m-0
+          flex-0
+          max-w-full
+          flex-row
+          grow
+          basis-0
+          flex
+          justify-center
+        "
+      >
+        <div
+          class="
+            w-full
+            px-6
+            py-10
+            sm:m-8
+            bg-white
+            shadow
+            sm:px-10 sm:py-12
+            max-w-lg
+          "
         >
-      </p>
-      <p>
-        <span class="font-light text-base text-primary-blue mb-[48px]">
-          <nuxt-link to="/auth/forgot-password">Forgot your password?</nuxt-link>
-        </span>
-      </p>
+          <div class="h-10">
+            <nuxt-link to="/" class="mr-6">
+              <brand-logo class="!w-full !h-full" />
+            </nuxt-link>
+          </div>
+
+          <p class="text-center font-medium my-6">Create your account</p>
+
+          <div
+            v-if="error"
+            class="
+              flex
+              relative
+              items-center
+              text-error-900
+              my-4
+              rounded
+              bg-error-50
+              w-full
+            "
+          >
+            <span class="text-center flex-grow p-2">{{ error }}</span>
+            <icon-button
+              @click="closeErrorMessage"
+              size="small"
+              class="hover:bg-error-100 rounded-full"
+            >
+              <cancel-icon></cancel-icon>
+            </icon-button>
+          </div>
+
+          <form @submit.prevent="loginUser" class="flex flex-col text-left">
+            <div class="mb-4">
+              <label class="mb-2 capitalize" for="email">Email</label>
+              <input
+                class="
+                  w-full
+                  flex
+                  items-center
+                  outline-0
+                  border border-secondary-200
+                  rounded-md
+                  shadow-sm
+                  focus:outline-none
+                  focus:border-primary-200
+                  focus:ring-primary-200
+                  focus:ring-1
+                  sm:text-sm
+                  p-2
+                "
+                v-model="input.email"
+                name="email"
+                type="email"
+                id="email"
+              />
+            </div>
+
+            <div class="mb-4">
+              <label class="mb-2 capitalize" for="password">Password</label>
+              <input
+                class="
+                  w-full
+                  flex
+                  items-center
+                  outline-0
+                  border border-secondary-200
+                  rounded-md
+                  shadow-sm
+                  focus:outline-none
+                  focus:border-primary-200
+                  focus:ring-primary-200
+                  focus:ring-1
+                  sm:text-sm
+                  p-2
+                "
+                v-model="input.password"
+                name="password"
+                type="password"
+                id="password"
+              />
+            </div>
+
+            <app-button class="" type="submit" variant="contained" color="primary" size="large" :disabled="loading" fullWidth uppercase>
+                {{loading ? 'Loading' : 'login'}}
+                <loading-spinners v-if="loading" size="small" color="white" class="mx-4"></loading-spinners>
+            </app-button>
+          </form>
+
+          <p class="text-primary-500 text-sm my-4">
+            <nuxt-link to="/auth/merchant-login">Login as Merchant</nuxt-link>
+          </p>
+
+          <p class="text-sm my-4">
+            Don't have an account?<span class="text-primary-500 text-sm ml-2"
+              ><nuxt-link to="/auth/signup">Sign up here</nuxt-link></span
+            >
+          </p>
+          <p class="text-sm text-primary-500">
+            <nuxt-link to="/auth/forgot-password">Forgot your password?</nuxt-link>
+          </p>
+
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import IconButton from "@/components/buttons/IconButton.vue"
 import CancelIcon from "@/components/svg/Cancel.vue"
-import Spinner from "@/components/Loading/Spinners.vue"
+import BrandLogo from "@/components/svg/Logo";
 
 export default {
   layout: "authpages",
   name: "login",
   components: {
-      "icon-button": IconButton,
-      "cancel-icon": CancelIcon,
-      "loading-spinner": Spinner
+    "brand-logo": BrandLogo,
+    "cancel-icon": CancelIcon,
   },
   data() {
     return {
@@ -94,40 +179,33 @@ export default {
     };
   },
   methods: {
-    async onSubmit() {
-        this.loading = true
+    async loginUser() {
+      this.loading = true
+
       try {
-         this.$toast.show('Logging in...')
-        const response = await this.$auth.loginWith("local", {
+        await this.$auth.loginWith("local", {
           data: this.input,
+          params: {
+            user_key: '4fbc6c112a19f295d08dfc27f36333b6',
+            userType: "customer",
+          }
         });
-        this.$auth.setUser(response.data.user);
+
         this.input.email = '';
         this.input.password = '';
+
         this.$toast.success('Successfully authenticated')
       } catch (err) {
-        this.error = err.response.data.message
+        this.error = err.response.data.msg
         this.$toast.error('Error while authenticating')
       }
       finally {
-            this.loading = false
+        this.loading = false
       }
     },
     closeErrorMessage() {
-        this.error = null
+      this.error = null
     }
   },
 };
 </script>
-
-<style scoped>
-.skewed-box {
-  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
-}
-.container {
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
-}
-input {
-  border: 1px solid #e1e3e3;
-}
-</style>
