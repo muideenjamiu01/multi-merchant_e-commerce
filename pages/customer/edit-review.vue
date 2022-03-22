@@ -14,7 +14,7 @@
         </h2>
         <div class="flex gap-2 mt-4">
           <img
-            v-for="star in 5"
+            v-for="star in 3"
             :key="star"
             src="@/assets/images/icons/star.svg"
             alt=""
@@ -38,7 +38,7 @@
           </div>
         </div>
         <div class="flex justify-end">
-          <app-button variant="contained">
+          <app-button variant="contained" @click="submitReview">
           Submit Review
           </app-button>
         </div>
@@ -52,13 +52,39 @@
 </template>
 
 <script>
-import AppButton from "@/components/buttons/Button.vue"
+  import AppButton from "@/components/buttons/Button.vue"
+  import { mapGetters, mapActions } from "vuex";
+
 
   export default {
     components: {
       'app-button': AppButton
-    }
+    }, 
+    methods : {
+      
+    },
+     computed: mapGetters({
+      reviews: "reviews/reviews",
+      loading: "reviews/loading",
+      errors: "reviews/errors",
+    }),
+    
+    methods: {
+      async submitReview () {
+        alert("button clicked");
+        await this.$store.dispatch("reviews/fetchReviews").then(
+          alert("successly posted...routing to reviews page")).then(
+        this.$router.push("/customer/reviews"))
+        
+       
+
+        
+        },
+      ...mapActions(["fetchReviews"]),
+      // getProductImage(images) {
+      //   return  `https://www.cnet.com/a/img/resize/bf0ae84431f323812b4579499e23ee54870e5cc6/2022/03/15/25776d32-cf18-422e-9094-f5b4f991de56/mac-studio-and-mac-studio-display-002-copy.jpg?auto=webp&fit=crop&height=236&width=420`
+      // },
+    },
   }
 </script>
 
-<style lang="scss" scoped></style>
