@@ -98,7 +98,7 @@
                 <li class="cursor-pointer mb-4">My Account</li>
               </NuxtLink>
               <NuxtLink to="/customer/orders">
-                <li class="cursor-pointer mb-4">Orders</li>
+                <li class="cursor-pointer mb-4" @click.prevent="getOrders">Orders</li>
               </NuxtLink>
               <NuxtLink to="/customer/wishlist">
                 <li class="cursor-pointer mb-4">Wishlist</li>
@@ -146,7 +146,7 @@ import SearchIcon from "@/components/svg/Search";
 import UserAvatar from "@/components/Avatar";
 import AppButton from "@/components/buttons/Button";
 import IconButton from "@/components/buttons/IconButton";
-
+import axios from 'axios';
 export default {
   components: {
     "brand-logo": BrandLogo,
@@ -177,6 +177,10 @@ export default {
     toggleDropdown() {
       this.dropdown = !this.dropdown;
     },
+	async getOrders(){
+		let res = await axios.get('https://api-2445583927843.production.gw.apicast.io/api/order/customer/62349faf33be1152f2ce2f75?user_key=4fbc6c112a19f295d08dfc27f36333b6')
+		console.log('get oerders')
+	},
     async logout() {
       await this.$auth.logout();
       this.$router.push("/auth/login");

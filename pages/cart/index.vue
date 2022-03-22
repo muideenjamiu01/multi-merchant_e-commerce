@@ -11,7 +11,7 @@
           :key="item.product.id"
           class="md:flex gap-8 border-b p-4 mt-4"
         >
-          <div class="w-2/4">
+          <div class="w-full md:w-2/4">
             <div>
               <div class="flex gap-4">
                 <div class="w-24 h-24 overflow-hidden">
@@ -51,26 +51,33 @@
               </div>
             </div>
           </div>
-          <div class="md:w-1/4">
-            <div class="flex justify-center items-center gap-4">
-              <app-button
-                @click="removeProductFromCart({ productId: item.product.id })"
-                size="small"
-                >-
-              </app-button>
-              <div
-                class="text-center font-semibold text-md text-gray-400 flex items-center"
-              >
-                {{ item.quantity }}
+          <div class="pt-10 md:pt-0 flex justify-between ">
+            <div class="md:w-1/4">
+              <div class="flex justify-center items-center gap-4">
+                <app-button
+                  @click="removeProductFromCart({ productId: item.product.id })"
+                  size="small"
+                  >-
+                </app-button>
+                <div
+                  class="text-center font-semibold text-md text-gray-400 flex items-center"
+                >
+                  {{ item.quantity }}
+                </div>
+                <app-button
+                  @click="addProductToCart(item.product)"
+                  size="small"
+                >
+                  +
+                </app-button>
               </div>
-              <app-button @click="addProductToCart(item.product)" size="small">
-                +
-              </app-button>
             </div>
-          </div>
-          <div class="md:w-1/4">
-            <div class="flex">
-              <span class="text-base font-light">{{ item.product.price }}</span>
+            <div class="md:w-1/4">
+              <div class="flex">
+                <span class="text-base font-light">{{
+                  item.product.price
+                }}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -100,7 +107,6 @@
           fullWidth
           >Checkout</app-button
         >
-        <!-- <ContentsAddToCart /> -->
       </div>
     </div>
   </div>
@@ -109,7 +115,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import AppButton from "@/components/buttons/Button.vue";
-import axios from 'axios'
+import axios from "axios";
 
 export default {
   components: {
@@ -136,18 +142,35 @@ export default {
       const photos = JSON.parse(images);
       return photos[photos.length - 1];
     },
-    checkout() {
+
+    //this checkout function creates order
+
+    async checkout() {
+      const token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImlkIiwiaWF0IjoxNjQ1MTI1MzA1fQ.iCh8btvM7H4gFlV5YuXkZu_3Wl_5RC5RLzQnPx1B2jk";
       let payload = {
         customerId: this.$auth.user.firstName,
         customerEmail: this.$auth.user.email,
         products: [
-          { name: this.$auth.user.firstName, id: " 6225f03ad11fa8f700b8b876", quantity: 1 },
+          {
+            name: this.$auth.user.lastName,
+            id: "6225f03ad11fa8f700b8b876",
+            quantity: 1,
+          },
         ],
-        total: 5000,
+        total: this.totalPrice,
       };
-	  let res = axios.post('https://youstore-orders.herokuapp.com/orders/', payload);
-	  let data = res.data
-	  console.log(data)
+      let res = await axios.post(
+        "https://api-2445583927843.production.gw.apicast.io:443/api/order/?user_key=4fbc6c112a19f295d08dfc27f36333b6",
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      
+      console.log(res);
       this.$router.push("/checkout");
     },
   },
