@@ -45,7 +45,7 @@
             py-10
             sm:m-8
             bg-white
-            shadow
+            shadow-md
             sm:px-10 sm:py-12
             max-w-lg
           "
@@ -56,7 +56,7 @@
             </nuxt-link>
           </div>
 
-          <p class="text-center font-medium my-6">Create your account</p>
+          <p class="text-center font-medium my-6">Log in to your account</p>
 
           <div
             v-if="error"
@@ -185,18 +185,17 @@ export default {
       try {
         await this.$auth.loginWith("local", {
           data: this.input,
-          params: {
-            user_key: '4fbc6c112a19f295d08dfc27f36333b6',
-            userType: "customer",
-          }
+          params: { userType: "customer" },
         });
 
         this.input.email = '';
         this.input.password = '';
 
+       window.localStorage.setItem("ys.user_type", "customer")
         this.$toast.success('Successfully authenticated')
       } catch (err) {
         this.error = err.response.data.msg
+        window.localStorage.removeItem("ys.user_type", "customer")
         this.$toast.error('Error while authenticating')
       }
       finally {
@@ -207,5 +206,10 @@ export default {
       this.error = null
     }
   },
+  beforeMount() {
+    if (this.$auth.loggedIn) {
+      this.$router.go(-1);
+    }
+  }
 };
 </script>

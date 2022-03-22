@@ -20,7 +20,10 @@ export default {
   css: ["@/assets/css/tailwind.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ["~plugins/core-component.js"],
+  plugins: [
+    "~plugins/core-component.js",
+    "~plugins/axios.js"
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -71,10 +74,7 @@ export default {
         endpoints: {
           login: { url: "/api/users/v1/auth/", method: "post" },
           logout: { url: "/auth/logout", method: "get" },
-          user: { url: "/api/users/v1/customers/one/", method: "get",
-            params: {
-              user_key: '4fbc6c112a19f295d08dfc27f36333b6',
-            }
+          user: { url: "/api/users/v1/customers/one/", method: "get"
           }
         },
       },
