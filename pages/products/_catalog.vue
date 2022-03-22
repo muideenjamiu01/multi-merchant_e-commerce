@@ -24,32 +24,33 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import Spinner from "@/components/Loading/Spinners.vue";
+  import { mapGetters, mapActions } from "vuex";
+  import Spinner from "@/components/Loading/Spinners.vue";
 
-export default {
-  components: {
-    "loading-spinner": Spinner,
-  },
-  computed: mapGetters({
-    products: "products/products",
-    errors: "products/errors",
-    loading: "products/loading",
-  }),
-  created() {
-    this.$store.dispatch("products/fetchProducts");
-  },
-  methods: {
-    ...mapActions(["fetchProducts"]),
-    ...mapActions({ getSingleProduct: "products/getSingleProduct" }),
-  },
-};
+  export default {
+    components: {
+      "loading-spinner": Spinner,
+    },
+    computed: mapGetters({
+      products: "products/products",
+      errors: "products/errors",
+      loading: "products/loading",
+    }),
+    created() {
+      this.$store.dispatch("products/fetchProducts");
+     
+    },
+    methods: {
+      ...mapActions(["fetchProducts"]),
+      ...mapActions({ getSingleProduct: "products/getSingleProduct" }),
+    },
+  };
 </script>
 
 <style scoped>
-.grid-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 24px;
-}
+  .grid-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+  }
 </style>
