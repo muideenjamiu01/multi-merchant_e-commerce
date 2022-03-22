@@ -76,41 +76,39 @@
         Merchant Dashboard
       </app-button>
 
-      <div v-if="isAuthenticated" class="">
-        <div class="flex" >
-        <app-button class="rounded-full hover:!bg-transparent" size="small" @click="toggleDropdown">
-          <user-avatar class="w-8 h-8" :src="user.photo" :alt="user.firstName"/>
-        </app-button>
-        <h1 class="mt-[15px]" v-if="$auth.loggedIn">Hi, {{$auth.user.firstName.toUpperCase()}}</h1>
-        <h1 v-else></h1>
-        </div>
-        <div
-          v-if="dropdown"
-          class="bg-transparent fixed inset-0"
-          @click="toggleDropdown"
-        >
-          <div
-            class="bg-white w-60 absolute top-20 right-4 rounded-sm shadow-md"
-            @click.stop=""
-          >
-            <ul class="px-4 py-4">
-              <NuxtLink to="/customer/profile">
-                <li class="cursor-pointer mb-4">My Account</li>
-              </NuxtLink>
-              <NuxtLink to="/customer/orders">
-                <li class="cursor-pointer mb-4">Orders</li>
-              </NuxtLink>
-              <NuxtLink to="/customer/wishlist">
-                <li class="cursor-pointer mb-4">Wishlist</li>
-              </NuxtLink>
+      <!-- <div class=""> -->
+        <dropdown-menu v-if="$auth.loggedIn">
+          <template v-slot:dropdown-element="{ setOpen, isOpen }">
+            <app-button class="rounded-full hover:!bg-transparent" size="small" @click.native="setOpen(!isOpen)">
+              <user-avatar class="w-8 h-8" :src="user.photo" :alt="user.firstName" />
+            </app-button>
+            <!-- <h1 class="mt-[15px]" v-if="$auth.loggedIn">Hi, {{$auth.user.firstName}}</h1> -->
+          </template>
+          <template v-slot:dropdown-content="{ setOpen }">
+            <ul class=" m-0 py-2 px-0 relative list-none outline-0">
+              <li v-for="(link, index) in links" :key="index" class="bg-transparent outline-0 border-0 m-0 rounded-none cursor-pointer select-none align-middle appearance-none text-inherit font-normal text-base flex justify-start items-center relative min-h-[48px] py-[6px] px-4 box-border whitespace-nowrap" @click="setOpen(false)">
+                <NuxtLink :to="link.to">
+                  {{ link.label}}
+                </NuxtLink>
+              </li>
               <div class="border-t"/>
               <app-button class="" @click="logout" fullWidth>
                 Log out
               </app-button>
             </ul>
+          </template>
+        </dropdown-menu>
+        <!-- <div
+          v-if="dropdown"
+          class="bg-transparent fixed inset-0"
+          @click="toggleDropdown">
+          <div
+            class="bg-white w-60 absolute top-20 right-4 rounded-sm shadow-md"
+            @click.stop=""
+          >
           </div>
-        </div>
-      </div>
+        </div> -->
+      <!-- </div> -->
 
       <app-button
         v-else
@@ -144,8 +142,6 @@ import CartIcon from "@/components/svg/Cart";
 import MenuIcon from "@/components/svg/Menu";
 import SearchIcon from "@/components/svg/Search";
 import UserAvatar from "@/components/Avatar";
-import AppButton from "@/components/buttons/Button";
-import IconButton from "@/components/buttons/IconButton";
 
 export default {
   components: {
@@ -153,13 +149,29 @@ export default {
     "cart-icon": CartIcon,
     "menu-icon": MenuIcon,
     "search-icon": SearchIcon,
-    "app-button": AppButton,
-    "icon-button": IconButton,
     "user-avatar": UserAvatar,
   },
   data() {
     return {
-      dropdown: false,
+      isOpen: false,
+      links: [
+        {
+          to: '/customer/profile',
+          label: 'My Account'
+        },
+        {
+          to: '/customer/orders',
+          label: 'Orders'
+        },
+        {
+          to: '/customer/wishlist',
+          label: 'Wishlist'
+        },
+        {
+          to: '/customer/reviews',
+          label: 'My Reviews'
+        },
+      ]
     };
   },
   computed: {
@@ -169,14 +181,14 @@ export default {
     user() {
       return this.$auth.user;
     },
-    isAuthenticated() {
-      return this.$auth.loggedIn;
-    },
+    // $auth.loggedIn() {
+    //   return this.$auth.loggedIn;
+    // },
   },
   methods: {
-    toggleDropdown() {
-      this.dropdown = !this.dropdown;
-    },
+    // setOpen() {
+    //   this.isOpen = !this.isOpen;
+    // },
     async logout() {
       await this.$auth.logout();
       this.$router.push("/auth/login");

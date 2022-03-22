@@ -11,6 +11,9 @@ export const getters = {
   withdrawals(state) {
     return state.withdrawals;
   },
+  balance: (state) => state.balance,
+  count: (state) => state.count,
+  transferred: (state) => state.transferred,
   loading: (state) => state.loading,
   errors: (state) => state.errors,
 };

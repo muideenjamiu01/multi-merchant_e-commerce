@@ -1,64 +1,173 @@
 <template>
-  <div class="flex justify-center relative">
+  <div
+    class="
+      relative
+      w-full
+      h-full
+      after:fixed
+      after:h-[70vh]
+      after:-z-10
+      after:top-0
+      after:-skew-y-12
+      after:origin-top-left
+      after:bg-primary-400
+      after:w-full
+    "
+  >
     <div
-      class="z-0 absolute skewed-box bg-primary-blue h-[35.688rem] w-full"
-    ></div>
-    <div
-      class="container bg-white rounded z-10 h-[645px] w-[32.25rem] mt-[218px] mb-[171px] px-[48px] pb-[48px] pt-[58px]"
+      class="
+        min-h-[100vh]
+        border-box
+        flex
+        w-full
+        flex-row flex-wrap
+        items-center
+        justify-center
+      "
     >
-      <nuxt-link to="/"
-        ><div class="flex w-full justify-center">
-          <img
-            src="../../assets/images/logos/login-logo.svg"
-            alt="login-logo"
-          /></div
-      ></nuxt-link>
-      <p class="text-center font-light text-base mt-[25px] mb-[32px]">
-        Merchant Login
-      </p>
-      <form @submit.prevent="submit" class="flex flex-col text-left">
-        <label class="text-base mb-[8px]" for="email">Email</label>
-        <input
-          class="w-[25.25rem] h-[2.669rem] mb-[24px] px-[1rem]"
-          v-model="input.email"
-          name="email"
-          type="email"
-          required
-        />
-        <label class="text-base mb-[8px]" for="password">Password</label>
-        <input
-          class="w-[25.25rem] h-[2.669rem] mb-[32px] px-[1rem]"
-          v-model="input.password"
-          name="password"
-          type="password"
-          required
-        />
-        <button
-          class="bg-primary-blue text-white rounded w-[25.25rem] h-[2.5rem] mb-[32px]"
-          type="submit"
+      <div
+        class="
+          box-border
+          m-0
+          flex-0
+          max-w-full
+          flex-row
+          grow
+          basis-0
+          flex
+          justify-center
+        "
+      >
+        <div
+          class="
+            w-full
+            px-6
+            py-10
+            sm:m-8
+            bg-white
+            shadow
+            sm:px-10 sm:py-12
+            max-w-lg
+          "
         >
-          LOGIN
-        </button>
-      </form>
-      <p class="font-light text-base mb-[16px]">
-        Don't have a seller account?<span class="text-primary-blue ml-[10px]"
-          ><nuxt-link to="/merchant/new">Create one here</nuxt-link></span
-        >
-      </p>
-      <p>
-        <span class="font-light text-base text-primary-blue mb-[48px]">
-          <nuxt-link to="/auth/forgot-password"
-            >Forgot your password?</nuxt-link
+          <div class="h-10">
+            <nuxt-link to="/" class="mr-6">
+              <brand-logo class="!w-full !h-full" />
+            </nuxt-link>
+          </div>
+
+          <p class="text-center font-medium my-6">Create your account</p>
+
+          <div
+            v-if="error"
+            class="
+              flex
+              relative
+              items-center
+              text-error-900
+              my-4
+              rounded
+              bg-error-50
+              w-full
+            "
           >
-        </span>
-      </p>
+            <span class="text-center flex-grow p-2">{{ error }}</span>
+            <icon-button
+              @click="closeErrorMessage"
+              size="small"
+              class="hover:bg-error-100 rounded-full"
+            >
+              <cancel-icon></cancel-icon>
+            </icon-button>
+          </div>
+
+          <form @submit.prevent="handleSubmit" class="flex flex-col text-left">
+            <div class="mb-4">
+              <label class="mb-2 capitalize" for="email">Email</label>
+              <input
+                class="
+                  w-full
+                  flex
+                  items-center
+                  outline-0
+                  border border-secondary-200
+                  rounded-md
+                  shadow-sm
+                  focus:outline-none
+                  focus:border-primary-200
+                  focus:ring-primary-200
+                  focus:ring-1
+                  sm:text-sm
+                  p-2
+                "
+                v-model="input.email"
+                name="email"
+                type="email"
+                id="email"
+              />
+            </div>
+
+            <div class="mb-4">
+              <label class="mb-2 capitalize" for="password">Password</label>
+              <input
+                class="
+                  w-full
+                  flex
+                  items-center
+                  outline-0
+                  border border-secondary-200
+                  rounded-md
+                  shadow-sm
+                  focus:outline-none
+                  focus:border-primary-200
+                  focus:ring-primary-200
+                  focus:ring-1
+                  sm:text-sm
+                  p-2
+                "
+                v-model="input.password"
+                name="password"
+                type="password"
+                id="password"
+              />
+            </div>
+
+            <app-button class="capitalize" type="submit" variant="contained" color="primary" size="large" :disabled="loading" fullWidth uppercase>
+                {{loading ? 'Loading' : 'login'}}
+                <loading-spinners v-if="loading" size="small" color="white" class="mx-4"></loading-spinners>
+            </app-button>
+          </form>
+
+          <p class="text-primary-500 text-sm my-4">
+            <nuxt-link to="/auth/merchant-login">Login as Customer</nuxt-link>
+          </p>
+          <!-- <p class="font-light text-base mb-[16px]">
+            Don't have a seller account?<span class="text-primary-blue ml-[10px]"
+              ><nuxt-link to="/merchant/new">Create one here</nuxt-link></span
+            >
+          </p> -->
+          <p class="text-primary-blue text-sm my-4">
+            <nuxt-link to="/auth/forgot-password"
+              >Forgot your password?</nuxt-link
+            >
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
+
 <script>
+import CancelIcon from "@/components/svg/Cancel.vue"
+import BrandLogo from "@/components/svg/Logo";
+
 export default {
   layout: "authpages",
-  name: "login",
+  name: "merchant-login",
+  components: {
+    "brand-logo": BrandLogo,
+    "cancel-icon": CancelIcon,
+  },
   data() {
     return {
       input: {
@@ -71,51 +180,32 @@ export default {
   },
 
   methods: {
-    async submit() {
+    async handleSubmit() {
       this.loading = true;
-     try {
-        const res = await this.$axios.post('/auth/merchant/login', this.input);
-        Object.keys(this.input).forEach(key => ({ [this.input[key]]: '' }))
-        const response = await this.$auth.setUserToken(res.data.token)
-        this.$auth.setUser(response.data.user);
-        this.$toast.success('Login Succesful!!')
-		
 
+      try {
+        await this.$auth.loginWith("local", {
+          data: this.input,
+          params: {
+            userType: 'merchant',
+            user_key: '4fbc6c112a19f295d08dfc27f36333b6',
+          }
+        });
+
+        this.input.email = '';
+        this.input.password = '';
+
+        this.$toast.success('Login Succesful!!')
       } catch (err) {
         this.error = err.response.data.message
       }
       finally {
         this.loading = false
-		this.$router.push("/merchant/dashboard");
       }
     },
     closeErrorMessage() {
       this.error = null;
     },
-    // async submit() {
-    // await fetch('http://localhost:8000/api/login',{
-    //     method: 'POST',
-    //     headers: {'Content-Type': 'application/json'},
-    //     credentials: 'include',
-    //     body: JSON.stringify({
-    //     email: this.email,
-    //     password: this.password
-    //     })
-    // }).then(console.log("login succesfull"))
-    // await this.$router.push('/');
-    // }
   },
 };
 </script>
-
-<style scoped>
-.skewed-box {
-  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
-}
-.container {
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
-}
-input {
-  border: 1px solid #e1e3e3;
-}
-</style>

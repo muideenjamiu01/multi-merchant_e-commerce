@@ -232,6 +232,7 @@ import DashboardChart from "~/components/DashboardChart.vue";
 export default {
 //   middleware: "auth",
   layout: "merchant",
+  middleware: 'auth-merchant',
   components: {
     DashboardChart,
     "app-button": AppButton,

@@ -57,6 +57,7 @@
 
 <script>
 export default {
-  layout: 'merchant'
+  layout: 'merchant',
+  middleware: 'auth-merchant',
 }
 </script>
