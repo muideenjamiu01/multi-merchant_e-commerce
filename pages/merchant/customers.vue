@@ -80,14 +80,14 @@
                   </tbody>
                 </table>
                  <div class="pb-0 pt-3 text-center">
-                  <!-- <jw-pagination 
+                  <jw-pagination 
                     class="rounded-xl text-white pb-0 pt-3" 
-                    :items="customers" 
+                    :items="pageOfItems" 
                     @changePage="onChangePage" 
                     :labels="customLabels"
                     :styles="customStyles"
                     >
-                  </jw-pagination> -->
+                  </jw-pagination>
                 </div>
         
               </div>
@@ -136,65 +136,16 @@
 
 export default {
   layout: 'merchant',
+  middleware: 'auth-merchant',
   data () {
     return {
       customStyles,
       customLabels,
       pageOfItems: [],
-    //  customers: [
-    //     { name: 'Manos', id: 1 },
-    //     { name: 'Zino', id: 2 },
-    //     { name: 'Uyo', id: 3 },
-    //     { name: 'Kaka', id: 4 },
-    //     { name: 'Chima', id: 5 },
-    //     { name: 'Charles', id: 6 },
-    //     { name: 'Feline', id: 7 },
-    //     { name: 'Samuel', id: 8 },
-    //     { name: 'Charles', id: 9 },
-    //     { name: 'Favour', id: 10 },
-    //     { name: 'Manos', id: 11 },
-    //     { name: 'Zino', id: 12 },
-    //     { name: 'Uyo', id: 13 },
-    //     { name: 'Kaka', id: 14 },
-    //     { name: 'Chima', id: 15 },
-    //     { name: 'Charles', id: 16 },
-    //     { name: 'Feline', id: 17 },
-    //     { name: 'Samuel', id: 18 },
-    //     { name: 'Charles', id: 19 },
-    //     { name: 'Favour', id: 20 }
-    //   ]
+   
     }
   },
 
-  // methods: {
-  //   onChangePage(p) {
-  //     // update page of items
-  //     this.pageOfItems = p;
-  //   },
-  //    thisFileUpload() {
-  //     document.getElementById("fileupload").click();
-  //   },
-	//   async retrieveCustomers() {
-  //       this.loading = true
-  //     try {
-  //       const res = await this.$axios.get('/merchants/customers');
-  //       console.log(res)
-  //       // Object.keys(this.sellerAccountDetails).forEach(key => ({ [this.sellerAccountDetails[key]]: '' }))
-  //       // const response = await this.$auth.setUserToken(res.data.token)
-  //       // this.$auth.setUser(response.data.user);
-  //       this.$toast.success('Cuastomers retrieved Succesfully!!')
-		
-  //     } catch (err) {
-	// 	  this.error = err.response.data.message
-  //     }
-  //     finally {
-	// 	  this.loading = false
-	// 	  this.$router.push("/merchant/products/newproduct");
-  //     }
-
-  //   },
-    
-  // },
   computed: mapGetters({
     customers: "customers/customers",
     loading: "customers/loading",
@@ -205,14 +156,16 @@ export default {
   },
   methods: {
     ...mapActions(["fetchCustomers"]),
+        onChangePage(pageOfItems) {
+      // update page of items
+      this.pageOfItems = pageOfItems;
+    },
   },
   
   components: {
-    // JwPagination,
-
+    JwPagination,
   },
 }
-
 </script>
 
 <style>

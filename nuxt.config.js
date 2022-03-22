@@ -42,8 +42,8 @@ export default {
   ],
 
   toast: {
-    position: "top-left",
-    duration: 2000,
+    position: "top-center",
+    duration: 6000,
     theme: "bubble",
     register: [
       // Register custom toasts
@@ -61,18 +61,21 @@ export default {
     strategies: {
       local: {
         token: {
-          property: "token",
+          property: "data.token",
           global: true,
-          maxAge: 60 * 60 * 24,
         },
         user: {
-          property: 'user',
-          autoFetch: false
+          property: 'data',
+          // autoFetch: false
         },
         endpoints: {
-          login: { url: "/auth/login", method: "post" },
+          login: { url: "/api/users/v1/auth/", method: "post" },
           logout: { url: "/auth/logout", method: "get" },
-          user: { url: "/auth/user", method: "get" },
+          user: { url: "/api/users/v1/customers/one/", method: "get",
+            params: {
+              user_key: '4fbc6c112a19f295d08dfc27f36333b6',
+            }
+          }
         },
       },
     },
@@ -91,7 +94,7 @@ export default {
     },
   },
   axios: {
-    baseURL: "https://youstore-server.herokuapp.com/api",
+    baseURL: "https://api-2445583927843.production.gw.apicast.io",
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
