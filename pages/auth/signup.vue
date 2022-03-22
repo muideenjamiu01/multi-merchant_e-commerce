@@ -45,7 +45,7 @@
             py-10
             sm:m-8
             bg-white
-            shadow
+            shadow-md
             sm:px-10 sm:py-12
             max-w-lg
           "
@@ -237,10 +237,7 @@ export default {
 
         await this.$auth.loginWith("local", {
           data: { email: email.value, password: password.value },
-          params: {
-            userType: "customer",
-            user_key: "4fbc6c112a19f295d08dfc27f36333b6",
-          },
+          params: { userType: "customer" },
         });
         
         (this.fields.firstName.value = ""),
@@ -250,9 +247,11 @@ export default {
         (this.fields.phoneNo.value = ""),
         (this.fields.password.value = "");
 
+       window.localStorage.setItem("ys.user_type", "customer")
         this.$toast.success("Registration Succesful!!");
       } catch (err) {
         this.error = err.response.data.msg;
+        window.localStorage.removeItem("ys.user_type")
       } finally {
         this.loading = false;
       }
@@ -261,5 +260,10 @@ export default {
       this.error = null;
     },
   },
+  beforeMount() {
+    if (this.$auth.loggedIn) {
+      this.$router.go(-1);
+    }
+  }
 };
 </script>

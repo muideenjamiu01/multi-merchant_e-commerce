@@ -45,7 +45,7 @@
             py-10
             sm:m-8
             bg-white
-            shadow
+            shadow-md
             sm:px-10 sm:py-12
             max-w-lg
           "
@@ -56,7 +56,7 @@
             </nuxt-link>
           </div>
 
-          <p class="text-center font-medium my-6">Create your account</p>
+          <p class="text-center font-medium my-6">Log in to your account</p>
 
           <div
             v-if="error"
@@ -139,7 +139,7 @@
           </form>
 
           <p class="text-primary-500 text-sm my-4">
-            <nuxt-link to="/auth/merchant-login">Login as Customer</nuxt-link>
+            <nuxt-link to="/auth/login">Login as Customer</nuxt-link>
           </p>
           <!-- <p class="font-light text-base mb-[16px]">
             Don't have a seller account?<span class="text-primary-blue ml-[10px]"
@@ -186,18 +186,17 @@ export default {
       try {
         await this.$auth.loginWith("local", {
           data: this.input,
-          params: {
-            userType: 'merchant',
-            user_key: '4fbc6c112a19f295d08dfc27f36333b6',
-          }
+          params: { userType: "merchant" },
         });
 
         this.input.email = '';
         this.input.password = '';
 
+       window.localStorage.setItem("ys.user_type", "merchant")
         this.$toast.success('Login Succesful!!')
       } catch (err) {
-        this.error = err.response.data.message
+        this.error = err.response.data.msg
+       window.localStorage.removeItem("ys.user_type", "merchant")
       }
       finally {
         this.loading = false
@@ -207,5 +206,10 @@ export default {
       this.error = null;
     },
   },
+  beforeMount() {
+    if (this.$auth.loggedIn) {
+      this.$router.go(-1);
+    }
+  }
 };
 </script>
