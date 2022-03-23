@@ -25,7 +25,9 @@
     >
       <div class="mr-2 md:hidden">
         <icon-button>
-          <menu-icon></menu-icon>
+          <menu-icon>
+            
+          </menu-icon>
         </icon-button>
       </div>
 

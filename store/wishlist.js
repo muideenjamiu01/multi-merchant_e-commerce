@@ -47,10 +47,12 @@ export const actions = {
   async fetchWishlist({ commit }) {
     commit("setLoading", true);
     try {
-      const response = await this.$axios.get('http://localhost:5000/api/users/wishlist');
+      const response = await this.$axios.get(
+        "https://youstore-products.herokuapp.com/v1/product/wishlist/products"
+      );
 
       // const {_links, items, meta} = response.data
-
+        console.log(response)
       commit("setWishlist", response.data);
       // commit("setPagination", {...meta, ..._links});
     } catch (error) {

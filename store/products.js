@@ -1,6 +1,6 @@
 export const state = () => ({
   products: [],
-  singleProduct: {},
+  singleProduct: null,
   pagination: null,
   loading: false,
   errors: null,
@@ -19,7 +19,7 @@ export const actions = {
     commit("setLoading", true);
     try {
       const response = await this.$axios.get(
-        "https://youstore-products.herokuapp.com/v1/products",
+        "https://youstore-products.herokuapp.com/v1/products/?category=Phones",
         {
           params: {
             page: 1,
@@ -36,8 +36,8 @@ export const actions = {
       commit("setLoading", false);
     }
   },
-  getSingleProduct({ commit }, index) {
-    commit("setSingleProduct", index);
+  getSingleProduct({ commit }, product) {
+    commit("setSingleProduct", product);
   },
 };
 
@@ -58,7 +58,7 @@ export const mutations = {
     const product = state.products.find((product) => product.id === id);
     product.inventory--;
   },
-  setSingleProduct(state, index) {
-    state.singleProduct = state.products[index];
+  setSingleProduct(state, product) {
+    state.singleProduct = product;
   },
 };

@@ -15,12 +15,15 @@ export const getters = {
 };
 
 export const actions = {
-  async fetchReviews({ commit }) {
+  async postReviews({ commit, rootState }) {
     commit("setLoading", true);
+    // const productId = rootState.products.singleProduct._id
     try {
       console.log("...posting reviews");
       const response = await this.$axios.post(
-        "https://youstore-products.herokuapp.com/v1/product/6231c0b7fdcf0f1e0d7ed566/review",
+        // `https://youstore-products.herokuapp.com/v1/product/${productId}/review`,
+        `https://youstore-products.herokuapp.com/v1/product/6221c11a837e20cc03ff00da/review`,
+
         {
           comment: "beautiful Asus laptop",
           rating: "3",
@@ -29,10 +32,9 @@ export const actions = {
 
       const reviewData = response;
       debugger;
-      console.log(reviewData, reviewData.length);
+      console.log(reviewData);
       commit("setReviews", reviewData);
     } catch (error) {
-      console.log("error failed to post to alex's server");
       commit("setError", error.message);
     } finally {
       commit("setLoading", false);
