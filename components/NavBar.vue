@@ -67,14 +67,6 @@
       >
         Become a merchant
       </app-button>
-      <app-button
-        v-else
-        to="/merchant/dashboard"
-        color="primary"
-        class="hidden md:flex mr-4"
-      >
-        Merchant Dashboard
-      </app-button>
 
       <!-- <div class=""> -->
         <dropdown-menu v-if="$auth.loggedIn">
@@ -82,7 +74,6 @@
             <app-button class="rounded-full hover:!bg-transparent" size="small" @click.native="setOpen(!isOpen)">
               <user-avatar class="w-8 h-8" :src="user.photo" :alt="user.firstName" />
             </app-button>
-            <!-- <h1 class="mt-[15px]" v-if="$auth.loggedIn">Hi, {{$auth.user.firstName}}</h1> -->
           </template>
           <template v-slot:dropdown-content="{ setOpen }">
             <ul class=" m-0 py-2 px-0 relative list-none outline-0">
@@ -159,7 +150,7 @@ import SearchIcon from "@/components/svg/Search";
 import UserAvatar from "@/components/Avatar";
 import AppButton from "@/components/buttons/Button";
 import IconButton from "@/components/buttons/IconButton";
-import axios from 'axios';
+
 export default {
   components: {
     "brand-logo": BrandLogo,
@@ -198,21 +189,16 @@ export default {
     user() {
       return this.$auth.user;
     },
-    // $auth.loggedIn() {
-    //   return this.$auth.loggedIn;
-    // },
   },
   methods: {
     toggleDropdown() {
       this.dropdown = !this.dropdown;
     },
-	async getOrders(){
-		let res = await axios.get('https://api-2445583927843.production.gw.apicast.io/api/order/customer/62349faf33be1152f2ce2f75?user_key=4fbc6c112a19f295d08dfc27f36333b6')
-		console.log(res)
-	},
+	
     async logout() {
       await this.$auth.logout();
-      this.$router.push("/auth/login");
+       window.localStorage.removeItem("ys.user_type")
+      // this.$router.push("/auth/login");
       this.$toast.show('Successfully Signed Out')
     },
   },
