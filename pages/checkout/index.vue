@@ -36,79 +36,7 @@
             <new-address-modal v-model="modalOpen"> </new-address-modal>
           </div>
 
-          <!-- <form action="" @submit.prevent="saveAddress">
-            <div class="md:flex justify-between gap-8">
-              <div class="mt-4 md:w-1/2">
-                <div>
-                  <label for="shop-name" class="block mb-2 text-sm font-medium"
-                    >Street Address</label
-                  >
-                  <input
-                    id="street-address"
-                    v-model.trim="streetAddress"
-                    type="text"
-                    name="street-address"
-                    class="border border-gray-200 text-sm focus:outline-primary-blue block w-full p-2.5"
-                  />
-                </div>
-              </div>
-              <div class="mt-4 md:w-1/2">
-                <div>
-                  <label for="shop-name" class="block mb-2 text-sm font-medium"
-                    >City / LGA</label
-                  >
-                  <input
-                    id="city-lga"
-                    v-model="cityLga"
-                    type="text"
-                    name="city-lga"
-                    class="border border-gray-200 text-sm focus:outline-primary-blue block w-full p-2.5"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="md:flex justify-between gap-8">
-              <div class="mt-4 md:w-1/2">
-                <div>
-                  <label for="shop-name" class="block mb-2 text-sm font-medium"
-                    >State</label
-                  >
-                  <input
-                    id="state"
-                    v-model.trim="state"
-                    type="text"
-                    name="state"
-                    class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-                  />
-                </div>
-              </div>
-              <div class="mt-4 md:w-1/2">
-                <div>
-                  <label for="shop-name" class="block mb-2 text-sm font-medium"
-                    >Zip / postal code</label
-                  >
-                  <input
-                    id="zip-postal-code"
-                    v-model.trim="zipPostalCode"
-                    type="text"
-                    name="zip-postal-code"
-                    class="border border-gray-200 text-sm focus:outline-primary-blue block w-full p-2.5"
-                  />
-                </div>
-                <div class="flex justify-end items-end mt-4">
-                  
-                  <app-button
-                    size="small"
-                    variant="outlined"
-                    color="success"
-                    type="submit"
-                  >
-                    Save
-                  </app-button>
-                </div>
-              </div>
-            </div>
-          </form> -->
+         
           <div class="md:mt-10">
             <div class="mt-10">
               <h2 class="text-xl">Payment</h2>
@@ -141,63 +69,16 @@
                   color="primary"
                   >Proceed To Make Payment</app-button
                 >
-                
               </div>
             </section>
 
-            <!-- <section>
-              <form @submit.prevent="initializePaystack">
-                <div class="md:flex justify-between gap-8">
-                  <div class="mt-4 md:w-1/2">
-                    <div>
-                      <label
-                        for="shop-name"
-                        class="block mb-2 text-sm font-medium"
-                        >Email</label
-                      >
-                      <input
-                        id="state"
-                        v-model.trim="email"
-                        type="text"
-                        name="email"
-                        class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-                      />
-                    </div>
-                  </div>
-                  <div class="mt-4 md:w-1/2">
-                    <div>
-                      <label for="amount" class="block mb-2 text-sm font-medium"
-                        >Amount</label
-                      >
-                      <input
-                        id="zip-postal-code"
-                        v-model.trim="amount"
-                        type="text"
-                        name="amount"
-                        class="border border-gray-200 text-sm focus:outline-primary-blue block w-full p-2.5"
-                      />
-                    </div>
-                    <div class="mt-10">
-                      <app-button
-                        type="submit"
-                        size="medium"
-                        variant="contained"
-                        color="success"
-                        >Make Payment</app-button
-                      >
-                    </div>
-
-                    
-                  </div>
-                </div>
-              </form>
-            </section> -->
+           
           </div>
         </div>
       </div>
-      <!-- <div class="md:w-1/3">
+      <div class="md:w-1/3">
         <ContentsOrderSummary />
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -217,17 +98,15 @@ export default {
       SelectedAddress: "",
       modalOpen: false,
       shippingFee: "",
-      //   streetAddress: "",
-      //   cityLga: "",
-      //   state: "",
-      //   zipPostalCode: "",
+      
     };
   },
   computed: {
     ...mapGetters({
       cart: "cart/cartProducts",
-      totalPrice: "cart/cartTotalPrice",
+	  totalPrice: "cart/cartTotalPrice",
       itemsCount: "cart/cartItemsCount",
+	  orderId: "orders/getOrderId"
     }),
     sumTotal() {
       return Number(this.totalPrice) + Number(this.shippingFee);
@@ -244,10 +123,7 @@ export default {
     },
   },
   methods: {
-	  getUserEmail(){
-		
-		
-	  },
+    
     saveAddress() {
       console.log();
     },
@@ -255,20 +131,30 @@ export default {
       this.modalOpen = !this.modalOpen;
     },
     initializePaystack() {
+		
       this.$paystack({
         key: "pk_test_1439df5ec859471cd4e3d8405a5b7dea45667b48", // Replace with your public key.
-        email:this.$auth.user.email,
+        email: this.$auth.user.email,
         amount: Math.floor(this.sumTotal * 100),
-        ref: "",
+        ref: this.orderId,
         currency: "NGN",
-        callback: () => {
-          // Do something.
-          console.log(response);
+         callback: () => {
+        
+        //   // Do something.
+        //   let res =  axios.get(
+        //     "https://api-2445583927843.production.gw.apicast.io:443/api/payments/verify/6234b72eee5826ac6051a5d5?user_key=4fbc6c112a19f295d08dfc27f36333b6",
+    
+        //   );
+        //   let data = res.data;
+        //   console.log(data);
+          
+          alert(response);
         },
         onClose: () => {
           // Do something.
 
           console.log("Payment Closed");
+		  alert('hdbjhfdf')
         },
       });
     },

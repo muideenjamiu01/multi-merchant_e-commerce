@@ -4,16 +4,14 @@
       <ContentsCustomerProfileCard />
     </aside>
     <main class="w-full">
-      <h1 class="font-bold mb-10 mt-8">
-        Your Orders
-      </h1>
+      <h1 class="font-bold mb-10 mt-8">Your Orders</h1>
       <ContentsCustomerOrderSummary />
       <div class="font-bold justify-end md:flex items-center md:space-x-6">
         <p>Price</p>
         <p>Date of Delivery</p>
         <p>Status</p>
       </div>
-      <ContentsOrderslist v-for="n in 3" :key="n" />
+      <ContentsOrderslist v-for="item in products" :key="item" />
       <ContentsCustomerOrderSummary />
       <ContentsOrderslist v-for="n in 1" :key="n" />
       <ContentsCustomerOrderSummary />
@@ -23,16 +21,28 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
-  middleware: 'auth',
+  middleware: "auth",
   computed: {
     ...mapGetters({
-      orders: "orders/getOrders",
+        orders:"orders/items"
+     
     }),
   },
   mounted() {
-    const orders = window.localStorage.getItem("ys-orders");
-    this.$store.commit("orders/setOrders", orders);
+	  console.log('fndsfns')
+    this.$store.dispatch("orders/fetchOrders");
   },
-}
+  methods: {
+    
+   
+    ...mapActions(["fetchOrders"]),
+    getProductPhoto(images) {
+      console.log(images);
+      const photos = JSON.parse(images);
+      return photos[photos.length - 1];
+    },
+  },
+};
 </script>
