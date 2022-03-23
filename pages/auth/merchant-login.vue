@@ -182,18 +182,17 @@ export default {
   methods: {
     async handleSubmit() {
       this.loading = true;
-
+       window.localStorage.setItem("ys.user_type", "merchant")
+       
       try {
         await this.$auth.loginWith("local", {
           data: this.input,
           params: { userType: "merchant" },
         });
-
         this.input.email = '';
         this.input.password = '';
-
-       window.localStorage.setItem("ys.user_type", "merchant")
         this.$toast.success('Login Succesful!!')
+        this.$router.push('/merchant/dashboard')
       } catch (err) {
         this.error = err.response.data.msg
        window.localStorage.removeItem("ys.user_type", "merchant")
