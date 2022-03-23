@@ -5,22 +5,25 @@
     </aside>
     <div>
       <h1 class="font-bold">
-      49 Comments from verified purchases
+        49 Comments from verified purchases
       </h1>
       <ContentsReviews 
-      v-for="comment in reviews" :key="comment.id"
+      v-for="comment in reviews" 
+      :key="comment._id"
       :name='comment.customerName'
-      :review='comment.review'
+      :review='comment.comment'
       :createdAt='comment.createdAt'
       :customerAvatar='comment.customerAvatar'
-
       :rating='comment.rating'
       />
+      <nuxt-link to="/customer/create-reviews"> <app-button>Create a Review</app-button></nuxt-link>
+      
     </div>
   </div>
 </template>
 
 <script>
+  import AppButton from "@/components/buttons/Button.vue";
   import { mapGetters, mapActions } from "vuex";
   export default {
     data () {
@@ -28,6 +31,7 @@
         }
     },
     components: {
+      "app-button": AppButton,
     },
     computed: mapGetters({
       reviews: "reviews/reviews",

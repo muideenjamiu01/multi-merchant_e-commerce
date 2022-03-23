@@ -18,17 +18,13 @@ export const actions = {
   async fetchReviews({ commit }) {
     commit("setLoading", true);
     try {
-      console.log("...posting reviews");
       const response = await this.$axios.get(
-        "https://youstore-products.herokuapp.com/v1/product/6231c0b7fdcf0f1e0d7ed566/review"
+        "https://youstore-products.herokuapp.com/v1/products/6221c11a837e20cc03ff00da/one"
       );
-        
-      const reviewData = response.data.data;
-      debugger
+      const reviewData = response.data.data.reviews;
         console.log(reviewData);
       commit("setReviews", reviewData);
     } catch (error) {
-      console.log("error failed to post to alex's server")
       commit("setError", error.message);
     } finally {
       commit("setLoading", false);

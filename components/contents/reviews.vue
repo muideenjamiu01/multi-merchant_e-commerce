@@ -3,7 +3,7 @@
     <div class="mt-6">
       <div>
         <div class="mb-2 flex items-center my-[10px]">
-          <img class="rounded-full bg-primary-gray w-[40px] h-[40px] my-[10px]" src="https://lwlies.com/wp-content/uploads/2017/04/avatar-2009-1108x0-c-default.jpg" alt="">
+          <img class="rounded-full bg-primary-gray w-[40px] h-[40px] my-[10px]" :src="customerAvatar" alt="">
           <h1 class="text-sm font-light ml-2 my-[10px]">
             {{name}}
           </h1>
@@ -31,12 +31,12 @@
 <script>
 
 export default {
-
   props: {
     name: "",
     createdAt: "",
     rating: "",
     review:"",
+    customerAvatar:'',
   },
     
 }

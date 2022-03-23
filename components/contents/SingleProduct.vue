@@ -6,7 +6,8 @@
       </div> -->
       <div class="w-full h-96 max-w-lg">
         <img
-          :src="getProductImage(singleProduct.images)"
+          :src="getProductImage(
+            )"
           class="w-full h-full"
           alt=""
         />
@@ -18,6 +19,7 @@
           <p class="text-primary-blue-dark ml-2.5 text-sm">
             {{ singleProduct.inventory }} ratings
           </p>
+         
         </div>
         <div class="flex mt-6">
           <p class="font-medium text-lg">{{ singleProduct.price }} NGN</p>
@@ -28,7 +30,13 @@
           class="focus:outline-none w-36 px-4 py-1.5 border border-gray-400 rounded"
         >
           <option value="">Select size</option>
+         
         </select>
+         <!-- <img src="@/assets/images/icons/heart.svg" alt="wishlist button"> -->
+
+         <app-button @click="addToWishlist"  class="bg-primary-blue">
+            Add to Wishlist
+          </app-button>
 
         <app-button
           @click="addProductToCart(singleProduct)"
@@ -203,10 +211,14 @@ export default {
   },
   methods: {
     ...mapActions("cart", ["addProductToCart"]),
-    getProductImage(images) {
-      const photos = JSON.parse(images);
-      return photos[photos.length - 1];
+    getProductImage() {
+      // const photos = JSON.parse(images);
+      // return photos[photos.length - 1];
+      return "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQfrWOGqkDUrw7FM0SJsZ6BinOjvh2hgSbbkGvmMm-5aNTaD2fKk8f9ovJPw9vzurnsUVezIdLHXw&usqp=CAc"
     },
+    addToWishlist () {
+      this.$toast.success('Successfully added to wishlist')
+    }
   },
   computed: mapGetters({ singleProduct: "products/singleProduct" }),
 };
