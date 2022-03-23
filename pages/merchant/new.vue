@@ -56,7 +56,7 @@
             <div class="flex justify-between items-center mt-6">
               <div>Photo / Logo</div>
               <div class="flex items-end justify-center">
-                <input id="fileupload" type="file" hidden />
+                <input ref="fileupload" type="file" hidden />
                 <!-- <button
                   id="button"
                   name="button"
@@ -67,13 +67,14 @@
                   Upload
                 </button> -->
                 <app-button
-                  id="button"
+                  
                   name="button"
                   value="Upload"
-                  @click.prevent="thisFileUpload()"
+                  @click.prevent="uploadAvatar"
                   variant="outlined"
                   color="secondary"
                   size="small"
+				  type="submit"
                 >
                   Upload
                 </app-button>
@@ -93,13 +94,14 @@
               <div class="flex items-end justify-center">
                 <input id="fileupload" type="file" hidden />
                 <app-button
-                  id="button"
+                  
                   name="button"
                   value="Upload"
-                  @click.prevent="thisFileUpload()"
+                  @click.prevent="uploadBanner"
                   variant="outlined"
                   color="secondary"
                   size="small"
+				  type="submit"
                 >
                   Upload
                 </app-button>
@@ -199,7 +201,6 @@
                 id="confirm password"
                 type="password"
                 class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-                
               />
             </div>
           </div>
@@ -217,7 +218,7 @@
                 id="bank-name"
                 type="text"
                 class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-				v-model.trim="sellerAccountDetails.bankName"
+                v-model.trim="sellerAccountDetails.bankName"
               />
             </div>
             <div class="mt-4 md:w-1/2">
@@ -228,7 +229,7 @@
                 id="account-name"
                 type="text"
                 class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-				v-model.trim="sellerAccountDetails.accountName"
+                v-model.trim="sellerAccountDetails.accountName"
               />
             </div>
           </div>
@@ -241,7 +242,7 @@
                 id="account-number"
                 type="text"
                 class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-				v-model.trim="sellerAccountDetails.accountNo"
+                v-model.trim="sellerAccountDetails.accountNo"
               />
             </div>
             <div class="md:w-1/2" />
@@ -290,11 +291,13 @@ export default {
   },
   data() {
     return {
+	  file:'',
       sellerAccountDetails: {
         storeName: "",
         email: "",
         logo: "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png",
-        banner: "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png",
+        banner:
+          "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png",
         fullName: "",
         phoneNo: "",
         address: "",
@@ -307,43 +310,75 @@ export default {
     };
   },
   methods: {
-    thisFileUpload() {
-      document.getElementById("fileupload").click();
+    uploadAvatar() {
+      //   document.getElementById("fileupload").click();
+      this.$refs.fileupload.click();
+      const formData = new FormData();
+	  formData.append('file', this.file);
+      axios
+        .post(
+          "https://api-2445583927843.production.gw.apicast.io:443/api/users/v1/merchants/upload/?user_key=4fbc6c112a19f295d08dfc27f36333b6",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
-	 async createMerchant() {
-        this.loading = true
-      try {
-        const res = await this.$axios.post('/merchants', this.sellerAccountDetails);
-        Object.keys(this.sellerAccountDetails).forEach(key => ({ [this.sellerAccountDetails[key]]: '' }))
-        const response = await this.$auth.setUserToken(res.data.token)
-        this.$auth.setUser(response.data.user);
-        this.$toast.success('Registration Succesful!!')
-		
-      } catch (err) {
-		  this.error = err.response.data.message
-      }
-      finally {
-		  this.loading = false
-		  this.$router.push("/merchant/products/newproduct");
-      }
 
+    uploadBanner() {
+      document.getElementById("fileupload").click();
+      const formData = new FormData();
+	  formData.append('file', this.file);
+      axios
+        .post(
+          "https://api-2445583927843.production.gw.apicast.io:443/api/users/v1/merchants/upload-banner/?user_key=4fbc6c112a19f295d08dfc27f36333b6",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    async createMerchant() {
+      this.loading = true;
+      try {
+        const res = await this.$axios.post(
+          "/merchants",
+          this.sellerAccountDetails
+        );
+        Object.keys(this.sellerAccountDetails).forEach((key) => ({
+          [this.sellerAccountDetails[key]]: "",
+        }));
+        const response = await this.$auth.setUserToken(res.data.token);
+        this.$auth.setUser(response.data.user);
+        this.$toast.success("Registration Succesful!!");
+      } catch (err) {
+        this.error = err.response.data.message;
+      } finally {
+        this.loading = false;
+        this.$router.push("/merchant/products/newproduct");
+      }
     },
     closeErrorMessage() {
-        this.error = null
+      this.error = null;
     },
-    // createMerchant() {
-    //   let res = axios.post(
-    //     "https://youstore-server.herokuapp.com/api/merchants",
-    //     this.sellerAccountDetails
-    //   );
-    //   let data = res.data;
-    //   console.log(data);
-
-    //   this.$router.push("/merchant/products/newproduct");
-    // },
-    // when checked:
   },
 };
 </script>
-
 <style lang="scss" scoped></style>

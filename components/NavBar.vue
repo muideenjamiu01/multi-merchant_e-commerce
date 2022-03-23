@@ -89,6 +89,32 @@
             </ul>
           </template>
         </dropdown-menu>
+        <!-- <div
+          v-if="dropdown"
+          class="bg-transparent fixed inset-0"
+          @click="toggleDropdown">
+          <div
+            class="bg-white w-60 absolute top-20 right-4 rounded-sm shadow-md"
+            @click.stop=""
+          >
+            <ul class="px-4 py-4">
+              <NuxtLink to="/customer/profile">
+                <li class="cursor-pointer mb-4">My Account</li>
+              </NuxtLink>
+              <NuxtLink to="/customer/orders">
+                <li class="cursor-pointer mb-4" @click.prevent="getOrders">Orders</li>
+              </NuxtLink>
+              <NuxtLink to="/customer/wishlist">
+                <li class="cursor-pointer mb-4">Wishlist</li>
+              </NuxtLink>
+              <div class="border-t"/>
+              <app-button class="" @click="logout" fullWidth>
+                Log out
+              </app-button>
+            </ul>
+          </div>
+        </div> -->
+      <!-- </div> -->
 
       <app-button
         v-else
@@ -122,6 +148,8 @@ import CartIcon from "@/components/svg/Cart";
 import MenuIcon from "@/components/svg/Menu";
 import SearchIcon from "@/components/svg/Search";
 import UserAvatar from "@/components/Avatar";
+import AppButton from "@/components/buttons/Button";
+import IconButton from "@/components/buttons/IconButton";
 
 export default {
   components: {
@@ -163,6 +191,10 @@ export default {
     },
   },
   methods: {
+    toggleDropdown() {
+      this.dropdown = !this.dropdown;
+    },
+	
     async logout() {
       await this.$auth.logout();
        window.localStorage.removeItem("ys.user_type")
