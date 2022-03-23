@@ -16,7 +16,7 @@
               <div class="flex gap-4">
                 <div class="w-24 h-24 overflow-hidden">
                   <img
-                    :src="getProductPhoto(item.product.images)"
+                    :src="item.product.images"
                     :alt="item.product.title"
                     class="w-full h-full"
                   />
@@ -27,8 +27,8 @@
                       {{ item.product.name }}
                     </h3>
                   </div>
-                  <div class="text-sm font-light">size:small</div>
-                  <div class="text-sm font-light">color:Brown</div>
+                  <div class="text-sm font-light">size:{{item.product.size}}</div>
+                  <div class="text-sm font-light">color:{{item.product.color}}</div>
                   <div class="flex align-center">
                     <app-button
                       @click="
@@ -57,7 +57,7 @@
                 <app-button
                   @click="removeProductFromCart({ productId: item.product.id })"
                   size="small"
-                  >-
+                  > -
                 </app-button>
                 <div
                   class="text-center font-semibold text-md text-gray-400 flex items-center"
@@ -100,12 +100,14 @@
         </p>
 
         <app-button
-          @click="checkout"
+          @click="createOrder"
           class="mt-6"
           color="primary"
           variant="contained"
+		  :disabled="loading"
           fullWidth
-          >Checkout</app-button
+          >{{loading ? 'Loading' : 'Checkout'}}
+                <loading-spinners v-if="loading" size="small" color="white" class="mx-4"></loading-spinners></app-button
         >
       </div>
     </div>
@@ -115,11 +117,16 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import AppButton from "@/components/buttons/Button.vue";
-import axios from "axios";
+
 
 export default {
   components: {
     "app-button": AppButton,
+  },
+  data(){
+	  return{
+		  
+	  }
   },
   computed: {
     ...mapGetters({
@@ -135,44 +142,19 @@ export default {
   methods: {
     ...mapActions("cart", ["addProductToCart", "removeProductFromCart"]),
     ...mapActions("wishlist", ["addToWishlist"]),
+    ...mapActions("orders", ["createOrder"]),
     goBack() {
       this.$router.go(-1);
     },
     getProductPhoto(images) {
+		console.log(images)
       const photos = JSON.parse(images);
       return photos[photos.length - 1];
+	  
     },
 
-    //this checkout function creates order
+  
 
-    async checkout() {
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImlkIiwiaWF0IjoxNjQ1MTI1MzA1fQ.iCh8btvM7H4gFlV5YuXkZu_3Wl_5RC5RLzQnPx1B2jk";
-      let payload = {
-        customerId: this.$auth.user.firstName,
-        customerEmail: this.$auth.user.email,
-        products: [
-          {
-            name: this.$auth.user.lastName,
-            id: "6225f03ad11fa8f700b8b876",
-            quantity: 1,
-          },
-        ],
-        total: this.totalPrice,
-      };
-      let res = await axios.post(
-        "https://api-2445583927843.production.gw.apicast.io:443/api/order/?user_key=4fbc6c112a19f295d08dfc27f36333b6",
-        payload,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      
-      console.log(res);
-      this.$router.push("/checkout");
-    },
   },
 };
 </script>

@@ -2,7 +2,7 @@
   <div>
     <div @click="viewProduct(index)" class="h-48 cursor-pointer">
       <img v-if=!product.images :src="getProductImageOne(product.images)" class="w-full h-full" :alt="product.name" />
-      <img v-else :src="getProductImageTwo(product.images)" class="w-full h-full" :alt="product.name" />
+      <!-- <img v-else :src="getProductImageTwo(product.images)" class="w-full h-full" :alt="product.name" /> -->
     </div>
     <div @click="viewProduct" class="text-sm mt-2 w-full">
       <h1
@@ -60,14 +60,14 @@ export default {
     getProductImageOne() {
       return "https://ng.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/36/550027/1.jpg?8203";
     },
-    getProductImageTwo(images) {
-      // console.log("" + this.products.name.split(","))
-      // const photos = images.split(",");
-      let photo = images.split(",")
-      // return photos[photos.length - 1]
-      console.log(photo)
-      return photo[0];
-    },
+    // getProductImageTwo(images) {
+    //   // console.log("" + this.products.name.split(","))
+    //   // const photos = images.split(",");
+    //   let photo = images.split(",")
+    //   // return photos[photos.length - 1]
+    //   console.log(photo)
+    //   return photo[0];
+    // },
   },
 };
 </script>

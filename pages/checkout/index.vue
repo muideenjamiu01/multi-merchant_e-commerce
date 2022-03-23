@@ -104,8 +104,9 @@ export default {
   computed: {
     ...mapGetters({
       cart: "cart/cartProducts",
-      totalPrice: "cart/cartTotalPrice",
+	  totalPrice: "cart/cartTotalPrice",
       itemsCount: "cart/cartItemsCount",
+	  orderId: "orders/getOrderId"
     }),
     sumTotal() {
       return Number(this.totalPrice) + Number(this.shippingFee);
@@ -130,23 +131,19 @@ export default {
       this.modalOpen = !this.modalOpen;
     },
     initializePaystack() {
+		
       this.$paystack({
         key: "pk_test_1439df5ec859471cd4e3d8405a5b7dea45667b48", // Replace with your public key.
         email: this.$auth.user.email,
         amount: Math.floor(this.sumTotal * 100),
-        ref: "",
+        ref: this.orderId,
         currency: "NGN",
          callback: () => {
-        //   const token =
-        //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImlkIiwiaWF0IjoxNjQ1MTI1MzA1fQ.iCh8btvM7H4gFlV5YuXkZu_3Wl_5RC5RLzQnPx1B2jk";
+        
         //   // Do something.
         //   let res =  axios.get(
         //     "https://api-2445583927843.production.gw.apicast.io:443/api/payments/verify/6234b72eee5826ac6051a5d5?user_key=4fbc6c112a19f295d08dfc27f36333b6",
-        //     {
-        //       headers: {
-        //         Authorization: `Bearer ${token}`,
-        //       },
-        //     }
+    
         //   );
         //   let data = res.data;
         //   console.log(data);

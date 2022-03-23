@@ -10,7 +10,7 @@
           class="flex justify-start items-start gap-2 mt-4"
         >
           <div>
-            <img :src="getProductPhoto(item.product.images)"
+            <img :src="item.product.images"
                 	:alt="item.product.title" class="w-full h-12" />
           </div>
           <div>
