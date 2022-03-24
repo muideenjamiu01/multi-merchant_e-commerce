@@ -148,7 +148,7 @@
             >
           </p>
           <p class="text-sm text-primary-500">
-            <nuxt-link to="/auth/forgot-password">Forgot your password?</nuxt-link>
+            <nuxt-link to="/auth/forgot-password?user=customer">Forgot your password?</nuxt-link>
           </p>
 
         </div>

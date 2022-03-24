@@ -147,7 +147,7 @@
             >
           </p> -->
           <p class="text-primary-blue text-sm my-4">
-            <nuxt-link to="/auth/forgot-password"
+            <nuxt-link to="/auth/forgot-password?user=merchant"
               >Forgot your password?</nuxt-link
             >
           </p>
