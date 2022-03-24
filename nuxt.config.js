@@ -22,7 +22,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     "~plugins/core-component.js",
-    "~plugins/axios.js"
+    "~plugins/axios.js",
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -74,7 +74,7 @@ export default {
         endpoints: {
           login: { url: "/api/users/v1/auth/", method: "post" },
           logout: { url: "/auth/logout", method: "get" },
-          user: { url: "/api/users/v1/customers/one/", method: "get"
+          user: { url: "/api/users/v1/auth/user", method: "get"
           }
         },
       },

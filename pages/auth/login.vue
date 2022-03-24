@@ -181,8 +181,9 @@ export default {
   methods: {
     async loginUser() {
       this.loading = true
-
       try {
+       window.localStorage.setItem("ys.user_type", "customer")
+       
         await this.$auth.loginWith("local", {
           data: this.input,
           params: { userType: "customer" },
@@ -191,7 +192,6 @@ export default {
         this.input.email = '';
         this.input.password = '';
 
-       window.localStorage.setItem("ys.user_type", "customer")
         this.$toast.success('Successfully authenticated')
       } catch (err) {
         this.error = err.response.data.msg

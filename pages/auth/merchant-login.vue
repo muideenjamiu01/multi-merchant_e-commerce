@@ -182,17 +182,16 @@ export default {
   methods: {
     async handleSubmit() {
       this.loading = true;
-
+       window.localStorage.setItem("ys.user_type", "merchant")
+       
       try {
         await this.$auth.loginWith("local", {
           data: this.input,
           params: { userType: "merchant" },
         });
-
         this.input.email = '';
         this.input.password = '';
-
-       window.localStorage.setItem("ys.user_type", "merchant")
+        this.$router.push('/merchant/dashboard')
         this.$toast.success('Login Succesful!!')
       } catch (err) {
         this.error = err.response.data.msg
@@ -206,10 +205,10 @@ export default {
       this.error = null;
     },
   },
-  beforeMount() {
-    if (this.$auth.loggedIn) {
-      this.$router.go(-1);
-    }
-  }
+  // beforeMount() {
+  //   if (this.$auth.loggedIn) {
+  //     this.$router.go(-1);
+  //   }
+  // }
 };
 </script>

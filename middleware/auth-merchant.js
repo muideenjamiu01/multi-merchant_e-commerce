@@ -1,7 +1,7 @@
 export default function ({ store, redirect }) {
-    const { loggedIn, user } = store.state.auth
+  const { loggedIn, user } = store.state.auth
 
-    if (!loggedIn || !user.storename) {
+    if (!loggedIn || !user.storeName) {
       return redirect('/auth/merchant-login')
     }
   }

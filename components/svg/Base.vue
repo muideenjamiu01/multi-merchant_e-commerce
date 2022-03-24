@@ -22,9 +22,9 @@ export default {
     color: {
       type: String,
       default: 'inherit',
-      // validator: function (value) {
-      //   return ['success', 'warning', 'error', 'info', 'primary', 'secondary'].indexOf(value) !== -1
-      // }
+      validator: function (value) {
+        return ['success', 'inherit', 'warning', 'error', 'info', 'primary', 'secondary'].indexOf(value) !== -1
+      }
     }
   },
   computed: {
