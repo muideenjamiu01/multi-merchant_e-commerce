@@ -226,16 +226,13 @@
 </template>
 
 <script>
-import AppButton from "@/components/buttons/Button.vue";
 import DashboardChart from "~/components/DashboardChart.vue";
 
 export default {
-//   middleware: "auth",
   layout: "merchant",
   middleware: 'auth-merchant',
   components: {
     DashboardChart,
-    "app-button": AppButton,
   },
   data() {
     return {
