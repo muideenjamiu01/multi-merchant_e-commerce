@@ -51,7 +51,7 @@ export default {
   methods: {
     ...mapActions("cart", ["addProductToCart"]),
     viewProduct(index) {
-      this.$router.push(
+      this.$router.push( 
         "/" + this.product.name.toLowerCase().split(" ").join("-")
       );
       this.$store.dispatch("products/getSingleProduct", index);
