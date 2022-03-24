@@ -1,31 +1,26 @@
 <template>
-  <div class="text-sm font-light pt-4 border-t border-gray-100 mb-6">
-    <div class="md:flex items-center justify-between">
-        <div class="md:flex">
+  <div class="text-sm font-light pt-4 border-t border-gray-100 mb-6" >
+    <div class="md:flex items-center justify-between" v-for="item in productName" :key="item._id"  >
+        <div class="md:flex" >
           <div class="w-24 h-24 bg-primary-gray mr-4" />
           <div class="space-y-0.5">
             <h1 class="font-medium">
-              Women's Los Angeles California Long Sleeve Sweatshirt Oversized Bat
-              Crew...
+              {{item.name}}
             </h1>
-            <p>Size: Small</p>
-            <p>Color: Brown</p>
-            <p>Quantity: 2</p>
+            <p>Size: {{item.size}}</p>
+            <p>Color:{{item.color}}</p>
+            <p>Quantity:{{item.quantity}} </p>
           </div>
         </div>
         <td class="p-2 whitespace-nowrap">
           <p class="mx-5">
-            14483.00
+            {{item.price}}
           </p>
         </td>
-        <td class="p-2 whitespace-nowrap">
-          <p class="mx-10">
-            12 / 01 / 2022
-          </p>
-        </td>
+        
         <td class="p-2 whitespace-nowrap">
           <p class="mx-1">
-            Delivered
+    			{{orderStatus}}
           </p>
         </td>
       </div>
@@ -34,12 +29,28 @@
 
 
 <script>
+
 export default {
   data () {
     return {
 
     }
   },
+  props:[
+		"productName",
+		"orderStatus"
+		// "price",
+		// "status",
+		// "size",
+		// "color",
+		// "quantity",
+	],
+	mounted() {
+		console.log(this.productName)
+		console.log(this.quantity)
+		console.log(this.status)
+	}
+  
   
 }
 </script>

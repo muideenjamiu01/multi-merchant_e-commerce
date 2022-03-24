@@ -30,6 +30,7 @@
               class="form-label inline-block mb-2 text-gray-700 md:font-light text-xl"
             >Leave a review</label>
             <textarea
+            v-model="input"
               id="Textarea"
               class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               rows="3"
@@ -38,7 +39,7 @@
           </div>
         </div>
         <div class="flex justify-end">
-          <app-button variant="contained">
+          <app-button @click="createReview" variant="contained">
           Submit Review
           </app-button>
         </div>
@@ -55,9 +56,23 @@
 import AppButton from "@/components/buttons/Button.vue"
 
   export default {
+    data () {
+      return  {
+          input: ""
+        }
+    },
     components: {
       'app-button': AppButton
-    }
+    },
+    methods: {
+      createReview(input) {
+        console.log(this.input)
+        this.$store.dispatch("post-reviews/postReviews")
+        this.$router.push("/customer/reviews")
+      },
+    },
+
+
   }
 </script>
 

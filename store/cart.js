@@ -21,15 +21,16 @@ export const getters = {
 // actions
 export const actions = {
   addProductToCart({ state, commit }, product) {
-    // if (product.inventory > 0) {
-    const cartItem = state.items.find((item) => item.product.id === product.id);
-
-    if (!cartItem) {
-      commit("addToCart", product);
-    } else {
-      commit("incrementItemQuantity", cartItem.product.id);
-    }
-
+	  
+	  // if (product.inventory > 0) {
+		  const cartItem = state.items.find((item) => item.product.id === product.id);
+		  
+		  if (!cartItem) {
+			  commit("addToCart", product);
+			} else {
+				commit("incrementItemQuantity", cartItem.product.id);
+			}
+			
     // remove 1 item from stock
     // commit(
     //   "products/decrementProductInventory",
@@ -37,6 +38,7 @@ export const actions = {
     //   { root: true }
     // );
     // }
+
   },
   removeProductFromCart({ state, commit }, { productId, remove }) {
     const cartItem = state.items.find((item) => item.product.id === productId);
@@ -58,7 +60,9 @@ export const actions = {
 // mutations
 export const mutations = {
   addToCart(state, product) {
-    state.items = [...state.items, { product, quantity: 1 }];
+			console.log(state.items)
+			console.log(product)
+			state.items = [...state.items, { product, quantity: 1 }];
     window.localStorage.setItem("ys-cart", JSON.stringify(state.items));
   },
 

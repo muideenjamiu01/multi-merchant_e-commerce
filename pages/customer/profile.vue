@@ -146,8 +146,8 @@ export default {
       profile: {
         name: `${this.$auth.user.firstName} ${this.$auth.user.lastName}`,
         email: this.$auth.user.email,
-        phone: this.$auth.user.phone,
-        address: "27 mathew street,yaba lagos",
+        phone: this.$auth.user.phoneNo,
+        address: this.$auth.user.address,
       },
       user: [],
     };

@@ -57,7 +57,6 @@
                   p-2.5
                 "
                 v-model.trim="sellerAccountDetails.email"
-              />
               <p class="mt-2 text-sm text-gray-400">
                 Your account will be linked to this email address and we will
                 use it to send all our communications.
@@ -82,13 +81,13 @@
                   Upload
                 </button>
                 <app-button
-                  id="button"
                   name="button"
                   value="Upload"
-                  @click.prevent="thisFileUpload()"
+                  @click.prevent="uploadAvatar"
                   variant="outlined"
                   color="secondary"
                   size="small"
+                  
                 >
                   Upload
                 </app-button>
@@ -106,15 +105,15 @@
             <div class="flex justify-between items-center mt-6">
               <div>Banner Photo</div>
               <div class="flex items-end justify-center">
-                <input id="fileupload" type="file" hidden />
+                <input id="fileupload" type="file" />
                 <app-button
-                  id="button"
                   name="button"
                   value="Upload"
-                  @click.prevent="thisFileUpload()"
+                  @click.prevent="uploadBanner"
                   variant="outlined"
                   color="secondary"
                   size="small"
+                  
                 >
                   Upload
                 </app-button>
@@ -130,8 +129,8 @@
           </div>
         </div> -->
         <div class="md:flex justify-between gap-8 mt-4">
-          <div class="mt-4 md:w-1/2">
-            <div>
+          <!-- <div class="mt-4 md:w-1/2">
+             <div>
               <label for="shop-name" class="block mb-2 text-sm font-medium"
                 >Full Name</label
               >
@@ -153,8 +152,8 @@
                 your account. This is the contact we will primarily use to
                 contact you.
               </p>
-            </div>
-          </div>
+            </div> 
+          </div> -->
           <div class="mt-4 md:w-1/2">
             <div>
               <label for="shop-name" class="block mb-2 text-sm font-medium"
@@ -331,7 +330,7 @@
             type="radio"
             id="terms"
             value="yes"
-            v-model="sellerAccountDetails.terms"
+            v-model="merchantAccountDetails.terms"
             class="mr-4"
           />
         </div>
