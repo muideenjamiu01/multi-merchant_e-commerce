@@ -5,7 +5,7 @@
           <div class="w-24 h-24 bg-primary-gray mr-4" />
           <div class="space-y-0.5">
             <h1 class="font-medium">
-              
+              {{customerEmail}}
             </h1>
             <p>Size:</p>
             <p>Color:</p>
@@ -42,13 +42,13 @@ export default {
   },
   computed:{
 	  ...mapGetters({
-      product: "products/products",
+      orders:"orders/items"
 	  
 	  })
   },
   
   method:{
-	  ...mapActions("products", ["fetchProducts"]),
+	  ...mapActions(["fetchOrders"]),
 	  
   }
   
