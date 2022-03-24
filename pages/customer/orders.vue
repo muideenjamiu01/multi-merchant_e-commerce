@@ -6,12 +6,12 @@
     <main class="w-full">
       <h1 class="font-bold mb-10 mt-8">Your Orders</h1>
       <ContentsCustomerOrderSummary />
-      <div class="font-bold justify-end md:flex items-center md:space-x-6">
+      <div class="font-bold justify-end md:flex  md:space-x-6">
         <p>Price</p>
-        <p>Date of Delivery</p>
         <p>Status</p>
       </div>
-      <ContentsOrderslist v-for="item in products" :key="item" />
+	  
+      <ContentsOrderslist v-for="item in items" :key="item" />
       <ContentsCustomerOrderSummary />
       <ContentsOrderslist v-for="n in 1" :key="n" />
       <ContentsCustomerOrderSummary />
@@ -31,7 +31,7 @@ export default {
     }),
   },
   mounted() {
-	  console.log('fndsfns')
+	  console.log()
     this.$store.dispatch("orders/fetchOrders");
   },
   methods: {

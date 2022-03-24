@@ -22,7 +22,7 @@
                 id="username-error"
                 type="text"
                 class="border text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model.trim="sellerAccountDetails.storeName"
+                v-model="merchantAccountDetails.storeName"
               />
               <p class="mt-2 text-sm text-gray-400">
                 Choose a unique name for your online shop: this is the name that
@@ -41,7 +41,7 @@
                 id="username-error"
                 type="text"
                 class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model.trim="sellerAccountDetails.email"
+                v-model="merchantAccountDetails.email"
               />
               <p class="mt-2 text-sm text-gray-400">
                 Your account will be linked to this email address and we will
@@ -57,24 +57,15 @@
               <div>Photo / Logo</div>
               <div class="flex items-end justify-center">
                 <input ref="fileupload" type="file" hidden />
-                <!-- <button
-                  id="button"
-                  name="button"
-                  value="Upload"
-                  @click.prevent="thisFileUpload()"
-                  class="border-2 border-primary-blue rounded-lg font-bold text-primary-blue px-6 py-1 transition duration-300 ease-in-out hover:bg-primary-blue hover:text-white mr-6"
-                >
-                  Upload
-                </button> -->
+
                 <app-button
-                  
                   name="button"
                   value="Upload"
                   @click.prevent="uploadAvatar"
                   variant="outlined"
                   color="secondary"
                   size="small"
-				  type="submit"
+                  
                 >
                   Upload
                 </app-button>
@@ -92,16 +83,15 @@
             <div class="flex justify-between items-center mt-6">
               <div>Banner Photo</div>
               <div class="flex items-end justify-center">
-                <input id="fileupload" type="file" hidden />
+                <input id="fileupload" type="file" />
                 <app-button
-                  
                   name="button"
                   value="Upload"
                   @click.prevent="uploadBanner"
                   variant="outlined"
                   color="secondary"
                   size="small"
-				  type="submit"
+                  
                 >
                   Upload
                 </app-button>
@@ -117,8 +107,8 @@
           </div>
         </div>
         <div class="md:flex justify-between gap-8 mt-4">
-          <div class="mt-4 md:w-1/2">
-            <div>
+          <!-- <div class="mt-4 md:w-1/2">
+             <div>
               <label for="shop-name" class="block mb-2 text-sm font-medium"
                 >Full Name</label
               >
@@ -126,15 +116,15 @@
                 id="full-name"
                 type="text"
                 class="border border-gray-200 text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model.trim="sellerAccountDetails.fullName"
+                v-model="merchantAccountDetails.fullName"
               />
               <p class="mt-2 text-sm text-gray-400">
                 Your name or the name of the person in your team who will manage
                 your account. This is the contact we will primarily use to
                 contact you.
               </p>
-            </div>
-          </div>
+            </div> 
+          </div> -->
           <div class="mt-4 md:w-1/2">
             <div>
               <label for="shop-name" class="block mb-2 text-sm font-medium"
@@ -144,7 +134,7 @@
                 id="username-error"
                 type="text"
                 class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model.trim="sellerAccountDetails.phoneNo"
+                v-model="merchantAccountDetails.phoneNo"
               />
               <p class="mt-2 text-sm text-gray-400">
                 When we need to contact you urgently, this is the number we will
@@ -163,7 +153,7 @@
                 id="username-error"
                 type="text"
                 class="border border-gray-200 text-sm focus:outline-primary-blue duration-200 block w-full p-2.5"
-                v-model.trim="sellerAccountDetails.address"
+                v-model="merchantAccountDetails.address"
               />
               <p class="mt-2 text-sm text-gray-400">
                 Another number where we can reach you ?
@@ -179,7 +169,7 @@
                 id="confirm-password"
                 type="password"
                 class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model.trim="sellerAccountDetails.password"
+                v-model="merchantAccountDetails.password"
               />
               <p class="mt-2 text-sm text-gray-400">
                 At least 8 characters containing a capital letter, a lower
@@ -218,7 +208,7 @@
                 id="bank-name"
                 type="text"
                 class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model.trim="sellerAccountDetails.bankName"
+                v-model.trim="merchantAccountDetails.bankName"
               />
             </div>
             <div class="mt-4 md:w-1/2">
@@ -229,7 +219,7 @@
                 id="account-name"
                 type="text"
                 class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model.trim="sellerAccountDetails.accountName"
+                v-model="merchantAccountDetails.accountName"
               />
             </div>
           </div>
@@ -242,7 +232,7 @@
                 id="account-number"
                 type="text"
                 class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model.trim="sellerAccountDetails.accountNo"
+                v-model="merchantAccountDetails.accountNo"
               />
             </div>
             <div class="md:w-1/2" />
@@ -255,7 +245,7 @@
             type="radio"
             id="terms"
             value="yes"
-            v-model="sellerAccountDetails.terms"
+            v-model="merchantAccountDetails.terms"
             class="mr-4"
           />
         </div>
@@ -291,14 +281,11 @@ export default {
   },
   data() {
     return {
-	  file:'',
-      sellerAccountDetails: {
+      file: "",
+      merchantAccountDetails: {
         storeName: "",
         email: "",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png",
-        banner:
-          "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png",
-        fullName: "",
+        // fullName: "",
         phoneNo: "",
         address: "",
         password: "",
@@ -310,21 +297,16 @@ export default {
     };
   },
   methods: {
-    uploadAvatar() {
+   async  uploadAvatar() {
       //   document.getElementById("fileupload").click();
       this.$refs.fileupload.click();
       const formData = new FormData();
-	  formData.append('file', this.file);
-      axios
-        .post(
-          "https://api-2445583927843.production.gw.apicast.io:443/api/users/v1/merchants/upload/?user_key=4fbc6c112a19f295d08dfc27f36333b6",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        )
+      formData.append("file", this.file);
+      await this.$axios.post("/api/users/v1/merchants/upload/", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
         .then((res) => {
           console.log(res);
         })
@@ -333,20 +315,15 @@ export default {
         });
     },
 
-    uploadBanner() {
+    async uploadBanner() {
       document.getElementById("fileupload").click();
       const formData = new FormData();
-	  formData.append('file', this.file);
-      axios
-        .post(
-          "https://api-2445583927843.production.gw.apicast.io:443/api/users/v1/merchants/upload-banner/?user_key=4fbc6c112a19f295d08dfc27f36333b6",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        )
+      formData.append("file", this.file);
+      await this.$axios.post("/api/users/v1/merchants/upload-banner/", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
         .then((res) => {
           console.log(res);
         })
@@ -359,11 +336,11 @@ export default {
       this.loading = true;
       try {
         const res = await this.$axios.post(
-          "/merchants",
-          this.sellerAccountDetails
+          "/api/users/v1/merchants/",
+          this.merchantAccountDetails
         );
-        Object.keys(this.sellerAccountDetails).forEach((key) => ({
-          [this.sellerAccountDetails[key]]: "",
+        Object.keys(this.merchantAccountDetails).forEach((key) => ({
+          [this.merchantAccountDetails[key]]: "",
         }));
         const response = await this.$auth.setUserToken(res.data.token);
         this.$auth.setUser(response.data.user);

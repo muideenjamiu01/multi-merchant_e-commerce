@@ -23,13 +23,14 @@ export const actions = {
 //   async executeOrder({ state, commit, rootState }) {},
 
   async fetchOrders({ commit, rootState }) {
-	  console.log(rootState)
+	  
 	const customerId = rootState.auth.user._id;
     commit("setLoading", true);
 	
     try {
       let res = await this.$axios.get(`/api/order/customer/${customerId}`);
       commit("addOrder", res.data);
+	  console.log(res)
     } catch (error) {
       commit("setError", error.message);
     } finally {

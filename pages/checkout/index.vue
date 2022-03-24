@@ -36,7 +36,6 @@
             <new-address-modal v-model="modalOpen"> </new-address-modal>
           </div>
 
-         
           <div class="md:mt-10">
             <div class="mt-10">
               <h2 class="text-xl">Payment</h2>
@@ -71,8 +70,6 @@
                 >
               </div>
             </section>
-
-           
           </div>
         </div>
       </div>
@@ -98,15 +95,14 @@ export default {
       SelectedAddress: "",
       modalOpen: false,
       shippingFee: "",
-      
     };
   },
   computed: {
     ...mapGetters({
       cart: "cart/cartProducts",
-	  totalPrice: "cart/cartTotalPrice",
+      totalPrice: "cart/cartTotalPrice",
       itemsCount: "cart/cartItemsCount",
-	  orderId: "orders/getOrderId"
+      orderId: "orders/getOrderId",
     }),
     sumTotal() {
       return Number(this.totalPrice) + Number(this.shippingFee);
@@ -123,7 +119,6 @@ export default {
     },
   },
   methods: {
-    
     saveAddress() {
       console.log();
     },
@@ -131,30 +126,22 @@ export default {
       this.modalOpen = !this.modalOpen;
     },
     initializePaystack() {
-		
+      const transId = this.orderId;
       this.$paystack({
         key: "pk_test_1439df5ec859471cd4e3d8405a5b7dea45667b48", // Replace with your public key.
         email: this.$auth.user.email,
         amount: Math.floor(this.sumTotal * 100),
-        ref: this.orderId,
+        ref: transId,
         currency: "NGN",
-         callback: () => {
-        
-        //   // Do something.
-        //   let res =  axios.get(
-        //     "https://api-2445583927843.production.gw.apicast.io:443/api/payments/verify/6234b72eee5826ac6051a5d5?user_key=4fbc6c112a19f295d08dfc27f36333b6",
-    
-        //   );
-        //   let data = res.data;
-        //   console.log(data);
-          
-          alert(response);
+        callback: () => {
+          //   // Do something.
+          let res = this.$axios.get(`/api/payments/verify/${transId}`);
+          let data = res.data;
+          console.log(data);
         },
         onClose: () => {
           // Do something.
-
           console.log("Payment Closed");
-		  alert('hdbjhfdf')
         },
       });
     },
