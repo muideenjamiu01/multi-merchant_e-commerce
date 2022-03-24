@@ -191,8 +191,8 @@ export default {
         });
         this.input.email = '';
         this.input.password = '';
-        this.$toast.success('Login Succesful!!')
         this.$router.push('/merchant/dashboard')
+        this.$toast.success('Login Succesful!!')
       } catch (err) {
         this.error = err.response.data.msg
        window.localStorage.removeItem("ys.user_type", "merchant")
@@ -205,10 +205,10 @@ export default {
       this.error = null;
     },
   },
-  beforeMount() {
-    if (this.$auth.loggedIn) {
-      this.$router.go(-1);
-    }
-  }
+  // beforeMount() {
+  //   if (this.$auth.loggedIn) {
+  //     this.$router.go(-1);
+  //   }
+  // }
 };
 </script>

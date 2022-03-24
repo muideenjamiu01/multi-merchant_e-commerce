@@ -17,8 +17,8 @@
         xs:px-6
         h-14
         flex
-        justify-between
         items-center
+          justify-between
         max-w-7xl
         w-full
       "
@@ -39,7 +39,7 @@
       <!-- <nav class="grow"> -->
       <div
         class="
-          bg-primary-blue-light
+          bg-primary-100
           px-4
           mx-4
           sm:mx-6
@@ -60,7 +60,16 @@
       </div>
 
       <app-button
-        v-if="!$auth.loggedIn"
+        v-if="isMerchant"
+        to="/merchant/dashboard"
+        color="primary"
+        class="hidden justify-end md:flex capitalize mr-4"
+      >
+        my dashboard
+      </app-button>
+
+      <app-button
+        v-else
         to="/merchant/new"
         color="primary"
         class="hidden md:flex mr-4"
@@ -68,11 +77,11 @@
         Become a merchant
       </app-button>
 
-      <!-- <div class=""> -->
-        <dropdown-menu v-if="$auth.loggedIn">
+      <div class="flex items-center justify-end">
+        <dropdown-menu v-if="$auth.loggedIn && !isMerchant">
           <template v-slot:dropdown-element="{ setOpen, isOpen }">
             <app-button class="rounded-full hover:!bg-transparent" size="small" @click.native="setOpen(!isOpen)">
-              <user-avatar class="w-8 h-8" :src="user.photo" :alt="user.firstName" />
+              <user-avatar class="w-8 h-8" :src="user.photo || user.avatar" :alt="user.firstName || user.storeName" />
             </app-button>
           </template>
           <template v-slot:dropdown-content="{ setOpen }">
@@ -90,27 +99,27 @@
           </template>
         </dropdown-menu>
 
-      <app-button
-        v-else
-        to="/auth/signup"
-        color="primary"
-        variant="outlined"
-        class="hidden md:flex mr-4"
-      >
-        Sign up
-      </app-button>
-
-      <NuxtLink to="/cart" class="hover:bg-secondary-100 relative rounded-full p-[5px]">
-        <cart-icon />
-        <div
-          v-if="itemsCount"
-          class="h-5 w-5 bg-primary-blue rounded-full flex items-center justify-center text-white text-xs absolute -top-2 -right-2"
+        <app-button
+          v-show="!$auth.loggedIn"
+          to="/auth/signup"
+          color="primary"
+          variant="outlined"
+          class="hidden md:flex mr-4"
         >
-          <h1>{{ itemsCount }}</h1>
-        </div>
-      </NuxtLink>
+          Sign up
+        </app-button>
 
-      <!-- </nav> -->
+        <NuxtLink v-if="!isMerchant" to="/cart" class="hover:bg-secondary-100 relative rounded-full p-[5px]">
+          <cart-icon />
+          <div
+            v-if="itemsCount"
+            class="h-5 w-5 bg-primary-blue rounded-full flex items-center justify-center text-white text-xs absolute -top-2 -right-2"
+          >
+            <h1>{{ itemsCount }}</h1>
+          </div>
+        </NuxtLink>
+      </div>
+
     </div>
   </header>
 </template>
@@ -159,8 +168,12 @@ export default {
       itemsCount: "cart/cartItemsCount",
     }),
     user() {
+      console.log(this.$auth)
       return this.$auth.user;
     },
+    isMerchant() {
+      return this.$auth.loggedIn && this.$auth.user.storeName
+    }
   },
   methods: {
     async logout() {
