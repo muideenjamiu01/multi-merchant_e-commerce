@@ -225,7 +225,6 @@ export default {
       Object.entries(this.fields).forEach((field) => {
         values[field[0]] = field[1].value;
       });
-
       try {
         await this.$axios.post("/api/users/v1/customers/", values, {
           params: {
@@ -233,8 +232,9 @@ export default {
           },
         });
 
+       window.localStorage.setItem("ys.user_type", "customer")
+       
         const { email, password } = this.fields;
-
         await this.$auth.loginWith("local", {
           data: { email: email.value, password: password.value },
           params: { userType: "customer" },
@@ -246,8 +246,6 @@ export default {
         (this.fields.address.value = ""),
         (this.fields.phoneNo.value = ""),
         (this.fields.password.value = "");
-
-       window.localStorage.setItem("ys.user_type", "customer")
         this.$toast.success("Registration Succesful!!");
       } catch (err) {
         this.error = err.response.data.msg;

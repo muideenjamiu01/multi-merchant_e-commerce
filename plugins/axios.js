@@ -4,7 +4,9 @@ export default function ({ $axios }) {
             ...config.params,
             user_key: '4fbc6c112a19f295d08dfc27f36333b6',
         }
-        if (config.url === '/api/users/v1/customers/one/')
+
+        if (config.url === "/api/users/v1/auth/user") {
             config.params.userType = window.localStorage.getItem("ys.user_type")
+        }
     })
 }
