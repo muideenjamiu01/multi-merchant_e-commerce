@@ -1,9 +1,9 @@
 <template>
   <div class="px-4 py-8 flex">
-    <aside>
-      <ContentsMerchantProfileCard />
-    </aside>
-    <main class="w-full">
+      <side-nav merchant>
+        <ContentsMerchantProfileCard />
+      </side-nav>
+      <main class="md:ml-72 md:w-[calc(100%_-_288px)]">
       <form>
         <p class="font-medium mb-5">
           Personal Information

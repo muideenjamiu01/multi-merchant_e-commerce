@@ -6,7 +6,7 @@
         {{ user.firstName + ' ' + user.lastName }}
       </p>
       <ul class="space-y-2 text-sm">
-        <li>39 items purchased</li>
+        <!-- <li>39 items purchased</li> -->
         <li>18 reviews given</li>
         <li>Average rating: 3.8 stars</li>
       </ul>

@@ -1,9 +1,9 @@
 <template>
   <div class="px-4 py-8 flex">
-    <aside>
-      <ContentsMerchantProfileCard />
-    </aside>
-    <main class="text-sm w-full">
+      <side-nav merchant>
+        <ContentsMerchantProfileCard />
+      </side-nav>
+      <main class="md:ml-72 md:w-[calc(100%_-_288px)]">
       <h1 class="text-2xl">
         Transactions
       </h1>
