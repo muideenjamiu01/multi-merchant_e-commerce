@@ -85,7 +85,7 @@ export default {
   methods: {
     async logout() {
       await this.$auth.logout();
-      this.$router.push("/auth/login");
+      // this.$router.push("/auth/login");
       this.$toast.show('Successfully Signed Out')
 
     },

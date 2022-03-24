@@ -19,10 +19,17 @@
                 >Name of store</label
               >
               <input
-                id="username-error"
+                id="storeName"
                 type="text"
-                class="border text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model="merchantAccountDetails.storeName"
+                class="
+                  border
+                  text-sm
+                  focus:outline-primary-blue
+                  block
+                  w-full
+                  p-2.5
+                "
+                v-model.trim="sellerAccountDetails.storeName"
               />
               <p class="mt-2 text-sm text-gray-400">
                 Choose a unique name for your online shop: this is the name that
@@ -38,11 +45,18 @@
                 >Email Address</label
               >
               <input
-                id="username-error"
+                id="email"
                 type="text"
-                class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model="merchantAccountDetails.email"
-              />
+                class="
+                  border border-gray-200
+                  t
+                  text-sm
+                  focus:outline-primary-blue
+                  block
+                  w-full
+                  p-2.5
+                "
+                v-model.trim="sellerAccountDetails.email"
               <p class="mt-2 text-sm text-gray-400">
                 Your account will be linked to this email address and we will
                 use it to send all our communications.
@@ -50,14 +64,22 @@
             </div>
           </div>
         </div>
-
+        <!-- 
         <div class="md:flex justify-between gap-8">
           <div class="md:w-1/2">
             <div class="flex justify-between items-center mt-6">
               <div>Photo / Logo</div>
               <div class="flex items-end justify-center">
-                <input ref="fileupload" type="file" hidden />
-
+                <input id="fileupload" type="file" hidden />
+                <button
+                  id="button"
+                  name="button"
+                  value="Upload"
+                  @click.prevent="thisFileUpload()"
+                  class="border-2 border-primary-blue rounded-lg font-bold text-primary-blue px-6 py-1 transition duration-300 ease-in-out hover:bg-primary-blue hover:text-white mr-6"
+                >
+                  Upload
+                </button>
                 <app-button
                   name="button"
                   value="Upload"
@@ -105,7 +127,7 @@
               <span>File type: JPG, PNG or GIF</span>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="md:flex justify-between gap-8 mt-4">
           <!-- <div class="mt-4 md:w-1/2">
              <div>
@@ -115,8 +137,15 @@
               <input
                 id="full-name"
                 type="text"
-                class="border border-gray-200 text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model="merchantAccountDetails.fullName"
+                class="
+                  border border-gray-200
+                  text-sm
+                  focus:outline-primary-blue
+                  block
+                  w-full
+                  p-2.5
+                "
+                v-model.trim="sellerAccountDetails.fullName"
               />
               <p class="mt-2 text-sm text-gray-400">
                 Your name or the name of the person in your team who will manage
@@ -131,10 +160,18 @@
                 >Phone Number</label
               >
               <input
-                id="username-error"
+                id="phone"
                 type="text"
-                class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model="merchantAccountDetails.phoneNo"
+                class="
+                  border border-gray-200
+                  t
+                  text-sm
+                  focus:outline-primary-blue
+                  block
+                  w-full
+                  p-2.5
+                "
+                v-model.trim="sellerAccountDetails.phoneNo"
               />
               <p class="mt-2 text-sm text-gray-400">
                 When we need to contact you urgently, this is the number we will
@@ -150,13 +187,21 @@
                 >Address</label
               >
               <input
-                id="username-error"
+                id="address"
                 type="text"
-                class="border border-gray-200 text-sm focus:outline-primary-blue duration-200 block w-full p-2.5"
-                v-model="merchantAccountDetails.address"
+                class="
+                  border border-gray-200
+                  text-sm
+                  focus:outline-primary-blue
+                  duration-200
+                  block
+                  w-full
+                  p-2.5
+                "
+                v-model.trim="sellerAccountDetails.address"
               />
               <p class="mt-2 text-sm text-gray-400">
-                Another number where we can reach you ?
+                The location of your business.
               </p>
             </div>
           </div>
@@ -168,8 +213,16 @@
               <input
                 id="confirm-password"
                 type="password"
-                class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model="merchantAccountDetails.password"
+                class="
+                  border border-gray-200
+                  t
+                  text-sm
+                  focus:outline-primary-blue
+                  block
+                  w-full
+                  p-2.5
+                "
+                v-model.trim="sellerAccountDetails.password"
               />
               <p class="mt-2 text-sm text-gray-400">
                 At least 8 characters containing a capital letter, a lower
@@ -190,7 +243,15 @@
               <input
                 id="confirm password"
                 type="password"
-                class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
+                class="
+                  border border-gray-200
+                  t
+                  text-sm
+                  focus:outline-primary-blue
+                  block
+                  w-full
+                  p-2.5
+                "
               />
             </div>
           </div>
@@ -207,8 +268,16 @@
               <input
                 id="bank-name"
                 type="text"
-                class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model.trim="merchantAccountDetails.bankName"
+                class="
+                  border border-gray-200
+                  t
+                  text-sm
+                  focus:outline-primary-blue
+                  block
+                  w-full
+                  p-2.5
+                "
+                v-model.trim="sellerAccountDetails.bankName"
               />
             </div>
             <div class="mt-4 md:w-1/2">
@@ -218,8 +287,16 @@
               <input
                 id="account-name"
                 type="text"
-                class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model="merchantAccountDetails.accountName"
+                class="
+                  border border-gray-200
+                  t
+                  text-sm
+                  focus:outline-primary-blue
+                  block
+                  w-full
+                  p-2.5
+                "
+                v-model.trim="sellerAccountDetails.accountName"
               />
             </div>
           </div>
@@ -231,8 +308,16 @@
               <input
                 id="account-number"
                 type="text"
-                class="border border-gray-200 t text-sm focus:outline-primary-blue block w-full p-2.5"
-                v-model="merchantAccountDetails.accountNo"
+                class="
+                  border border-gray-200
+                  t
+                  text-sm
+                  focus:outline-primary-blue
+                  block
+                  w-full
+                  p-2.5
+                "
+                v-model.trim="sellerAccountDetails.accountNo"
               />
             </div>
             <div class="md:w-1/2" />
@@ -262,8 +347,21 @@
       </div>
 
       <div class="flex justify-center items-center mt-8">
-        <app-button type="submit" uppercase variant="contained" size="large">
-          Get Started
+        <app-button
+        type='submit'
+          uppercase
+          variant="contained"
+          size="large"
+          :disabled="loading"
+          uppercase
+        >
+          {{ loading ? "Loading" : "Get Started" }}
+          <loading-spinners
+            v-if="loading"
+            size="small"
+            color="white"
+            class="mx-4"
+          ></loading-spinners>
         </app-button>
       </div>
     </form>
@@ -271,21 +369,18 @@
 </template>
 
 <script>
-import AppButton from "@/components/buttons/Button.vue";
-import axios from "axios";
-
 export default {
   layout: "empty",
-  components: {
-    "app-button": AppButton,
-  },
   data() {
     return {
-      file: "",
-      merchantAccountDetails: {
+      loading: false,
+      error: null,
+      sellerAccountDetails: {
         storeName: "",
         email: "",
-        // fullName: "",
+        logo: "",
+        banner: "",
+        fullName: "",
         phoneNo: "",
         address: "",
         password: "",
@@ -297,59 +392,48 @@ export default {
     };
   },
   methods: {
-   async  uploadAvatar() {
-      //   document.getElementById("fileupload").click();
-      this.$refs.fileupload.click();
-      const formData = new FormData();
-      formData.append("file", this.file);
-      await this.$axios.post("/api/users/v1/merchants/upload/", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-
-    async uploadBanner() {
-      document.getElementById("fileupload").click();
-      const formData = new FormData();
-      formData.append("file", this.file);
-      await this.$axios.post("/api/users/v1/merchants/upload-banner/", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-
     async createMerchant() {
       this.loading = true;
+      console.log("submitting");
+
       try {
-        const res = await this.$axios.post(
+        await this.$axios.post(
           "/api/users/v1/merchants/",
-          this.merchantAccountDetails
+          this.sellerAccountDetails,
+          {
+            params: {
+              user_key: "4fbc6c112a19f295d08dfc27f36333b6",
+            },
+          }
         );
-        Object.keys(this.merchantAccountDetails).forEach((key) => ({
-          [this.merchantAccountDetails[key]]: "",
-        }));
-        const response = await this.$auth.setUserToken(res.data.token);
-        this.$auth.setUser(response.data.user);
+
+        window.localStorage.setItem("ys.user_type", "merchant");
+        const { email, password } = this.sellerAccountDetails;
+
+        await this.$auth.loginWith("local", {
+          data: { email, password },
+          params: { userType: "merchant" },
+        });
+
+        this.sellerAccountDetails.storeName = "";
+        this.sellerAccountDetails.email = "";
+        this.sellerAccountDetails.logo = "";
+        this.sellerAccountDetails.banner = "";
+        this.sellerAccountDetails.fullName = "";
+        this.sellerAccountDetails.phoneNo = "";
+        this.sellerAccountDetails.address = "";
+        this.sellerAccountDetails.password = "";
+        this.sellerAccountDetails.bankName = "";
+        this.sellerAccountDetails.accountName = "";
+        this.sellerAccountDetails.accountNo = "";
+
+        this.$router.push("/merchant/dashboard");
         this.$toast.success("Registration Succesful!!");
       } catch (err) {
-        this.error = err.response.data.message;
+        this.error = err.response.data.msg;
+        window.localStorage.removeItem("ys.user_type");
       } finally {
         this.loading = false;
-        this.$router.push("/merchant/products/newproduct");
       }
     },
     closeErrorMessage() {
@@ -358,4 +442,3 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped></style>
