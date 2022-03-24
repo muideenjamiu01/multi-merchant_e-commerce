@@ -11,12 +11,12 @@
           :key="item.product.id"
           class="md:flex gap-8 border-b p-4 mt-4"
         >
-          <div class="w-2/4">
+          <div class="w-full md:w-2/4">
             <div>
               <div class="flex gap-4">
                 <div class="w-24 h-24 overflow-hidden">
                   <img
-                    :src="getProductPhoto(item.product.images)"
+                    :src="item.product.images"
                     :alt="item.product.title"
                     class="w-full h-full"
                   />
@@ -27,8 +27,8 @@
                       {{ item.product.name }}
                     </h3>
                   </div>
-                  <div class="text-sm font-light">size:small</div>
-                  <div class="text-sm font-light">color:Brown</div>
+                  <div class="text-sm font-light">size:{{item.product.size}}</div>
+                  <div class="text-sm font-light">color:{{item.product.color}}</div>
                   <div class="flex align-center">
                     <app-button
                       @click="
@@ -51,26 +51,33 @@
               </div>
             </div>
           </div>
-          <div class="md:w-1/4">
-            <div class="flex justify-center items-center gap-4">
-              <app-button
-                @click="removeProductFromCart({ productId: item.product.id })"
-                size="small"
-                >-
-              </app-button>
-              <div
-                class="text-center font-semibold text-md text-gray-400 flex items-center"
-              >
-                {{ item.quantity }}
+          <div class="pt-10 md:pt-0 flex justify-between ">
+            <div class="md:w-1/4">
+              <div class="flex justify-center items-center gap-4">
+                <app-button
+                  @click="removeProductFromCart({ productId: item.product.id })"
+                  size="small"
+                  > -
+                </app-button>
+                <div
+                  class="text-center font-semibold text-md text-gray-400 flex items-center"
+                >
+                  {{ item.quantity }}
+                </div>
+                <app-button
+                  @click="addProductToCart(item.product)"
+                  size="small"
+                >
+                  +
+                </app-button>
               </div>
-              <app-button @click="addProductToCart(item.product)" size="small">
-                +
-              </app-button>
             </div>
-          </div>
-          <div class="md:w-1/4">
-            <div class="flex">
-              <span class="text-base font-light">{{ item.product.price }}</span>
+            <div class="md:w-1/4">
+              <div class="flex">
+                <span class="text-base font-light">{{
+                  item.product.price
+                }}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -93,14 +100,15 @@
         </p>
 
         <app-button
-          @click="checkout"
+          @click="createOrder"
           class="mt-6"
           color="primary"
           variant="contained"
+		  :disabled="loading"
           fullWidth
-          >Checkout</app-button
+          >{{loading ? 'Loading' : 'Checkout'}}
+                <loading-spinners v-if="loading" size="small" color="white" class="mx-4"></loading-spinners></app-button
         >
-        <!-- <ContentsAddToCart /> -->
       </div>
     </div>
   </div>
@@ -109,11 +117,16 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import AppButton from "@/components/buttons/Button.vue";
-import axios from 'axios'
+
 
 export default {
   components: {
     "app-button": AppButton,
+  },
+  data(){
+	  return{
+		  
+	  }
   },
   computed: {
     ...mapGetters({
@@ -129,27 +142,19 @@ export default {
   methods: {
     ...mapActions("cart", ["addProductToCart", "removeProductFromCart"]),
     ...mapActions("wishlist", ["addToWishlist"]),
+    ...mapActions("orders", ["createOrder"]),
     goBack() {
       this.$router.go(-1);
     },
     getProductPhoto(images) {
+		console.log(images)
       const photos = JSON.parse(images);
       return photos[photos.length - 1];
+	  
     },
-    checkout() {
-      let payload = {
-        customerId: this.$auth.user.firstName,
-        customerEmail: this.$auth.user.email,
-        products: [
-          { name: this.$auth.user.firstName, id: " 6225f03ad11fa8f700b8b876", quantity: 1 },
-        ],
-        total: 5000,
-      };
-	  let res = axios.post('https://youstore-orders.herokuapp.com/orders/', payload);
-	  let data = res.data
-	  console.log(data)
-      this.$router.push("/checkout");
-    },
+
+  
+
   },
 };
 </script>

@@ -5,17 +5,16 @@
           <div class="w-24 h-24 bg-primary-gray mr-4" />
           <div class="space-y-0.5">
             <h1 class="font-medium">
-              Women's Los Angeles California Long Sleeve Sweatshirt Oversized Bat
-              Crew...
+              {{customerEmail}}
             </h1>
-            <p>Size: Small</p>
-            <p>Color: Brown</p>
-            <p>Quantity: 2</p>
+            <p>Size:</p>
+            <p>Color:</p>
+            <p>Quantity: </p>
           </div>
         </div>
         <td class="p-2 whitespace-nowrap">
           <p class="mx-5">
-            14483.00
+            
           </p>
         </td>
         <td class="p-2 whitespace-nowrap">
@@ -34,12 +33,24 @@
 
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   data () {
     return {
 
     }
   },
+  computed:{
+	  ...mapGetters({
+      orders:"orders/items"
+	  
+	  })
+  },
+  
+  method:{
+	  ...mapActions(["fetchOrders"]),
+	  
+  }
   
 }
 </script>

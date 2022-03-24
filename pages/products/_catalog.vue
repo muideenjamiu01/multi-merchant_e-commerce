@@ -11,12 +11,13 @@
       <p v-else-if="errors" class="text-2xl text-secondary-600">
         An error occurred.
       </p>
-      <div class="grid-list mt-4">
+      <div class="grid-container mt-4">
         <ContentsProductCard
           v-for="(product, index) in products"
           :key="product.id"
           :product="product"
           :index="index"
+          class="grid-item"
         />
       </div>
     </main>
@@ -47,9 +48,13 @@ export default {
 </script>
 
 <style scoped>
-.grid-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 24px;
+
+
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.grid-item {
+  margin: 20px;
 }
 </style>
