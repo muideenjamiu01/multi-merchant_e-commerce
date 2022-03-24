@@ -14,7 +14,7 @@
     <div
       class="
         px-4
-        xs:px-6
+        sm:px-6
         h-14
         flex
         items-center
@@ -168,7 +168,6 @@ export default {
       itemsCount: "cart/cartItemsCount",
     }),
     user() {
-      console.log(this.$auth)
       return this.$auth.user;
     },
     isMerchant() {
