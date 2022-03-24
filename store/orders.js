@@ -30,7 +30,7 @@ export const actions = {
     try {
       let res = await this.$axios.get(`/api/order/customer/${customerId}`);
       commit("addOrder", res.data);
-	  console.log(res)
+	  
     } catch (error) {
       commit("setError", error.message);
     } finally {
@@ -64,7 +64,8 @@ export const actions = {
 // mutations
 export const mutations = {
   addOrder(state, order) {
-    state.items = [...state.items, order];
+	  
+    state.items =  order;
     //   window.localStorage.setItem("ys-orders", JSON.stringify(state.items));
   },
   saveOrderId(state, orderId) {
