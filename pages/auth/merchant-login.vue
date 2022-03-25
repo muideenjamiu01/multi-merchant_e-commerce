@@ -147,7 +147,7 @@
             >
           </p> -->
           <p class="text-primary-blue text-sm my-4">
-            <nuxt-link to="/auth/forgot-password"
+            <nuxt-link to="/auth/forgot-password?user=merchant"
               >Forgot your password?</nuxt-link
             >
           </p>
@@ -163,7 +163,7 @@ import BrandLogo from "@/components/svg/Logo";
 
 export default {
   layout: "authpages",
-  name: "merchant-login",
+  name: "MerchantLogin",
   components: {
     "brand-logo": BrandLogo,
     "cancel-icon": CancelIcon,
