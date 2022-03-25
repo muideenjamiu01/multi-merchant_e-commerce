@@ -6,10 +6,9 @@
       </div> -->
       <div class="w-full h-96 max-w-lg">
         <img
-          :src="getProductImage(
-            )"
+          :src="getProductImage(singleProduct.images[0])"
           class="w-full h-full"
-          alt=""
+          alt="product.name"
         />
       </div>
       <div>
@@ -26,15 +25,12 @@
           <p class="text-primary-gray-light text-sm font-light ml-2.5">-23%</p>
         </div>
 
-        <select
-          class="focus:outline-none w-36 px-4 py-1.5 border border-gray-400 rounded"
-        >
-          <option value="">Select size</option>
-         
-        </select>
+       
          <!-- <img src="@/assets/images/icons/heart.svg" alt="wishlist button"> -->
 
-         <app-button @click="addToWishlist"  class="bg-primary-blue">
+         <app-button 
+            @click="addToWishlist"  
+            class="bg-primary-blue text-white">
             Add to Wishlist
           </app-button>
 
@@ -42,7 +38,6 @@
           @click="addProductToCart(singleProduct)"
           class="mt-6"
           variant="contained"
-          fullWidth
         >
           Add to cart
         </app-button>
@@ -211,10 +206,13 @@ export default {
   },
   methods: {
     ...mapActions("cart", ["addProductToCart"]),
-    getProductImage() {
+    getProductImage(images) {
       // const photos = JSON.parse(images);
       // return photos[photos.length - 1];
-      return "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQfrWOGqkDUrw7FM0SJsZ6BinOjvh2hgSbbkGvmMm-5aNTaD2fKk8f9ovJPw9vzurnsUVezIdLHXw&usqp=CAc"
+      // console.log(images)
+      //  console.log(product)
+      return images
+      // return "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQfrWOGqkDUrw7FM0SJsZ6BinOjvh2hgSbbkGvmMm-5aNTaD2fKk8f9ovJPw9vzurnsUVezIdLHXw&usqp=CAc"
     },
     addToWishlist () {
       this.$toast.success('Successfully added to wishlist')

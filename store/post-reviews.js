@@ -23,7 +23,6 @@ export const actions = {
       const response = await this.$axios.post(
         // `https://youstore-products.herokuapp.com/v1/product/${productId}/review`,
         `https://youstore-products.herokuapp.com/v1/product/6221c11a837e20cc03ff00da/review`,
-
         {
           comment: "beautiful Asus laptop",
           rating: "3",
