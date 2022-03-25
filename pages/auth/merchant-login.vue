@@ -163,7 +163,7 @@ import BrandLogo from "@/components/svg/Logo";
 
 export default {
   layout: "authpages",
-  name: "merchant-login",
+  name: "MerchantLogin",
   components: {
     "brand-logo": BrandLogo,
     "cancel-icon": CancelIcon,

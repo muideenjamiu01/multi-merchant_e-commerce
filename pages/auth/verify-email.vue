@@ -57,15 +57,14 @@
           </div>
 
           <div
-            v-if="error"
             class="
               flex
               relative
               items-center
-              text-error-900
+              text-success-900
               my-4
               rounded
-              bg-error-50
+              bg-success-50
               w-full
             "
           >

@@ -205,11 +205,6 @@ export default {
     closeErrorMessage() {
       this.error = null
     }
-  },
-  beforeMount() {
-    if (this.$auth.loggedIn) {
-      this.$router.go(-1);
-    }
   }
 };
 </script>
