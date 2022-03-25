@@ -30,11 +30,11 @@ export default {
         value: {
             type: String,
             default: ''
-        }
+        },
     },
     data() {
         return {
-            input: value
+            [this.input]: value
         }
     }
 }

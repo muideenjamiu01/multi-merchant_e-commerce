@@ -20,7 +20,6 @@ export const actions = {
       const response = await this.$axios.get(
         "/merchants/customers"
       );
-    console.log(response);
       // const {_links, items, meta} = response.data
       commit("setCustomers", response.data.items);
       // commit("setPagination", {...meta, ..._links});

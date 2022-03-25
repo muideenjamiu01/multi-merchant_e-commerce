@@ -40,7 +40,7 @@
             </tr>
           </thead>
           <tbody class="text-center">
-            <tr v-for="(product, index) in products" :key="product.id" class="border-b">
+            <tr v-for="(product, index) in products" :key="product._id" class="border-b">
                <td> {{ index+1 }}</td>
               <td class="flex gap-4 py-3 text-left">
                   <img 
@@ -51,7 +51,7 @@
                   <h1>
                     {{product.name}}
                   </h1>
-                  <p>{{product.sizes}}</p>
+                  <p>product.sizes</p>
                   <div>Color: {{product.color}}
                     <p width="5px" height="5px" style="background-color:red; display:inline"> 
                     </p>
@@ -127,12 +127,12 @@
           JwPagination,
       },
         computed: mapGetters({
-        products: "products/products",
-        loading: "products/loading",
-        errors: "products/errors",
+        products: "merchant-products/products",
+        // loading: "products/loading",
+        // errors: "products/errors",
       }),
         mounted() {
-          this.$store.dispatch("products/fetchProducts")
+          this.$store.dispatch("merchant-products/fetchProducts")
 
       },
       methods: {
@@ -142,8 +142,8 @@
         },
         ...mapActions(["fetchProducts"]),
         getProductImage(images) {
-         
-          return  `https://www.cnet.com/a/img/resize/bf0ae84431f323812b4579499e23ee54870e5cc6/2022/03/15/25776d32-cf18-422e-9094-f5b4f991de56/mac-studio-and-mac-studio-display-002-copy.jpg?auto=webp&fit=crop&height=236&width=420`
+          return images[0]
+          // return  `https://www.cnet.com/a/img/resize/bf0ae84431f323812b4579499e23ee54870e5cc6/2022/03/15/25776d32-cf18-422e-9094-f5b4f991de56/mac-studio-and-mac-studio-display-002-copy.jpg?auto=webp&fit=crop&height=236&width=420`
         },
         // getProductColor(color) {
         //   const colors = JSON.parse(color);

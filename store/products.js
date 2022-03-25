@@ -1,7 +1,7 @@
 export const state = () => ({
   products: [],
   singleProduct: null,
-  pagination: null,
+  // pagination: null,
   loading: false,
   errors: null,
 });
@@ -9,7 +9,7 @@ export const state = () => ({
 export const getters = {
   products: (state) => state.products,
   singleProduct: (state) => state.singleProduct,
-  pagination: (state) => state.pagination,
+  // pagination: (state) => state.pagination,
   loading: (state) => state.loading,
   errors: (state) => state.errors,
 };
@@ -22,14 +22,16 @@ export const actions = {
         "https://youstore-products.herokuapp.com/v1/products/?category=Phones",
         {
           params: {
-            page: 1,
-            category: "computing",
+            page: 2,
+            // category: "computing",
+            limit: 30
           },
         }
       );
-      const { docs, pagination } = response.data.data;
+      // const { docs, pagination } = response.data.data;
+      const docs = response.data.data
       commit("setProducts", docs);
-      commit("setPagination", pagination );
+      // commit("setPagination", pagination );
     } catch (error) {
       commit("setError", error.message);
     } finally {
