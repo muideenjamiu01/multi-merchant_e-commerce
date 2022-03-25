@@ -30,7 +30,6 @@ export const actions = {
       );
       // const { docs, pagination } = response.data.data;
       const docs = response.data.data
-      console.log(response.data.data)
       commit("setProducts", docs);
       // commit("setPagination", pagination );
     } catch (error) {

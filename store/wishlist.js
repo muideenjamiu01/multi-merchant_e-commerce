@@ -52,7 +52,6 @@ export const actions = {
       );
 
       // const {_links, items, meta} = response.data
-        console.log(response)
       commit("setWishlist", response.data);
       // commit("setPagination", {...meta, ..._links});
     } catch (error) {

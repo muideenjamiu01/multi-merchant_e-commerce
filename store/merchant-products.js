@@ -19,8 +19,6 @@ export const actions = {
       const response = await this.$axios.get(
         "https://api-2445583927843.production.gw.apicast.io/api/products/v1/products/merchant-products?user_key=4fbc6c112a19f295d08dfc27f36333b6"
       );
-       console.log("products");
-      console.log(response.data.data)
       // const {_links, items, meta} = response.data
       commit("setProducts", response.data.data);
       // commit("setPagination", {...meta, ..._links});

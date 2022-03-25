@@ -22,7 +22,6 @@ export const actions = {
         "https://youstore-products.herokuapp.com/v1/products/6221c11a837e20cc03ff00da/one"
       );
       const reviewData = response.data.data.reviews;
-        console.log(reviewData);
       commit("setReviews", reviewData);
     } catch (error) {
       commit("setError", error.message);
