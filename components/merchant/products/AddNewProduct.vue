@@ -173,28 +173,17 @@ export default {
         alert("trying...")
         await this.$axios.post(
           "https://youstore-products.herokuapp.com/v1/products",
-          // {
-          //   name: this.name,
-          //   description: this.description,
-          //   category: this.category,
-          //   quantity: this.quantity,
-          //   price: this.price,
-          //   color: this.color,
-          //   size: this.size,
-          // }
            {
             name: "asus laptop",
             description: "a very neeatly used laptop",
-            category: "computing",
             quantity: 50,
             price: 100000,
             color: "red",
-            size: "small",
-          }
-        ).then(res => console.log(res, "success"))
-        debugger
-        this.$store.dispatch("products/fetchProducts");
-        this.$router.push("/merchant/products");
+            sold: 5,
+          })
+        // ).then(res => console.log(res, "success"))
+        // this.$store.dispatch("products/fetchProducts");
+        // this.$router.push("/merchant/products");
       } catch (err) {
         console.log(err);
       }

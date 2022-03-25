@@ -1,29 +1,31 @@
 <template>
   <div>
-    <form action="">
-      <input type="text" name="password" v-validate="'required'">
-      <span>{{ errors.first('password') }}</span>
-    </form>
-       
+      <h1 class="text-center" >{{$store.state.counter}}</h1>
+      <app-button class="my-[10px]" variant="contained" :fullWidth="true"   @click="$store.dispatch('add')">+</app-button>
+      <app-button class="my-[10px]" variant="contained" :fullWidth="true"  @click="$store.commit('subtract')">-</app-button>
   </div>
 </template>
 <script>
-import { ValidationObserver, ValidationProvider } from "vee-validate/dist/vee-validate.full.esm"
+import AppButton from "@/components/buttons/Button.vue"
 export default {
   data() {
         return {
-        email: '',
-        password: ''
+          
+        
         }
     },
     components: {
-      ValidationObserver,
-      ValidationProvider
+      "app-button": AppButton,
     },
-    methods: {
-        onSubmit() {
-            console.log('Submitted');
-        },
-    },
+    // methods: {
+    //     add() {
+    //         console.log('clicked');
+    //         this.counter++
+    //     },
+    //      subtract() {
+    //         console.log('clicked');
+    //         this.counter--
+    //     },
+    // },
 };
 </script>
