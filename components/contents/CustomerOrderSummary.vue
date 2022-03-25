@@ -1,24 +1,35 @@
 <template>
-  <div border-t-4 border-b-8>
-    <p class="my-3">
+  <div border-t-4 border-b-8 >
+    <div>
+	<p class="my-3">
 
-      Transaction ID:
+      Transaction ID:{{transactionId}}
 	  
     </p>
     <p class="my-3">
-      Date of purchase: 09/01/2022
+      Date of purchase:{{orderDate}}
     </p>
     <p class="my-3">
-      Total cost: 93825.00 NGN
+      Total cost: {{totalCost}}
     </p>
+	</div>
   </div>
 </template>
 <script>
 export default {
 	methods:{
-		hh(){
-			consloe.log(item.data._id)
-		}
+		
+	},
+	props:[
+		"order",
+		"transactionId",
+		"orderDate",
+		"totalCost",
+	],
+	mounted(){
+		console.log(this.transactionId)
+		console.log(this.totalCost)
+		console.log(this.orderDate)
 	}
 }
 </script>
