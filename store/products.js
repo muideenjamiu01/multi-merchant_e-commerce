@@ -16,8 +16,7 @@ export const getters = {
 
 export const actions = {
   async fetchProducts({ commit, rootState }) {
-    alert("fetching products");
-    const productCategory = rootState.products.singleProduct.category;
+    // const productCategory = rootState.products.singleProduct.category;
 
     commit("setLoading", true);
     try {

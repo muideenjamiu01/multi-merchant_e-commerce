@@ -6,10 +6,21 @@
     <main class="w-full text-sm">
       <div class="flex justify-between items-center">
         <h1 class="text-2xl">Products</h1>
+        <form 
+          enctype="mutipart/form-data">
+          <label for="file">Update An Image</label>
+          <input 
+            type="file" 
+            @change="selectFile"
+            ref="file"
+          >
+         
+        </form>
         <NuxtLink to="products/newproduct">
           <app-button  size="small" variant="contained">
             Add Product
           </app-button>
+
         </NuxtLink>
       </div>
       <div>
@@ -52,11 +63,15 @@
                   :src="getProductImage(product.images)" 
                   width="65px" height="65px" 
                   :alt="product.name"
+                  @dblclick="updatePicture(product._id)"
                 >
               </td>
               <td class="py-3 text-left pl-[50px] w-[200px]">
                   <h1>
                     {{product.name}}
+                  </h1>
+                  <h1>
+                    {{product.category}}
                   </h1>
                   <p>Size: {{product.size}}</p>
                   <div>Color: {{product.color}}
@@ -66,11 +81,11 @@
                   </div>
                   <p> Quantity: {{product.quantity}}</p>
               </td>
-              <td> {{product.price}}</td>
+              <td>{{product.price}}</td>
               <td>{{ Math.floor(Math.random() * 40) }}%</td>
               <td>{{ product.sold }}</td>
               <td>{{ Math.floor(Math.random() * 5) }}</td>
-              <td><app-button class="my-[10px]" variant="contained" color="error" @click="deleteProduct(product._id)">X</app-button></td>
+              <td><app-button variant="contained" color="error" class="my-[10px] bg-rose-300" @click="deleteProduct(product._id)">X</app-button></td>
             </tr>
           </tbody>
          
@@ -78,7 +93,7 @@
         <div class="pb-0 pt-3 text-center">
           <jw-pagination 
             class="rounded-xl text-white pb-0 pt-3" 
-            :items="pageOfItems" 
+            :items="products" 
             @changePage="onChangePage" 
             :labels="customLabels"
             :styles="customStyles"
@@ -125,6 +140,7 @@
     layout: 'merchant',
     data () {
     return {
+      file: "",
       customStyles,
       customLabels,
       pageOfItems: [],
@@ -137,7 +153,7 @@
         computed: mapGetters({
         products: "merchant-products/products",
         loading: "products/loading",
-        // errors: "products/errors",
+        errors: "products/errors",
       }),
         mounted() {
           this.$store.dispatch("merchant-products/fetchProducts")
@@ -176,6 +192,25 @@
             console.log("product deleted finally")
           }
         },
+        selectFile() {
+          this.file = this.$refs.file.files[0];
+          this.$toast.success('Please select a product image by double clicking to update with this image')
+        },
+        async updatePicture(id) {
+          const formData = new FormData();
+          formData.append('images', this.file)
+          try {
+            const response = await this.$axios.post(`/api/products/v1/products/${id}/upload`, formData)
+              this.$toast.success('Image Successfully added')
+              this.$router.go(-1)
+              // this.$router.push("/merchant/products")
+
+          } catch (err) {
+            console.log(err);
+          } finally {
+            
+          }
+        }
       },
   }
 </script>

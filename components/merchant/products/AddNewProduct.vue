@@ -54,8 +54,19 @@
     </div>
     <div class="md:flex gap-8">
       <div class="w-full">
+        <form 
+          enctype="mutipart/form-data">
+          <label for="file">Update Image</label>
+          <input 
+            type="file" 
+            @change="selectFile"
+            ref="file"
+          >
+         
+        </form>
+<!--         
         <label>Photos</label><br />
-        <input type="file" class="my-1" />
+        <input type="file" class="my-1" /> -->
         <p class="text-xs">
           Please upload multiple images of this product, preferably different
           views of the product
@@ -150,6 +161,7 @@ export default {
   },
   data() {
     return {
+      file: "",
       categories: [
         "Desktop",
         "Laptops",
@@ -170,6 +182,25 @@ export default {
     
   },
   methods: {
+    selectFile() {
+      this.file = this.$refs.file.files[0];
+      this.$toast.success('Image succesfully added')
+    },
+    async updatePicture(id) {
+      const formData = new FormData();
+      formData.append('images', this.file)
+      try {
+        const response = await this.$axios.post(`/api/products/v1/products/${id}/upload`, formData)
+          this.$toast.success('Image Successfully added')
+          this.$router.go(-1)
+          // this.$router.push("/merchant/products")
+
+      } catch (err) {
+        console.log(err);
+      } finally {
+        
+      }
+    },
     async addNewProduct() {
       try {
         const response = await this.$axios.post(
@@ -183,8 +214,8 @@ export default {
             quantity: this.quantity,
             size: this.size,
             discount: this.discount,
-          })
-          console.log(response)
+          }).then(  res =>  this.updatePicture(res.data.data._id))
+          // this.updatePicture(response.data.data._id)
       } catch (err) {
         console.log(err);
       } finally {

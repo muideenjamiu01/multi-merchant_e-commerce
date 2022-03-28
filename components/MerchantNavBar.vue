@@ -24,7 +24,7 @@
             size="small"
             @click.native="setOpen(!isOpen)"
           >
-            <user-avatar
+            <user-avatar 
               class="w-8 h-8"
               :src="user.avatar"
               :alt="user.storeName"
