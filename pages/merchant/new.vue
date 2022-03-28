@@ -56,7 +56,7 @@
                   w-full
                   p-2.5
                 "
-                v-model.trim="sellerAccountDetails.email"
+                v-model.trim="sellerAccountDetails.email">
               <p class="mt-2 text-sm text-gray-400">
                 Your account will be linked to this email address and we will
                 use it to send all our communications.
@@ -154,6 +154,7 @@
               </p>
             </div> 
           </div> -->
+		  
           <div class="mt-4 md:w-1/2">
             <div>
               <label for="shop-name" class="block mb-2 text-sm font-medium"
@@ -179,9 +180,7 @@
               </p>
             </div>
           </div>
-        </div>
-        <div class="md:flex justify-between gap-8">
-          <div class="mt-4 md:w-1/2">
+		  <div class="mt-4 md:w-1/2">
             <div>
               <label for="shop-name" class="block mb-2 text-sm font-medium"
                 >Address</label
@@ -205,6 +204,9 @@
               </p>
             </div>
           </div>
+        </div>
+        <div class="md:flex justify-between gap-8">
+         
           <div class="mt-4 md:w-1/2">
             <div>
               <label for="password" class="block mb-2 text-sm font-medium"
@@ -232,7 +234,7 @@
           </div>
         </div>
 
-        <div class="md:flex justify-between gap-8">
+        <!-- <div class="md:flex justify-between gap-8">
           <div class="mt-4 md:w-1/2">
             <div>
               <label
@@ -256,7 +258,7 @@
             </div>
           </div>
           <div class="md:w-1/2" />
-        </div>
+        </div> -->
         <div class="mt-10">
           <h1 class="text-xl">Bank Details</h1>
           <hr class="mt-2" />
@@ -330,7 +332,7 @@
             type="radio"
             id="terms"
             value="yes"
-            v-model="merchantAccountDetails.terms"
+            v-model="terms"
             class="mr-4"
           />
         </div>
@@ -353,7 +355,7 @@
           variant="contained"
           size="large"
           :disabled="loading"
-          uppercase
+          
         >
           {{ loading ? "Loading" : "Get Started" }}
           <loading-spinners
@@ -375,6 +377,7 @@ export default {
     return {
       loading: false,
       error: null,
+	  terms: false,
       sellerAccountDetails: {
         storeName: "",
         email: "",
@@ -387,7 +390,7 @@ export default {
         bankName: "",
         accountName: "",
         accountNo: "",
-        // terms: false,
+        // 
       },
     };
   },

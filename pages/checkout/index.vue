@@ -127,8 +127,9 @@ export default {
     },
     initializePaystack() {
       const transId = this.orderId;
+	  console.log(this.orderId)
       this.$paystack({
-        key: "pk_test_1439df5ec859471cd4e3d8405a5b7dea45667b48", // Replace with your public key.
+        key: "pk_test_2691da63d4da3f3e0839ba27151b097ef6019781", // Replace with your public key.
         email: this.$auth.user.email,
         amount: Math.floor(this.sumTotal * 100),
         ref: transId,
@@ -141,7 +142,7 @@ export default {
         },
         onClose: () => {
           // Do something.
-          console.log("Payment Closed");
+          console.log("Payment Closed"); 
         },
       });
     },

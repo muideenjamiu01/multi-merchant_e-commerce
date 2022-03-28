@@ -30,7 +30,7 @@ export const actions = {
     try {
       let res = await this.$axios.get(`/api/order/customer/${customerId}`);
       commit("addOrder", res.data);
-	  
+	  console.log(res.data)
     } catch (error) {
       commit("setError", error.message);
     } finally {
@@ -43,10 +43,15 @@ export const actions = {
       customerId: rootState.auth.user._id,
       customerEmail: rootState.auth.user.email,
       products: rootState.cart.items.map((item) => ({
-        name: item.product.name,
+        
         id: item.product._id,
+		name: item.product.name,
+		price: item.product.price,
+		size:item.product.size,
+		color:item.product.color,
+		image:item.product.images[0],
         quantity: item.quantity,
-        price: item.product.price,
+        
       })),
       total: rootGetters["cart/cartTotalPrice"],
     };
