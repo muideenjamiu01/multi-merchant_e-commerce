@@ -56,30 +56,7 @@
             </nuxt-link>
           </div>
 
-          <p class="text-center font-medium my-6">Forgot password</p>
-
-          <div
-            v-if="message"
-            class="
-              flex
-              relative
-              items-center
-              text-success-900
-              my-4
-              rounded
-              bg-success-50
-              w-full
-            "
-          >
-            <span class="text-center flex-grow p-2">{{ message }}</span>
-            <icon-button
-              @click="closeMessage"
-              size="small"
-              class="hover:bg-success-100 rounded-full"
-            >
-              <cancel-icon></cancel-icon>
-            </icon-button>
-          </div>
+          <p class="text-center font-medium my-6">Reset password</p>
 
           <div
             v-if="error"
@@ -108,12 +85,12 @@
             <form @submit.prevent="handleSubmit" class="w-full">
               <ValidationProvider
                 v-slot="{ errors }"
-                name="email"
-                rules="email|required"
+                name="password"
+                rules="min:6||required"
                 slim
               >
                 <div class="mb-4">
-                  <label class="mb-2 capitalize" for="email">Enter your Email</label>
+                  <label class="mb-2 capitalize" for="password">Password</label>
                   <input
                     class="
                       w-full
@@ -130,9 +107,41 @@
                       sm:text-sm
                       p-2
                     "
-                    v-model="email"
-                    type="email"
-                    id="email"
+                    v-model="password"
+                    type="password"
+                    id="password"
+                  />
+                  <span class="text-xs text-error-800">{{ errors[0] }}</span>
+                </div>
+              </ValidationProvider>
+
+              <ValidationProvider
+                v-slot="{ errors }"
+                name="confirm_password"
+                rules="min:6||required"
+                slim
+              >
+                <div class="mb-4">
+                  <label class="mb-2 capitalize" for="confirm_password">Confirm your Password</label>
+                  <input
+                    class="
+                      w-full
+                      flex
+                      items-center
+                      outline-0
+                      border border-secondary-200
+                      rounded-md
+                      shadow-sm
+                      focus:outline-none
+                      focus:border-primary-200
+                      focus:ring-primary-200
+                      focus:ring-1
+                      sm:text-sm
+                      p-2
+                    "
+                    v-model="confirm_password"
+                    type="confirm_password"
+                    id="confirm_password"
                   />
                   <span class="text-xs text-error-800">{{ errors[0] }}</span>
                 </div>
@@ -145,11 +154,6 @@
           </form>
           </ValidationObserver>
 
-          <p class="text-sm my-4">
-            Don't have an account?<span class="text-primary-500 text-sm ml-2"
-              ><nuxt-link to="/auth/signup">Sign up here</nuxt-link></span
-            >
-          </p>
         </div>
       </div>
     </div>
@@ -165,7 +169,7 @@ import CancelIcon from "@/components/svg/Cancel.vue"
 import BrandLogo from "@/components/svg/Logo";
 
 export default {
-    name: "ForgotPassword",
+    name: "ResetPassword",
   layout: "authpages",
   components: {
     ValidationObserver,
@@ -175,9 +179,9 @@ export default {
   },
   data() {
     return {
-        email: "",
+        password: "",
+        confirm_password: "",
       loading: false,
-      message: "",
       error: null
     };
   },
@@ -185,16 +189,21 @@ export default {
     async handleSubmit() {
       this.loading = true
       try {
+        if (this.password === this.confirm_password) {
           const qs = this.$route.query.user
         const response = await this.$axios.post(
             `/api/users/v1/auth/${qs}/reset-password`,
-            { email: this.email }
+            { password: this.password }
         );
 
-        this.email = '';
+        this.password = "",
+        this.confirm_password = "",
 
-        this.message = response.data.msg
+        qs === 'merchant' ? this.$router.push('/auth/merchant-login') : this.$router.push('/auth/login')
         this.$toast.success(response.data.msg)
+        } else {
+          this.error = 'Both password fields must match'
+        }
       } catch (err) {
         this.error = err.response.data.msg
       }
@@ -211,7 +220,7 @@ export default {
   },
   beforeMount() {
     if (this.$auth.loggedIn) {
-      this.$router.go('/');
+      this.$router.go(-1);
     }
   }
 };
