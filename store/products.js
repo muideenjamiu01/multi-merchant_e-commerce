@@ -15,21 +15,27 @@ export const getters = {
 };
 
 export const actions = {
-  async fetchProducts({ commit }) {
+  async fetchProducts({ commit, rootState }) {
+    alert("fetching products");
+    const productCategory = rootState.products.singleProduct.category;
+
     commit("setLoading", true);
     try {
       const response = await this.$axios.get(
-        "https://youstore-products.herokuapp.com/v1/products/?category=Phones",
+        // `https://youstore-products.herokuapp.com/v1/products/?category=${productCategory}`,
+        `https://youstore-products.herokuapp.com/v1/products/?category=phone`,
+        // "https://api-2445583927843.production.gw.apicast.io/api/products/v1/products",
         {
           params: {
-            page: 2,
+            page: 1,
             // category: "computing",
-            limit: 30
+            // limit: 30,
           },
         }
       );
       // const { docs, pagination } = response.data.data;
-      const docs = response.data.data
+      console.log(response);
+      const docs = response.data.data;
       commit("setProducts", docs);
       // commit("setPagination", pagination );
     } catch (error) {

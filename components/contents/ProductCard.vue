@@ -12,7 +12,8 @@
           cursor-pointer
           whitespace-nowrap
           overflow-hidden
-          text-ellipsis
+          text-ellipsis 
+          text-primary-blue
         "
       >
         {{ product.name }}

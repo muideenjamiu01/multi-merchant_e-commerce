@@ -18,51 +18,59 @@
         >
           <thead class="py-3 border-b font-medium text-center">
             <tr>
-              <th class="pb-3 text-left text-center">
+              <th class="pb-3 text-center">
                 S/No.
               </th>
-              
-              <th class="pb-3 text-left text-center">
+              <th class="pb-3 text-center">
+                Image
+              </th>
+              <th class="pb-3 text-center">
                 Description
               </th>
               <th class="pb-3">
-                Price
+                Price (NGN)
               </th>
               <th class="pb-3 text-center">
                 Discount (%)
               </th>
               <th class="pb-3">
-                Sold
+                No. of Items Sold
               </th>
               <th class="pb-3">
                 Avg. Rating
+              </th>
+               <th class="pb-3">
+                Delete Product
               </th>
             </tr>
           </thead>
           <tbody class="text-center">
             <tr v-for="(product, index) in products" :key="product._id" class="border-b">
-               <td> {{ index+1 }}</td>
-              <td class="flex gap-4 py-3 text-left">
-                  <img 
+              <td> {{ index+1 }}</td>
+              <td> 
+                <img 
                   :src="getProductImage(product.images)" 
                   width="65px" height="65px" 
-                  :alt="product.name">
-                <div>
+                  :alt="product.name"
+                >
+              </td>
+              <td class="py-3 text-left pl-[50px] w-[200px]">
                   <h1>
                     {{product.name}}
                   </h1>
-                  <p>product.sizes</p>
+                  <p>Size: {{product.size}}</p>
                   <div>Color: {{product.color}}
-                    <p width="5px" height="5px" style="background-color:red; display:inline"> 
+                    <p width="5px" height="5px" :style="getProductColor(product.color)"> 
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </p>
                   </div>
                   <p> Quantity: {{product.quantity}}</p>
-                </div>
               </td>
               <td> {{product.price}}</td>
               <td>{{ Math.floor(Math.random() * 40) }}%</td>
               <td>{{ product.sold }}</td>
               <td>{{ Math.floor(Math.random() * 5) }}</td>
+              <td><app-button class="my-[10px]" variant="contained" color="error" @click="deleteProduct(product._id)">X</app-button></td>
             </tr>
           </tbody>
          
@@ -70,7 +78,7 @@
         <div class="pb-0 pt-3 text-center">
           <jw-pagination 
             class="rounded-xl text-white pb-0 pt-3" 
-            :items="products" 
+            :items="pageOfItems" 
             @changePage="onChangePage" 
             :labels="customLabels"
             :styles="customStyles"
@@ -128,7 +136,7 @@
       },
         computed: mapGetters({
         products: "merchant-products/products",
-        // loading: "products/loading",
+        loading: "products/loading",
         // errors: "products/errors",
       }),
         mounted() {
@@ -142,13 +150,32 @@
         },
         ...mapActions(["fetchProducts"]),
         getProductImage(images) {
-          return images[0]
-          // return  `https://www.cnet.com/a/img/resize/bf0ae84431f323812b4579499e23ee54870e5cc6/2022/03/15/25776d32-cf18-422e-9094-f5b4f991de56/mac-studio-and-mac-studio-display-002-copy.jpg?auto=webp&fit=crop&height=236&width=420`
+          return images[0];
         },
-        // getProductColor(color) {
-        //   const colors = JSON.parse(color);
-        //   return color[colors.length - 1];
-        // },
+        getProductColor(color) {
+          return `background-color:${color}; display:inline;`;
+        },
+        async deleteProduct(id) {
+          try {
+            const response = await this.$axios.delete (
+              `https://youstore-products.herokuapp.com/v1/products/${id}/remove`
+            );
+            console.log(response);
+            this.$toast.success('Product deleted')
+
+          } catch (error) {
+            if (error.response.data.msg === "Cannot delete another merchant's product") {
+              console.log(error.response.data.msg)
+            this.$toast.error(error.response.data.msg)
+
+            }
+            else {
+               console.log(error.response)
+            }
+          } finally {
+            console.log("product deleted finally")
+          }
+        },
       },
   }
 </script>

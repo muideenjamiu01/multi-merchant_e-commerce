@@ -39,6 +39,7 @@ export default {
   }),
   created() {
     this.$store.dispatch("products/fetchProducts");
+    
   },
   methods: {
     ...mapActions(["fetchProducts"]),

@@ -2,30 +2,31 @@
   <div class="my-7 space-y-6 text-sm text-primary-black">
     <div class="md:flex gap-8">
       <div class="w-full">
-        <label>Category</label><br />
+        <label>Category</label><br/>
         <select
           class="focus:outline-none w-full border py-2.5 px-4 my-1"
           v-model="category"
         >
-          <option value="computing">Computing</option>
-          <option value="electronics">Electronics</option>
           <option value="fashion">Fashion</option>
-          <option value="home">Home</option>
           <option value="phones">Phones</option>
+          <option value="computing">Computing</option>
+          <option value="phones">Gaming</option>
+          <option value="home">Home</option>
+          <option value="electronics">Electronics</option>
         </select>
         <p class="text-xs text-primary-gray-text">
           Select a category that this product belongs to.
         </p>
       </div>
       <div class="w-full mt-6 md:mt-0">
-        <label>Name</label><br />
+        <label>Name</label><br/>
         <input
           type="text"
           class="focus:outline-none w-full border py-2.5 px-4 my-1"
           v-model="name"
         />
         <p class="text-xs text-primary-gray-text">
-          What you want to call this product.
+          What do you want to call this product.
         </p>
       </div>
     </div>
@@ -103,6 +104,7 @@
             type="text"
             class="focus:outline-none w-full border-b py-2.5 my-1"
             placeholder="Enter the size and press enter"
+             v-model="size"
           />
           <p class="text-xs text-primary-gray-text">
             The sizes available for this product
@@ -110,7 +112,7 @@
         </div>
         <div class="py-2.5 mt-6">
           <label>Colors</label><br />
-          <input type="color" class="" />
+          <input type="color" class="" v-model="color" />
         </div>
       </div>
       <div v-if="category == 'computing'" class="w-full">
@@ -156,36 +158,39 @@ export default {
         "Scanner",
         "Keyboard",
       ],
-      name: "",
-      description: "",
-      category: "",
-      quantity: "50",
-      price: "",
-      color: "",
-      size: "",
+        category: "",
+        color: "",
+        description: "",
+        name: "",
+        price: "",
+        quantity: 0,
+        size: "",
+        discount: "",
     };
     
   },
   methods: {
     async addNewProduct() {
-      alert("button clicked")
       try {
-        alert("trying...")
-        await this.$axios.post(
+        const response = await this.$axios.post(
           "https://youstore-products.herokuapp.com/v1/products",
            {
-            name: "asus laptop",
-            description: "a very neeatly used laptop",
-            quantity: 50,
-            price: 100000,
-            color: "red",
-            sold: 5,
+            category: this.category,
+            color: this.color,
+            description: this.description,
+            name: this.name,
+            price: this.price,
+            quantity: this.quantity,
+            size: this.size,
+            discount: this.discount,
           })
-        // ).then(res => console.log(res, "success"))
-        // this.$store.dispatch("products/fetchProducts");
-        // this.$router.push("/merchant/products");
+          console.log(response)
       } catch (err) {
         console.log(err);
+      } finally {
+        this.$toast.success('Product added succesfully!!')
+        this.$router.push("/merchant/products")
+
       }
     },
   },
