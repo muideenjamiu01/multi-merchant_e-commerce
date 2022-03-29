@@ -17,11 +17,12 @@ export const actions = {
     commit("setLoading", true);
     try {
       const response = await this.$axios({
-        url: '/users/wishlist',
+        url: 'https://youstore-products.herokuapp.com/v1/product/wishlist',
         method: 'post',
         data: { id: productId }
       });
       commit("setWishlist", response.data);
+	  console.log(response.data)
     } catch (error) {
       commit("setError", error.message);
     } finally {
@@ -32,7 +33,7 @@ export const actions = {
     commit("setLoading", true);
     try {
       const response = await this.$axios({
-        url: '/users/wishlist',
+        url: 'https://youstore-products.herokuapp.com/v1/product/wishlist/product/' ,
         method: 'delete',
         data: { id: productId }
       });
@@ -48,7 +49,7 @@ export const actions = {
     commit("setLoading", true);
     try {
       const response = await this.$axios.get(
-        "https://youstore-products.herokuapp.com/v1/product/wishlist/products"
+        'https://youstore-products.herokuapp.com/v1/product/wishlist/products'
       );
 
       // const {_links, items, meta} = response.data

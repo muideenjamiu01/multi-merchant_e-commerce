@@ -204,7 +204,7 @@ import DashboardChart from "~/components/DashboardChart.vue";
 
 export default {
   layout: "merchant",
-  middleware: 'auth-merchant',
+  middleware: "auth-merchant",
   components: {
     DashboardChart,
   },

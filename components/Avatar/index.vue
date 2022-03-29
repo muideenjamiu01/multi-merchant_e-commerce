@@ -1,9 +1,16 @@
 <template>
-  <div v-if="src" :class="[classes, imgSize]">
-      <img :src="src" :alt="alt" class="w-full h-full items-center text-transparent object-cover">
-  </div>
-  <div v-else :class="['text-white font-medium hover:cursor-pointer hover:opacity-95', imgSize, classes, getBg]">
+  <div 
+    v-if="!src" 
+    :class="['text-white font-medium hover:cursor-pointer hover:opacity-95', imgSize, classes, getBg]">
       {{ getInitials }}
+  
+  
+ 
+  </div>
+  <div 
+    v-else 
+   :class="[classes, imgSize]">
+      <img :src="src" :alt="alt" class="w-full h-full items-center text-transparent object-cover">
   </div>
 </template>
 

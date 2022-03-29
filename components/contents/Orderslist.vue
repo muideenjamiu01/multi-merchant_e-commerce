@@ -3,7 +3,7 @@
     <div class="md:flex items-center justify-between" v-for="item in productName" :key="item._id"  >
         <div class="md:flex" >
           <div class="w-24 h-24 bg-primary-gray mr-4">
-		  	<img :src="item.images" alt="product-image"/>
+		  	<img :src="item.image" alt="product-image"/>
 		  </div>
           <div class="space-y-0.5">
             <h1 class="font-medium">
@@ -15,13 +15,7 @@
             <p>Quantity:{{item.quantity}} </p>
           </div>
         </div>
-        <!-- <td class="p-2 whitespace-nowrap">
-          <p class="mx-5">
-            
-          </p>
-        </td> -->
         
-        <!-- <td class="p-2 whitespace-nowrap">
           <p class="mx-1">
     			
           </p>

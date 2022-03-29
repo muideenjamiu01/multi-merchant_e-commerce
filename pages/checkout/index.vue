@@ -138,7 +138,7 @@ export default {
           //   // Do something.
           let res = this.$axios.get(`/api/payments/verify/${transId}`);
           let data = res.data;
-          console.log(data);
+          
         },
         onClose: () => {
           // Do something.
