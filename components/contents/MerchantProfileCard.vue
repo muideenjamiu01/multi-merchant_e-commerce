@@ -1,78 +1,81 @@
 <template>
   <div>
-    <div
-      class="w-72 bg-primary-blue-light py-8 px-7 hidden lg:block mr-8 text-sm text-center"
-    >
-      <div class="flex flex-col ">
-        <img v-if="!$auth.user" src="../../assets/images/logos/merchant-logo.svg" alt="merchant logo">
-        <img class="ml-[50px] " v-else :src="$auth.user.photo" width="100px" height="100px" alt="merchant logo">
-         
-        <div class="flex flex-col text-left mx-4 my-4 ">
-          <p class="font-medium ">
-            Address: &nbsp {{$auth.user.address}}
-          </p>
-          <p >
-            Merchant ID: &nbsp {{$auth.user.id}}
-          </p>
-        </div>
-      </div>
-
-      <div class="space-y-6 mt-6 pt-4 border-t">
-        <NuxtLink
-          v-for="nav in navs"
-          :key="nav.name"
-          :to="'/merchant/' + nav.link"
-          class="flex items-center space-x-5 font-light cursor-pointer"
-        >
-          <div class="w-5">
-            <img :src="nav.icon" alt="">
-          </div>
-          <h1 class="text-xl">
-            {{ nav.name }}
-          </h1>
-        </NuxtLink>
-      </div>
+    <div class="w-full flex items-center flex-col justify-center my-4">
+      <user-avatar class="" :src="user.avatar" :alt="user.storeName" size="large" />
+        <p class="font-medium text-lg capitalize">
+          {{ user.storeName }}
+        </p>
+        <p class="max-w-[180px]">
+          <small>Merchant ID: {{ user._id }}</small>
+        </p>
     </div>
+
+    <ul class="space-y-6 mt-6 pt-4 border-t">
+      <li class="">
+        <NuxtLink to="/merchant/dashboard" class="flex items-center space-x-5" active-class="text-primary-500">
+          <dashboard-icon />
+          <span class="text-xl capitalize text-inherit">
+            Dashboard
+          </span>
+        </NuxtLink>
+      </li>
+      <li class="">
+        <NuxtLink to="/merchant/products" class="flex items-center space-x-5" active-class="text-primary-500">
+          <product-icon />
+          <span class="text-xl capitalize text-inherit">
+            Products
+          </span>
+        </NuxtLink>
+      </li>
+      <li class="">
+        <NuxtLink to="/merchant/transactions" class="flex items-center space-x-5" active-class="text-primary-500">
+          <transfer-icon />
+          <span class="text-xl capitalize text-inherit">
+            Transactions
+          </span>
+        </NuxtLink>
+      </li>
+      <li class="">
+        <NuxtLink to="/merchant/withdrawals" class="flex items-center space-x-5" active-class="text-primary-500">
+          <withdrawal-icon />
+          <span class="text-xl capitalize text-inherit">
+            Withdrawals
+          </span>
+        </NuxtLink>
+      </li>
+      <li class="">
+        <NuxtLink to="/merchant/settings" class="flex items-center space-x-5" active-class="text-primary-500">
+          <settings-icon />
+          <span class="text-xl capitalize text-inherit">
+            Settings
+          </span>
+        </NuxtLink>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-export default {
+import DashboardIcon from "@/components/svg/Dashboard";
+import ProductIcon from "@/components/svg/Product";
+import SettingsIcon from "@/components/svg/Settings";
+import TransactionIcon from "@/components/svg/Transaction";
+import WithdrawalIcon from "@/components/svg/Withdrawal";
 
+export default {
+  components: {
+    "dashboard-icon": DashboardIcon,
+    "product-icon": ProductIcon,
+    "settings-icon": SettingsIcon,
+    "transfer-icon": TransactionIcon,
+    "withdrawal-icon": WithdrawalIcon,
+  },
   data () {
-    return {
-      navs: [
-        {
-          icon: require('@/assets/images/icons/overview-icon.svg'),
-          name: 'Overview',
-          link: 'dashboard'
-        },
-        {
-          icon: require('@/assets/images/icons/products-icon.svg'),
-          name: 'Products',
-          link: 'products'
-        },
-        {
-          icon: require('@/assets/images/icons/transactions-icon.svg'),
-          name: 'Transactions',
-          link: 'transactions'
-        },
-        {
-          icon: require('@/assets/images/icons/customers-icon.svg'),
-          name: 'Customers',
-          link: 'customers'
-        },
-        {
-          icon: require('@/assets/images/icons/withdrawals-icon.svg'),
-          name: 'Withdrawals',
-          link: 'withdrawals'
-        },
-        {
-          icon: require('@/assets/images/icons/settings-icon.svg'),
-          name: 'Settings',
-          link: 'settings'
-        }
-      ]
+    return {}
+  },
+  computed: {
+    user() {
+      return this.$auth.user
     }
   }
 }

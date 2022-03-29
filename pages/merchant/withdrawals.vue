@@ -1,9 +1,9 @@
 <template>
   <div class="flex mt-8 px-4">
-    <aside>
-      <ContentsMerchantProfileCard />
-    </aside>
-    <main class="w-full">
+      <side-nav merchant>
+        <ContentsMerchantProfileCard />
+      </side-nav>
+      <main class="md:ml-72 md:w-[calc(100%_-_288px)]">
       <MerchantWithdrawalsStats />
       <MerchantWithdrawalsTransfers title="Withdrawals" :columns="['Transfer ID', 'Account Name', 'Account Number', 'Amount (NGN)', 'Transfer Date', 'Status']" :data="items" />
     </main>

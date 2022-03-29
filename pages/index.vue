@@ -1,18 +1,16 @@
 <template>
     <div class="z-0 px-12 bg-slate-200 pb-[920px] md:pb-36 md:min-h-screen">
       <Carousel class="hidden md:block"/>
-          <!-- grid section -->
       <div class="flex flex-col-reverse md:w-full md:flex md:flex-row md:mt-16"> 
       
-        <main class="flex flex-col w-full pt-[20px] md:pt-0 md:w-3/4 md:justify-between md:mr-5 md:pr-5"> <!-- main grid contains contains top and bottom rows -->
-
-          <div class="flex flex-col w-full md:mb-5 md:flex-row">  <!-- main top row-->
+        <main class="flex flex-col w-full pt-[20px] md:pt-0 md:w-3/4 md:justify-between md:mr-5 md:pr-5"> 
+          <div class="flex flex-col w-full md:mb-5 md:flex-row">
             <LandingFashion name="fashion"/>
             <LandingFashion name="phones" />
             <LandingFashion name="computing" />
           </div>
           
-          <div class="flex flex-col h-420 w-full pb-5 md:flex-row">  <!-- main bottom row-->
+          <div class="flex flex-col h-420 w-full pb-5 md:flex-row">
             <LandingFashion name="gaming" />
             <LandingFashion name="home" />
             <LandingFashion name="electronics" />
@@ -20,22 +18,18 @@
 
         </main>
 
-      <aside class="flex flex-col pt-6 text-center pl-4 hidden md:justify-between md:block md:w-1/4 md:pt-0"> <!-- aside grid contains 3 rows -->
-        <div v-if="$auth.loggedIn"  class="h-44 border p-6 bg-white rounded">
+      <aside class="flex flex-col pt-6 text-center pl-4 hidden md:justify-between md:block md:w-1/4 md:pt-0">
+        <div v-if="$auth.loggedIn"  class="border p-6 bg-white rounded">
           <h1 >Welcome {{$auth.user.firstName}}</h1>
-              <!-- <nuxt-link to="/auth/login"> -->
-                <button @click="logout" class="bg-rose-400 py-2 mt-[30px] text-white font-light w-full rounded-sm">
-                  Sign out
-                </button>
-              <!-- </nuxt-link> -->
+            <app-button @click="logout" variant='contained' color='error' class="mt-4" uppercase fullWidth>
+              Sign out
+            </app-button>
         </div>
-        <div v-else class="h-44 border p-6 bg-white rounded">
+        <div v-else class="border p-6 bg-white rounded">
           <h1>Sign in for the best experience </h1>
-              <nuxt-link to="/auth/login">
-                <button class="bg-primary-blue py-2 mt-[30px] text-white font-light w-full rounded-sm">
-                  Sign In
-                </button>
-              </nuxt-link>
+            <app-button to="/auth/login" variant='contained' color='primary' class="mt-4" uppercase fullWidth>
+              Sign In
+            </app-button>
         </div>
          
           <div class="flex flex-col items-center bg-pink-200 h-96 my-5 py-6 px-6 rounded">

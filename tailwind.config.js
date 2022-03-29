@@ -50,8 +50,11 @@ module.exports = {
         '840': '3000px',
        },
       screens: {
-        xs: '475px',
-        ...defaultTheme.screens
+        xs: '576px',
+        sm: '768px',
+        md: '960px',
+        lg: '1152px',
+        xl: '1344px',
       },
       minWidth: {
         88: '22rem'

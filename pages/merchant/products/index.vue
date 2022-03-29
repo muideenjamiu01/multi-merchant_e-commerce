@@ -1,9 +1,9 @@
 <template>
   <div class="flex mt-8 px-4">
-    <aside>
-      <ContentsMerchantProfileCard />
-    </aside>
-    <main class="w-full text-sm">
+      <side-nav merchant>
+        <ContentsMerchantProfileCard />
+      </side-nav>
+      <main class="md:ml-72 md:w-[calc(100%_-_288px)]">
       <div class="flex justify-between items-center">
         <h1 class="text-2xl">Products</h1>
         <form 
