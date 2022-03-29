@@ -217,6 +217,7 @@ export default {
       itemsCount: "cart/cartItemsCount",
     }),
     user() {
+      console.log(this.$auth)
       return this.$auth.user;
     },
     isMerchant() {
