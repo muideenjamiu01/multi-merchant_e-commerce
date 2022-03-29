@@ -38,9 +38,14 @@ export const actions = {
       commit("setLoading", false);
     }
   },
+
+
   getSingleProduct({ commit }, product) {
     commit("setSingleProduct", product);
   },
+
+
+  
 };
 
 export const mutations = {
