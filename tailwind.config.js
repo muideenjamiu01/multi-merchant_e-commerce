@@ -50,11 +50,11 @@ module.exports = {
         '840': '3000px',
        },
       screens: {
-        xs: '576px',
-        sm: '768px',
-        md: '960px',
-        lg: '1152px',
-        xl: '1344px',
+        xs: '600px',
+        sm: '800px',
+        md: '1024px',
+        lg: '1216px',
+        xl: '1408px',
       },
       minWidth: {
         88: '22rem'
