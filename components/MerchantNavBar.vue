@@ -114,7 +114,9 @@ export default {
   },
   computed: {
     user() {
-      return this.$auth.user;
+      if (this.$auth.user) {
+        return this.$auth.user;
+      }
     },
   },
   methods: {

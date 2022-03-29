@@ -42,13 +42,11 @@ export default {
     }),
   },
   mounted() {
-    console.log(this.orders);
     this.$store.dispatch("orders/fetchOrders");
   },
   methods: {
     ...mapActions(["fetchOrders"]),
     getProductPhoto(images) {
-      console.log(images);
       const photos = JSON.parse(images);
       return photos[photos.length - 1];
     },
