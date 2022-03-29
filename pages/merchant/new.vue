@@ -41,22 +41,12 @@
           </div>
           <div class="md:w-1/2">
             <div class="mt-6 md:mt-0">
-              <label for="shop-name" class="block mb-2 text-sm font-medium"
-                >Email Address</label
-              >
+              <label for="shop-name" class="block mb-2 text-sm font-medium">Email Address</label>
               <input
+                v-model.trim="sellerAccountDetails.email"
                 id="email"
                 type="text"
-                class="
-                  border border-gray-200
-                  t
-                  text-sm
-                  focus:outline-primary-blue
-                  block
-                  w-full
-                  p-2.5
-                "
-                v-model.trim="sellerAccountDetails.email"
+                class="border border-gray-200 text-sm focus:outline-primary-blue block w-full p-2.5" />
               <p class="mt-2 text-sm text-gray-400">
                 Your account will be linked to this email address and we will
                 use it to send all our communications.
@@ -64,96 +54,9 @@
             </div>
           </div>
         </div>
-        <!-- 
-        <div class="md:flex justify-between gap-8">
-          <div class="md:w-1/2">
-            <div class="flex justify-between items-center mt-6">
-              <div>Photo / Logo</div>
-              <div class="flex items-end justify-center">
-                <input id="fileupload" type="file" hidden />
-                <button
-                  id="button"
-                  name="button"
-                  value="Upload"
-                  @click.prevent="thisFileUpload()"
-                  class="border-2 border-primary-blue rounded-lg font-bold text-primary-blue px-6 py-1 transition duration-300 ease-in-out hover:bg-primary-blue hover:text-white mr-6"
-                >
-                  Upload
-                </button>
-                <app-button
-                  name="button"
-                  value="Upload"
-                  @click.prevent="uploadAvatar"
-                  variant="outlined"
-                  color="secondary"
-                  size="small"
-                  
-                >
-                  Upload
-                </app-button>
-              </div>
-            </div>
-            <hr class="mt-6" />
-            <div class="flex flex-col mt-2 text-gray-400">
-              <span
-                >Recommended size is a square image of not more than 150kb</span
-              >
-              <span>File type: JPG, PNG or GIF</span>
-            </div>
-          </div>
-          <div class="md:w-1/2">
-            <div class="flex justify-between items-center mt-6">
-              <div>Banner Photo</div>
-              <div class="flex items-end justify-center">
-                <input id="fileupload" type="file" />
-                <app-button
-                  name="button"
-                  value="Upload"
-                  @click.prevent="uploadBanner"
-                  variant="outlined"
-                  color="secondary"
-                  size="small"
-                  
-                >
-                  Upload
-                </app-button>
-              </div>
-            </div>
-            <hr class="mt-6" />
-            <div class="flex flex-col mt-2 text-gray-400">
-              <span
-                >Recommended size is a square image of not more than 150kb</span
-              >
-              <span>File type: JPG, PNG or GIF</span>
-            </div>
-          </div>
-        </div> -->
+        
         <div class="md:flex justify-between gap-8 mt-4">
-          <!-- <div class="mt-4 md:w-1/2">
-             <div>
-              <label for="shop-name" class="block mb-2 text-sm font-medium"
-                >Full Name</label
-              >
-              <input
-                id="full-name"
-                type="text"
-                class="
-                  border border-gray-200
-                  text-sm
-                  focus:outline-primary-blue
-                  block
-                  w-full
-                  p-2.5
-                "
-                v-model.trim="sellerAccountDetails.fullName"
-              />
-              <p class="mt-2 text-sm text-gray-400">
-                Your name or the name of the person in your team who will manage
-                your account. This is the contact we will primarily use to
-                contact you.
-              </p>
-            </div> 
-          </div> -->
+         
           <div class="mt-4 md:w-1/2">
             <div>
               <label for="shop-name" class="block mb-2 text-sm font-medium"
@@ -164,7 +67,6 @@
                 type="text"
                 class="
                   border border-gray-200
-                  t
                   text-sm
                   focus:outline-primary-blue
                   block
@@ -215,7 +117,6 @@
                 type="password"
                 class="
                   border border-gray-200
-                  t
                   text-sm
                   focus:outline-primary-blue
                   block
@@ -245,7 +146,6 @@
                 type="password"
                 class="
                   border border-gray-200
-                  t
                   text-sm
                   focus:outline-primary-blue
                   block
@@ -270,7 +170,6 @@
                 type="text"
                 class="
                   border border-gray-200
-                  t
                   text-sm
                   focus:outline-primary-blue
                   block
@@ -289,7 +188,6 @@
                 type="text"
                 class="
                   border border-gray-200
-                  t
                   text-sm
                   focus:outline-primary-blue
                   block
@@ -330,7 +228,7 @@
             type="radio"
             id="terms"
             value="yes"
-            v-model="merchantAccountDetails.terms"
+            v-model="terms"
             class="mr-4"
           />
         </div>
@@ -353,7 +251,6 @@
           variant="contained"
           size="large"
           :disabled="loading"
-          uppercase
         >
           {{ loading ? "Loading" : "Get Started" }}
           <loading-spinners
@@ -375,6 +272,7 @@ export default {
     return {
       loading: false,
       error: null,
+      terms: false,
       sellerAccountDetails: {
         storeName: "",
         email: "",
@@ -387,7 +285,7 @@ export default {
         bankName: "",
         accountName: "",
         accountNo: "",
-        // terms: false,
+        // 
       },
     };
   },

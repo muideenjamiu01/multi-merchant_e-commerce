@@ -14,7 +14,7 @@
       <div class="grid-container mt-4">
         <ContentsProductCard
           v-for="(product, index) in products"
-          :key="product.id"
+          :key="product._id"
           :product="product"
           :index="index"
           class="grid-item"

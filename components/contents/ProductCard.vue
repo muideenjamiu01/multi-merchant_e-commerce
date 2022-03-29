@@ -12,7 +12,8 @@
           cursor-pointer
           whitespace-nowrap
           overflow-hidden
-          text-ellipsis
+          text-ellipsis 
+          text-primary-blue
         "
       >
         {{ product.name }}
@@ -51,6 +52,7 @@ export default {
   methods: {
     ...mapActions("cart", ["addProductToCart"]),
     viewProduct(index) {
+      debugger
       this.$router.push( 
         "/" + this.product.name.toLowerCase().split(" ").join("-")
       );
