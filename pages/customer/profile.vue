@@ -223,7 +223,12 @@
               </div>
             </div>
 
-            <grid-container v-if="editing" justifyContent="end" gap="2" class="my-4">
+            <grid-container
+              v-if="editing"
+              justifyContent="end"
+              gap="2"
+              class="my-4"
+            >
               <app-button
                 @click="CancelEdit"
                 type="button"
@@ -246,8 +251,8 @@
           </form>
         </ValidationObserver>
 
-          <section class="w-full">
-              <form enctype="multipart/form-data" @submit.prevent="saveAvatar">
+        <section class="w-full">
+          <form enctype="multipart/form-data" @submit.prevent="saveAvatar">
             <grid-container>
               <h3 class="flex-grow text-xl">Avatar</h3>
               <span v-if="avatar.editing" class="flex justify-end gap-2 mb-2">
@@ -261,7 +266,7 @@
                   Cancel
                 </app-button>
                 <app-button
-                v-if="!avatar.errors.length > 0"
+                  v-if="!avatar.errors.length > 0"
                   type="submit"
                   color="success"
                   size="small"
@@ -274,46 +279,192 @@
             <div class="xs:flex block">
               <div class="flex-grow max-w-lg xs:mb-0 mb-2 mr-2">
                 <div class="text-sm text-secondary-800">
-                  <p>Recommended size is a square image of not more than 150kb</p>
+                  <p>
+                    Recommended size is a square image of not more than 150kb
+                  </p>
                   <p>File type: JPG, PNG or GIF</p>
                 </div>
-                <div v-if="avatar.errors.length > 0" class="mt-2 text-error-800">
+                <div
+                  v-if="avatar.errors.length > 0"
+                  class="mt-2 text-error-800"
+                >
                   <p v-for="(err, i) in avatar.errors" :key="i">
                     <small>{{ err }}</small>
                   </p>
                 </div>
               </div>
 
-                <input
-                  accept="image/*"
-                  id="upload"
-                  type="file"
-                  class="sr-only"
-                  @change="handleImgChange"
+              <input
+                accept="image/*"
+                id="upload"
+                type="file"
+                class="sr-only"
+                @change="handleImgChange"
+              />
+              <label for="upload" class="relative">
+                <user-avatar
+                  :alt="user.firstName"
+                  :src="avatar.image"
+                  class="w-14 h-14 xs:w-20 xs:h-20"
                 />
-                <label for="upload" class="relative">
-                  <user-avatar
-                    :alt="user.firstName"
-                    :src="avatar.image"
-                    class="w-14 h-14 xs:w-20 xs:h-20"
-                  />
-                  <span
-                    class="
-                      absolute
-                      top-0
-                      left-0
-                      bottom-0
-                      right-0
-                      z-10
-                      rounded-full
-                      hover:bg-black/30
-                      transition-colors
-                    "
-                  />
-                </label>
+                <span
+                  class="
+                    absolute
+                    top-0
+                    left-0
+                    bottom-0
+                    right-0
+                    z-10
+                    rounded-full
+                    hover:bg-black/30
+                    transition-colors
+                  "
+                />
+              </label>
             </div>
-              </form>
-          </section>
+          </form>
+        </section>
+
+        <ValidationObserver tag="section" class="my-8">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xl font-medium text-black">Password</h4>
+            <app-button
+              v-if="!password.editing"
+              @click="setEditing"
+              color="secondary"
+              size="small"
+              variant="outlined"
+              type="button"
+            >
+              Edit
+            </app-button>
+          </div>
+          <form @submit.prevent="savePassword">
+            <grid-container gap="4">
+              <grid-item xs="12" sm="6">
+                <div class="w-full">
+                  <label for="password">
+                    Current Password
+                    <input
+                      id="password"
+                      v-model="password.current"
+                      type="password"
+                      :disabled="!password.editing"
+                      class="
+                        flex
+                        items-center
+                        outline-0
+                        border border-secondary-200
+                        rounded-md
+                        shadow-sm
+                        focus:outline-none
+                        focus:border-primary-200
+                        focus:ring-primary-200
+                        focus:ring-1
+                        sm:text-sm
+                        p-2
+                        my-1
+                        w-full
+                      "
+                    />
+                  </label>
+                </div>
+              </grid-item>
+              <grid-item xs="12" sm="6">
+                <ValidationProvider
+                  v-slot="{ errors }"
+                  name="new_password"
+                  rules="required||min:6"
+                  tag="div"
+                  class="w-full mt-2 xs:mt-0"
+                >
+                  <label for="new_password">
+                    New Password
+                    <input
+                      id="new_password"
+                      v-model="password.new"
+                      type="password"
+                      :disabled="!password.editing"
+                      class="
+                        flex
+                        items-center
+                        outline-0
+                        border border-secondary-200
+                        rounded-md
+                        shadow-sm
+                        focus:outline-none
+                        focus:border-primary-200
+                        focus:ring-primary-200
+                        focus:ring-1
+                        sm:text-sm
+                        p-2
+                        my-1
+                        w-full
+                      "
+                    />
+                  </label>
+                  <span class="text-xs text-error-800">{{ errors[0] }}</span>
+                </ValidationProvider>
+              </grid-item>
+              <grid-item xs="12" sm="6">
+                <div class="w-full mt-2 xs:mt-0">
+                  <label for="confirm_password">
+                    Confirm Password
+                    <input
+                      id="confirm_password"
+                      v-model="password.confirm"
+                      type="password"
+                      :disabled="!password.editing"
+                      class="
+                        flex
+                        items-center
+                        outline-0
+                        border border-secondary-200
+                        rounded-md
+                        shadow-sm
+                        focus:outline-none
+                        focus:border-primary-200
+                        focus:ring-primary-200
+                        focus:ring-1
+                        sm:text-sm
+                        p-2
+                        my-1
+                        w-full
+                      "
+                    />
+                  </label>
+                  <span class="text-xs text-error-800">{{
+                    password.matchError
+                  }}</span>
+                </div></grid-item
+              >
+            </grid-container>
+            <grid-container
+              v-if="password.editing"
+              justifyContent="end"
+              gap="2"
+              class="my-4"
+            >
+              <app-button
+                @click="cancelPasswordEdit"
+                type="button"
+                color="secondary"
+                size="small"
+                variant="outlined"
+              >
+                Cancel
+              </app-button>
+              <app-button
+                type="submit"
+                color="success"
+                size="small"
+                variant="outlined"
+              >
+                Save
+              </app-button>
+            </grid-container>
+          </form>
+        </ValidationObserver>
       </grid-item>
       <!-- <grid-item xs="fill"></grid-item> -->
     </grid-container>
@@ -346,6 +497,14 @@ export default {
         file: null,
         errors: [],
       },
+      password: {
+        editing: false,
+        current: "",
+        new: "",
+        confirm: "",
+        error: null,
+        matchError: null,
+      },
       user: {
         firstName: this.$auth.user.firstName,
         lastName: this.$auth.user.lastName,
@@ -369,7 +528,7 @@ export default {
       try {
         const response = await this.$axios.put(
           "/api/users/v1/customers/",
-          this.user,
+          this.user
         );
 
         this.$auth.setUser(response.data.data);
@@ -405,7 +564,7 @@ export default {
       this.avatar.errors = [];
       this.avatar.editing = true;
 
-      const file = e.target.files?.item(0);
+      const file = e.target.files.item(0);
 
       if (file) {
         const errs = this.validateImage(file);
@@ -423,22 +582,69 @@ export default {
         reader.readAsDataURL(file);
       }
     },
-    async saveAvatar(e) {
-      try {
-        this.avatar.editing = true
-        const response = await this.$axios.post('/api/users/v1/customers/upload/', this.avatar.file, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
+    async saveAvatar() {
+      const formdata = new FormData();
+      formdata.append("avatar", this.avatar.file);
 
-        this.$auth.setUser(response.data.data)
+      try {
+        this.avatar.editing = true;
+        const response = await this.$axios.post(
+          "/api/users/v1/customers/upload/",
+          formdata,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        this.$auth.setUser(response.data.data);
         this.avatar.editing = false;
-        this.$toast.success("Your profile was succesfully updated!");
+        this.$toast.success(response.data.msg);
       } catch (error) {
-        this.error = error.response.data.msg
-        this.avatar.editing = false
-        this.$toast.error("An error occured while updating your profile!");
+        this.error = error.response.data.msg;
+        this.avatar.editing = false;
+        this.$toast.error(error.response.data.msg);
+      }
+    },
+    setEditing() {
+      this.password.editing = true;
+    },
+    cancelPasswordEdit() {
+      (this.password.editing = false),
+        (this.password.current = ""),
+        (this.password.new = ""),
+        (this.password.confirm = ""),
+        (this.password.error = null),
+        (this.password.matchError = null),
+        (this.password.editing = false);
+    },
+    async savePassword() {
+      this.password.loading = true;
+      const { new: password, current, confirm } = this.password;
+      if (!confirm || password !== confirm) {
+        this.password.matchError =
+          "The new password and confirm password must match.";
+        return;
+      }
+
+      try {
+        const response = await this.$axios.put(
+          "/api/users/v1/auth/customer/change-password",
+          {
+            oldPassword: current,
+            newPassword: password,
+          }
+        );
+
+        (this.password.current = ""),
+          (this.password.new = ""),
+          (this.password.confirm = ""),
+          (this.password.editing = false);
+        this.$toast.success(response.data.msg);
+      } catch (error) {
+        this.password.error = error.response.data.msg;
+        this.$toast.error(error.response.data.msg);
       }
     },
   },
