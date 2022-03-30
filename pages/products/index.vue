@@ -27,7 +27,6 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import Spinner from "@/components/Loading/Spinners.vue";
-const category = this.$route.params.catalog
 
 export default {
   components: {
@@ -42,6 +41,7 @@ export default {
     this.$store.dispatch("products/fetchProducts", {
       category: this.$route.query.category || ''
     });
+
   },
   methods: {
     ...mapActions(["fetchProducts"]),
