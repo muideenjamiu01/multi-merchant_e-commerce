@@ -1,8 +1,8 @@
 <template>
-  <aside v-if="merchant" class="fixed top-0 left-0 w-72 h-full overflow-x-hidden text-center p-4 hidden md:block bg-primary-100">
+  <aside v-if="merchant" class="absolute top-0 left-0 w-72 h-full overflow-x-hidden text-center p-4 hidden sm:block bg-primary-100">
     <slot />
   </aside>
-  <aside v-else class="fixed top-0 left-0 w-60 h-full overflow-x-hidden text-center p-4 hidden md:block mt-14 bg-primary-100">
+  <aside v-else class="absolute top-0 left-0 w-60 h-full overflow-x-hidden text-center p-4 hidden sm:block bg-primary-100">
     <slot />
   </aside>
 </template>

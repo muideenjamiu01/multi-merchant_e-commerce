@@ -8,7 +8,7 @@
       <div v-if="itemsCount" class="md:w-3/4">
         <div
           v-for="item in cart"
-          :key="item.product.id"
+          :key="item.product._id"
           class="md:flex gap-8 border-b p-4 mt-4"
         >
           <div class="w-full md:w-2/4">
@@ -33,7 +33,7 @@
                     <app-button
                       @click="
                         removeProductFromCart({
-                          productId: item.product.id,
+                          productId: item.product._id,
                           remove: true,
                         })
                       "
@@ -41,7 +41,7 @@
                       >Delete</app-button
                     >
                     <app-button
-                      @click="addToWishlist(item.product.id)"
+                      @click="addToWishlist(item.product._id)"
                       size="small"
                       class="pl-2"
                       >Add to wishlist</app-button
@@ -55,7 +55,7 @@
             <div class="md:w-1/4">
               <div class="flex justify-center items-center gap-4">
                 <app-button
-                  @click="removeProductFromCart({ productId: item.product.id })"
+                  @click="removeProductFromCart({ productId: item.product._id })"
                   size="small"
                   > -
                 </app-button>
@@ -104,10 +104,9 @@
           class="mt-6"
           color="primary"
           variant="contained"
-		  :disabled="loading"
           fullWidth
-          >{{loading ? 'Loading' : 'Checkout'}}
-                <loading-spinners v-if="loading" size="small" color="white" class="mx-4"></loading-spinners></app-button
+          >Checkout
+          </app-button
         >
       </div>
     </div>
@@ -116,18 +115,9 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import AppButton from "@/components/buttons/Button.vue";
 
 
 export default {
-  components: {
-    "app-button": AppButton,
-  },
-  data(){
-	  return{
-		  
-	  }
-  },
   computed: {
     ...mapGetters({
       cart: "cart/cartProducts",
@@ -147,10 +137,8 @@ export default {
       this.$router.go(-1);
     },
     getProductPhoto(images) {
-		console.log(images)
       const photos = JSON.parse(images);
       return photos[photos.length - 1];
-	  
     },
 
   

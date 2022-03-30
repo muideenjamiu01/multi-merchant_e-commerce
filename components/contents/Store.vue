@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="py-8 px-4 flex">
-      <aside>
+      <!-- <aside>
         <ContentsProductFilter />
-      </aside>
+      </aside> -->
       <div>
         <main class="">
           <div class="grid-list ">
@@ -20,16 +20,16 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default { computed: mapGetters({
-    products: "products/products",
-    errors: "products/errors",
-    loading: "products/loading",
+    products: "merchant-products/products",
+    errors: "merchant-products/errors",
+    loading: "merchant-products/loading",
   }),
   created() {
-    this.$store.dispatch("products/fetchProducts");
+    this.$store.dispatch("merchant-products/getAllMerchantProducts");
   },
   methods: {
-    ...mapActions(["fetchProducts"]),
-    ...mapActions({ getSingleProduct: "products/getSingleProduct" }),
+    ...mapActions(["getAllMerchantProducts"]),
+   
   },}
 </script>
 

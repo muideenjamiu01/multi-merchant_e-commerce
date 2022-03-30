@@ -23,11 +23,6 @@
         w-full
       "
     >
-      <div class="mr-2 md:hidden">
-        <icon-button>
-          <menu-icon> </menu-icon>
-        </icon-button>
-      </div>
 
       <div class="h-10">
         <nuxt-link to="/" class="mr-6">
@@ -175,17 +170,13 @@
 import { mapGetters } from "vuex";
 import BrandLogo from "@/components/svg/Logo";
 import CartIcon from "@/components/svg/Cart";
-import MenuIcon from "@/components/svg/Menu";
 import SearchIcon from "@/components/svg/Search";
 import UserAvatar from "@/components/Avatar";
-import AppButton from "@/components/buttons/Button";
-import IconButton from "@/components/buttons/IconButton";
 
 export default {
   components: {
     "brand-logo": BrandLogo,
     "cart-icon": CartIcon,
-    "menu-icon": MenuIcon,
     "search-icon": SearchIcon,
     "user-avatar": UserAvatar,
   },
@@ -217,10 +208,12 @@ export default {
       itemsCount: "cart/cartItemsCount",
     }),
     user() {
-      return this.$auth.user;
+      if (this.$auth.user) {
+        return this.$auth.user;
+      }
     },
     isMerchant() {
-      return this.$auth.loggedIn && this.$auth.user.storeName;
+      return this.$auth.loggedIn && this.user.storeName;
     },
   },
   methods: {

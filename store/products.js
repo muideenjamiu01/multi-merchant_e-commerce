@@ -16,22 +16,17 @@ export const getters = {
 
 export const actions = {
   async fetchProducts({ commit, rootState }, {category}) {
-    alert("hello");
-
     commit("setLoading", true);
     try {
-      const response = await this.$axios.get(
-        `/api/products/v1/products/category`,
+      const response = await this.$axios.get(`/api/products/v1/products/category/`,
         {
           params: {
             page: 1,
             category,
-            // limit: 30,
           },
         }
       );
       // const { docs, pagination } = response.data.data;
-      console.log(response);
       const docs = response.data.data;
       commit("setProducts", docs);
       // commit("setPagination", pagination );
@@ -41,6 +36,7 @@ export const actions = {
       commit("setLoading", false);
     }
   },
+
   getSingleProduct({ commit }, product) {
     commit("setSingleProduct", product);
   },

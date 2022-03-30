@@ -1,5 +1,6 @@
-  export const state = () => ({
+export const state = () => ({
   items: [],
+  cart:[]
 });
 
 // getters
@@ -13,7 +14,7 @@ export const getters = {
 
   cartTotalPrice(state, getters) {
     return getters.cartProducts.reduce((total, { product, quantity }) => {
-      return total + parseFloat(product.price) * quantity;
+      return total + (parseFloat(product.price) * quantity) ;
     }, 0);
   },
 };
@@ -23,57 +24,42 @@ export const actions = {
   addProductToCart({ state, commit }, product) {
 	  
 	  // if (product.inventory > 0) {
-		  const cartItem = state.items.find((item) => item.product.id === product.id);
+    const cartItem = state.items.find((item) =>
+      item.product._id === product._id
+    );
 		  
 		  if (!cartItem) {
 			  commit("addToCart", product);
 			} else {
-				commit("incrementItemQuantity", cartItem.product.id);
+				commit("incrementItemQuantity", cartItem.product._id);
 			}
-			
-    // remove 1 item from stock
-    // commit(
-    //   "products/decrementProductInventory",
-    //   { id: product.id },
-    //   { root: true }
-    // );
-    // }
-
   },
   removeProductFromCart({ state, commit }, { productId, remove }) {
-    const cartItem = state.items.find((item) => item.product.id === productId);
+    const cartItem = state.items.find((item) => item.product._id === productId);
 
     if (cartItem.quantity === 1 || remove) {
       commit("removeFromCart", productId);
     } else {
-      commit("decrementItemQuantity", cartItem.product.id);
+      commit("decrementItemQuantity", cartItem.product._id);
     }
-    // add item to stock
-    // commit(
-    //   "products/decrementProductInventory",
-    //   { id: product.id },
-    //   { root: true }
-    // );
   },
 };
 
 // mutations
 export const mutations = {
   addToCart(state, product) {
-			console.log(state.items)
-			console.log(product)
 			state.items = [...state.items, { product, quantity: 1 }];
     window.localStorage.setItem("ys-cart", JSON.stringify(state.items));
   },
 
   removeFromCart(state, productId) {
-    state.items = state.items.filter((item) => item.product.id !== productId);
+    state.items = state.items.filter((item) => item.product._id !== productId);
     window.localStorage.setItem("ys-cart", JSON.stringify(state.items));
   },
 
   incrementItemQuantity(state, productId) {
     state.items = state.items.map((i) =>
-      i.product.id === productId
+      i.product._id === productId
         ? {
             product: i.product,
             quantity: i.quantity + 1,
@@ -85,7 +71,7 @@ export const mutations = {
 
   decrementItemQuantity(state, productId) {
     state.items = state.items.map((i) =>
-      i.product.id === productId
+      i.product._id === productId
         ? {
             product: i.product,
             quantity: i.quantity - 1,

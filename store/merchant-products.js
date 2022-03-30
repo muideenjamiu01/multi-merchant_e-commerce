@@ -13,7 +13,7 @@ export const getters = {
 };
 
 export const actions = {
-  async fetchProducts({ commit }) {
+  async getAllMerchantProducts({ commit }) {
     commit("setLoading", true);
     try {
       const response = await this.$axios.get(
