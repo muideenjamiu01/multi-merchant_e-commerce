@@ -189,10 +189,12 @@ export default {
     async handleSubmit() {
       this.loading = true
       try {
+        const resetLink = window.localStorage.getItem("reset-link") || ""
+
         if (this.password === this.confirm_password) {
-          const qs = this.$route.query.user
+          const qs = this.$route.query.user || ""
         const response = await this.$axios.post(
-            `/api/users/v1/auth/${qs}/reset-password`,
+            resetLink,
             {
               newPassword: this.password,
               confirmPassword: this.confirm_password
