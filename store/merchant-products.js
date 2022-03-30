@@ -13,11 +13,11 @@ export const getters = {
 };
 
 export const actions = {
-  async getAllMerchantProducts({ commit }) {
+  async fetchProducts({ commit }) {
     commit("setLoading", true);
     try {
       const response = await this.$axios.get(
-        "https://api-2445583927843.production.gw.apicast.io/api/products/v1/products/merchant-products?user_key=4fbc6c112a19f295d08dfc27f36333b6",
+        "/api/products/v1/products/merchant-products?user_key=4fbc6c112a19f295d08dfc27f36333b6",
         {
           params: {
             page: 1,
@@ -27,8 +27,6 @@ export const actions = {
         }
       );
       console.log(response.data.data);
-
-      // const {_links, items, meta} = response.data
       commit("setProducts", response.data.data);
       console.log(products);
       // commit("setPagination", {...meta, ..._links});
