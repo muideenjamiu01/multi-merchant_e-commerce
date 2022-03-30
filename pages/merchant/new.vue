@@ -81,9 +81,7 @@
               </p>
             </div>
           </div>
-        </div>
-        <div class="md:flex justify-between gap-8">
-          <div class="mt-4 md:w-1/2">
+		  <div class="mt-4 md:w-1/2">
             <div>
               <label for="shop-name" class="block mb-2 text-sm font-medium"
                 >Address</label
@@ -107,6 +105,9 @@
               </p>
             </div>
           </div>
+        </div>
+        <div class="md:flex justify-between gap-8">
+         
           <div class="mt-4 md:w-1/2">
             <div>
               <label for="password" class="block mb-2 text-sm font-medium"
@@ -133,7 +134,7 @@
           </div>
         </div>
 
-        <div class="md:flex justify-between gap-8">
+        <!-- <div class="md:flex justify-between gap-8">
           <div class="mt-4 md:w-1/2">
             <div>
               <label
@@ -156,7 +157,7 @@
             </div>
           </div>
           <div class="md:w-1/2" />
-        </div>
+        </div> -->
         <div class="mt-10">
           <h1 class="text-xl">Bank Details</h1>
           <hr class="mt-2" />

@@ -2,7 +2,7 @@
   <div class="text-sm font-light pt-4 border-t border-gray-100 mb-6">
     <div
       v-for="product in products"
-      :key="product.id"
+      :key="product._id"
       class="md:flex items-center justify-between"
     >
       <div class="sm:flex">
@@ -14,7 +14,7 @@
             {{ product.name }}
           </h3>
           <app-button
-            @click="removeFromWishlist(product.id)"
+            @click="removeFromWishlist(product._id)"
             size="small"
             color="error"
           >

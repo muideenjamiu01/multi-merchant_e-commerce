@@ -1,4 +1,5 @@
 <template>
+<div>
   <app-container maxWidth="sm">
     <grid-container class="my-6 sm:my-8">
       <!-- <grid-item xs="fill"></grid-item> -->
