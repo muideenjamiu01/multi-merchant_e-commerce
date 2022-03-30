@@ -28,7 +28,9 @@ export default {
 	  console.log()
   },
   methods: {
-    ...mapActions(["fetchWishlist"]),
+    ...mapActions("wishlist", ["fetchWishlist", "removeFromWishlist"]),
+    
   },
+   
 };
 </script>

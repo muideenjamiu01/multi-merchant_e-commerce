@@ -1,18 +1,23 @@
 <template>
-  <div class="text-sm font-light pt-4 border-t border-gray-100 mb-6">
+  <div class="text-sm font-light pt-4 border-t border-gray-100 mb-6 my-8">
     <div
       v-for="product in products"
       :key="product._id"
       class="md:flex items-center justify-between"
     >
       <div class="sm:flex">
-        <div class="w-24 h-24 mr-4">
+        <div class="w-24 h-full mr-4">
           <img :src="product.images" :alt="product.title" class="w-full h-full" />
         </div>
         <div class="space-y-0.5">
-          <h3 class="text-md font-medium">
+          <h3 class="font-medium">
             {{ product.name }}
           </h3>
+		  <p>Size:{{product.size}}</p>
+		  <p>Color:{{product.color}}</p>
+		  <p>Price:{{product.price}}</p>
+		  <p>Quantity:{{product.quantity}}</p>
+		  
           <app-button
             @click="removeFromWishlist(product._id)"
             size="small"
@@ -34,7 +39,7 @@
 </template>
 
 <script>
-
+import {  mapActions } from "vuex";
 import AppButton from "@/components/buttons/Button.vue";
 
 export default {
@@ -49,8 +54,11 @@ export default {
     "app-button": AppButton,
   },
   methods: {
-   
-   
-  },
+ ...mapActions("cart", ["addProductToCart", "removeProductFromCart"]),
+ ...mapActions("wishlist", ["fetchWishlist", "removeFromWishlist"]),  
+   },
+   mounted(){
+	   console.log(this.products)
+   }
 };
 </script>
