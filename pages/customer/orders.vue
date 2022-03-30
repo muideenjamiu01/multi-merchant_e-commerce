@@ -14,7 +14,7 @@
           :orderDate="order.orderDate"
 		  :orderStatus="order.orderStatus"
 		  :shippingFee="shippingFee"
-          :totalCost="order.total"
+          :totalCost="order.total / 100"
 		  
         />
         <div class="flex justify-between" >

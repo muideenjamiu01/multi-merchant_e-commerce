@@ -16,10 +16,8 @@
           </div>
         </div>
         
-          <p class="mx-1">
-    			
-          </p>
-        </td> -->
+          
+        
       </div>
     </div>
 </template>
