@@ -140,7 +140,7 @@
                       p-2
                     "
                     v-model="confirm_password"
-                    type="confirm_password"
+                    type="password"
                     id="confirm_password"
                   />
                   <span class="text-xs text-error-800">{{ errors[0] }}</span>
@@ -193,7 +193,10 @@ export default {
           const qs = this.$route.query.user
         const response = await this.$axios.post(
             `/api/users/v1/auth/${qs}/reset-password`,
-            { password: this.password }
+            {
+              newPassword: this.password,
+              confirmPassword: this.confirm_password
+            }
         );
 
         this.password = "",
