@@ -27,6 +27,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import Spinner from "@/components/Loading/Spinners.vue";
+const category = this.$route.params.catalog
 
 export default {
   components: {
@@ -51,12 +52,11 @@ export default {
 
 <style scoped>
 
-
-.grid-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-.grid-item {
-  margin: 20px;
-}
+  .grid-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .grid-item {
+    margin: 20px;
+  }
 </style>

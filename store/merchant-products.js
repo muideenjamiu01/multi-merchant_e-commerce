@@ -30,7 +30,7 @@ export const actions = {
 
       // const {_links, items, meta} = response.data
       commit("setProducts", response.data.data);
-      console.log(products)
+      console.log(products);
       // commit("setPagination", {...meta, ..._links});
     } catch (error) {
       commit("setError", error.message);
