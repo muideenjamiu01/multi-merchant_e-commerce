@@ -7,7 +7,7 @@
     >
       <div class="sm:flex">
         <div class="w-24 h-24 mr-4">
-          <img :src="getProductPhoto(product.images)" :alt="product.title" class="w-full h-full" />
+          <img :src="product.images" :alt="product.title" class="w-full h-full" />
         </div>
         <div class="space-y-0.5">
           <h3 class="text-md font-medium">
@@ -34,26 +34,23 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+
 import AppButton from "@/components/buttons/Button.vue";
 
 export default {
   props: {
-    products: {
-      type: Array,
-      required: true,
-    },
+	  products:{
+		  type:Array,
+		  required:true
+	  }
   },
+    
   components: {
     "app-button": AppButton,
   },
   methods: {
-    ...mapActions("wishlist", ["removeFromWishlist"]),
-    ...mapActions("cart", ["addProductToCart"]),
-    getProductPhoto(images) {
-      const photos = JSON.parse(images)
-      return photos[photos.length - 1]
-    }
+   
+   
   },
 };
 </script>
