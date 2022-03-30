@@ -27,34 +27,43 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import Spinner from "@/components/Loading/Spinners.vue";
+const category = this.$route.params.catalog
 
 export default {
-  components: {
-    "loading-spinner": Spinner,
-  },
-  computed: mapGetters({
-    products: "products/products",
-    errors: "products/errors",
-    loading: "products/loading",
-  }),
-  created() {
-    this.$store.dispatch("products/fetchProducts");
-  },
-  methods: {
-    ...mapActions(["fetchProducts"]),
-    ...mapActions({ getSingleProduct: "products/getSingleProduct" }),
-  },
-};
+    data () {
+      return {
+        category : ""
+      }
+    },
+    
+    components: {
+      "loading-spinner": Spinner,
+    },
+
+    computed: mapGetters({
+      products: "products/products",
+      errors: "products/errors",
+      loading: "products/loading",
+    }),
+
+    mounted() {
+      this.$store.dispatch("products/fetchProducts", {category});
+    },
+
+    methods: {
+      ...mapActions(["fetchProducts"]),
+      ...mapActions({ getSingleProduct: "products/getSingleProduct" }),
+    },
+  };
 </script>
 
 <style scoped>
 
-
-.grid-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-.grid-item {
-  margin: 20px;
-}
+  .grid-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .grid-item {
+    margin: 20px;
+  }
 </style>

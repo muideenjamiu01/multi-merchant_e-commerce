@@ -217,7 +217,6 @@ export default {
       itemsCount: "cart/cartItemsCount",
     }),
     user() {
-      console.log(this.$auth)
       return this.$auth.user;
     },
     isMerchant() {
@@ -232,7 +231,6 @@ export default {
     async logout() {
       await this.$auth.logout();
       window.localStorage.removeItem("ys.user_type");
-      // this.$router.push("/auth/login");
       this.$toast.show("Successfully Signed Out");
     },
   },

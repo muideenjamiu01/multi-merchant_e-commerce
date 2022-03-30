@@ -176,7 +176,7 @@
         <div class="grid grid-flow-col gap-x-4 mt-4 overflow-x-scroll">
           <ContentsProductCard
             v-for="product in products"
-            :key="product.id"
+            :key="product._id"
             :product="product"
           />
         </div>
@@ -187,7 +187,7 @@
         <div class="grid grid-flow-col gap-x-4 mt-4 overflow-x-scroll">
           <ContentsProductCard
             v-for="product in products"
-            :key="product.id"
+            :key="product._id"
             :product="product"
           />
         </div>

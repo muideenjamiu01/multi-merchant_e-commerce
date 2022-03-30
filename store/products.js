@@ -15,19 +15,17 @@ export const getters = {
 };
 
 export const actions = {
-  async fetchProducts({ commit, rootState }) {
-    // const productCategory = rootState.products.singleProduct.category;
+  async fetchProducts({ commit, rootState }, {category}) {
+    alert("hello");
 
     commit("setLoading", true);
     try {
       const response = await this.$axios.get(
-        // `https://youstore-products.herokuapp.com/v1/products/?category=${productCategory}`,
-        `https://youstore-products.herokuapp.com/v1/products/?category=phone`,
-        // "https://api-2445583927843.production.gw.apicast.io/api/products/v1/products",
+        `/api/products/v1/products/category`,
         {
           params: {
             page: 1,
-            // category: "computing",
+            category,
             // limit: 30,
           },
         }
