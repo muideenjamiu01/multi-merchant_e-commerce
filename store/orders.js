@@ -53,7 +53,7 @@ export const actions = {
         quantity: item.quantity,
         
       })),
-      total: rootGetters["cart/cartTotalPrice"],
+      total: rootGetters["cart/cartTotalPrice"] * 100,
     };
 
     let res = await this.$axios.post("/api/order/", payload);

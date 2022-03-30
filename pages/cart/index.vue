@@ -33,7 +33,7 @@
                     <app-button
                       @click="
                         removeProductFromCart({
-                          productId: item.product.id,
+                          productId: item.product._id,
                           remove: true,
                         })
                       "
@@ -41,7 +41,7 @@
                       >Delete</app-button
                     >
                     <app-button
-                      @click="addToWishlist(item.product.id)"
+                      @click="addToWishlist(item.product._id)"
                       size="small"
                       class="pl-2"
                       >Add to wishlist</app-button
@@ -55,7 +55,7 @@
             <div class="md:w-1/4">
               <div class="flex justify-center items-center gap-4">
                 <app-button
-                  @click="removeProductFromCart({ productId: item.product.id })"
+                  @click="removeProductFromCart({ productId: item.product._id })"
                   size="small"
                   > -
                 </app-button>
