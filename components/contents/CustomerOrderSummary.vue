@@ -6,9 +6,14 @@
       Transaction ID:{{transactionId}}
 	  
     </p>
+	
     <p class="my-3">
       Date of purchase:{{orderDate}}
     </p>
+    <!-- <p class="my-3">
+      Shipping Fee:{{shippingFee}}
+    </p> -->
+	<p class="my-3">Status: {{orderStatus}}</p>
     <p class="my-3">
       Total cost: {{totalCost}}
     </p>
@@ -24,12 +29,12 @@ export default {
 		"order",
 		"transactionId",
 		"orderDate",
+		"shippingFee",
+		"orderStatus",
 		"totalCost",
 	],
 	mounted(){
-		console.log(this.transactionId)
-		console.log(this.totalCost)
-		console.log(this.orderDate)
+		
 	}
 }
 </script>

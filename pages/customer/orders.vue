@@ -7,25 +7,28 @@
       <div
         v-for="order in orders.data"
         :key="order._id"
-        class="border-gray-900"
+        class="border border-gray-300 rounded-lg mt-5 p-4"
       >
         <ContentsCustomerOrderSummary
           :transactionId="order._id"
           :orderDate="order.orderDate"
+		  :orderStatus="order.orderStatus"
+		  :shippingFee="shippingFee"
           :totalCost="order.total"
 		  
         />
-        <div >
+        <div class="flex justify-between" >
 			<!-- -->
 		<ContentsOrderslist
           :productName="order.products"
-          :orderStatus="order.orderStatus"
+          
         />
-		</div>
-        <div class="font-bold justify-end md:flex md:space-x-6">
+		<!-- <div class="font-bold justify-end md:flex md:space-x-6">
           <p>Price</p>
           <p>Status</p>
-        </div>
+        </div> -->
+		</div>
+        
       </div>
     </grid-item>
     </grid-container>

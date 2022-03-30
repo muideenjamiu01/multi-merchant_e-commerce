@@ -1,5 +1,6 @@
 export const state = () => ({
   items: [],
+  cart:[]
 });
 
 // getters
@@ -13,7 +14,7 @@ export const getters = {
 
   cartTotalPrice(state, getters) {
     return getters.cartProducts.reduce((total, { product, quantity }) => {
-      return total + parseFloat(product.price) * quantity;
+      return total + (parseFloat(product.price) * quantity) ;
     }, 0);
   },
 };
