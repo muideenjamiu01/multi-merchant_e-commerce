@@ -37,13 +37,9 @@ export const actions = {
     }
   },
 
-
   getSingleProduct({ commit }, product) {
     commit("setSingleProduct", product);
   },
-
-
-  
 };
 
 export const mutations = {
