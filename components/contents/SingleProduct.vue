@@ -171,27 +171,9 @@
     </div>
 
     <div>
-      <!-- <div class="mt-8">
-        <p>People who bought this item also bought</p>
-        <div class="grid grid-flow-col gap-x-4 mt-4 overflow-x-scroll">
-          <ContentsProductCard
-            v-for="product in products"
-            :key="product._id"
-            :product="product"
-          />
-        </div>
-      </div> -->
+     
 
-      <!-- <div class="mt-8">
-        <p>Recently viewed items</p>
-        <div class="grid grid-flow-col gap-x-4 mt-4 overflow-x-scroll">
-          <ContentsProductCard
-            v-for="product in products"
-            :key="product._id"
-            :product="product"
-          />
-        </div>
-      </div> -->
+   
     </div>
   </div>
 </template>
