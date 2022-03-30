@@ -325,7 +325,7 @@
           </form>
         </section>
 
-        <ValidationObserver tag="section" class="my-8">
+        <ValidationObserver tag="section" class="my-12">
           <div class="flex items-center justify-between">
             <h4 class="text-xl font-medium text-black">Password</h4>
             <app-button
@@ -339,7 +339,7 @@
               Edit
             </app-button>
           </div>
-          <form @submit.prevent="savePassword">
+          <form v-if="password.editing" @submit.prevent="savePassword">
             <grid-container gap="4">
               <grid-item xs="12" sm="6">
                 <div class="w-full">
@@ -349,7 +349,6 @@
                       id="password"
                       v-model="password.current"
                       type="password"
-                      :disabled="!password.editing"
                       class="
                         flex
                         items-center
@@ -384,7 +383,6 @@
                       id="new_password"
                       v-model="password.new"
                       type="password"
-                      :disabled="!password.editing"
                       class="
                         flex
                         items-center
@@ -414,7 +412,6 @@
                       id="confirm_password"
                       v-model="password.confirm"
                       type="password"
-                      :disabled="!password.editing"
                       class="
                         flex
                         items-center
@@ -506,10 +503,10 @@ export default {
         matchError: null,
       },
       user: {
-        firstName: this.$auth.user.firstName,
-        lastName: this.$auth.user.lastName,
-        phone: this.$auth.user.phoneNo,
-        address: this.$auth.user.address,
+        firstName: this.$auth.user.firstName || '',
+        lastName: this.$auth.user.lastName || '',
+        phone: this.$auth.user.phoneNo || '',
+        address: this.$auth.user.address || '',
       },
     };
   },
@@ -518,10 +515,10 @@ export default {
       this.editing = true;
     },
     CancelEdit() {
-      (this.user.firstName = this.$auth.user.firstName),
-        (this.user.lastName = this.$auth.user.lastName),
-        (this.user.phone = this.$auth.user.phoneNo),
-        (this.user.address = this.$auth.user.address);
+      (this.user.firstName = this.$auth.user.firstName || ''),
+        (this.user.lastName = this.$auth.user.lastName || ''),
+        (this.user.phone = this.$auth.user.phoneNo || ''),
+        (this.user.address = this.$auth.user.address || '');
       this.editing = false;
     },
     async saveProfile() {

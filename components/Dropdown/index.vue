@@ -2,7 +2,7 @@
   <div class="relative">
       <slot name="dropdown-element" v-bind="{ setOpen, isOpen }"></slot>
    
-      <div v-show="isOpen" class="bg-white text-secondary-800 transition rounded shadow absolute top-full left-1/2 -translate-x-1/2 overflow-x-hidden overflow-y-auto min-w-[16px] min-h-[16px] outline-0">
+      <div v-show="isOpen" class="bg-white z-10 text-secondary-800 transition rounded shadow absolute top-full left-1/2 -translate-x-1/2 overflow-x-hidden overflow-y-auto min-w-[16px] min-h-[16px] outline-0">
         <slot name="dropdown-content" v-bind="{ setOpen, isOpen }"></slot>
       </div>
   </div>

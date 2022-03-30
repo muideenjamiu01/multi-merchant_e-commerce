@@ -39,12 +39,8 @@
 
 <script>
 import { mapActions } from "vuex";
-import AppButton from "@/components/buttons/Button.vue";
 
 export default {
-  components: {
-    "app-button": AppButton,
-  },
   props: {
     product: {},
     index: {},
@@ -52,7 +48,6 @@ export default {
   methods: {
     ...mapActions("cart", ["addProductToCart"]),
     viewProduct(index) {
-      debugger
       this.$router.push( 
         "/" + this.product.name.toLowerCase().split(" ").join("-")
       );
@@ -61,7 +56,6 @@ export default {
    
     getProductImage(images) {
       return images[0]
-      // return "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQfrWOGqkDUrw7FM0SJsZ6BinOjvh2hgSbbkGvmMm-5aNTaD2fKk8f9ovJPw9vzurnsUVezIdLHXw&usqp=CAc"
     },
   },
 };
