@@ -1,10 +1,9 @@
 <template>
-  <div class="px-4 py-8 flex">
-    <aside>
-      <ContentsCustomerProfileCard />
-    </aside>
-    <main class="w-full">
-      <h1 class="font-bold mb-10 mt-8">Your Orders</h1>
+  <app-container maxWidth="sm">
+    <grid-container class="my-6 sm:my-8">
+      <!-- <grid-item xs="fill"></grid-item> -->
+      <grid-item xs="fill">
+          <h1 class="text-2xl font-medium">Your Orders</h1>
       <div
         v-for="order in orders.data"
         :key="order._id"
@@ -28,8 +27,9 @@
           <p>Status</p>
         </div>
       </div>
-    </main>
-  </div>
+    </grid-item>
+    </grid-container>
+  </app-container>
 </template>
 
 <script>
@@ -42,13 +42,11 @@ export default {
     }),
   },
   mounted() {
-    console.log(this.orders);
     this.$store.dispatch("orders/fetchOrders");
   },
   methods: {
     ...mapActions(["fetchOrders"]),
     getProductPhoto(images) {
-      console.log(images);
       const photos = JSON.parse(images);
       return photos[photos.length - 1];
     },
