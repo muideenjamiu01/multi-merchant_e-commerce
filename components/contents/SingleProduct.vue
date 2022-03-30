@@ -6,22 +6,22 @@
       </div> -->
       <div class="w-full h-96 max-w-lg">
         <img
-          :src="getProductImage(singleProduct.images[0])"
+          :src="getProductImage(product.images[0])"
           class="w-full h-full"
           alt="product.name"
         />
       </div>
       <div>
-        <h1 class="text-xl capitalize">{{ singleProduct.category }}</h1>
+        <h1 class="text-xl capitalize">{{ product.category }}</h1>
         <div class="flex items-center">
           <p class="text-2xl font-bold">******</p>
           <p class="text-primary-blue-dark ml-2.5 text-sm">
-            {{ singleProduct.inventory }} ratings
+            {{ product.inventory }} ratings
           </p>
          
         </div>
         <div class="flex mt-6">
-          <p class="font-medium text-lg">{{ singleProduct.price }} NGN</p>
+          <p class="font-medium text-lg">{{ product.price }} NGN</p>
           <p class="text-primary-gray-light text-sm font-light ml-2.5">-23%</p>
         </div>
 
@@ -35,7 +35,7 @@
           </app-button>
 
         <app-button
-          @click="addProductToCart(singleProduct)"
+          @click="addProductToCart(product)"
           class="mt-6"
           variant="contained"
         >
@@ -139,7 +139,7 @@
       <div>
         <h1 class="text-xl mb-3">Product Description</h1>
         <p>
-          {{ singleProduct.description }}
+          {{ product.description }}
         </p>
       </div>
 
@@ -171,39 +171,35 @@
     </div>
 
     <div>
-      <div class="mt-8">
+      <!-- <div class="mt-8">
         <p>People who bought this item also bought</p>
         <div class="grid grid-flow-col gap-x-4 mt-4 overflow-x-scroll">
           <ContentsProductCard
             v-for="product in products"
-            :key="product.id"
+            :key="product._id"
             :product="product"
           />
         </div>
-      </div>
+      </div> -->
 
-      <div class="mt-8">
+      <!-- <div class="mt-8">
         <p>Recently viewed items</p>
         <div class="grid grid-flow-col gap-x-4 mt-4 overflow-x-scroll">
           <ContentsProductCard
             v-for="product in products"
-            :key="product.id"
+            :key="product._id"
             :product="product"
           />
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import AppButton from "@/components/buttons/Button.vue";
 
 export default {
-  components: {
-    "app-button": AppButton,
-  },
   methods: {
     ...mapActions("cart", ["addProductToCart"]),
     getProductImage(images) {
@@ -218,7 +214,7 @@ export default {
       this.$toast.success('Successfully added to wishlist')
     }
   },
-  computed: mapGetters({ singleProduct: "products/singleProduct" }),
+  computed: mapGetters({ product: "products/singleProduct" })
 };
 </script>
 

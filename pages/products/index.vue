@@ -5,7 +5,7 @@
     </aside>
     <main class="">
       <h1 class="text-2xl font-bold text-primary-black capitalize">
-        {{ $route.params.catalog }}
+        {{ $route.query.category }}
       </h1>
       <loading-spinner v-if="loading" size="large" />
       <p v-else-if="errors" class="text-2xl text-secondary-600">
@@ -27,6 +27,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import Spinner from "@/components/Loading/Spinners.vue";
+const category = this.$route.params.catalog
 
 export default {
   components: {
@@ -38,7 +39,9 @@ export default {
     loading: "products/loading",
   }),
   created() {
-    this.$store.dispatch("products/fetchProducts");
+    this.$store.dispatch("products/fetchProducts", {
+      category: this.$route.query.category || ''
+    });
   },
   methods: {
     ...mapActions(["fetchProducts"]),
@@ -49,12 +52,11 @@ export default {
 
 <style scoped>
 
-
-.grid-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-.grid-item {
-  margin: 20px;
-}
+  .grid-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .grid-item {
+    margin: 20px;
+  }
 </style>

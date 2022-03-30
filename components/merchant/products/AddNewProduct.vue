@@ -10,7 +10,7 @@
           <option value="fashion">Fashion</option>
           <option value="phones">Phones</option>
           <option value="computing">Computing</option>
-          <option value="phones">Gaming</option>
+          <option value="gaming">Gaming</option>
           <option value="home">Home</option>
           <option value="electronics">Electronics</option>
         </select>

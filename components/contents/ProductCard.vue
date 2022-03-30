@@ -47,11 +47,12 @@ export default {
   },
   methods: {
     ...mapActions("cart", ["addProductToCart"]),
-    viewProduct(index) {
+    viewProduct() {
+      const rn = Math.ceil(Math.random() * 1000000)
       this.$router.push( 
-        "/" + this.product.name.toLowerCase().split(" ").join("-")
+        this.product.name.toLowerCase().split(" ").join("-") + "-" + rn
       );
-      this.$store.dispatch("products/getSingleProduct", index);
+      this.$store.dispatch("products/getSingleProduct", this.product);
     },
    
     getProductImage(images) {

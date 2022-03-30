@@ -33,7 +33,7 @@
         />
       </div>
     </div>
-    <NuxtLink :to="'/products/' + name"><h3 class="text-primary-blue pt-8 cursor-pointer">Shop now</h3></NuxtLink>
+    <NuxtLink :to="'/products?category=' + name"><h3 class="text-primary-blue pt-8 cursor-pointer">Shop now</h3></NuxtLink>
   </div>
 </template>
  
@@ -41,7 +41,7 @@
 <script>
 export default {
   props: {
-    name: {},
+    name: "",
   }
 }
 </script>
