@@ -192,7 +192,9 @@ export default {
         );
 
         this.email = '';
+        console.log(response.data.data)
 
+        window.localStorage.setItem("reset-link", response.data.data)
         this.message = response.data.msg
         this.$toast.success(response.data.msg)
       } catch (err) {
