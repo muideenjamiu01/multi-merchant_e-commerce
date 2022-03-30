@@ -30,21 +30,27 @@ export const actions = {
       commit("setLoading", false);
     }
   },
-  async removeFromWishlist({ state, commit }, productId) {
-    commit("setLoading", true);
-    try {
-      const response = await this.$axios({
-        url: '/api/products/v1/product/wishlist/product/' ,
-        method: 'delete',
-        data: { id: productId }
-      });
-      commit("setWishlist", response.data);
-    } catch (error) {
-      commit("setWishlist", []);
-      commit("setError", error.message);
-    } finally {
-      commit("setLoading", false);
-    }
+   removeFromWishlist({ state, commit },productId) {  
+    // commit("setLoading", true);
+	return new Promise ((resolve, reject) =>{
+		this.$axios.delete(`/api/products/v1/product/wishlist/product/${productId}`).then(response => {
+			resolve(response)
+		}).catch(error => {
+			reject(error)
+		})
+	})
+    // try {
+    //   const response =  this.$axios({
+    //     url: `/api/products/v1/product/wishlist/product/${productId}`,
+    //     method: 'delete',
+    //     });		  
+    // } catch (error) {
+    // //   commit("setWishlist", []);
+    //   commit("setError", error.message);
+    // } finally {
+    //   commit("setLoading", false);
+    // }
+	
   },
   async fetchWishlist({ commit }) {
     commit("setLoading", true);
