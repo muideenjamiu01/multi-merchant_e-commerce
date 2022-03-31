@@ -14,7 +14,7 @@ export const getters = {
 
 export const actions = {
   async addToWishlist({ state, commit }, productId) {
-    commit("setLoading", true);
+    
     try {
       const response = await this.$axios({
         url: `/api/products/v1/product/wishlist`,
@@ -26,11 +26,11 @@ export const actions = {
     } catch (error) {
       commit("setError", error.message);
     } finally {
-      commit("setLoading", false);
+      
     }
   },
   async removeFromWishlist({ state, commit }, productId) {
-    commit("setLoading", true);
+   
 
     try {
       const response = await this.$axios({
@@ -38,19 +38,19 @@ export const actions = {
         method: "delete",
       });
 
-      commit("delWishlist", response.data);
+      commit("setWishlist", response.data);
 	  this.$toast.success("The item was removed successfully");
     } catch (error) {
-      commit("setWishlist", []);
+    //   commit("setWishlist", []);
       commit("setError", error.message);
     } finally {
-      commit("setLoading", false);
+     
     }
   },
 
 
   async fetchWishlist({ commit }) {
-    commit("setLoading", true);
+    
     try {
       const response = await this.$axios.get(
         "/api/products/v1/product/wishlist/products"
@@ -62,7 +62,7 @@ export const actions = {
     } catch (error) {
       commit("setError", error.message);
     } finally {
-      commit("setLoading", false);
+      
     }
   },
 };

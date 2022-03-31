@@ -29,10 +29,12 @@ export default {
   }),
   mounted() {
     this.$store.dispatch("wishlist/fetchWishlist");
+   
     console.log();
   },
   methods: {
     ...mapActions("wishlist", ["fetchWishlist", "removeFromWishlist"]),
+	
   },
 };
 </script>

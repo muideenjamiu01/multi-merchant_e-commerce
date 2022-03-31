@@ -1,8 +1,8 @@
 <template>
   <div class="py-8 px-4 flex">
-    <aside>
+    <!-- <aside>
       <ContentsProductFilter />
-    </aside>
+    </aside> -->
     <main class="">
       <h1 class="text-2xl font-bold text-primary-black capitalize">
         {{ $route.query.category }}

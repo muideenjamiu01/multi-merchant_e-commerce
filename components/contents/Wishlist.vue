@@ -64,9 +64,11 @@ export default {
   methods: {
     ...mapActions("cart", ["addProductToCart", "removeProductFromCart"]),
     ...mapActions("wishlist", ["fetchWishlist", "removeFromWishlist"]),
+	
   },
   mounted() {
     // console.log(this.products);
+
   },
 };
 </script>
