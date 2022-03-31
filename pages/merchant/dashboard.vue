@@ -97,7 +97,7 @@
           </div>
         </div>
 
-        <div class="mt-10 bg-primary-peach p-2">
+        <!-- <div class="mt-10 bg-primary-peach p-2">
           <span>
             <h1 class="font-normal text-2xl mb-4">Notifications</h1>
           </span>
@@ -193,7 +193,7 @@
               </table>
             </div>
           </div>
-        </div>
+        </div> -->
       </main>
     </div>
   </div>
@@ -226,17 +226,7 @@ export default {
           "December",
         ],
         datasets: [
-          {
-            label: "Visitors",
-            borderColor: "#21A2DA",
-            borderWidth: 1,
-            pointBackgroundColor: "white",
-            pointRadius: 2,
-            pointHoverRadius: 3,
-            pointHoverBorderColor: "#46B2C8",
-            backgroundColor: "#ebf8fe",
-            data: [4000, 1500, 251, 2500, 3000, 80, 40, 30, 20, 30, 20, 10],
-          },
+          
           {
             label: "Orders",
             borderColor: "#1EB62D",
