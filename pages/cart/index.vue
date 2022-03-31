@@ -27,8 +27,12 @@
                       {{ item.product.name }}
                     </h3>
                   </div>
-                  <div class="text-sm font-light">size:{{item.product.size}}</div>
-                  <div class="text-sm font-light">color:{{item.product.color}}</div>
+                  <div class="text-sm font-light">
+                    size:{{ item.product.size }}
+                  </div>
+                  <div class="text-sm font-light">
+                    color:{{ item.product.color }}
+                  </div>
                   <div class="flex align-center">
                     <app-button
                       @click="
@@ -51,13 +55,16 @@
               </div>
             </div>
           </div>
-          <div class="pt-10 md:pt-0 flex justify-between ">
+          <div class="pt-10 md:pt-0 flex justify-between">
             <div class="md:w-1/4">
               <div class="flex justify-center items-center gap-4">
                 <app-button
-                  @click="removeProductFromCart({ productId: item.product._id })"
+                  @click="
+                    removeProductFromCart({ productId: item.product._id })
+                  "
                   size="small"
-                  > -
+                >
+                  -
                 </app-button>
                 <div
                   class="text-center font-semibold text-md text-gray-400 flex items-center"
@@ -74,9 +81,9 @@
             </div>
             <div class="md:w-1/4">
               <div class="flex">
-                <span class="text-base font-light">{{
-                  item.product.price
-                }}</span>
+                <span class="text-base font-light"
+                  >#{{ Number(item.product.price).toLocaleString() }}</span
+                >
               </div>
             </div>
           </div>
@@ -95,8 +102,8 @@
       >
         <h1 class="">{{ `Subtotal (${itemsCount} items):` }}</h1>
 
-        <p class="flex justify-end font-medium">
-          NGN {{ (parseFloat(totalPrice) * 100) / 100 }}
+        <p class="flex justify-end font-semibold">
+          # {{ Number((parseFloat(totalPrice) * 100) / 100).toLocaleString() }}
         </p>
 
         <app-button
@@ -105,11 +112,9 @@
           color="primary"
           variant="contained"
           fullWidth
-		  
           >Checkout
-          </app-button
-        >
-		<!-- :disabled="!$auth.loggedIn" -->
+        </app-button>
+        <!-- :disabled="!$auth.loggedIn" -->
       </div>
     </div>
   </div>
@@ -117,7 +122,6 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-
 
 export default {
   computed: {
@@ -130,11 +134,11 @@ export default {
   mounted() {
     const cart = window.localStorage.getItem("ys-cart");
     this.$store.commit("cart/setCart", cart);
-	// if(!this.$auth.loggedIn){
-	// 	this.$toast.error("You have to log in to proceed to checkout",{
-	// 		duration:6000
-	// 	});
-	// }
+    // if(!this.$auth.loggedIn){
+    // 	this.$toast.error("You have to log in to proceed to checkout",{
+    // 		duration:6000
+    // 	});
+    // }
   },
   methods: {
     ...mapActions("cart", ["addProductToCart", "removeProductFromCart"]),
@@ -147,9 +151,6 @@ export default {
       const photos = JSON.parse(images);
       return photos[photos.length - 1];
     },
-
-  
-
   },
 };
 </script>

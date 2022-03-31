@@ -23,10 +23,7 @@
           :productName="order.products"
           
         />
-		<!-- <div class="font-bold justify-end md:flex md:space-x-6">
-          <p>Price</p>
-          <p>Status</p>
-        </div> -->
+		
 		</div>
         
       </div>

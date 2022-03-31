@@ -23,7 +23,7 @@
         <p class="text-primary-blue ml-2.5">213</p>
       </div>
       <div class="flex items-center font-light my-2">
-        <p>{{ product.price }} NGN</p>
+        <p  class="font-semibold text-lg">#{{ Number(product.price).toLocaleString() }}</p>
         <p class="text-primary-gray-light ml-2.5">-{{product.quantity}} %</p>
       </div>
     </div>

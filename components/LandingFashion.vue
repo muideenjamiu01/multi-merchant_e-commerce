@@ -1,5 +1,6 @@
 <template>
    <div class="flex flex-col w-80 h-420 p-6 my-3 mx-auto bg-white shadow-lg md:mr-5 rounded md:my-0 md:w-1/3"> <!-- card 1 bottom row-->
+   <NuxtLink :to="'/products?category=' + name">
     <h1 class="mb-6 font-bold capitalize">{{name}}</h1>
     <div class="flex w-full h-32 px-2 mb-2">
       <div class="mb-2 mr-2 w-3/6 h-32 hover:border-4 border-sky-500 bg-slate-300">
@@ -33,7 +34,8 @@
         />
       </div>
     </div>
-    <NuxtLink :to="'/products?category=' + name"><h3 class="text-primary-blue pt-8 cursor-pointer">Shop now</h3></NuxtLink>
+    <h3 class="text-primary-blue pt-8 cursor-pointer">Shop now</h3>
+ </NuxtLink>
   </div>
 </template>
  
