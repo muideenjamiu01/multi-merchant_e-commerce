@@ -6,7 +6,7 @@
       <main class="md:ml-72 md:w-[calc(100%_-_288px)]">
       <div class="flex justify-between items-center">
         <h1 class="text-2xl">Products</h1>
-        <form 
+        <!-- <form 
           enctype="mutipart/form-data">
           <label for="file">Update An Image</label>
           <input 
@@ -15,10 +15,10 @@
             ref="file"
           >
          
-        </form>
+        </form> -->
         <NuxtLink to="products/newproduct">
           <app-button  size="small" variant="contained">
-            Add Product
+            Upload A New Product
           </app-button>
 
         </NuxtLink>
@@ -106,7 +106,6 @@
 </template>
 
 <script>
-  import AppButton from "@/components/buttons/Button.vue"
   import { mapGetters, mapActions } from "vuex";
   import JwPagination from "jw-vue-pagination/lib/JwPagination";
    const customStyles = {
@@ -140,14 +139,12 @@
     layout: 'merchant',
     data () {
     return {
-      file: "",
       customStyles,
       customLabels,
       pageOfItems: [],
       }
     },
       components: {
-        'app-button': AppButton,
           JwPagination,
       },
         computed: mapGetters({
@@ -157,7 +154,6 @@
       }),
         mounted() {
           this.$store.dispatch("merchant-products/fetchProducts")
-
       },
       methods: {
         onChangePage(p) {
@@ -203,8 +199,6 @@
             const response = await this.$axios.post(`/api/products/v1/products/${id}/upload`, formData)
               this.$toast.success('Image Successfully added')
               this.$router.go(-1)
-              // this.$router.push("/merchant/products")
-
           } catch (err) {
             console.log(err);
           } finally {
