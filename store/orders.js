@@ -34,28 +34,33 @@ export const actions = {
   },
   //this checkout function creates order
   async createOrder({ state, commit, rootState, rootGetters }) {
-    let payload = {
-      customerId: rootState.auth.user._id,
-      customerEmail: rootState.auth.user.email,
-      products: rootState.cart.items.map((item) => ({
-        id: item.product._id,
-        name: item.product.name,
-        price: item.product.price,
-        size: item.product.size,
-        color: item.product.color,
-        image: item.product.images[0],
-        quantity: item.quantity,
-      })),
-      total: rootGetters["cart/cartTotalPrice"] * 100,
-    };
-
-    let res = await this.$axios.post("/api/order/", payload);
-
-    this.$toast.success("Orders Successfully Created");
-
-    this.$router.push("/checkout");
-    //   commit('addOrder', res.data.data.id)
-    commit("saveOrderId", res.data.data.id);
+	  if(!this.$auth.loggedIn){
+		this.$router.push("/auth/login");
+	  } else{
+		let payload = {
+			customerId: rootState.auth.user._id,
+			customerEmail: rootState.auth.user.email,
+			products: rootState.cart.items.map((item) => ({
+			  id: item.product._id,
+			  name: item.product.name,
+			  price: item.product.price,
+			  size: item.product.size,
+			  color: item.product.color,
+			  image: item.product.images[0],
+			  quantity: item.quantity,
+			})),
+			total: rootGetters["cart/cartTotalPrice"] * 100,
+		  };
+	  
+		  let res = await this.$axios.post("/api/order/", payload);
+	  
+		  this.$toast.success("Orders Successfully Created");
+	  
+		  this.$router.push("/checkout");
+		  //   commit('addOrder', res.data.data.id)
+		  commit("saveOrderId", res.data.data.id);
+	  }
+    
   },
 };
 

@@ -14,7 +14,7 @@ export const getters = {
 
 export const actions = {
   async addToWishlist({ state, commit }, productId) {
-    commit("setLoading", true);
+    
     try {
       const response = await this.$axios({
         url: `/api/products/v1/product/wishlist`,
@@ -26,11 +26,11 @@ export const actions = {
     } catch (error) {
       commit("setError", error.message);
     } finally {
-      commit("setLoading", false);
+      
     }
   },
   async removeFromWishlist({ state, commit }, productId) {
-    commit("setLoading", true);
+   
 
     try {
       const response = await this.$axios({
@@ -41,14 +41,16 @@ export const actions = {
       commit("setWishlist", response.data);
 	  this.$toast.success("The item was removed successfully");
     } catch (error) {
-      commit("setWishlist", []);
+    //   commit("setWishlist", []);
       commit("setError", error.message);
     } finally {
-      commit("setLoading", false);
+     
     }
   },
+
+
   async fetchWishlist({ commit }) {
-    commit("setLoading", true);
+    
     try {
       const response = await this.$axios.get(
         "/api/products/v1/product/wishlist/products"
@@ -60,7 +62,7 @@ export const actions = {
     } catch (error) {
       commit("setError", error.message);
     } finally {
-      commit("setLoading", false);
+      
     }
   },
 };
@@ -70,6 +72,11 @@ export const mutations = {
     state.products = payload;
 	// state.products.filter((productId) => productId !== productId)
 	// this.splice(products,1)
+  },
+  delWishlist(state, payload){
+	  console.log(payload)
+	  state.products = state.products.filter((product) => product._id !== payload._id)
+	  
   },
   setLoading(state, value) {
     state.loading = value;
