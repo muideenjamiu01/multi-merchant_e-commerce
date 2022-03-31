@@ -41,7 +41,7 @@
             <section>
               <div class="flex justify-between items-center mt-6">
                 <span>Subtotal</span>
-                <span>NGN {{ totalPrice }}</span>
+                <span  class="font-semibold text-lg"># {{Number(totalPrice).toLocaleString()}}</span>
               </div>
               <div class="mt-6 flex justify-between border-b pb-2">
                 <p class="">Shipping Method</p>
@@ -52,8 +52,8 @@
               </div>
               <div class="flex justify-between items-center mt-6">
                 <span class="font-semibold">Total</span>
-                <span class="text-primary-blue font-medium">
-                  NGN {{ sumTotal }}</span
+                <span class="text-primary-blue font-bold">
+                  # {{ Number(sumTotal).toLocaleString() }}</span
                 >
               </div>
               <div class="mt-8 flex justify-center">

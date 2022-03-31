@@ -21,7 +21,7 @@
               </h3>
               <p>Size:{{ product.size }}</p>
               <p>Color:{{ product.color }}</p>
-              <p>Price:{{ product.price }}</p>
+              <p  class="font-medium">Price:#{{Number(product.price).toLocaleString() }}</p>
               <p>Quantity:{{ product.quantity }}</p>
 
               <app-button
@@ -35,7 +35,7 @@
           </div>
 
           <div class="md:flex items-center md:space-x-6">
-            <p>{{ product.price }}</p>
+            <p># {{Number(product.price).toLocaleString()}}</p>
             <app-button @click="addProductToCart(product)" variant="contained">
               Add to cart
             </app-button>

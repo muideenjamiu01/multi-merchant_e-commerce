@@ -81,7 +81,7 @@
                   </div>
                   <p> Quantity: {{product.quantity}}</p>
               </td>
-              <td>{{product.price}}</td>
+              <td>{{Number(product.price).toLocaleString()}}</td>
               <td>{{ Math.floor(Math.random() * 40) }}%</td>
               <td>{{ product.sold }}</td>
               <td>{{ Math.floor(Math.random() * 5) }}</td>
