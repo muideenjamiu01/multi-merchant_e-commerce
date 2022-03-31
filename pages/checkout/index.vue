@@ -135,11 +135,13 @@ export default {
           //   // Do something.
           let res = this.$axios.get(`/api/payments/verify/${transId}`);
           let data = res.data;
-          
+          this.$router.push('/customer/orders')
         },
         onClose: () => {
           // Do something.
-          console.log("Payment Closed"); 
+          console.log("Payment Closed")
+		  ; 
+		  
         },
       });
     },
