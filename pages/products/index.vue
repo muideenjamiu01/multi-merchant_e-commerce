@@ -41,6 +41,7 @@ export default {
     this.$store.dispatch("products/fetchProducts", {
       category: this.$route.query.category || ''
     });
+
   },
   methods: {
     ...mapActions(["fetchProducts"]),
@@ -51,12 +52,11 @@ export default {
 
 <style scoped>
 
-
-.grid-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-.grid-item {
-  margin: 20px;
-}
+  .grid-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .grid-item {
+    margin: 20px;
+  }
 </style>

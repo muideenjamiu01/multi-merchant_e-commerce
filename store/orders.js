@@ -3,7 +3,6 @@ export const state = () => ({
   id: "",
   loading: false,
   errors: null,
- 
 });
 
 // getters
@@ -20,17 +19,13 @@ export const getters = {
 
 // actions
 export const actions = {
-//   async executeOrder({ state, commit, rootState }) {},
-
   async fetchOrders({ commit, rootState }) {
-	  
-	const customerId = rootState.auth.user._id;
+    const customerId = rootState.auth.user._id;
     commit("setLoading", true);
-	
+
     try {
       let res = await this.$axios.get(`/api/order/customer/${customerId}`);
       commit("addOrder", res.data);
-	  console.log(res.data)
     } catch (error) {
       commit("setError", error.message);
     } finally {
@@ -43,15 +38,13 @@ export const actions = {
       customerId: rootState.auth.user._id,
       customerEmail: rootState.auth.user.email,
       products: rootState.cart.items.map((item) => ({
-        
         id: item.product._id,
-		name: item.product.name,
-		price: item.product.price,
-		size:item.product.size,
-		color:item.product.color,
-		image:item.product.images[0],
+        name: item.product.name,
+        price: item.product.price,
+        size: item.product.size,
+        color: item.product.color,
+        image: item.product.images[0],
         quantity: item.quantity,
-        
       })),
       total: rootGetters["cart/cartTotalPrice"] * 100,
     };
@@ -69,14 +62,13 @@ export const actions = {
 // mutations
 export const mutations = {
   addOrder(state, order) {
-	  
-    state.items =  order;
+    state.items = order;
     //   window.localStorage.setItem("ys-orders", JSON.stringify(state.items));
   },
   saveOrderId(state, orderId) {
     state.id = orderId;
   },
-  
+
   setLoading(state, value) {
     state.loading = value;
   },

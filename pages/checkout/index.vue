@@ -9,10 +9,7 @@
             <hr class="mt-2" />
           </div>
         </div>
-
-        <h3 class="mt-6">Use saved address</h3>
-
-        <div>
+       <div>
           <div class="md:flex justify-between gap-8 mt-4">
             <div class="md:md:w-1/2">
               <div class="flex">
@@ -26,7 +23,7 @@
                     class="mr-2 form-check-input appearance-none rounded-full h-4 w-4 border border-primary-blue bg-white checked:bg-primary-blue checked:border-primary-blue focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer"
                   />
                 </div>
-                <label for="primary-address"> Primary address</label>
+                <label for="saved-address">Use saved address</label>
               </div>
             </div>
           </div>
@@ -138,11 +135,13 @@ export default {
           //   // Do something.
           let res = this.$axios.get(`/api/payments/verify/${transId}`);
           let data = res.data;
-          
+          this.$router.push('/customer/orders')
         },
         onClose: () => {
           // Do something.
-          console.log("Payment Closed"); 
+          console.log("Payment Closed")
+		  ; 
+		  
         },
       });
     },

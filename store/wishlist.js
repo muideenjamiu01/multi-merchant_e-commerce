@@ -1,7 +1,7 @@
 export const state = () => ({
   products: [],
   loading: false,
-  errors: null
+  errors: null,
 });
 
 export const getters = {
@@ -14,16 +14,15 @@ export const getters = {
 
 export const actions = {
   async addToWishlist({ state, commit }, productId) {
-
     commit("setLoading", true);
     try {
       const response = await this.$axios({
         url: `/api/products/v1/product/wishlist`,
-        method: 'post',
-        data: { products: productId }
+        method: "post",
+        data: { products: productId },
       });
       commit("setWishlist", response.data);
-	  console.log(response.data)
+      this.$toast.success("Product successfully added to your wishlist");
     } catch (error) {
       commit("setError", error.message);
     } finally {
@@ -32,13 +31,15 @@ export const actions = {
   },
   async removeFromWishlist({ state, commit }, productId) {
     commit("setLoading", true);
+
     try {
       const response = await this.$axios({
-        url: '/api/products/v1/product/wishlist/product/' ,
-        method: 'delete',
-        data: { id: productId }
+        url: `/api/products/v1/product/wishlist/product/${productId}`,
+        method: "delete",
       });
+
       commit("setWishlist", response.data);
+	  this.$toast.success("The item was removed successfully");
     } catch (error) {
       commit("setWishlist", []);
       commit("setError", error.message);
@@ -50,7 +51,7 @@ export const actions = {
     commit("setLoading", true);
     try {
       const response = await this.$axios.get(
-        '/api/products/v1/product/wishlist/products'
+        "/api/products/v1/product/wishlist/products"
       );
 
       // const {_links, items, meta} = response.data
@@ -67,11 +68,13 @@ export const actions = {
 export const mutations = {
   setWishlist(state, payload) {
     state.products = payload;
+	// state.products.filter((productId) => productId !== productId)
+	// this.splice(products,1)
   },
   setLoading(state, value) {
     state.loading = value;
   },
   setError(state, payload) {
     state.errors = payload;
-  }
+  },
 };

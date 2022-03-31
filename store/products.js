@@ -16,6 +16,7 @@ export const getters = {
 
 export const actions = {
   async fetchProducts({ commit, rootState }, {category}) {
+    
     commit("setLoading", true);
     try {
       const response = await this.$axios.get(`/api/products/v1/products/category/`,

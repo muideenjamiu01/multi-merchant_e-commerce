@@ -105,6 +105,7 @@
           color="primary"
           variant="contained"
           fullWidth
+		  :disabled="!$auth.loggedIn"
           >Checkout
           </app-button
         >
@@ -128,6 +129,11 @@ export default {
   mounted() {
     const cart = window.localStorage.getItem("ys-cart");
     this.$store.commit("cart/setCart", cart);
+	if(!this.$auth.loggedIn){
+		this.$toast.error("You have to log in to proceed to checkout",{
+			duration:6000
+		});
+	}
   },
   methods: {
     ...mapActions("cart", ["addProductToCart", "removeProductFromCart"]),

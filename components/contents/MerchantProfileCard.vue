@@ -27,14 +27,14 @@
           </span>
         </NuxtLink>
       </li>
-      <li class="">
+      <!-- <li class="">
         <NuxtLink to="/merchant/transactions" class="flex items-center space-x-5" active-class="text-primary-500">
           <transfer-icon />
           <span class="text-xl capitalize text-inherit">
             Transactions
           </span>
         </NuxtLink>
-      </li>
+      </li> -->
       <li class="">
         <NuxtLink to="/merchant/withdrawals" class="flex items-center space-x-5" active-class="text-primary-500">
           <withdrawal-icon />
@@ -59,7 +59,7 @@
 import DashboardIcon from "@/components/svg/Dashboard";
 import ProductIcon from "@/components/svg/Product";
 import SettingsIcon from "@/components/svg/Settings";
-import TransactionIcon from "@/components/svg/Transaction";
+// import TransactionIcon from "@/components/svg/Transaction";
 import WithdrawalIcon from "@/components/svg/Withdrawal";
 
 export default {
@@ -67,7 +67,7 @@ export default {
     "dashboard-icon": DashboardIcon,
     "product-icon": ProductIcon,
     "settings-icon": SettingsIcon,
-    "transfer-icon": TransactionIcon,
+    // "transfer-icon": TransactionIcon,
     "withdrawal-icon": WithdrawalIcon,
   },
   data () {

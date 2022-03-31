@@ -401,19 +401,12 @@
           </div>
         </div>
         <div class="text-right">
-          <AppButton
-            button-text="Cancel"
-            color="outlinegray"
-            size="md"
-            class="mr-[15px] mt-[64px]"
-            rounded
-          />
-          <AppButton
-            button-text="Save"
-            color="outlinebutton"
-            size="md"
-            rounded
-          />
+          <app-button color="secondary" variant="outlined" class="mr-[15px] mt-[64px]">
+            Cancel
+          </app-button>
+          <app-button color="primary" variant="outlined">
+            save
+          </app-button>
         </div>
       </form>
     </main>

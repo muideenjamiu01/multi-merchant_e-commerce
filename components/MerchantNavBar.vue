@@ -10,12 +10,12 @@
     </div>
      -->
     <div class="flex items-center justify-end">
-      <NuxtLink
+      <!-- <NuxtLink
         to="/merchant/transactions"
         class="hover:bg-secondary-100 relative rounded-full p-[5px]"
       >
         <notif-icon />
-      </NuxtLink>
+      </NuxtLink> -->
 
       <dropdown-menu>
         <template v-slot:dropdown-element="{ setOpen, isOpen }">
@@ -97,10 +97,10 @@ export default {
           to: '/merchant/products',
           label: 'Products'
         },
-        {
-          to: '/merchant/transactions',
-          label: 'Transactions'
-        },
+        // {
+        //   to: '/merchant/transactions',
+        //   label: 'Transactions'
+        // },
         {
           to: '/merchant/withdrawals',
           label: 'Withdrawals'

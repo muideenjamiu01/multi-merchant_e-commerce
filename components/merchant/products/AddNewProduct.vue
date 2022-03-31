@@ -10,7 +10,7 @@
           <option value="fashion">Fashion</option>
           <option value="phones">Phones</option>
           <option value="computing">Computing</option>
-          <option value="phones">Gaming</option>
+          <option value="gaming">Gaming</option>
           <option value="home">Home</option>
           <option value="electronics">Electronics</option>
         </select>
@@ -64,9 +64,7 @@
           >
          
         </form>
-<!--         
-        <label>Photos</label><br />
-        <input type="file" class="my-1" /> -->
+
         <p class="text-xs">
           Please upload multiple images of this product, preferably different
           views of the product
@@ -193,8 +191,6 @@ export default {
         const response = await this.$axios.post(`/api/products/v1/products/${id}/upload`, formData)
           this.$toast.success('Image Successfully added')
           this.$router.go(-1)
-          // this.$router.push("/merchant/products")
-
       } catch (err) {
         console.log(err);
       } finally {
@@ -215,7 +211,6 @@ export default {
             size: this.size,
             discount: this.discount,
           }).then(  res =>  this.updatePicture(res.data.data._id))
-          // this.updatePicture(response.data.data._id)
       } catch (err) {
         console.log(err);
       } finally {
