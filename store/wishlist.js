@@ -38,7 +38,7 @@ export const actions = {
         method: "delete",
       });
 
-      commit("setWishlist", response.data);
+      commit("delWishlist", response.data);
 	  this.$toast.success("The item was removed successfully");
     } catch (error) {
       commit("setWishlist", []);
@@ -47,6 +47,8 @@ export const actions = {
       commit("setLoading", false);
     }
   },
+
+
   async fetchWishlist({ commit }) {
     commit("setLoading", true);
     try {
@@ -70,6 +72,11 @@ export const mutations = {
     state.products = payload;
 	// state.products.filter((productId) => productId !== productId)
 	// this.splice(products,1)
+  },
+  delWishlist(state, payload){
+	  console.log(payload)
+	  state.products = state.products.filter((product) => product._id !== payload._id)
+	  
   },
   setLoading(state, value) {
     state.loading = value;

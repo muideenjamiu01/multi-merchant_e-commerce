@@ -66,7 +66,7 @@ export default {
     ...mapActions("wishlist", ["fetchWishlist", "removeFromWishlist"]),
   },
   mounted() {
-    console.log(this.products);
+    // console.log(this.products);
   },
 };
 </script>
