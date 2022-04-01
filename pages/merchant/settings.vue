@@ -3,7 +3,7 @@
       <side-nav merchant>
         <ContentsMerchantProfileCard />
       </side-nav>
-      <main class="sm:ml-72 sm:w-[calc(100%_-_288px)] my-8">
+      <main class="sm:ml-72 sm:w-[calc(100%_-_288px)] my-4">
         <div class="flex items-center justify-between">
           <h1 class="text-xl font-medium text-black">Personal Information</h1>
           <app-button
@@ -133,12 +133,6 @@
                   "
                   v-model.trim="merchant.accountNo"
                 />
-                <small class="mt-2 text-gray-400 block">
-                  Choose a unique name for your online shop: this is the name
-                  that will appear on our marketplace! It is forbidden to use a
-                  registered trademark in your shop name without the brand
-                  authorization.
-                </small>
                 <span class="text-xs text-error-800 block">{{
                   errors[0]
                 }}</span>

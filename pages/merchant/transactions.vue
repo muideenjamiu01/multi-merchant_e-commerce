@@ -3,7 +3,7 @@
       <side-nav merchant>
         <ContentsMerchantProfileCard />
       </side-nav>
-      <main class="md:ml-72 md:w-[calc(100%_-_288px)]">
+      <main class="sm:ml-72 sm:w-[calc(100%_-_288px)] my-4">
       <h1 class="text-2xl">
         Transactions
       </h1>

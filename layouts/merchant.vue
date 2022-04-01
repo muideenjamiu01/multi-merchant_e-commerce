@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto font-br-sonoma">
+  <div class="mx-auto font-br-sonoma relative">
     <MerchantNavBar />
     <app-container maxWidth="xl">
       <nuxt class="min-h-screen" />
