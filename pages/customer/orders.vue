@@ -3,31 +3,24 @@
     <grid-container class="my-6 sm:my-8">
       <!-- <grid-item xs="fill"></grid-item> -->
       <grid-item xs="fill">
-          <h1 class="text-2xl font-medium">Your Orders</h1>
-      <div
-        v-for="order in orders.data"
-        :key="order._id"
-        class="border border-gray-300 rounded-lg mt-5 p-4"
-      >
-        <ContentsCustomerOrderSummary
-          :transactionId="order._id"
-          :orderDate="order.orderDate"
-		  :orderStatus="order.orderStatus"
-		  :shippingFee="shippingFee"
-          :totalCost="order.total / 100"
-		  
-        />
-        <div class="flex justify-between" >
-			<!-- -->
-		<ContentsOrderslist
-          :productName="order.products"
-          
-        />
-		
-		</div>
-        
-      </div>
-    </grid-item>
+        <h1 class="text-2xl font-medium">Your Orders</h1>
+        <div
+          v-for="order in orders.data"
+          :key="order._id"
+          class="border border-gray-300 rounded-lg mt-5 p-4"
+        >
+          <ContentsCustomerOrderSummary
+            :transactionId="order._id"
+            :orderDate="order.orderDate"
+            :orderStatus="order.orderStatus"
+            :totalCost="order.total / 100"
+          />
+          <div class="flex justify-between">
+            <!-- -->
+            <ContentsOrderslist :productName="order.products" />
+          </div>
+        </div>
+      </grid-item>
     </grid-container>
   </app-container>
 </template>

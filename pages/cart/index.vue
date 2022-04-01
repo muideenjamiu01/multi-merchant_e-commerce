@@ -82,7 +82,7 @@
             <div class="md:w-1/4">
               <div class="flex">
                 <span class="text-base font-light"
-                  >#{{ Number(item.product.price).toLocaleString() }}</span
+                  >₦{{ Number(item.product.price).toLocaleString() }}</span
                 >
               </div>
             </div>
@@ -103,7 +103,7 @@
         <h1 class="">{{ `Subtotal (${itemsCount} items):` }}</h1>
 
         <p class="flex justify-end font-semibold">
-          # {{ Number((parseFloat(totalPrice) * 100) / 100).toLocaleString() }}
+          ₦ {{ Number((parseFloat(totalPrice) * 100) / 100).toLocaleString() }}
         </p>
 
         <app-button

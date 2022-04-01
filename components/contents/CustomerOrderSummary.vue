@@ -15,7 +15,7 @@
     </p> -->
 	<p class="my-3">Status: {{orderStatus}}</p>
     <p class="my-3 font-semibold text-lg">
-      Total cost: #{{Number(totalCost).toLocaleString()}}
+      Total cost: ₦ {{Number(totalCost).toLocaleString()}}
     </p>
 	</div>
   </div>
@@ -29,7 +29,7 @@ export default {
 		"order",
 		"transactionId",
 		"orderDate",
-		"shippingFee",
+		// "shippingFee",
 		"orderStatus",
 		"totalCost",
 	],
