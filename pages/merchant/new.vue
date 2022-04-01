@@ -18,7 +18,7 @@
               <ValidationProvider
                 v-slot="{ errors }"
                 name="storeName"
-                rules="required||alpha"
+                rules="required||alpha_spaces"
                 tag="div"
                 class="my-8"
               >
