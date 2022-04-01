@@ -1,6 +1,9 @@
 <template>
   <div class="">
-    <div class="text-sm font-light pt-4 border-t border-gray-100 mb-6 my-8">
+	  <!-- <div v-if="loadingStatus">
+        <loading-spinner size="large" color="primary"/>
+      </div> -->
+    <div v-if="wishlist" class="text-sm font-light pt-4 border-t border-gray-100 mb-6 my-8">
       <div class="md:px-32">
         <div
           v-for="product in products"
@@ -21,7 +24,7 @@
               </h3>
               <p>Size:{{ product.size }}</p>
               <p>Color:{{ product.color }}</p>
-              <p  class="font-medium">Price:#{{Number(product.price).toLocaleString() }}</p>
+              <p  class="font-medium">Price:₦{{Number(product.price).toLocaleString() }}</p>
               <p>Quantity:{{ product.quantity }}</p>
 
               <app-button
@@ -35,7 +38,7 @@
           </div>
 
           <div class="md:flex items-center md:space-x-6">
-            <p># {{Number(product.price).toLocaleString()}}</p>
+            <p>₦ {{Number(product.price).toLocaleString()}}</p>
             <app-button @click="addProductToCart(product)" variant="contained">
               Add to cart
             </app-button>
@@ -43,14 +46,23 @@
         </div>
       </div>
     </div>
+	<div v-else class="flex justify-center w-full">
+        <h4 class="text-center text-secondary-500 text-xl font-medium">
+          No product in your wishlist
+        </h4>
+      </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions , mapGetters} from "vuex";
 import AppButton from "@/components/buttons/Button.vue";
+// import Spinners from "~/components/Loading/Spinners.vue";
 
 export default {
+	components: {
+    // Spinners,
+  },
   props: {
     products: {
       type: Array,
@@ -61,6 +73,11 @@ export default {
   components: {
     "app-button": AppButton,
   },
+   computed: mapGetters({
+    // loadingStatus: "wishlist/loadingStatus",
+    
+   
+  }),
   methods: {
     ...mapActions("cart", ["addProductToCart", "removeProductFromCart"]),
     ...mapActions("wishlist", ["fetchWishlist", "removeFromWishlist"]),

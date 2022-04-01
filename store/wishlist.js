@@ -1,6 +1,6 @@
 export const state = () => ({
   products: [],
-  loading: false,
+  loadingStatus: false,
   errors: null,
 });
 
@@ -8,13 +8,14 @@ export const getters = {
   products(state) {
     return state.products;
   },
-  loading: (state) => state.loading,
+  loadingStatus (state) {
+    return state.loadingStatus;
+  },
   errors: (state) => state.errors,
 };
 
 export const actions = {
   async addToWishlist({ state, commit }, productId) {
-    
     try {
       const response = await this.$axios({
         url: `/api/products/v1/product/wishlist`,
@@ -26,60 +27,55 @@ export const actions = {
     } catch (error) {
       commit("setError", error.message);
     } finally {
-      
     }
   },
-  async removeFromWishlist({ state, commit }, productId) {
-   
-
+  async  removeFromWishlist({ state, commit, dispatch }, productId) {
     try {
       const response = await this.$axios({
         url: `/api/products/v1/product/wishlist/product/${productId}`,
         method: "delete",
       });
 
-      commit("setWishlist", response.data);
-	  this.$toast.success("The item was removed successfully");
+    //   commit("setWishlist", response.data);
+      this.$toast.success("The item was removed successfully");
+	  dispatch("fetchWishlist");
+	  console.log("dispatch")
     } catch (error) {
-    //   commit("setWishlist", []);
+      //   commit("setWishlist", []);
       commit("setError", error.message);
     } finally {
-     
     }
   },
 
+  fetchWishlist({ commit }) {
+    commit("loadingStatus", true);
+    return this.$axios.get("/api/products/v1/product/wishlist/products")
+      .then((response) => {
+        commit("setWishlist", response.data);
+        commit("loadingStatus", false);
+      })
+      .catch((error) => console.log(error));
 
-  async fetchWishlist({ commit }) {
-    
-    try {
-      const response = await this.$axios.get(
-        "/api/products/v1/product/wishlist/products"
-      );
+    // const {_links, items, meta} = response.data
 
-      // const {_links, items, meta} = response.data
-      commit("setWishlist", response.data);
-      // commit("setPagination", {...meta, ..._links});
-    } catch (error) {
-      commit("setError", error.message);
-    } finally {
-      
-    }
+    // commit("setPagination", {...meta, ..._links});
   },
 };
 
 export const mutations = {
   setWishlist(state, payload) {
     state.products = payload;
-	// state.products.filter((productId) => productId !== productId)
-	// this.splice(products,1)
+    // state.products.filter((productId) => productId !== productId)
+    // this.splice(products,1)
   },
-  delWishlist(state, payload){
-	  console.log(payload)
-	  state.products = state.products.filter((product) => product._id !== payload._id)
-	  
+  delWishlist(state, payload) {
+    console.log(payload);
+    state.products = state.products.filter(
+      (product) => product._id !== payload._id
+    );
   },
-  setLoading(state, value) {
-    state.loading = value;
+  loadingStatus(state, value) {
+    state.loadingStatus = value;
   },
   setError(state, payload) {
     state.errors = payload;
