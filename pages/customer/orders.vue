@@ -5,6 +5,12 @@
       <grid-item xs="fill">
         <h1 class="text-2xl font-medium">Your Orders</h1>
         <div
+          v-if="loading"
+          class="flex justify-center items-center mt-24"
+        >
+          <LoadingSpinners size="large" color="primary" />
+        </div>
+        <div v-else
           v-for="order in orders.data"
           :key="order._id"
           class="border border-gray-300 rounded-lg mt-5 p-4"
@@ -32,6 +38,7 @@ export default {
   computed: {
     ...mapGetters({
       orders: "orders/getOrders",
+	   loading: "orders/loading",
     }),
   },
   mounted() {

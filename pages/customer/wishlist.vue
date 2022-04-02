@@ -5,8 +5,8 @@
     </aside> -->
     <main class="w-full">
       <h1 class="text-2xl mb-10">Your Wishlist</h1>
-      <div v-if="loadingStatus">
-        <loading-spinner size="large" color="primary" />
+      <div v-if="loadingStatus" class="flex justify-center items-center mt-24" >
+        <LoadingSpinners size="large" color="primary" />
       </div>
       <div v-else>
         <div v-for="wishlist in wishlist.data" :key="wishlist._id">
@@ -30,17 +30,17 @@ export default {
   },
   data() {
     return {
-      //   loading:false
+    
     };
   },
   computed: {
-    ...mapState({
-      loadingStatus: (state) => state.wishlist.loadingStatus,
-    }),
+    // ...mapState({
+    //   loadingStatus: (state) => state.wishlist.loadingStatus,
+    // }),
 
     ...mapGetters({
       wishlist: "wishlist/products",
-    //   loadingStatus: "wishlist/loadingStatus",
+      loadingStatus: "wishlist/loadingStatus",
       errors: "wishlist/errors",
     }),
   },

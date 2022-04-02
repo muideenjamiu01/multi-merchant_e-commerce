@@ -1,29 +1,31 @@
 <template>
-  
-    <div class="py-8 px-4 flex">
-      <!-- <aside>
+  <div class="py-8 px-4">
+    <!-- <aside>
       <ContentsProductFilter />
     </aside> -->
-      <main class="">
-        <h1 class="text-2xl font-bold text-primary-black capitalize">
-          {{ $route.query.category }}
-        </h1>
-        <loading-spinner v-if="loading" size="large" />
-        <p v-else-if="errors" class="text-2xl text-secondary-600">
-          An error occurred.
-        </p>
-        <div class="grid-container mt-4">
-          <ContentsProductCard
-            v-for="(product, index) in products"
-            :key="product._id"
-            :product="product"
-            :index="index"
-            class="grid-item"
-          />
-        </div>
-      </main>
-    </div>
-  
+    <main class="">
+      <h1 class="text-2xl font-bold text-primary-black capitalize">
+        {{ $route.query.category }}
+      </h1>
+      <div v-if="loading" class="flex justify-center items-center mt-64">
+        <div><LoadingSpinners size="large" color="primary" /></div>
+        <div><LoadingSpinners size="large" color="primary" /></div>
+        <div><LoadingSpinners size="large" color="primary" /></div>
+      </div>
+      <p v-else-if="errors" class="text-2xl text-secondary-600">
+        An error occurred or check your internet connection.
+      </p>
+      <div v-else class="grid-container mt-4">
+        <ContentsProductCard
+          v-for="(product, index) in products"
+          :key="product._id"
+          :product="product"
+          :index="index"
+          class="grid-item"
+        />
+      </div>
+    </main>
+  </div>
 </template>
 
 <script>
