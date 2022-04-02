@@ -74,7 +74,7 @@
                     {{product.category}}
                   </h1>
                   <p>Size: {{product.size}}</p>
-                  <div>Color: {{product.color}}
+                  <div>Color:
                     <p width="5px" height="5px" :style="getProductColor(product.color)"> 
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </p>
