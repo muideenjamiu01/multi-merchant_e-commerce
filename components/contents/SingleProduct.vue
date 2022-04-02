@@ -29,7 +29,7 @@
          <!-- <img src="@/assets/images/icons/heart.svg" alt="wishlist button"> -->
 
          <app-button 
-            @click="addToWishlist"  
+            @click="addToWishlist(product._id)"  
             class="bg-primary-blue text-white">
             Add to Wishlist
           </app-button>
@@ -184,17 +184,14 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   methods: {
     ...mapActions("cart", ["addProductToCart"]),
+    ...mapActions("wishlist", ["addToWishlist"]),
+
     getProductImage(images) {
       // const photos = JSON.parse(images);
       // return photos[photos.length - 1];
-      // console.log(images)
-      //  console.log(product)
       return images
-      // return "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQfrWOGqkDUrw7FM0SJsZ6BinOjvh2hgSbbkGvmMm-5aNTaD2fKk8f9ovJPw9vzurnsUVezIdLHXw&usqp=CAc"
     },
-    addToWishlist () {
-      this.$toast.success('Successfully added to wishlist')
-    }
+    
   },
   computed: mapGetters({ product: "products/singleProduct" })
 };

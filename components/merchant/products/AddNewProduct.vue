@@ -87,14 +87,14 @@
       </div>
     </div>
     <div class="md:flex gap-8">
-      <div class="w-full">
+      <!-- <div class="w-full">
         <label>Specifications</label><br />
         <textarea
           rows="5"
           class="focus:outline-none w-full border py-2.5 px-4 my-1"
           placeholder="What are this products specification"
         />
-      </div>
+      </div> -->
       <div class="w-full mt-6 md:mt-0">
         <label>Description</label><br />
         <textarea
