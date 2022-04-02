@@ -16,7 +16,7 @@
           <div>
             <div class="flex justify-between items-center gap-8">
               <p>{{ item.product.name }}</p>
-              <p >#{{ Number(item.product.price).toLocaleString() }}</p>
+              <p >₦ {{ Number(item.product.price).toLocaleString() }}</p>
             </div>
             <div>quantity: {{ item.quantity }}</div>
             <div>size:large</div>
@@ -25,7 +25,7 @@
       </div>
       <div class="flex justify-between items-center mt-6">
         <span>Subtotal</span>
-        <span  class="font-semibold text-lg"># {{Number(totalPrice).toLocaleString()}}</span>
+        <span  class="font-semibold text-lg">₦ {{Number(totalPrice).toLocaleString()}}</span>
       </div>
       
       

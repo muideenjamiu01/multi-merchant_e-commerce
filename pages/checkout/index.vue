@@ -1,5 +1,6 @@
 <template>
-  <div class="box-border container mx-auto py-4 px-2">
+  <!-- <app-container maxWidth="lg"> -->
+	  <div class="box-border container mx-auto py-4 px-2">
     <div class="w-full md:flex gap-16 mt-6">
       <div class="md:w-2/3">
         <div>
@@ -39,11 +40,11 @@
               <hr class="mt-2" />
             </div>
             <section>
-              <div class="flex justify-between items-center mt-6">
+              <div class="flex justify-between items-center mt-6 hidden">
                 <span>Subtotal</span>
-                <span  class="font-semibold text-lg"># {{Number(totalPrice).toLocaleString()}}</span>
+                <span  class="font-semibold text-lg">₦ {{Number(totalPrice).toLocaleString()}}</span>
               </div>
-              <div class="mt-6 flex justify-between border-b pb-2">
+              <div class="mt-6 flex justify-between border-b pb-2 hidden">
                 <p class="">Shipping Method</p>
                 <select name="" id="" class="" v-model="shippingFee">
                   <option value="500">Standard Shipping ₦500</option>
@@ -53,7 +54,7 @@
               <div class="flex justify-between items-center mt-6">
                 <span class="font-semibold">Total</span>
                 <span class="text-primary-blue font-bold">
-                  # {{ Number(sumTotal).toLocaleString() }}</span
+                  ₦ {{ Number(sumTotal).toLocaleString() }}</span
                 >
               </div>
               <div class="mt-8 flex justify-center">
@@ -75,6 +76,7 @@
       </div>
     </div>
   </div>
+  <!-- </app-container> -->
 </template>
 
 <script>
@@ -91,7 +93,7 @@ export default {
       props: [],
       SelectedAddress: "",
       modalOpen: false,
-      shippingFee: "",
+    //   shippingFee: "",
     };
   },
   computed: {
@@ -102,8 +104,11 @@ export default {
       orderId: "orders/getOrderId",
     }),
     sumTotal() {
-      return Number(this.totalPrice) + Number(this.shippingFee);
+      return Number(this.totalPrice);
     },
+    // sumTotal() {
+    //   return Number(this.totalPrice) + Number(this.shippingFee);
+    // },
     reference() {
       let text = "";
       let possible =

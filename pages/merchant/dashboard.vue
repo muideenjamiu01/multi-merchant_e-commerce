@@ -51,7 +51,7 @@
                   />
                 </svg>
               </div>
-              <span class="text-lg font-medium">1890</span>
+              <span class="text-lg font-medium">₦1890</span>
               <span class="font-normal text-xs text-primary-gold"
                 >+122 this month</span
               >

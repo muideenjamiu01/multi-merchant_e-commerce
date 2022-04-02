@@ -15,7 +15,7 @@
           </h1>
           <p>Size: {{ item.size }}</p>
           <p>Color:{{ item.color }}</p>
-          <p  class="font-medium">Price: #{{Number(item.price).toLocaleString() }}</p>
+          <p  class="font-medium">Price: ₦ {{Number(item.price).toLocaleString() }}</p>
           <p>Quantity:{{ item.quantity }}</p>
         </div>
       </div>
