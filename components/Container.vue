@@ -1,5 +1,5 @@
 <template>
-  <div :class="['w-full relative box-border mx-auto block px-3 xs:px-4 md:!px-8', setMaxWidth]">
+  <div :class="['w-full box-border mx-auto block px-3 xs:px-4 md:!px-8', setMaxWidth]">
       <slot></slot>
   </div>
 </template>

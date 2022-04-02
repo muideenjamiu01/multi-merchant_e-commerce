@@ -4,7 +4,7 @@
       <side-nav merchant>
         <ContentsMerchantProfileCard />
       </side-nav>
-      <main class="md:ml-72 md:w-[calc(100%_-_288px)]">
+      <main class="sm:ml-72 sm:w-[calc(100%_-_288px)] my-4">
         <div
           class="w-full grid grid-rows-4 md:grid-cols-3 md:grid-rows-none gap-x-3"
         >

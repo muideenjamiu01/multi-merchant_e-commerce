@@ -3,7 +3,7 @@
     <side-nav merchant>
         <ContentsMerchantProfileCard />
       </side-nav>
-    <main class="w-full text-sm md:ml-72 md:w-[calc(100%_-_288px)]">
+      <main class="sm:ml-72 sm:w-[calc(100%_-_288px)] my-4">
       <div class="border-b">
         <h1 class="text-2xl">
           Add Products
