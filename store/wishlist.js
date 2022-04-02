@@ -39,6 +39,10 @@ export const actions = {
     //   commit("setWishlist", response.data);
       this.$toast.success("The item was removed successfully");
 	  dispatch("fetchWishlist");
+<<<<<<< HEAD
+	  
+=======
+>>>>>>> 99538b0a6ed50e5f15fda35fe9776c1cbfd66ae9
     } catch (error) {
       //   commit("setWishlist", []);
       commit("setError", error.message);
@@ -75,6 +79,7 @@ export const mutations = {
   },
   loadingStatus(state, value) {
     state.loadingStatus = value;
+	console.log(value)
   },
   setError(state, payload) {
     state.errors = payload;
