@@ -8,7 +8,7 @@ export const getters = {
   products(state) {
     return state.products;
   },
-  loadingStatus (state) {
+  loadingStatus(state) {
     return state.loadingStatus;
   },
   errors: (state) => state.errors,
@@ -29,22 +29,17 @@ export const actions = {
     } finally {
     }
   },
-  async  removeFromWishlist({ state, commit, dispatch }, productId) {
+  async removeFromWishlist({ state, commit, dispatch }, productId) {
     try {
       const response = await this.$axios({
         url: `/api/products/v1/product/wishlist/product/${productId}`,
         method: "delete",
       });
 
-    //   commit("setWishlist", response.data);
+      //   commit("setWishlist", response.data);
       this.$toast.success("The item was removed successfully");
-	  dispatch("fetchWishlist");
-<<<<<<< HEAD
-	  
-=======
->>>>>>> 99538b0a6ed50e5f15fda35fe9776c1cbfd66ae9
+      dispatch("fetchWishlist");
     } catch (error) {
-      //   commit("setWishlist", []);
       commit("setError", error.message);
     } finally {
     }
@@ -52,7 +47,8 @@ export const actions = {
 
   fetchWishlist({ commit }) {
     commit("loadingStatus", true);
-    return this.$axios.get("/api/products/v1/product/wishlist/products")
+    return this.$axios
+      .get("/api/products/v1/product/wishlist/products")
       .then((response) => {
         commit("setWishlist", response.data);
         commit("loadingStatus", false);
@@ -68,8 +64,6 @@ export const actions = {
 export const mutations = {
   setWishlist(state, payload) {
     state.products = payload;
-    // state.products.filter((productId) => productId !== productId)
-    // this.splice(products,1)
   },
   delWishlist(state, payload) {
     console.log(payload);
@@ -78,8 +72,8 @@ export const mutations = {
     );
   },
   loadingStatus(state, value) {
+    console.log(value);
     state.loadingStatus = value;
-	console.log(value)
   },
   setError(state, payload) {
     state.errors = payload;
