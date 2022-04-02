@@ -51,12 +51,42 @@
             </tr>
           </tbody>
           </table>
+        <ValidationObserver>
+          <form>
+            <ValidationProvider  
+              v-slot="{ errors }"
+              name="email"
+              rules="min:9||required"
+              slim
+            >
+              <label for="email">email</label>
+              <input type="email">
+              <span class="text-xs text-error-800">{{ errors[0] }}</span>
+            </ValidationProvider>
 
+            <label for="">password</label>
+            <input type="password">
+
+            <label for="">color</label>
+            <input type="color">
+             <app-button 
+              class="" 
+              type="submit" 
+              variant="contained" 
+              color="primary" 
+              size="large" 
+            >
+            submit
+            </app-button>
+
+          </form>
+        </ValidationObserver>
 
   </div>
 </template>
 <script>
   import AppButton from "@/components/buttons/Button.vue"
+  import {ValidationObserver, ValidationProvider} from "vee-validate/dist/vee-validate.full.esm";
   export default {
     data() {
           return {
@@ -66,6 +96,8 @@
     },
     components: {
       "app-button": AppButton,
+      ValidationObserver,
+      ValidationProvider,
     },
     methods: {
       add() {
