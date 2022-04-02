@@ -36,15 +36,31 @@ export const actions = {
       commit("setLoading", false);
     }
   },
+  async deleteProduct({ state, commit, dispatch}, id) {
+    try {
+      const response = await this.$axios.delete(
+        `https://youstore-products.herokuapp.com/v1/products/${id}/remove`
+      );
+      console.log(response);
+      this.$toast.success("Product deleted");
+      dispatch("fetchProducts");
+    } catch (error) {
+       console.log(response);
+      // this.$toast.error(response);
+    } finally {
+    }
+  },
 };
 
 export const mutations = {
   setProducts(state, payload) {
     state.products = payload;
   },
+
   setLoading(state, value) {
     state.loading = value;
   },
+  // 
   setError(state, payload) {
     state.errors = payload;
   },
