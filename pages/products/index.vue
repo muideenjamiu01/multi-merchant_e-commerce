@@ -1,5 +1,6 @@
 <template>
-  <div class="py-8 px-4 flex">
+  <!-- <div class="py-8 px-4 flex"> -->
+    <app-container maxWidth="xl">
     <aside>
       <ContentsProductFilter />
     </aside>
@@ -21,7 +22,7 @@
         />
       </div>
     </main>
-  </div>
+    </app-container>
 </template>
 
 <script>
