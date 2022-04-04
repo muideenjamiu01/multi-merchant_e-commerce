@@ -169,7 +169,7 @@ import CancelIcon from "@/components/svg/Cancel.vue"
 import BrandLogo from "@/components/svg/Logo";
 
 export default {
-    name: "ResetPassword",
+  name: "ResetPassword",
   layout: "authpages",
   components: {
     ValidationObserver,

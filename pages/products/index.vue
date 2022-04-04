@@ -1,24 +1,24 @@
 <template>
-  <!-- <div class="py-8 px-4 flex"> -->
     <app-container maxWidth="xl">
-    <aside>
-      <ContentsProductFilter />
-    </aside>
-    <main class="">
+    <main class="px-[50px]">
       <h1 class="text-2xl font-bold text-primary-black capitalize">
         {{ $route.query.category }}
       </h1>
-      <loading-spinner v-if="loading" size="large" />
+      <div v-if="loading" class="flex justify-center items-center mt-64">
+        <div><LoadingSpinners size="large" color="primary" /></div>
+        <div><LoadingSpinners size="large" color="primary" /></div>
+        <div><LoadingSpinners size="large" color="primary" /></div>
+      </div>
       <p v-else-if="errors" class="text-2xl text-secondary-600">
-        An error occurred.
+        An error occurred or check your internet connection.
       </p>
-      <div class="grid-container mt-4">
+      <div v-else class="grid-container mt-4">
         <ContentsProductCard
           v-for="(product, index) in products"
           :key="product._id"
           :product="product"
           :index="index"
-          class="grid-item"
+          class="grid-item w-[200px]"
         />
       </div>
     </main>
@@ -28,10 +28,12 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import Spinner from "@/components/Loading/Spinners.vue";
+import Container from "~/components/Container.vue";
 
 export default {
   components: {
     "loading-spinner": Spinner,
+    Container,
   },
   computed: mapGetters({
     products: "products/products",
@@ -40,9 +42,8 @@ export default {
   }),
   created() {
     this.$store.dispatch("products/fetchProducts", {
-      category: this.$route.query.category || ''
+      category: this.$route.query.category || "",
     });
-
   },
   methods: {
     ...mapActions(["fetchProducts"]),
@@ -52,12 +53,11 @@ export default {
 </script>
 
 <style scoped>
-
-  .grid-container {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .grid-item {
-    margin: 20px;
-  }
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.grid-item {
+  margin: 20px;
+}
 </style>

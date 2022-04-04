@@ -175,7 +175,7 @@ export default {
   },
   data() {
     return {
-        email: "",
+      email: "",
       loading: false,
       message: "",
       error: null
