@@ -3,7 +3,7 @@
     <!-- <aside>
       <ContentsProductFilter />
     </aside> -->
-    <main class="">
+    <main class="px-[50px]">
       <h1 class="text-2xl font-bold text-primary-black capitalize">
         {{ $route.query.category }}
       </h1>
@@ -21,7 +21,7 @@
           :key="product._id"
           :product="product"
           :index="index"
-          class="grid-item"
+          class="grid-item w-[200px]"
         />
       </div>
     </main>
