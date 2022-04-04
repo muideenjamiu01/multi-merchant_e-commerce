@@ -1,6 +1,6 @@
 <template>
   <div>
-     <form 
+    <form 
         enctype="mutipart/form-data">
         <label for="file">Upload File</label>
         <input 
@@ -9,15 +9,14 @@
           ref="file"
         >
         <app-button class="my-[10px]" variant="contained"   @click="sendFile">Upload Image</app-button>
-      </form>
+    </form>
       <h1 class="text-center" >{{$store.state.counter}}</h1>
       <app-button class="my-[10px]" variant="contained"   @click="fetchProducts">fetch products</app-button>
       <app-button class="my-[10px] bg-rose-500" variant="contained"   @click="deleteProduct">delete products</app-button>
-
       <app-button class="my-[10px]" variant="contained"    @click="$store.dispatch('add')">+</app-button>
       <app-button class="my-[10px]" variant="contained"   @click="$store.commit('subtract')">-</app-button>
       <table>
-      <tbody class="text-center">
+        <tbody class="text-center">
             <tr v-for="(product, index) in merchantProducts" :key="product._id" class="border-b">
               <td> {{ index+1 }}</td>
               <td> 
@@ -49,39 +48,88 @@
              
               <td><app-button class="my-[10px]" variant="contained" color="error" @click="deleteProduct(product._id)">X</app-button></td>
             </tr>
-          </tbody>
-          </table>
-        <ValidationObserver>
-          <form>
-            <ValidationProvider  
-              v-slot="{ errors }"
-              name="email"
-              rules="min:9||required"
-              slim
+        </tbody>
+      </table>
+      <ValidationObserver slim>
+        <form @submit.prevent="handleSubmit" class="w-full"> 
+          <ValidationProvider slim 
+            v-slot="{ errors }"
+            name="email"
+            rules="email|required"
+  
             >
-              <label for="email">email</label>
-              <input type="email">
-              <span class="text-xs text-error-800">{{ errors[0] }}</span>
-            </ValidationProvider>
+            <label for="email">email</label>
+            <input 
+              type="email"
+              v-model="email"
+              class="
+                      w-full
+                      flex
+                      items-center
+                      outline-0
+                      border border-secondary-200
+                      rounded-md
+                      shadow-sm
+                      focus:outline-none
+                      focus:border-primary-200
+                      focus:ring-primary-200
+                      focus:ring-1
+                      sm:text-sm
+                      p-2
+                    "
+            >
+            <span class="text-xs text-error-800">errors{{ errors[0] }}</span>
+          </ValidationProvider>
 
-            <label for="">password</label>
-            <input type="password">
+          <ValidationProvider slim 
+            v-slot="{ errors }"
+            name="password"
+            rules="required"
+          >
+            <label for="password">password</label>
+            <input 
+              type="password"
+              v-model="password"
+              class="
+                    w-full
+                    flex
+                    items-center
+                    outline-0
+                    border border-secondary-200
+                    rounded-md
+                    shadow-sm
+                    focus:outline-none
+                    focus:border-primary-200
+                    focus:ring-primary-200
+                    focus:ring-1
+                    sm:text-sm
+                    p-2
+                  "
+            >
+            <span class="text-xs text-error-800">errors{{ errors[0] }}</span>
+          </ValidationProvider>
 
+          <ValidationProvider slim 
+            v-slot="{ errors }"
+            name="color"
+            rules="required"
+          >
             <label for="">color</label>
             <input type="color">
-             <app-button 
-              class="" 
-              type="submit" 
-              variant="contained" 
-              color="primary" 
-              size="large" 
-            >
+            <span class="text-xs text-error-800">errors{{ errors[0] }}</span>
+          </ValidationProvider>
+          
+          <app-button 
+            class=""
+            type="submit" 
+            variant="contained" 
+            color="primary" 
+            size="large" 
+          >
             submit
-            </app-button>
-
-          </form>
-        </ValidationObserver>
-
+          </app-button>
+        </form>
+      </ValidationObserver>
   </div>
 </template>
 <script>
@@ -89,17 +137,27 @@
   import {ValidationObserver, ValidationProvider} from "vee-validate/dist/vee-validate.full.esm";
   export default {
     data() {
-          return {
-            file: "",
-            merchantProducts : []
-          }
+      return {
+        file: "",
+        merchantProducts : [],
+        email: "",
+        password: "",
+        color: "#000000",
+        loading: false,
+        message: "",
+        error: null
+      }
     },
+    
     components: {
       "app-button": AppButton,
       ValidationObserver,
       ValidationProvider,
     },
     methods: {
+      handleSubmit () {
+        console.log("submitted")
+      },
       add() {
           console.log('clicked');
           this.counter++

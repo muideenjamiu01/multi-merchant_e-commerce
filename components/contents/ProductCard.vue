@@ -20,25 +20,38 @@
       </h1>
       <div class="flex items-center">
         <p class="text-2xl font-bold">******</p>
-        <p class="text-primary-blue ml-2.5">213</p>
+        <p class="text-primary-blue ml-2.5 w-[30px]" :style="`background-color:${product.color}`">&nbsp;</p>
       </div>
       <div class="flex items-center font-light my-2">
         <p  class="font-semibold text-lg">₦ {{ Number(product.price).toLocaleString() }}</p>
         <p class="text-primary-gray-light ml-2.5">-{{product.quantity}} %</p>
       </div>
     </div>
-    <app-button
-      @click="addProductToCart(product)"
-      variant="contained"
-      size="small"
-    >
-      Add to cart
-    </app-button>
+    <div class="flex">
+      <app-button
+        class="w-[100px]"
+        @click="addProductToCart(product)"
+        variant="contained"
+        size="small"
+        color="success"
+      >
+        Add to cart
+      </app-button>
+      <app-button
+        class="mx-[5px] w-[100px]"
+        @click="addToWishlist(product._id)"
+        variant="contained"
+        size="small"
+        color="primary"
+      >
+        Add to wishlist
+      </app-button>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   props: {
@@ -47,6 +60,8 @@ export default {
   },
   methods: {
     ...mapActions("cart", ["addProductToCart"]),
+    ...mapActions("wishlist", ["addToWishlist"]),
+
     viewProduct() {
       const rn = Math.ceil(Math.random() * 1000000)
       this.$router.push( 
