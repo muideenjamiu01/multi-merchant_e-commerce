@@ -1,12 +1,11 @@
 <template>
-  <div class="px-4 py-8 flex">
-    <!-- <aside>
-      <ContentsCustomerProfileCard />
-    </aside> -->
-    <main class="w-full">
-      <h1 class="text-2xl mb-10">Your Wishlist</h1>
-      <div v-if="loadingStatus" class="flex justify-center items-center mt-24" >
-        <LoadingSpinners size="large" color="primary" />
+    <app-container maxWidth="md">
+    <main class="my-8">
+      <h1 class="text-2xl font-bold text-primary-black capitalize">
+        Your Wishlist
+      </h1>
+      <div v-if="loading" class="flex items-center justify-center w-full h-[calc(100vh_-_56px_-_64px)]">
+        <loading-spinners size="large" color="primary" />
       </div>
       <div v-else>
         <div v-for="wishlist in wishlist.data" :key="wishlist._id">
@@ -18,36 +17,22 @@
         An error occurred.
       </p> -->
     </main>
-  </div>
+  </app-container>
 </template>
 
 <script>
-import { mapGetters, mapActions, mapState } from "vuex";
-import Spinners from "~/components/Loading/Spinners.vue";
-export default {
-  components: {
-    Spinners,
-  },
-  data() {
-    return {
-    
-    };
-  },
-  computed: {
-    // ...mapState({
-    //   loadingStatus: (state) => state.wishlist.loadingStatus,
-    // }),
+import { mapGetters, mapActions } from "vuex";
 
+export default {
+  computed: {
     ...mapGetters({
       wishlist: "wishlist/products",
-      loadingStatus: "wishlist/loadingStatus",
+      loading: "wishlist/loading",
       errors: "wishlist/errors",
     }),
   },
   mounted() {
     this.$store.dispatch("wishlist/fetchWishlist");
-
-    console.log();
   },
   methods: {
     ...mapActions("wishlist", ["fetchWishlist", "removeFromWishlist"]),

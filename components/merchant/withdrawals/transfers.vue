@@ -291,31 +291,31 @@ import CancelIcon from "@/components/svg/Cancel.vue"
           customerId: this.$auth.user._id
       })
 
-      // try {
-      //   const response = await this.$axios.post('/api/payments/transfer', {
-      //     name: this.$auth.user.accountName,
-      //     amount: this.transferFields.amount,
-      //     account_number: this.transferFields.account_number,
-      //     bank_code: this.transferFields.bank_code,
-      //     customerId: this.$auth.user._id
-      //   })
+      try {
+        const response = await this.$axios.post('/api/payments/transfer', {
+          name: this.$auth.user.accountName,
+          amount: this.transferFields.amount,
+          account_number: this.transferFields.account_number,
+          bank_code: this.transferFields.bank_code,
+          customerId: this.$auth.user._id
+        })
 
-      //   this.transferModal = false
-      //   window.localStorage.setItem("ys-transfers", [{
-      //     id: response.data.data.reference,
-      //     accountName: this.$auth.user.accountName,
-      //     accountNumber: this.transferFields.account_number,
-      //     amount: this.transferFields.amount,
-      //     date: new Date(Date.now()).toISOString(),
-      //     status: "pending"
-      //   }, ...withdrawals])
-      //   this.$toast.success(response.data.message)
-      // } catch (error) {
-      //   console.log(error)
-      //   this.error = error.response.data.message
-      // } finally {
-      //   this.loading = false
-      // }
+        this.transferModal = false
+        window.localStorage.setItem("ys-transfers", [{
+          id: response.data.data.reference,
+          accountName: this.$auth.user.accountName,
+          accountNumber: this.transferFields.account_number,
+          amount: this.transferFields.amount,
+          date: new Date(Date.now()).toISOString(),
+          status: "pending"
+        }, ...withdrawals])
+        this.$toast.success(response.data.message)
+      } catch (error) {
+        console.log(error)
+        this.error = error.response.data.message
+      } finally {
+        this.loading = false
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
-  <base-svg viewBox="0 0 21 19" color="inherit">
-    <path d="M10.2015 15.55L10.1006 15.65L9.98971 15.55C5.1998 11.24 2.03341 8.39 2.03341 5.5C2.03341 3.5 3.54601 2 5.56282 2C7.11576 2 8.62837 3 9.16282 4.36H11.0385C11.5729 3 13.0855 2 14.6385 2C16.6553 2 18.1679 3.5 18.1679 5.5C18.1679 8.39 15.0015 11.24 10.2015 15.55ZM14.6385 0C12.8838 0 11.1998 0.81 10.1006 2.08C9.00148 0.81 7.31744 0 5.56282 0C2.45694 0 0.0166016 2.41 0.0166016 5.5C0.0166016 9.27 3.44517 12.36 8.63845 17.03L10.1006 18.35L11.5628 17.03C16.7561 12.36 20.1847 9.27 20.1847 5.5C20.1847 2.41 17.7443 0 14.6385 0Z" />
+  <base-svg viewBox="0 0 24 24" :size="size" :color="color">
+    <path fill="currentColor" d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
   </base-svg>
 </template>
 
@@ -12,5 +12,25 @@ export default {
   components: {
     "base-svg": BaseSvg,
   },
+  props: {
+    viewBox: {
+      type: String,
+      default: '0 0 24 24'
+    },
+    size: {
+      type: String,
+      default: 'medium',
+      validator: function (value) {
+        return ['small', 'medium', 'large'].indexOf(value) !== -1
+      }
+    },
+    color: {
+      type: String,
+      default: 'inherit',
+      validator: function (value) {
+        return ['success', 'inherit', 'warning', 'error', 'info', 'primary', 'secondary'].indexOf(value) !== -1
+      }
+    }
+  }
 };
 </script>

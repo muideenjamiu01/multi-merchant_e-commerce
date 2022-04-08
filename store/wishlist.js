@@ -1,6 +1,6 @@
 export const state = () => ({
   products: [],
-  loadingStatus: false,
+  loading: false,
   errors: null,
 });
 
@@ -8,8 +8,8 @@ export const getters = {
   products(state) {
     return state.products;
   },
-  loadingStatus (state) {
-    return state.loadingStatus;
+  loading (state) {
+    return state.loading;
   },
   errors: (state) => state.errors,
 };
@@ -23,7 +23,7 @@ export const actions = {
         data: { products: productId },
       });
       commit("setWishlist", response.data);
-      this.$toast.success("Product successfully added to your wishlist");
+    this.$toast.success("Product successfully added to your wishlist");
     } catch (error) {
       commit("setError", error.message);
     } finally {
@@ -47,11 +47,11 @@ export const actions = {
   },
 
   fetchWishlist({ commit }) {
-    commit("loadingStatus", true);
+    commit("loading", true);
     return this.$axios.get("/api/products/v1/product/wishlist/products")
       .then((response) => {
         commit("setWishlist", response.data);
-        commit("loadingStatus", false);
+        commit("loading", false);
       })
       .catch((error) => console.log(error));
 
@@ -68,14 +68,12 @@ export const mutations = {
     // this.splice(products,1)
   },
   delWishlist(state, payload) {
-    console.log(payload);
     state.products = state.products.filter(
       (product) => product._id !== payload._id
     );
   },
-  loadingStatus(state, value) {
-    state.loadingStatus = value;
-	console.log(value)
+  loading(state, value) {
+    state.loading = value;
   },
   setError(state, payload) {
     state.errors = payload;

@@ -129,12 +129,13 @@
         </dropdown-menu>
         <app-button
           v-show="!$auth.loggedIn"
-          to="/auth/signup"
+          to="/auth/login"
           color="primary"
           variant="outlined"
-          class="hidden md:flex mr-4"
+          class="hidden xs:flex mr-4"
+          uppercase
         >
-          Sign up
+          Sign in
         </app-button>
 
         <NuxtLink
@@ -172,14 +173,12 @@ import { mapGetters } from "vuex";
 import BrandLogo from "@/components/svg/Logo";
 import CartIcon from "@/components/svg/Cart";
 import SearchIcon from "@/components/svg/Search";
-import UserAvatar from "@/components/Avatar";
 
 export default {
   components: {
     "brand-logo": BrandLogo,
     "cart-icon": CartIcon,
     "search-icon": SearchIcon,
-    "user-avatar": UserAvatar,
   },
   data() {
     return {

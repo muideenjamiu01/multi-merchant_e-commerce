@@ -27,11 +27,28 @@ export const actions = {
           },
         }
       );
+
       // const { docs, pagination } = response.data.data;
-      const docs = response.data.data;
-      commit("setProducts", docs);
+      const { auth, wishlist } = rootState
+      if (auth.loggedIn) {
+        const products = response.data.data.map(product => {
+          const index = wishlist.products.data[0].products.findIndex(p => p._id === product._id)
+          
+          return {
+            ...product,
+            inWishlist: index !== -1
+          }
+        })
+
+      console.log(products)
+        commit("setProducts", products);
+      } else {
+        commit("setProducts", response.data.data)
+      }
+      
       // commit("setPagination", pagination );
     } catch (error) {
+      console.log(error)
       commit("setError", error.message);
     } finally {
       commit("setLoading", false);
