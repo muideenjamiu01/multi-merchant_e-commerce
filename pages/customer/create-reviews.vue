@@ -1,7 +1,9 @@
 <template>
   <div class="container mx-auto py-4 px-2">
     <div class="flex gap-4">
-      <img src="@/assets/images/icons/back-arrow.svg" alt="">
+      <nuxt-link to="/customer/reviews">
+        <img src="@/assets/images/icons/back-arrow.svg" alt="back to reviews">
+      </nuxt-link>
       <h1 class="md:text-3xl font-medium">
         Write a review
       </h1>
@@ -40,7 +42,7 @@
         </div>
         <div class="flex justify-end">
           <app-button @click="createReview" variant="contained">
-          Submit Review
+            Submit Review
           </app-button>
         </div>
       </div>
@@ -65,11 +67,33 @@ import AppButton from "@/components/buttons/Button.vue"
       'app-button': AppButton
     },
     methods: {
-      createReview(input) {
+      createReview() {
         console.log(this.input)
-        this.$store.dispatch("post-reviews/postReviews")
+        this.$store.dispatch("reviews/postReviews")
         this.$router.push("/customer/reviews")
       },
+      async addNewReview() {
+      try {
+        const response = await this.$axios
+          .post("https://youstore-products.herokuapp.com/v1/product/${id}/review", {
+            category: this.category,
+            color: this.color,
+            description: this.description,
+            name: this.name,
+            price: this.price,
+            quantity: this.quantity,
+            size: this.size,
+            discount: this.discount,
+          })
+          .then((res) => this.updatePicture(res.data.data._id));
+          this.$toast.success("Product successfully uploaded!")
+
+      } catch (err) {
+        this.$toast.error("Failed to upload review");
+        console.log(err);
+      } finally {
+      }
+    },
     },
 
 
