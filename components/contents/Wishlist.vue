@@ -1,13 +1,8 @@
 <template>
   <div class="">
-	  <!-- <div v-if="loadingStatus">
-        <loading-spinner size="large" color="primary"/>
-      </div> -->
     <div class="text-sm font-light pt-4 border-t border-gray-100 mb-6 my-8">
       <div class="md:px-32">
         <div
-          v-for="product in products"
-          :key="product._id"
           class="md:flex items-center justify-between mt-4 md:border rounded-md p-8"
         >
           <div class="sm:flex">
@@ -46,46 +41,23 @@
         </div>
       </div>
     </div>
-	<!-- <div v-else class="flex justify-center w-full">
-        <h4 class="text-center text-secondary-500 text-xl font-medium">
-          No product in your wishlist
-        </h4>
-      </div> -->
   </div>
 </template>
 
 <script>
-import { mapActions , mapGetters} from "vuex";
-import AppButton from "@/components/buttons/Button.vue";
-// import Spinners from "~/components/Loading/Spinners.vue";
+import { mapActions } from "vuex";
 
 export default {
-	components: {
-    // Spinners,
-  },
   props: {
-    products: {
-      type: Array,
+    product: {
+      type: Object,
       required: true,
     },
   },
-
-  components: {
-    "app-button": AppButton,
-  },
-   computed: mapGetters({
-    // loadingStatus: "wishlist/loadingStatus",
-    
-   
-  }),
   methods: {
     ...mapActions("cart", ["addProductToCart", "removeProductFromCart"]),
     ...mapActions("wishlist", ["fetchWishlist", "removeFromWishlist"]),
 	
-  },
-  mounted() {
-    // console.log(this.products);
-
   },
 };
 </script>

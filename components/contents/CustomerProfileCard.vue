@@ -50,18 +50,18 @@
 </template>
 
 <script>
-import ReviewIcon from "@/components/svg/Review";
-import ProfileIcon from "@/components/svg/Profile";
-import OrderIcon from "@/components/svg/Order";
-import WishlistIcon from "@/components/svg/Wishlist";
+// import ReviewIcon from "@/components/svg/Review";
+// import ProfileIcon from "@/components/svg/Profile";
+// import OrderIcon from "@/components/svg/Order";
+// import WishlistIcon from "@/components/svg/Wishlist";
 
 export default {
-  components: {
-    "review-icon": ReviewIcon,
-    "profile-icon": ProfileIcon,
-    "order-icon": OrderIcon,
-    "wishlist-icon": WishlistIcon,
-  },
+  // components: {
+  //   "review-icon": ReviewIcon,
+  //   "profile-icon": ProfileIcon,
+  //   "order-icon": OrderIcon,
+  //   "wishlist-icon": WishlistIcon,
+  // },
   data () {
     return {}
   },

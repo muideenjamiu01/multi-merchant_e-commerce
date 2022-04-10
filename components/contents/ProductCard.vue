@@ -36,30 +36,32 @@
       >
         Add to cart
       </app-button>
-      <icon-button
-        v-if="product.inWishlist"
-        size="small"
-        aria-label="Remove from wishlist"
-        title="Remove from wishlist"
-        @click="removeFromWishlist(product._id)"
-      >
-        <wishlist-icon class="text-pink-500"></wishlist-icon>
-      </icon-button>
-      <icon-button
-        v-else
-        size="small"
-        aria-label="Save to wishlist"
-        title="Save to wishlist"
-        @click="addToWishlist(product._id)"
-      >
-        <wishlist-outline-icon size="small" class="text-pink-500" />
-      </icon-button>
+      <div v-if="$auth.loggedIn" class="">
+        <icon-button
+          v-if="product.inWishlist"
+          size="small"
+          aria-label="Remove from wishlist"
+          title="Remove from wishlist"
+          @click="updateProductInWishlist(product)"
+        >
+          <wishlist-icon class="text-pink-500"></wishlist-icon>
+        </icon-button>
+        <icon-button
+          v-else
+          size="small"
+          aria-label="Save to wishlist"
+          title="Save to wishlist"
+          @click="updateProductInWishlist(product, true)"
+        >
+          <wishlist-outline-icon size="small" class="text-pink-500" />
+        </icon-button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import WishlistIcon from "@/components/svg/Wishlist.vue"
 import WishlistOutlineIcon from "@/components/svg/WishlistOutline.vue"
 
@@ -72,13 +74,11 @@ export default {
     product: {},
     index: {},
   },
-  mounted() {
-        console.log(this.product)
+  computed: {
+    ...mapGetters({ wishlist: "wishlist/products" })
   },
   methods: {
     ...mapActions("cart", ["addProductToCart"]),
-    ...mapActions("wishlist", ["addToWishlist", "removeFromWishlist"]),
-
     viewProduct() {
       const rn = Math.ceil(Math.random() * 1000000)
       this.$router.push( 
@@ -86,10 +86,18 @@ export default {
       );
       this.$store.dispatch("products/getSingleProduct", this.product);
     },
-
     getProductImage(images) {
       return images[0]
     },
+    async updateProductInWishlist(product, add = false) {
+      if (add) {
+        await this.$store.dispatch('wishlist/addToWishlist', product)
+      } else {
+        await this.$store.dispatch('wishlist/removeFromWishlist', product._id)
+      }
+
+      this.$store.commit('products/setProductWishlistKey', this.wishlist)
+    }
   },
 };
 </script>

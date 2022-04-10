@@ -1,9 +1,12 @@
 <template>
-    <app-container maxWidth="xl">
+  <app-container maxWidth="xl">
     <main class="my-8">
       <h1 class="text-2xl font-bold text-primary-black capitalize">
-        {{ $route.query.category }}
+        {{ getCategory }}
       </h1>
+      <grid-container alignItems="center" class="my-4" gap="4">
+        <product-filter v-for="cat in categories" :key="cat.name" v-model="category" :value="cat.name" @change="handleChange">{{ cat.label }}</product-filter>
+      </grid-container>
       <div v-if="loading" class="flex items-center justify-center w-full h-[calc(100vh_-_56px_-_64px)]">
         <loading-spinners size="large" color="primary" />
       </div>
@@ -24,27 +27,73 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import ProductFilter from "@/components/ProductFilter.vue"
 
 export default {
-  computed: mapGetters({
-    products: "products/products",
-    errors: "products/errors",
-    loading: "products/loading",
-  }),
+  components: {
+    "product-filter": ProductFilter
+  },
+  data() {
+    return {
+      category: this.$route.query.category,
+      categories: [
+        {
+          name: "computing",
+          label: "Computing"
+        },
+        {
+          name: "phones",
+          label: "Phones & Tablets"
+        },
+        {
+          name: "fashion",
+          label: "Fashion"
+        },
+        {
+          name: "home",
+          label: "Home & offices"
+        },
+        {
+          name: "electronics",
+          label: "Electronic appliances"
+        },
+        {
+          name: "gaming",
+          label: "Gaming"
+        },
+      ]
+    }
+  },
+  computed: {
+    ...mapGetters({
+      products: "products/products",
+      errors: "products/errors",
+      loading: "products/loading",
+    }),
+    getCategory() {
+      return this.categories.filter(cat => cat.name === this.category)[0].label
+    }
+  },
   async created() {
     if (this.$auth.loggedIn) {
       await this.$store.dispatch("wishlist/fetchWishlist")
     }
 
     await this.$store.dispatch("products/fetchProducts", {
-      category: this.$route.query.category || "",
+      category: this.category || "",
     });
-        console.log(this.products)
   },
   methods: {
     ...mapActions(["fetchProducts"]),
     ...mapActions({ getSingleProduct: "products/getSingleProduct" }),
     ...mapActions("wishlist", ["fetchWishlist"]),
+    handleChange(e) {
+      this.$router.push({ path: "/products", query: { category: this.category }})
+
+      this.$store.dispatch("products/fetchProducts", {
+        category: this.category || "",
+      });
+    }
   },
 };
 </script>
