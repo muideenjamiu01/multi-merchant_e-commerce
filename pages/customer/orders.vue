@@ -38,7 +38,7 @@ export default {
   computed: {
     ...mapGetters({
       orders: "orders/getOrders",
-	   loading: "orders/loading",
+	    loading: "orders/loading",
     }),
   },
   mounted() {

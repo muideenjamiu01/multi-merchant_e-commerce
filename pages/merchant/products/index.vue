@@ -1,26 +1,15 @@
 <template>
   <div class="flex mt-8 px-4">
-      <side-nav merchant>
-        <ContentsMerchantProfileCard />
-      </side-nav>
-      <main class="sm:ml-72 sm:w-[calc(100%_-_288px)] my-4">
+    <side-nav merchant>
+      <ContentsMerchantProfileCard />
+    </side-nav>
+    <main class="sm:ml-72 sm:w-[calc(100%_-_288px)] my-4">
       <div class="flex justify-between items-center">
         <h1 class="text-2xl">Products</h1>
-        <!-- <form 
-          enctype="mutipart/form-data">
-          <label for="file">Update An Image</label>
-          <input 
-            type="file" 
-            @change="selectFile"
-            ref="file"
-          >
-         
-        </form> -->
         <NuxtLink to="products/newproduct">
           <app-button  size="small" variant="contained">
             Upload A New Product
           </app-button>
-
         </NuxtLink>
       </div>
       <div>
@@ -50,7 +39,7 @@
               <th class="pb-3">
                 Avg. Rating
               </th>
-               <th class="pb-3">
+                <th class="pb-3">
                 Delete Product
               </th>
             </tr>
@@ -97,7 +86,7 @@
               </td>
             </tr>
           </tbody>
-         
+          
         </table>
         <div class="pb-0 pt-3 text-center">
           <!-- <jw-pagination 
