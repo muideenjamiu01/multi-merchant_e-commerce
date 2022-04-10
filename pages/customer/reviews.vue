@@ -16,9 +16,10 @@
         <div v-else
             v-for="order in orders"
             :key="order._id"
+            
             class="border border-gray-300 rounded-lg mt-5 p-4 bg-rose-200"
         >
-            <p>{{order._id}}</p>
+           
             <div class="flex justify-between">
                 <div class="w-full text-sm font-light pt-4 border-t border-gray-100 bg-primary-blue mb-6">
                     <div class="md:flex items-center justify-between">
@@ -28,9 +29,11 @@
                         </div>
                         <div class="space-y-0.5">
                             
-                            <h1 v-for="review in reviews" :key="review._id"  @click="deleteProductReview(review._id, order)" class="bg-rose-300 font-medium" >
+                            <!-- <h1 v-for="review in reviews" :key="review._id"  @click="deleteProductReview(review._id, order)" class="bg-rose-300 font-medium" >
                                 Review: {{review.comment}} 
-                            </h1>
+                           
+                            </h1> -->
+                            <p :ref="order._id" >{{order._id}}</p>
                             <h1 class="font-medium" >
                                 {{ order.name }}
                             </h1>
@@ -68,6 +71,9 @@
 <script>
   import AppButton from "@/components/buttons/Button.vue";
   import { mapGetters, mapActions } from "vuex";
+    let revs = []
+
+
   export default {
     middleware: "auth",
     data () {
@@ -80,22 +86,30 @@
       "app-button": AppButton,
     },
     computed: mapGetters({
-        orders: "reviews2/getOrders",
-	    loading: "reviews2/loading",
+        orders: "reviews/getOrders",
+	    loading: "reviews/loading",
       
     }),
     created() {
-      this.$store.dispatch("reviews2/fetchOrders");
+      this.$store.dispatch("reviews/fetchOrders");
     },
     methods: {
-        async getProductReview(item) {
+        async getProductReview(product) {
+            console.log(this.$refs[product._id]['0'])
              try {
                 const response = await this.$axios.get(
-                    `https://youstore-products.herokuapp.com/v1/products/${item.id}/one`,
-                   
+                    `https://youstore-products.herokuapp.com/v1/products/${product.id}/one`,
                 );
+                console.log(response);
                 console.log(response.data.data);
-                this.reviews = response.data.data.reviews
+                response.data.data.reviews.forEach((review) => {
+                    console.log(review.comment)
+                    const node = document.createElement("P");
+                    node.setAttribute("data-review-id", review._id)
+                    const textnode = document.createTextNode(review.comment);
+                    node.appendChild(textnode);
+                    this.$refs[product._id]['0'].appendChild(node);
+                });
             } catch (error) {
                 alert("error")
             } finally {
@@ -146,10 +160,10 @@
             // commit("setLoading", false);
             }
         },
-        async deleteProductReview(item, product) {
+        async deleteProductReview(reviewId, product) {
             try {
                 const response = await this.$axios.delete(
-                    `https://youstore-products.herokuapp.com/v1/product/${item}`
+                    `https://youstore-products.herokuapp.com/v1/product/${reviewId}`
                 );
                 this.getProductReview(product)
             } catch (error) {
@@ -168,4 +182,3 @@
 
 
 
-</script>
