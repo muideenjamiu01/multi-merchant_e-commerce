@@ -1,66 +1,107 @@
 <template>
-  <div class="py-8 px-4">
-    <!-- <aside>
-      <ContentsProductFilter />
-    </aside> -->
-    <main class="">
+  <app-container maxWidth="xl">
+    <main class="my-8">
       <h1 class="text-2xl font-bold text-primary-black capitalize">
-        {{ $route.query.category }}
+        {{ getCategory }}
       </h1>
-      <div v-if="loading" class="flex justify-center items-center mt-64">
-        <div><LoadingSpinners size="large" color="primary" /></div>
-        <div><LoadingSpinners size="large" color="primary" /></div>
-        <div><LoadingSpinners size="large" color="primary" /></div>
+      <grid-container alignItems="center" class="my-4" gap="4">
+        <product-filter v-for="cat in categories" :key="cat.name" v-model="category" :value="cat.name" @change="handleChange">{{ cat.label }}</product-filter>
+      </grid-container>
+      <div v-if="loading" class="flex items-center justify-center w-full h-[calc(100vh_-_56px_-_64px)]">
+        <loading-spinners size="large" color="primary" />
       </div>
-      <p v-else-if="errors" class="text-2xl text-secondary-600">
+      <h2 v-else-if="errors" class="text-2xl text-secondary-600">
         An error occurred or check your internet connection.
-      </p>
-      <div v-else class="grid-container mt-4">
+      </h2>
+      <div v-else class="grid-container mt-8">
         <ContentsProductCard
           v-for="(product, index) in products"
           :key="product._id"
           :product="product"
           :index="index"
-          class="grid-item"
         />
       </div>
     </main>
-  </div>
+    </app-container>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import Spinner from "@/components/Loading/Spinners.vue";
-import Container from "~/components/Container.vue";
+import ProductFilter from "@/components/ProductFilter.vue"
 
 export default {
   components: {
-    "loading-spinner": Spinner,
-    Container,
+    "product-filter": ProductFilter
   },
-  computed: mapGetters({
-    products: "products/products",
-    errors: "products/errors",
-    loading: "products/loading",
-  }),
-  created() {
-    this.$store.dispatch("products/fetchProducts", {
-      category: this.$route.query.category || "",
+  data() {
+    return {
+      category: this.$route.query.category,
+      categories: [
+        {
+          name: "computing",
+          label: "Computing"
+        },
+        {
+          name: "phones",
+          label: "Phones & Tablets"
+        },
+        {
+          name: "fashion",
+          label: "Fashion"
+        },
+        {
+          name: "home",
+          label: "Home & offices"
+        },
+        {
+          name: "electronics",
+          label: "Electronic appliances"
+        },
+        {
+          name: "gaming",
+          label: "Gaming"
+        },
+      ]
+    }
+  },
+  computed: {
+    ...mapGetters({
+      products: "products/products",
+      errors: "products/errors",
+      loading: "products/loading",
+    }),
+    getCategory() {
+      return this.categories.filter(cat => cat.name === this.category)[0].label
+    }
+  },
+  async created() {
+    if (this.$auth.loggedIn) {
+      await this.$store.dispatch("wishlist/fetchWishlist")
+    }
+
+    await this.$store.dispatch("products/fetchProducts", {
+      category: this.category || "",
     });
   },
   methods: {
     ...mapActions(["fetchProducts"]),
     ...mapActions({ getSingleProduct: "products/getSingleProduct" }),
+    ...mapActions("wishlist", ["fetchWishlist"]),
+    handleChange(e) {
+      this.$router.push({ path: "/products", query: { category: this.category }})
+
+      this.$store.dispatch("products/fetchProducts", {
+        category: this.category || "",
+      });
+    }
   },
 };
 </script>
 
 <style scoped>
 .grid-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-.grid-item {
-  margin: 20px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
 }
 </style>

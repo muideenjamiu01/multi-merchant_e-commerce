@@ -2,7 +2,7 @@
   <div class="my-7 space-y-6 text-sm text-primary-black">
     <div class="md:flex gap-8">
       <div class="w-full">
-        <label>Category</label><br/>
+        <label>Category</label><br />
         <select
           class="focus:outline-none w-full border py-2.5 px-4 my-1"
           v-model="category"
@@ -19,7 +19,7 @@
         </p>
       </div>
       <div class="w-full mt-6 md:mt-0">
-        <label>Name</label><br/>
+        <label>Name</label><br />
         <input
           type="text"
           class="focus:outline-none w-full border py-2.5 px-4 my-1"
@@ -54,14 +54,9 @@
     </div>
     <div class="md:flex gap-8">
       <div class="w-full">
-        <form 
-          enctype="mutipart/form-data">
+        <form enctype="mutipart/form-data">
           <label for="file">Update Image</label>
-          <input 
-            type="file" 
-            @change="selectFile"
-            ref="file"
-          >
+          <input type="file" @change="selectFile" ref="file" />
         </form>
         <p class="text-xs">
           Please upload multiple images of this product, preferably different
@@ -114,14 +109,17 @@
           <input type="color" class="" v-model="color" />
         </div>
       </div>
-    
     </div>
 
     <div class="flex gap-4 justify-end mt-8">
-      <app-button @click="addAnotherProduct" variant="contained" color="success">
+      <app-button
+        @click="addAnotherProduct"
+        variant="contained"
+        color="success"
+      >
         Save and add another
       </app-button>
-    
+
       <app-button @click="addNewProduct" variant="outlined" color="success">
         Save Product
       </app-button>
@@ -140,39 +138,39 @@ export default {
     return {
       file: "",
       category: "",
-      color: "",
+      color: "#000000",
       description: "",
       name: "",
-      price: "",
+      price: 0,
       quantity: 0,
       size: "",
-      discount: "",
+      discount: 0,
     };
-    
   },
   methods: {
     selectFile() {
       this.file = this.$refs.file.files[0];
-      this.$toast.success('Image is ready for upload')
+      this.$toast.success("Image is ready for upload");
     },
     async updatePicture(id) {
       const formData = new FormData();
-      formData.append('images', this.file)
+      formData.append("images", this.file);
       try {
-        const response = await this.$axios.post(`/api/products/v1/products/${id}/upload`, formData)
-        this.$toast.success('Image Successfully uploaded!')
+        const response = await this.$axios.post(
+          `/api/products/v1/products/${id}/upload`,
+          formData
+        );
+        
       } catch (err) {
-        this.$toast.error('Failed to upload image')
+        this.$toast.error("Failed to upload image");
         console.log(err);
       } finally {
-        
       }
     },
     async addNewProduct() {
       try {
-        const response = await this.$axios.post(
-          "https://youstore-products.herokuapp.com/v1/products",
-           {
+        const response = await this.$axios
+          .post("https://youstore-products.herokuapp.com/v1/products", {
             category: this.category,
             color: this.color,
             description: this.description,
@@ -182,20 +180,22 @@ export default {
             size: this.size,
             discount: this.discount,
           })
-          .then( this.$toast.success('Product successfully uploaded!'))
-          .then( res =>  this.updatePicture(res.data.data._id))
+
+          .then((res) => this.updatePicture(res.data.data._id));
+          this.$toast.success("Product successfully uploaded!")
+
+
       } catch (err) {
-        this.$toast.error('Failed to upload product')
+        this.$toast.error("Failed to upload product");
         console.log(err);
       } finally {
-        this.$router.push("/merchant/products")
+        this.$router.push("/merchant/products");
       }
     },
     async addAnotherProduct() {
       try {
-        const response = await this.$axios.post(
-          "https://youstore-products.herokuapp.com/v1/products",
-           {
+        const response = await this.$axios
+          .post("https://youstore-products.herokuapp.com/v1/products", {
             category: this.category,
             color: this.color,
             description: this.description,
@@ -204,16 +204,15 @@ export default {
             quantity: this.quantity,
             size: this.size,
             discount: this.discount,
-          })
-          .then(  res =>  this.updatePicture(res.data.data._id))
-          .then( this.$toast.success('Product successfully uploaded!'))
+          }).then((res) => this.updatePicture(res.data.data._id))
+          await this.$toast.success("Product successfully uploaded, save another!")
+         
       } catch (err) {
-        this.$toast.error('Failed to upload product')
+        this.$toast.error("Failed to upload product, check and try again");
         console.log(err);
       } finally {
       }
     },
-    
   },
 };
 </script>

@@ -45,7 +45,7 @@
                       >Delete</app-button
                     >
                     <app-button
-                      @click="addToWishlist(item.product._id)"
+                      @click="addToWishlist(item.product)"
                       size="small"
                       class="pl-2"
                       >Add to wishlist</app-button

@@ -10,13 +10,9 @@
 
 <script>
 // import { createPopper } from '@popperjs/core'
-// import { Portal } from '@linusborg/vue-simple-portal'
 
 export default {
   name: "Dropdown",
-  // components: {
-  //   portal: Portal
-  // },
   data() {
     return {
       isOpen: false,
@@ -34,6 +30,28 @@ export default {
   //       }],
   //       strategy: 'fixed'
   //     })
+  //   }
+  // },
+  // watch: {
+  //   isOpen(isOpen) {
+  //     if (isOpen) {
+  //       this.$nextTick(() => {
+  //         this.popper = createPopper(this.$refs.trigger, this.$refs.content, {
+  //           placement: 'bottom',
+  //           modifiers: [
+  //             {
+  //               name: 'offset',
+  //               options: {
+  //                 offset: [0, 8]
+  //               }
+  //             },
+  //           ]
+  //         });
+  //         this.popper.update();
+  //       });
+  //     } else if (this.popper) {
+  //       setTimeout(() => this.popper.destroy(), 100);
+  //     }
   //   }
   // },
   methods: {

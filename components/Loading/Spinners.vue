@@ -30,7 +30,7 @@ export default {
         return {
             'w-3 h-3': this.size === 'small',
         'w-6 h-6': this.size === 'medium', 
-        'w-8 h-8': this.size === 'large'
+        'w-10 h-10': this.size === 'large'
         }
         },
       colorclass() {
@@ -57,8 +57,8 @@ export default {
 .loader-dot:before {
   content: '';
   display: block;
-  width: 35%;
-  height: 35%;
+  width: 30%;
+  height: 30%;
   border-radius: 100%;
   animation: loader-dot-before 1.5s infinite ease-in-out both; 
 }
