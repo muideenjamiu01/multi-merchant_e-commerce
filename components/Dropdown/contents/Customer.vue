@@ -1,5 +1,5 @@
 <template>
-  <ul class="m-0 py-2 px-0 relative list-none outline-0">
+  <ul class="m-0 py-2 px-0 relative list-none outline-0 min-w-[180px]">
     <div v-show="!$auth.loggedIn" class="py-1.5 px-4">
       <app-button
         to="/auth/login"
@@ -14,7 +14,7 @@
       <p class="text-sm text-center my-2">
         <small
           >New customer?
-          <nuxt-link to="/auth/signup" class="text-primary-600 hover:text-"
+          <nuxt-link to="/auth/signup" class="text-primary-500 hover:underline"
             >Sign up here</nuxt-link
           ></small
         >
@@ -41,8 +41,8 @@
         Wishlist
       </nuxt-link>
     </li>
-    <div class="border-t" />
-    <app-button class="" @click="logout" color="error" fullWidth>
+    <div v-if="$auth.loggedIn" class="border-t" />
+    <app-button v-if="$auth.loggedIn" color="error" @click="logout" fullWidth>
       Log out
     </app-button>
   </ul>

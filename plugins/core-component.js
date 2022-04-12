@@ -5,7 +5,7 @@ import Vue from 'vue'
 import AppButton from "@/components/buttons/Button.vue";
 import AppContainer from "@/components/Container";
 import BaseSvg from "@/components/svg/Base.vue";
-import Dropdown from "@/components/Dropdown";
+import DropdownMenu from "@/components/Dropdown";
 import GridContainer from "@/components/grid/Container";
 import GridItem from "@/components/grid/Item";
 import IconButton from "@/components/buttons/IconButton.vue";
@@ -16,7 +16,7 @@ import UserAvatar from "@/components/Avatar";
 Vue.component('app-button', AppButton)
 Vue.component('app-container', AppContainer)
 Vue.component('base-svg', BaseSvg)
-Vue.component('dropdown-menu', Dropdown)
+Vue.component('dropdown-menu', DropdownMenu)
 Vue.component('grid-container', GridContainer)
 Vue.component('grid-item', GridItem)
 Vue.component('icon-button', IconButton)
