@@ -16,8 +16,8 @@ export const getters = {
 
 export const actions = {
   async fetchProducts({ commit, rootState }, {category}) {
-    
     commit("setLoading", true);
+
     try {
       const response = await this.$axios.get(`/api/products/v1/products/category/`,
         {
@@ -27,10 +27,13 @@ export const actions = {
           },
         }
       );
+
       // const { docs, pagination } = response.data.data;
-      const docs = response.data.data;
-      commit("setProducts", docs);
-      // commit("setPagination", pagination );
+      commit("setProducts", response.data.data);
+
+      if (rootState.auth.loggedIn && rootState.wishlist.length > 0) {
+        commit("setProductWishlistKey", rootState.wishlist);
+      }
     } catch (error) {
       commit("setError", error.message);
     } finally {
@@ -46,6 +49,16 @@ export const actions = {
 export const mutations = {
   setProducts(state, payload) {
     state.products = payload;
+  },
+  setProductWishlistKey(state, payload) {
+    state.products = state.products.map(product => {
+      const index = payload.findIndex(p => p._id === product._id)
+
+      return {
+        ...product,
+        inWishlist: index !== -1
+      }
+    })
   },
   setPagination(state, payload) {
     state.pagination = payload;
