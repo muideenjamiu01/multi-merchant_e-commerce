@@ -182,6 +182,10 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
+  created() {
+    console.log(this.product)
+    this.$store.commit("reviews/getReview", this.product) 
+  },
   methods: {
     ...mapActions("cart", ["addProductToCart"]),
     ...mapActions("wishlist", ["addToWishlist"]),

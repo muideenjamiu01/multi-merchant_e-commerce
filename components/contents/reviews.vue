@@ -1,6 +1,7 @@
 <template>
   <div class="text-primary-black">
-    <div class="mt-6">
+    <h1>Hello</h1>
+    <!-- <div class="mt-6">
       <div>
         <div class="mb-2 flex items-center my-[10px]">
           <img class="rounded-full bg-primary-gray w-[40px] h-[40px] my-[10px]" :src="customerAvatar" alt="">
@@ -24,20 +25,20 @@
         </p>
         
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 
 export default {
-  props: {
-    name: "",
-    createdAt: "",
-    rating: "",
-    review:"",
-    customerAvatar:'',
-  },
+  // props: {
+  //   name: "",
+  //   createdAt: "",
+  //   rating: "",
+  //   review:"",
+  //   customerAvatar:'',
+  // },
     
 }
 </script>
