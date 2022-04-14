@@ -1,10 +1,35 @@
 export const state = () => ({
+  singleReviews: [],
   items: [],
-  itemsReview: [],
   id: "",
   loading: false,
   errors: null,
 });
+
+// mutations
+  export const mutations = {
+    getReview(state, singleProductReviews) {
+      state.singleReviews = singleProductReviews;
+    },
+
+  addOrder(state, order) {
+    state.items = order;
+  },
+  addOrderReview(state, orderReview) {
+    state.itemsReview = orderReview;
+  },
+  saveOrderId(state, orderId) {
+    state.id = orderId;
+  },
+
+  setLoading(state, value) {
+    state.loading = value;
+  },
+  setError(state, payload) {
+    state.errors = payload;
+  },
+};
+
 
 // getters
 export const getters = {
@@ -43,7 +68,6 @@ export const actions = {
       commit("setLoading", false);
     }
   },
-  //this checkout function creates order
   async createOrder({ state, commit, rootState, rootGetters }) {
     if (!this.$auth.loggedIn) {
       this.$router.push("/auth/login");
@@ -72,25 +96,20 @@ export const actions = {
       commit("saveOrderId", res.data.data.id);
     }
   },
-};
-
-// mutations
-export const mutations = {
-  addOrder(state, order) {
-    state.items = order;
-    //   window.localStorage.setItem("ys-orders", JSON.stringify(state.items));
-  },
-  addOrderReview(state, orderReview) {
-    state.itemsReview = orderReview;
-  },
-  saveOrderId(state, orderId) {
-    state.id = orderId;
-  },
-
-  setLoading(state, value) {
-    state.loading = value;
-  },
-  setError(state, payload) {
-    state.errors = payload;
+  async fetchOrders({ commit, rootState }) {
+    const customerId = rootState.auth.user._id;
+    commit("setLoading", true);
+    const productId = "6221c11a837e20cc03ff00da"
+    try {
+      let res = await this.$axios.get(
+        `https://youstore-products.herokuapp.com/v1/products/${productId}/one`
+      );
+     
+    } catch (error) {
+      commit("setError", error.message);
+    } finally {
+      commit("setLoading", false);
+    }
   },
 };
+
