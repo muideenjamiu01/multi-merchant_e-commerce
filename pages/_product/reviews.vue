@@ -1,28 +1,63 @@
 <template>
-  <div class="px-4">
-    <h1 class="font-bold">
-     49 Comments from verified purchases
-    </h1>
-      <!-- <ContentsReviews 
-      :name='reviews.customerName'
-      :comment='reviews.comment'
-      :createdAt='reviews.createdAt'
-      :customerAvatar='reviews.customerAvatar'
-      :rating='reviews.rating'
-      :id='reviews.id'
-      /> -->
+   <div class="container mx-auto py-4 px-2">
+    <div class="flex gap-4">
+      <nuxt-link to="/customer/create-reviews">
+        <h1 class="md:text-3xl font-medium">&#8592;</h1>
+      </nuxt-link>
+      <h1 class="md:text-3xl font-medium">
+       Verified customer feedback
+      </h1>
+    </div>
+
+    <div class="md:flex gap-6 mt-6">
+      <div class="md:w-1/4">
+      <nuxt-link to="/customer/create-reviews">
+        <app-button 
+          class=""
+          type="submit"
+          variant="contained"
+          color="primary"
+          size="medium"
+          uppercase
+        >
+          Write a review
+        </app-button>
+      </nuxt-link>
+      </div>
+      <div class="px-4 flex flex-col">
+        <ContentsReviews 
+          v-for="review in product.reviews"
+          :key="review._id" 
+          :comment='review.comment'
+          :createdAt='review.createdAt'
+          :rating='review.rating'
+          :id='review._id'
+        />
+        
+      </div>
+      <div class="md:w-1/4">
+        <ContentsAddToCart 
+          :product ='product'
+        />
+      </div>
+    </div>
   </div>
 </template>
+ 
 
 
 <script>
 import { mapGetters, mapActions } from "vuex";
 
 export default {
+  data () {
+    return {
+      reviews : []
+    }
+  },
   created() {
-    let reviews = this.$store.state.singleReviews
-    console.log(reviews)
-    // this.$store.commit("reviews/getReview", this.product.reviews) 
+    this.product = this.$store.state.reviews.singleReviews
+    console.log(this.product)
   },
   methods: {
     // ...mapActions("cart", ["addProductToCart"]),

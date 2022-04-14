@@ -3,53 +3,55 @@
     <div class="bg-primary-blue-light p-4">
       <div class="mt-4 flex gap-4">
         <div>
-          <img src="" alt="" class="w-16 h-24">
+          <img :src="getProductImage(product)" alt="" class="w-16 h-24">
         </div>
         <div>
           <div>
             <h4 class="font-light text-sm">
-              Product name
+              {{product.name}}
             </h4>
             <div class="">
-              <div class="flex justify-between">
-                <span class="font-light text-sm">stars rating </span>
-                <span class="text-primary-blue font-light text-sm">213</span>
-              </div>
+              <ContentsRating 
+                :rating="product.reviews['0'].rating"
+              />
               <div class="flex gap-2">
-                
-                  <span class="font-light text-sm">5000.00 NGN</span>
-                
+                <span class="font-light text-sm">₦{{product.price.toLocaleString()}}</span>
                 <span class="font-light text-sm text-gray-400">-18%</span>
               </div>
-              <div>
-        <app-button class="mt-2" variant="contained" fullWidth size="small">
-          Add to cart
-        </app-button>
-                <!-- <AppButton
-                  
-                  buttonText="add to cart"
-                  color="fillbutton"
-                  size="sm"
-                  rounded
-                /> -->
-              </div>
+              <app-button 
+                @click="test" 
+                class="mt-2" 
+                variant="contained" 
+                fullWidth 
+                size="small"
+              >
+                Add to cart
+              </app-button>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- 6239209112 famous prior -->
   </div>
 </template>
 
 <script>
-import AppButton from "@/components/buttons/Button.vue"
-
-export default {
+  import AppButton from "@/components/buttons/Button.vue"
+  export default {
+    props: {
+      product: "",
+    },
     components: {
       'app-button': AppButton
+    },
+    methods: {
+      test () {
+        console.log(this.$props.product)
+      },
+      getProductImage(product) {
+        return product.images[0];
+      }
     }
-}
+  }
 </script>
 
-<style lang="scss" scoped></style>
