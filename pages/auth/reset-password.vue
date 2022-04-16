@@ -89,71 +89,58 @@
                 rules="min:6||required"
                 slim
               >
-                <div class="mb-4">
-                  <label class="mb-2 capitalize" for="password">Password</label>
-                  <input
-                    class="
-                      w-full
-                      flex
-                      items-center
-                      outline-0
-                      border border-secondary-200
-                      rounded-md
-                      shadow-sm
-                      focus:outline-none
-                      focus:border-primary-200
-                      focus:ring-primary-200
-                      focus:ring-1
-                      sm:text-sm
-                      p-2
-                    "
-                    v-model="password"
-                    type="password"
-                    id="password"
-                  />
-                  <span class="text-xs text-error-800">{{ errors[0] }}</span>
-                </div>
+                <text-input
+                  v-model="password"
+                  type="password"
+                  name="password"
+                  required
+                >
+                  password
+                  <template #error>
+                    <span class="text-xs text-error-800">{{ errors[0] }}</span>
+                  </template>
+                </text-input>
               </ValidationProvider>
 
               <ValidationProvider
                 v-slot="{ errors }"
-                name="confirm_password"
+                name="confirm password"
                 rules="min:6||required"
                 slim
               >
-                <div class="mb-4">
-                  <label class="mb-2 capitalize" for="confirm_password">Confirm your Password</label>
-                  <input
-                    class="
-                      w-full
-                      flex
-                      items-center
-                      outline-0
-                      border border-secondary-200
-                      rounded-md
-                      shadow-sm
-                      focus:outline-none
-                      focus:border-primary-200
-                      focus:ring-primary-200
-                      focus:ring-1
-                      sm:text-sm
-                      p-2
-                    "
-                    v-model="confirm_password"
-                    type="password"
-                    id="confirm_password"
-                  />
-                  <span class="text-xs text-error-800">{{ errors[0] }}</span>
-                </div>
+                <text-input
+                  v-model="confirm_password"
+                  type="password"
+                  name="confirm_password"
+                  required
+                >
+                  Confirm your Password
+                  <template #error>
+                    <span class="text-xs text-error-800">{{ errors[0] }}</span>
+                  </template>
+                </text-input>
               </ValidationProvider>
 
-            <app-button class="" type="submit" variant="contained" color="primary" size="large" :disabled="loading" fullWidth uppercase>
-                {{loading ? 'submitting' : 'submit'}}
-                <loading-spinners v-if="loading" size="small" color="white" class="mx-4"></loading-spinners>
-            </app-button>
-          </form>
+              <app-button
+                class=""
+                type="submit"
+                variant="contained"
+                color="primary"
+                size="large"
+                :disabled="loading"
+                full-width
+                uppercase
+              >
+                {{ loading ? "submitting" : "submit" }}
+                <loading-spinners
+                  v-if="loading"
+                  size="small"
+                  color="white"
+                  class="mx-4"
+                ></loading-spinners>
+              </app-button>
+            </form>
           </ValidationObserver>
-
         </div>
       </div>
     </div>
@@ -165,7 +152,7 @@ import {
   ValidationObserver,
   ValidationProvider,
 } from "vee-validate/dist/vee-validate.full.esm";
-import CancelIcon from "@/components/svg/Cancel.vue"
+import CancelIcon from "@/components/svg/Cancel.vue";
 import BrandLogo from "@/components/svg/Logo";
 
 export default {
@@ -179,54 +166,51 @@ export default {
   },
   data() {
     return {
-        password: "",
-        confirm_password: "",
+      password: "",
+      confirm_password: "",
       loading: false,
-      error: null
+      error: null,
     };
   },
   methods: {
     async handleSubmit() {
-      this.loading = true
+      this.loading = true;
       try {
-        const resetLink = window.localStorage.getItem("reset-link") || ""
+        const resetLink = window.localStorage.getItem("reset-link") || "";
 
         if (this.password === this.confirm_password) {
-          const qs = this.$route.query.user || ""
-        const response = await this.$axios.post(
-            resetLink,
-            {
-              newPassword: this.password,
-              confirmPassword: this.confirm_password
-            }
-        );
+          const qs = this.$route.query.user || "";
+          const response = await this.$axios.post(resetLink, {
+            newPassword: this.password,
+            confirmPassword: this.confirm_password,
+          });
 
-        this.password = "",
-        this.confirm_password = "",
-
-        qs === 'merchant' ? this.$router.push('/auth/merchant-login') : this.$router.push('/auth/login')
-        this.$toast.success(response.data.msg)
+          (this.password = ""),
+            (this.confirm_password = ""),
+            qs === "merchant"
+              ? this.$router.push("/auth/merchant-login")
+              : this.$router.push("/auth/login");
+          this.$toast.success(response.data.msg);
         } else {
-          this.error = 'Both password fields must match'
+          this.error = "Both password fields must match";
         }
       } catch (err) {
-        this.error = err.response.data.msg
-      }
-      finally {
-        this.loading = false
+        this.error = err.response.data.msg;
+      } finally {
+        this.loading = false;
       }
     },
     closeErrorMessage() {
-      this.error = null
+      this.error = null;
     },
     closeMessage() {
-      this.message = ''
-    }
+      this.message = "";
+    },
   },
   beforeMount() {
     if (this.$auth.loggedIn) {
       this.$router.go(-1);
     }
-  }
+  },
 };
 </script>
