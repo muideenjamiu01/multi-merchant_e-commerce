@@ -11,23 +11,12 @@ export const state = () => ({
     getReview(state, singleProductReviews) {
       state.singleReviews = singleProductReviews;
     },
-
-  addOrder(state, order) {
-    state.items = order;
-  },
-  addOrderReview(state, orderReview) {
-    state.itemsReview = orderReview;
-  },
-  saveOrderId(state, orderId) {
-    state.id = orderId;
-  },
-
-  setLoading(state, value) {
-    state.loading = value;
-  },
-  setError(state, payload) {
-    state.errors = payload;
-  },
+    setLoading(state, value) {
+      state.loading = value;
+    },
+    setError(state, payload) {
+      state.errors = payload;
+    },
 };
 
 
@@ -36,80 +25,33 @@ export const getters = {
   getOrders(state) {
     return state.items;
   },
-  getOrdersReview(state) {
-    return state.itemsReview;
-  },
-  getOrderId(state) {
-    return state.id;
-  },
+ 
   loading: (state) => state.loading,
   errors: (state) => state.errors,
 };
 
 // actions
 export const actions = {
-  async fetchOrders({ commit, rootState }) {
-    const customerId = rootState.auth.user._id;
-    commit("setLoading", true);
-
+  async postReviews({ commit, rootState}, input) {
+    const id = rootState.products.singleProduct._id
+    // commit("setLoading", true);
     try {
-      let res = await this.$axios.get(`/api/order/customer/${customerId}`);
-      console.log(res.data.data);
-      let result = [];
-      for (let i = 0; i < res.data.data.length; i++) {
-        result.push(res.data.data[i].products);
-      }
-      result = result.flat();
-      console.log(result);
-      commit("addOrder", result);
-    } catch (error) {
-      commit("setError", error.message);
-    } finally {
-      commit("setLoading", false);
-    }
-  },
-  async createOrder({ state, commit, rootState, rootGetters }) {
-    if (!this.$auth.loggedIn) {
-      this.$router.push("/auth/login");
-    } else {
-      let payload = {
-        customerId: rootState.auth.user._id,
-        customerEmail: rootState.auth.user.email,
-        products: rootState.cart.items.map((item) => ({
-          id: item.product._id,
-          name: item.product.name,
-          price: item.product.price,
-          size: item.product.size,
-          color: item.product.color,
-          image: item.product.images[0],
-          quantity: item.quantity,
-        })),
-        total: rootGetters["cart/cartTotalPrice"] * 100,
-      };
-
-      let res = await this.$axios.post("/api/order/", payload);
-
-      this.$toast.success("Orders Successfully Created");
-
-      this.$router.push("/checkout");
-      //   commit('addOrder', res.data.data.id)
-      commit("saveOrderId", res.data.data.id);
-    }
-  },
-  async fetchOrders({ commit, rootState }) {
-    const customerId = rootState.auth.user._id;
-    commit("setLoading", true);
-    const productId = "6221c11a837e20cc03ff00da"
-    try {
-      let res = await this.$axios.get(
-        `https://youstore-products.herokuapp.com/v1/products/${productId}/one`
+      const response = await this.$axios.post(
+        `https://youstore-products.herokuapp.com/v1/product/${id}/review`, 
+        {
+          "comment" : input.input,
+          "rating" : input.rating
+        }
       );
-     
+      console.log(response.data.data);
+      // commit("setError", error.message);
     } catch (error) {
       commit("setError", error.message);
     } finally {
       commit("setLoading", false);
     }
   },
+ 
+  
 };
 

@@ -1,9 +1,6 @@
 <template>
   <div class="font-light py-8 px-4 text-primary-black">
     <div class="xl:flex xl:space-x-8">
-      <!-- <div class="flex flex-col space-y-4">
-        <div v-for="n in 5" :key="n" class="border-2 border-black h-14 w-14" />
-      </div> -->
       <div class="w-full h-96 max-w-lg">
         <img
           :src="getProductImage(product.images[0])"
@@ -16,7 +13,7 @@
         <div class="flex items-center">
           <p class="text-2xl font-bold">******</p>
           <p class="text-primary-blue-dark ml-2.5 text-sm">
-            {{ product.inventory }} ratings
+            <!-- {{ product.inventory }} ratings -->
           </p>
          
         </div>
@@ -24,10 +21,6 @@
           <p class="font-semibold text-lg">₦ {{Number(product.price).toLocaleString() }}</p>
           <p class="text-primary-gray-light text-sm font-light ml-2.5">-23%</p>
         </div>
-
-       
-         <!-- <img src="@/assets/images/icons/heart.svg" alt="wishlist button"> -->
-
          <app-button 
             @click="addToWishlist(product._id)"  
             class="bg-primary-blue text-white">
@@ -142,7 +135,6 @@
           {{ product.description }}
         </p>
       </div>
-
       <div class="min-w-88 bg-primary-blue-light py-2.5 pb-10 font-light mt-8">
         <h1 class="font-medium px-6 py-4">Seller Information</h1>
         <div class="border-t border-gray-200" />
@@ -158,10 +150,9 @@
         </div>
       </div>
     </div>
-
     <div class="mt-8">
       <h1 class="font-bold">49 Comments from verified purchase</h1>
-      <ContentsReviews v-for="n in 3" :key="n" />
+      <!-- <ContentsReviews v-for="n in 3" :key="n" /> -->
       <NuxtLink
         :to="$route.params.product + '/reviews'"
         class="font-light text-primary-blue-dark mt-6 flex justify-end"
@@ -169,11 +160,7 @@
         See all reviews
       </NuxtLink>
     </div>
-
     <div>
-     
-
-   
     </div>
   </div>
 </template>
@@ -182,9 +169,8 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  created() {
-    console.log(this.product)
-    this.$store.commit("reviews/getReview", this.product) 
+  mounted() {
+    // this.$store.commit("reviews/getReview", this.product) 
   },
   methods: {
     ...mapActions("cart", ["addProductToCart"]),
