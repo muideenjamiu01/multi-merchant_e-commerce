@@ -12,7 +12,8 @@
             </h4>
             <div class="">
               <ContentsRating 
-                :rating="product.reviews['0'].rating"
+                :rating="testAverage"
+                :ratingLabel="`Avg. Rating`"
               />
               <div class="flex gap-2">
                 <span class="font-light text-sm">₦{{product.price.toLocaleString()}}</span>
@@ -27,7 +28,7 @@
               fullWidth 
               size="small"
               >
-              Add to cart
+              ADD TO CART
             </app-button>
           </div>
         </div>
@@ -39,6 +40,11 @@
 <script>
   import AppButton from "@/components/buttons/Button.vue"
   export default {
+    data () {
+      return {
+        averageRating: 5
+      }
+    },
     props: {
       product: "",
     },
@@ -47,11 +53,24 @@
     },
     methods: {
       test () {
+
       },
       getProductImage(product) {
         return product.images[0];
-      }
+      },
+     
+    },
+    computed : {
+        testAverage() {
+          let ratingSum = 0;
+          for (let review of this.product.reviews) {
+            ratingSum+=review.rating;
+          }
+          this.averageRating = Math.round(ratingSum/this.product.reviews.length)
+          return this.averageRating
+        },
     }
+
   }
 </script>
 

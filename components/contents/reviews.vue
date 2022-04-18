@@ -1,10 +1,10 @@
 <template>
-  <div class="text-primary-black">
-    <div class="mt-6">
+  <div class="text-primary-black ml-0">
+    <div class="bg-primary-blue-light p-4 ml-0 mb-6">
       <div>
         <div class="mb-2 flex items-center my-[10px]">
           <img class="rounded-full bg-primary-gray w-[40px] h-[40px] my-[10px]" :src="customerAvatar" :alt="name">
-          <h1 class="text-sm font-light ml-2 my-[10px]">
+          <h1 class="text-sm font-bold ml-2 my-[10px]">
             {{name}}
           </h1>
           
@@ -13,15 +13,20 @@
           <ContentsRating 
             class="mr-[6px]"
             :rating="rating"
+            :ratingLabel="`Customer Rating`"
           />
-          Posted on {{handleDate}}
+          
         </p>
-       
+        <p class="font-light text-sm flex my-[10px]">Posted on: {{handleDate}}</p>
         <p class="font-light text-sm my-[10px]">
           Comment: {{comment[0].toUpperCase()}}{{comment.slice(1)}}.
         </p>
-        <app-button @click="deleteReview(id)"  variant="contained" color='error'>
-            Delete Review
+        <app-button
+          v-if="customerName === `${$store.state.auth.user.firstName} ${$store.state.auth.user.lastName}`"
+          @click="deleteReview(id)"  
+          variant="contained" 
+          color='error'>
+            DELETE THIS REVIEW
         </app-button>
       </div>
     </div>
@@ -64,6 +69,8 @@ export default {
     },
   },
   mounted () {
+      
+
     this.datePosted = this.$props.createdAt.split('T')[0];
     this.name = this.$props.customerName.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
   },
