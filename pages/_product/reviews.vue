@@ -1,6 +1,6 @@
 <template>
-   <div class="container mx-auto py-4 px-2">
-    <div class="flex gap-4">
+   <div class="container mx-auto py-4">
+    <div class="flex gap-4 ml-4">
       <h1 class="text-3xl font-medium">
        {{product.reviews.length}} Verified customer's feedback
       </h1>
@@ -35,7 +35,7 @@
             size="medium"
             uppercase
           >
-            Write a review
+            Write a review for this product
           </app-button>
         </nuxt-link>
       </div>

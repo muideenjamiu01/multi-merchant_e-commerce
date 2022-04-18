@@ -43,9 +43,10 @@ export const actions = {
           "rating" : input.rating
         }
       );
-      console.log(response.data.data);
+      this.$toast.success("Review successfully added!")
       // commit("setError", error.message);
     } catch (error) {
+      this.$toast.error("An error occured!")
       commit("setError", error.message);
     } finally {
       commit("setLoading", false);
