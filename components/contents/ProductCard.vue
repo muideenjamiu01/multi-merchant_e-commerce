@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="h-56 cursor-pointer" @click="viewProduct(index)">
+    <div class="h-56 cursor-pointer" @click="viewProduct()">
       <img :src="getProductImage(product.images)" class="w-full h-full" :alt="product.name" />
     </div>
     <div @click="viewProduct" class="text-sm w-full">
@@ -81,7 +81,7 @@ export default {
     ...mapActions("cart", ["addProductToCart"]),
     viewProduct() {
       const rn = Math.ceil(Math.random() * 1000000)
-      this.$router.push( 
+      this.$router.push ( 
         this.product.name.toLowerCase().split(" ").join("-") + "-" + rn
       );
       this.$store.dispatch("products/getSingleProduct", this.product);

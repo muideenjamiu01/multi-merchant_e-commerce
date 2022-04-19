@@ -47,8 +47,10 @@
       >
         <input
           type="text"
-          placeholder="Search Youstore"
+          placeholder="Search products"
           class="focus:outline-none bg-transparent w-full"
+          @input="handleInput"
+          @focus="handleFocus"
         />
         <search-icon class="justify-end" color="primary" />
       </div>
@@ -73,11 +75,11 @@
 
       <div class="flex items-center justify-end">
         <dropdown-menu>
-          <template #dropdown-element="{ setOpen, isOpen }">
+          <template #reference="{ handleHide, handleShow, isOpen }">
             <app-button
               class="rounded-full hover:!bg-transparent"
               size="small"
-              @click.native="setOpen(!isOpen)"
+              @click.native="() => isOpen ? handleHide($event) : handleShow($event)"
             >
               <user-avatar
               v-if="$auth.loggedIn"
@@ -88,8 +90,8 @@
               <profile-icon v-else color="secondary"></profile-icon>
             </app-button>
           </template>
-          <template #dropdown-content="{ setOpen }">
-            <dropdown-list @close-dropdown="setOpen(false)">
+          <template #content="{ handleHide }">
+            <dropdown-list @close-dropdown="handleHide">
             </dropdown-list>
           </template>
         </dropdown-menu>
@@ -151,11 +153,11 @@ export default {
     "dropdown-list": DropdownList,
     "search-icon": SearchIcon
   },
-  data() {
-    return {
-      isOpen: false,
-    };
-  },
+  // data() {
+  //   return {
+  //     isOpen: false,
+  //   };
+  // },
   computed: {
     ...mapGetters({
       itemsCount: "cart/cartItemsCount",
@@ -170,15 +172,11 @@ export default {
     },
   },
   methods: {
-    closeDropdown() {
-      console.log('close dropdown')
-      this.isOpen = false;
+    handleFocus() {
+      console.log('on Focus')
     },
-
-    async logout() {
-      await this.$auth.logout();
-      window.localStorage.removeItem("ys.user_type");
-      this.$toast.show("Successfully Signed Out");
+    handleInput() {
+      console.log('on input')
     },
   },
 };

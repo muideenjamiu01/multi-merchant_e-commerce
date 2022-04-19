@@ -2,7 +2,7 @@
   <div class="container mx-auto py-4 px-2">
     <div class="flex gap-4">
       <nuxt-link to="/customer/reviews">
-        <img src="@/assets/images/icons/back-arrow.svg" alt="back to reviews">
+        <h1 class="text-3xl font-medium">&#8592;</h1>
       </nuxt-link>
       <h1 class="md:text-3xl font-medium">
         Write a review
@@ -15,12 +15,34 @@
           Rate this Item
         </h2>
         <div class="flex gap-2 mt-4">
-          <img
-            v-for="star in 5"
+          <span
+            @click="test(star)"
+            v-for="star in rating"
             :key="star"
-            src="@/assets/images/icons/star.svg"
-            alt=""
+            class="text-xl"
           >
+            <!-- &#9733; -->
+            ⭐
+          </span>
+          <span
+            @click="testBlack(star)"
+            v-for="star in 5-rating"
+            :key="`${star}1`"
+            class="text-xl"
+          >
+            ✩
+            <!-- &#9734; -->
+          </span>
+         
+          <span
+            @click="test5"
+            class="text-xl"
+          >
+          <img src="@/assets/images/test-images/5star.jpg" 
+            class="text-xl mt-[-5px]"
+            width="40px" height="40px" alt="5 star">
+            <!-- &#9734; -->
+          </span>
         </div>
       </div>
 
@@ -32,7 +54,7 @@
               class="form-label inline-block mb-2 text-gray-700 md:font-light text-xl"
             >Leave a review</label>
             <textarea
-            v-model="input"
+              v-model="input"
               id="Textarea"
               class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               rows="3"
@@ -48,55 +70,41 @@
       </div>
 
       <div class="md:w-1/4">
-        <ContentsAddToCart />
+         <ContentsAddToCart 
+          class="w-[344px] h-[176px]"
+          :product ='product'
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import AppButton from "@/components/buttons/Button.vue"
-
   export default {
     data () {
       return  {
-          input: ""
+          input: "",
+          rating: 5,
+          product: this.$store.state.products.singleProduct
         }
-    },
-    components: {
-      'app-button': AppButton
     },
     methods: {
       createReview() {
-        console.log(this.input)
-        this.$store.dispatch("reviews/postReviews")
-        this.$router.push("/customer/reviews")
+        this.$store.dispatch("reviews/postReviews", {input: this.input, rating: this.rating})
+        this.$router.push("/products?category=fashion")
       },
-      async addNewReview() {
-      try {
-        const response = await this.$axios
-          .post("https://youstore-products.herokuapp.com/v1/product/${id}/review", {
-            category: this.category,
-            color: this.color,
-            description: this.description,
-            name: this.name,
-            price: this.price,
-            quantity: this.quantity,
-            size: this.size,
-            discount: this.discount,
-          })
-          .then((res) => this.updatePicture(res.data.data._id));
-          this.$toast.success("Product successfully uploaded!")
-
-      } catch (err) {
-        this.$toast.error("Failed to upload review");
-        console.log(err);
-      } finally {
+      test(star) {
+        this.rating = star
+      },
+      testBlack(star) {
+        this.rating = star
+      },
+      test5() {
+        this.rating = 5
       }
     },
-    },
-
-
+    computed : {
+    }
   }
 </script>
 

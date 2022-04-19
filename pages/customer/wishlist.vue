@@ -1,7 +1,7 @@
 <template>
     <app-container maxWidth="md">
     <main class="my-8">
-      <h1 class="text-2xl font-bold text-primary-black capitalize">
+      <h1 class="text-2xl font-bold text-primary-black capitalize mb-8">
         Your Wishlist
       </h1>
       <div v-if="loading" class="flex justify-center w-full mt-16">

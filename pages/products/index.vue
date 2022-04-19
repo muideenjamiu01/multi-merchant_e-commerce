@@ -64,6 +64,15 @@ export default {
       ]
     }
   },
+  async created() {
+    if (this.$auth.loggedIn) {
+      await this.$store.dispatch("wishlist/fetchWishlist")
+    }
+
+    await this.$store.dispatch("products/fetchProducts", {
+      category: this.category || "",
+    });
+  },
   computed: {
     ...mapGetters({
       products: "products/products",
@@ -73,15 +82,6 @@ export default {
     getCategory() {
       return this.categories.filter(cat => cat.name === this.category)[0].label
     }
-  },
-  async created() {
-    if (this.$auth.loggedIn) {
-      await this.$store.dispatch("wishlist/fetchWishlist")
-    }
-
-    await this.$store.dispatch("products/fetchProducts", {
-      category: this.category || "",
-    });
   },
   methods: {
     ...mapActions(["fetchProducts"]),
