@@ -62,6 +62,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import slugify from "@/helpers/slugify"
 import WishlistIcon from "@/components/svg/Wishlist.vue"
 import WishlistOutlineIcon from "@/components/svg/WishlistOutline.vue"
 
@@ -80,10 +81,8 @@ export default {
   methods: {
     ...mapActions("cart", ["addProductToCart"]),
     viewProduct() {
-      const rn = Math.ceil(Math.random() * 1000000)
-      this.$router.push( 
-        this.product.name.toLowerCase().split(" ").join("-") + "-" + rn
-      );
+      const slug = slugify(`${this.product.name} ${this.product._id}`)
+      this.$router.push(slug);
       this.$store.dispatch("products/getSingleProduct", this.product);
     },
     getProductImage(images) {
