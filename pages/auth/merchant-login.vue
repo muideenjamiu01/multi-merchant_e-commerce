@@ -82,55 +82,18 @@
           </div>
 
           <form @submit.prevent="handleSubmit" class="flex flex-col text-left">
-            <div class="mb-4">
-              <label class="mb-2 capitalize" for="email">Email</label>
-              <input
-                class="
-                  w-full
-                  flex
-                  items-center
-                  outline-0
-                  border border-secondary-200
-                  rounded-md
-                  shadow-sm
-                  focus:outline-none
-                  focus:border-primary-200
-                  focus:ring-primary-200
-                  focus:ring-1
-                  sm:text-sm
-                  p-2
-                "
-                v-model="input.email"
-                name="email"
-                type="email"
-                id="email"
-              />
-            </div>
+            <text-input v-model="input.email" type="email" name="email" required>
+              email
+            </text-input>
 
-            <div class="mb-4">
-              <label class="mb-2 capitalize" for="password">Password</label>
-              <input
-                class="
-                  w-full
-                  flex
-                  items-center
-                  outline-0
-                  border border-secondary-200
-                  rounded-md
-                  shadow-sm
-                  focus:outline-none
-                  focus:border-primary-200
-                  focus:ring-primary-200
-                  focus:ring-1
-                  sm:text-sm
-                  p-2
-                "
-                v-model="input.password"
-                name="password"
-                type="password"
-                id="password"
-              />
-            </div>
+            <text-input
+              v-model="input.password"
+              type="password"
+              name="password"
+              required
+            >
+              password
+            </text-input>
 
             <app-button class="capitalize" type="submit" variant="contained" color="primary" size="large" :disabled="loading" fullWidth uppercase>
                 {{loading ? 'Loading' : 'login'}}

@@ -82,7 +82,7 @@
           </div>
 
           <ValidationObserver slim>
-            <form @submit.prevent="createUser" class="w-full">
+            <form class="w-full" @submit.prevent="createUser">
               <ValidationProvider
                 v-for="field in fields"
                 :key="field.name"
@@ -91,32 +91,17 @@
                 :rules="field.rules"
                 slim
               >
-                <div class="mb-4">
-                  <label class="mb-2 capitalize" :for="field.name">{{
-                    field.name.split("_").join(" ")
-                  }}</label>
-                  <input
-                    class="
-                      w-full
-                      flex
-                      items-center
-                      outline-0
-                      border border-secondary-200
-                      rounded-md
-                      shadow-sm
-                      focus:outline-none
-                      focus:border-primary-200
-                      focus:ring-primary-200
-                      focus:ring-1
-                      sm:text-sm
-                      p-2
-                    "
-                    v-model="field.value"
-                    :type="field.type"
-                    :id="field.name"
-                  />
-                  <span class="text-xs text-error-800">{{ errors[0] }}</span>
-                </div>
+                <text-input
+                  v-model="field.value"
+                  :type="field.type"
+                  :name="field.name"
+                  required
+                >
+                  {{ field.name.split("_").join(" ") }}
+                  <template #error>
+                    <span class="text-xs text-error-800">{{ errors[0] }}</span>
+                  </template>
+                </text-input>
               </ValidationProvider>
 
               <app-button

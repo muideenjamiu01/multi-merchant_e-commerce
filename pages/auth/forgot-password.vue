@@ -112,30 +112,12 @@
                 rules="email|required"
                 slim
               >
-                <div class="mb-4">
-                  <label class="mb-2 capitalize" for="email">Enter your Email</label>
-                  <input
-                    class="
-                      w-full
-                      flex
-                      items-center
-                      outline-0
-                      border border-secondary-200
-                      rounded-md
-                      shadow-sm
-                      focus:outline-none
-                      focus:border-primary-200
-                      focus:ring-primary-200
-                      focus:ring-1
-                      sm:text-sm
-                      p-2
-                    "
-                    v-model="email"
-                    type="email"
-                    id="email"
-                  />
-                  <span class="text-xs text-error-800">{{ errors[0] }}</span>
-                </div>
+            <text-input v-model="email" type="email" name="email" :is-valid="errors.length === 0">
+              Enter your Email
+              <template #error>
+                <span class="text-xs text-error-800">{{ errors[0] }}</span>
+              </template>
+            </text-input>
               </ValidationProvider>
 
             <app-button class="" type="submit" variant="contained" color="primary" size="large" :disabled="loading" fullWidth uppercase>

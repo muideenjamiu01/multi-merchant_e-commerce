@@ -31,29 +31,7 @@
         </nuxt-link>
       </div>
 
-      <div
-        class="
-          bg-primary-100
-          px-4
-          mx-4
-          sm:mx-6
-          h-10
-          grow
-          flex
-          items-center
-          rounded
-          max-w-2xl
-        "
-      >
-        <input
-          type="text"
-          placeholder="Search products"
-          class="focus:outline-none bg-transparent w-full"
-          @input="handleInput"
-          @focus="handleFocus"
-        />
-        <search-icon class="justify-end" color="primary" />
-      </div>
+      <app-search v-if="!isMobile"></app-search>
 
       <app-button
         v-if="isMerchant"
@@ -73,22 +51,39 @@
         Become a merchant
       </app-button>
 
-      <div class="flex items-center justify-end">
+      <div class="flex items-center justify-end gap-2">
+        <icon-button v-if="isMobile" variant="outlined" color="primary" @click="openSearch">
+          <search-icon size="small" color="primary" />
+        </icon-button>
+<!-- 
+        <div v-if="isMobile && isSearchOpen">
+          <Backdrop />
+          <app-search full-screen></app-search>
+        </div> -->
+
         <dropdown-menu>
           <template #reference="{ handleHide, handleShow, isOpen }">
-            <app-button
+            <icon-button
+              v-if="$auth.loggedIn"
               class="rounded-full hover:!bg-transparent"
-              size="small"
+          variant="outlined"
+              color="primary"
               @click.native="() => isOpen ? handleHide($event) : handleShow($event)"
             >
               <user-avatar
-              v-if="$auth.loggedIn"
                 class="w-8 h-8"
                 :src="user.avatar"
                 :alt="user.firstName || user.storeName"
               />
-              <profile-icon v-else color="secondary"></profile-icon>
-            </app-button>
+            </icon-button>
+            <icon-button
+              v-if="!$auth.loggedIn"
+              variant="outlined"
+              color="primary"
+              @click.native="() => isOpen ? handleHide($event) : handleShow($event)"
+            >
+              <profile-icon size="small" color="primary" />
+            </icon-button>
           </template>
           <template #content="{ handleHide }">
             <dropdown-list @close-dropdown="handleHide">
@@ -96,29 +91,20 @@
           </template>
         </dropdown-menu>
 
-        <!-- <app-button
-          v-show="!$auth.loggedIn"
-          to="/auth/login"
-          color="primary"
-          variant="outlined"
-          class="hidden xs:flex mr-4"
-          uppercase
-        >
-          Sign in
-        </app-button> -->
-
-        <NuxtLink
+        <icon-button
           v-if="!isMerchant"
           to="/cart"
-          class="hover:bg-secondary-100 relative rounded-full p-[5px]"
+          class="relative"
+          color="primary"
+          variant="outlined"
         >
-          <cart-icon />
+          <cart-icon size="small" color="primary" />
           <div
             v-if="itemsCount"
             class="
               h-5
               w-5
-              bg-primary-blue
+              bg-error-500
               rounded-full
               flex
               items-center
@@ -131,7 +117,7 @@
           >
             <h1>{{ itemsCount }}</h1>
           </div>
-        </NuxtLink>
+        </icon-button>
       </div>
     </div>
   </header>
@@ -140,6 +126,7 @@
 <script>
 import { mapGetters } from "vuex";
 import DropdownList from "@/components/Dropdown/contents/Customer"
+import Search from "@/components/Search"
 import BrandLogo from "@/components/svg/Logo";
 import CartIcon from "@/components/svg/Cart";
 import ProfileIcon from "@/components/svg/Profile";
@@ -147,17 +134,18 @@ import SearchIcon from "@/components/svg/Search";
 
 export default {
   components: {
+    "app-search": Search,
     "brand-logo": BrandLogo,
     "cart-icon": CartIcon,
     "profile-icon": ProfileIcon,
     "dropdown-list": DropdownList,
-    "search-icon": SearchIcon
+    SearchIcon
   },
-  // data() {
-  //   return {
-  //     isOpen: false,
-  //   };
-  // },
+  data() {
+    return {
+      isSearchOpen: false,
+    };
+  },
   computed: {
     ...mapGetters({
       itemsCount: "cart/cartItemsCount",
@@ -166,18 +154,21 @@ export default {
       if (this.$auth.user) {
         return this.$auth.user;
       }
+      return null
     },
     isMerchant() {
       return this.$auth.loggedIn && this.user.storeName;
     },
+    isMobile() {
+      if (process.client) {
+        return window.innerWidth < 600
+      }
+    }
   },
   methods: {
-    handleFocus() {
-      console.log('on Focus')
-    },
-    handleInput() {
-      console.log('on input')
-    },
-  },
+    openSearch() {
+      this.isSearchOpen = true
+    }
+  }
 };
 </script>
