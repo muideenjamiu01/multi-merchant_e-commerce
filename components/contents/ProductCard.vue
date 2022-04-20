@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="h-56 cursor-pointer" @click="viewProduct(index)">
+    <div class="h-56 cursor-pointer" @click="viewProduct()">
       <img :src="getProductImage(product.images)" class="w-full h-full" :alt="product.name" />
     </div>
     <div @click="viewProduct" class="text-sm w-full">

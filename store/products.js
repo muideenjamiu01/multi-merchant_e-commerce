@@ -1,7 +1,6 @@
 export const state = () => ({
   products: [],
   singleProduct: null,
-  // pagination: null,
   loading: false,
   errors: null,
 });
@@ -9,7 +8,6 @@ export const state = () => ({
 export const getters = {
   products: (state) => state.products,
   singleProduct: (state) => state.singleProduct,
-  // pagination: (state) => state.pagination,
   loading: (state) => state.loading,
   errors: (state) => state.errors,
 };
@@ -17,7 +15,6 @@ export const getters = {
 export const actions = {
   async fetchProducts({ commit, rootState }, {category}) {
     commit("setLoading", true);
-
     try {
       const response = await this.$axios.get(`/api/products/v1/products/category/`,
         {
@@ -27,10 +24,8 @@ export const actions = {
           },
         }
       );
-
-      // const { docs, pagination } = response.data.data;
       commit("setProducts", response.data.data);
-
+      console.log(response.data.data)
       if (rootState.auth.loggedIn && rootState.wishlist.length > 0) {
         commit("setProductWishlistKey", rootState.wishlist);
       }
@@ -41,9 +36,9 @@ export const actions = {
     }
   },
 
-  getSingleProduct({ commit }, product) {
+  getSingleProduct({ commit, rootState }, product) {
     commit("setSingleProduct", product);
-  },
+  }
 };
 
 export const mutations = {
@@ -53,7 +48,6 @@ export const mutations = {
   setProductWishlistKey(state, payload) {
     state.products = state.products.map(product => {
       const index = payload.findIndex(p => p._id === product._id)
-
       return {
         ...product,
         inWishlist: index !== -1

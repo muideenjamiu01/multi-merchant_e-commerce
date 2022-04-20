@@ -5,15 +5,15 @@
       
         <main class="flex flex-col w-full pt-[20px] md:pt-0 md:w-3/4 md:justify-between md:mr-5 md:pr-5"> 
           <div class="flex flex-col w-full md:mb-5 md:flex-row">
-            <LandingFashion name="fashion"/>
-            <LandingFashion name="phones" />
-            <LandingFashion name="computing" />
+            <ProductCategory name="fashion"/>
+            <ProductCategory name="phones" />
+            <ProductCategory name="computing" />
           </div>
           
           <div class="flex flex-col h-420 w-full pb-5 md:flex-row">
-            <LandingFashion name="gaming" />
-            <LandingFashion name="home" />
-            <LandingFashion name="electronics" />
+            <ProductCategory name="gaming" />
+            <ProductCategory name="home" />
+            <ProductCategory name="electronics" />
           </div>
 
         </main>
