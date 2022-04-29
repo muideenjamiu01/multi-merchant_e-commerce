@@ -19,7 +19,6 @@
                 <span class="font-light text-sm">₦{{product.price.toLocaleString()}}</span>
                 <span class="font-light text-sm text-gray-400">-18%</span>
               </div>
-              
             </div>
             <app-button 
               @click="test"

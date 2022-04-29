@@ -18,7 +18,7 @@
         {{ product.name }}
       </h1>
       <div class="flex items-center">
-        <div class="text-primary-blue ml-2.5 w-[30px]" :style="`background-color:${product.color}`">&nbsp;</div>
+        
       </div>
       <div class="flex items-center font-light my-2">
         <p class="font-semibold text-lg">

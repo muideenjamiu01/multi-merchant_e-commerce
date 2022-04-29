@@ -22,7 +22,7 @@
         />
       </div>
     </main>
-    </app-container>
+  </app-container>
 </template>
 
 <script>
@@ -89,7 +89,6 @@ export default {
     ...mapActions("wishlist", ["fetchWishlist"]),
     handleChange(e) {
       this.$router.push({ path: "/products", query: { category: this.category }})
-
       this.$store.dispatch("products/fetchProducts", {
         category: this.category || "",
       });
