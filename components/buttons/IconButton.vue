@@ -8,6 +8,7 @@
       baseStyles,
       sizeStyles,
       styles,
+      isRound
     ]"
   >
     <slot></slot>
@@ -21,6 +22,7 @@
       baseStyles,
       sizeStyles,
       styles,
+      isRound
     ]"
     v-on="$listeners"
   >
@@ -47,6 +49,10 @@ export default {
         return ["small", "large", "medium"].indexOf(value) !== -1;
       },
     },
+      square: {
+          type: Boolean,
+          default: false
+      },
     // The background color of the button. Default is primary
     color: {
       type: String,
@@ -75,8 +81,11 @@ export default {
   },
   computed: {
     baseStyles() {
-      return "inline-flex items-center justify-center relative box-border outline-0 border-0 m-0 select-none bg-transparent no-underline !leading-none rounded transition-colors";
+      return "inline-flex items-center justify-center relative box-border outline-0 m-0 select-none bg-transparent no-underline !leading-none rounded transition-colors";
     },
+      isRound() {
+          return this.square ? 'rounded' : 'rounded-full'
+      },
     sizeStyles() {
       return {
         "p-[5px] text-lg": this.size === "small",
