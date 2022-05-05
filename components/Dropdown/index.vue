@@ -1,88 +1,69 @@
 <template>
-  <div ref="reference" class="relative">
-    <slot name="reference" v-bind="{ isOpen, handleShow, handleHide }"></slot>
+  <Popper
+    v-slot="{ isOpen, handleShow, handleHide }"
+    :reference="reference"
+    :content="content"
+    :config="{
+      placement: 'bottom',
+      modifiers: [
+        {
+          name: 'offset',
+          options: {
+            offset: [0, 8],
+          }
+        }
+      ]
+    }"
+  >
+    <div ref="reference" class="relative">
+      <slot name="reference" v-bind="{ isOpen, handleShow, handleHide }"></slot>
 
-    <div v-show="isOpen" id="content" ref="content" :class="classes">
-      <slot name="content" v-bind="{ handleHide }"></slot>
+      <transition name="fade">
+        <Backdrop :is-open="isOpen" :close="handleHide" />
+      </transition>
+      <transition name="fade">
+        <div v-show="isOpen" ref="content" :class="classes">
+          <slot name="content" v-bind="{ handleHide }"></slot>
+        </div>
+      </transition>
     </div>
-  </div>
+  </Popper>
 </template>
 
 <script>
-import { createPopper } from "@popperjs/core";
+import Backdrop from "@/components/Backdrop"
+import Popper from "@/components/Popper"
 
 export default {
   name: "DropdownMenu",
+  components: {
+    Backdrop,
+    Popper
+  },
   data() {
     return {
-      isOpen: false,
       reference: null,
       content: null,
-      popper: null,
     };
   },
   computed: {
     classes() {
-      return "bg-white z-10 text-secondary-800 rounded shadow overflow-x-hidden overflow-y-auto min-w-[16px] min-h-[16px] outline-0";
+      return "bg-white z-20 text-secondary-800 rounded shadow overflow-x-hidden overflow-y-auto min-w-[16px] min-h-[16px] outline-0";
     },
   },
   mounted() {
     this.content = this.$refs.content;
     this.reference = this.$refs.reference;
-  },
-  methods: {
-    createPopper() {
-      if (!this.popper) {
-        this.popper = createPopper(this.reference, this.content, {
-          placement: "bottom",
-          modifiers: [
-            {
-              name: "offset",
-              options: {
-                offset: [0, 8],
-              },
-            },
-          ],
-        });
-      } else {
-        this.popper.update();
-      }
-    },
-    handleShow(e) {
-      if (this.isOpen) {
-        return;
-      }
-
-      this.isOpen = true;
-      this.$nextTick(() => {
-        this.createPopper();
-
-        this.popper.setOptions((options) => ({
-          ...options,
-          modifiers: [
-            ...options.modifiers,
-            { name: "eventListeners", enabled: true },
-          ],
-        }));
-
-        // Update its position
-        this.popper.update();
-      });
-    },
-    handleHide(e) {
-      if (!this.isOpen) {
-        return;
-      }
-
-      this.isOpen = false;
-      this.popper.setOptions((options) => ({
-        ...options,
-        modifiers: [
-          ...options.modifiers,
-          { name: "eventListeners", enabled: false },
-        ],
-      }));
-    },
-  },
-};
+  }
+}
 </script>
+
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 200ms ease-in;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+</style>
