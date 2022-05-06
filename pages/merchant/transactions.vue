@@ -1,9 +1,5 @@
 <template>
-  <div class="px-4 py-8 flex">
-      <side-nav merchant>
-        <ContentsMerchantProfileCard />
-      </side-nav>
-      <main class="sm:ml-72 sm:w-[calc(100%_-_288px)] my-4">
+  <div>
       <h1 class="text-2xl">
         Transactions
       </h1>
@@ -51,7 +47,6 @@
           </tbody>
         </table>
       </div>
-    </main>
   </div>
 </template>
 

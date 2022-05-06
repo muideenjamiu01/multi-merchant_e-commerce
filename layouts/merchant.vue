@@ -1,9 +1,12 @@
 <template>
-  <div class="mx-auto font-br-sonoma relative">
+  <div class="mx-auto font-br-sonoma relative min-h-screen">
     <MerchantNavBar />
-    <app-container maxWidth="xl">
-      <nuxt class="min-h-screen" />
+    <side-nav>
+      <ContentsMerchantProfileCard />
+    </side-nav>
+    <main class="sm:ml-64 sm:w-[calc(100%_-_256px)] px-4 my-4">
+      <nuxt />
+    </main>
     <Footer />
-    </app-container>
   </div>
 </template>

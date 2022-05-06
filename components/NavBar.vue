@@ -52,7 +52,7 @@
       </app-button>
 
       <div class="flex items-center justify-end gap-2">
-        <icon-button v-if="isMobile" variant="outlined" color="primary" @click="openSearch">
+        <icon-button v-if="isMobile" variant="outlined" color="primary" @click="openSearch" square>
           <search-icon size="small" color="primary" />
         </icon-button>
 <!-- 
@@ -65,20 +65,23 @@
           <template #reference="{ handleHide, handleShow, isOpen }">
             <icon-button
               v-if="$auth.loggedIn"
-              class="rounded-full hover:!bg-transparent"
-          variant="outlined"
+              class="px-0 py-0"
               color="primary"
+              outlined
               @click.native="() => isOpen ? handleHide($event) : handleShow($event)"
             >
               <user-avatar
-                class="w-8 h-8"
                 :src="user.avatar"
                 :alt="user.firstName || user.storeName"
+                size="medium"
+                square
+                outlined
               />
             </icon-button>
             <icon-button
               v-if="!$auth.loggedIn"
               variant="outlined"
+              square
               color="primary"
               @click.native="() => isOpen ? handleHide($event) : handleShow($event)"
             >
@@ -97,6 +100,7 @@
           class="relative"
           color="primary"
           variant="outlined"
+          square
         >
           <cart-icon size="small" color="primary" />
           <div

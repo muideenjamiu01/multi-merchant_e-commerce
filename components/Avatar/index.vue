@@ -1,15 +1,12 @@
 <template>
   <div 
     v-if="!src" 
-    :class="['text-white font-medium hover:cursor-pointer hover:opacity-95', imgSize, classes, getBg]">
+    :class="['font-medium hover:cursor-pointer hover:opacity-95 border border-solid text-primary-600 border-primary-300 hover:border-primary-400', imgSize, classes, isRound]">
       {{ getInitials }}
-  
-  
- 
   </div>
   <div 
     v-else 
-   :class="[classes, imgSize]">
+   :class="[classes, imgSize, isRound]">
       <img :src="src" :alt="alt" class="w-full h-full items-center text-transparent object-cover">
   </div>
 </template>
@@ -17,35 +14,42 @@
 <script>
 export default {
   name: "UserAvatar",
-  data() {
-      return {
-          bgColors: ["bg-red-800", "bg-orange-800", "bg-emerald-800", "bg-cyan-800", "bg-sky-800", "bg-indigo-800", "bg-purple-800", "bg-fuchsia-800", "bg-slate-800", "bg-blue-800"]
-      }
-  },
   props: {
       size: String,
       src: String,
       alt: {
           type: String,
-          required: true,
+          required: true
+      },
+      square: {
+          type: Boolean,
+          default: false
+      },
+      outlined: {
+          type: Boolean,
+          default: false
       }
   },
   computed: {
       getInitials: function() {
           return this.alt.split('')[0]
       },
-      getBg() {
-          const rnInt = Math.floor(Math.random() * 10)
-          return this.bgColors[rnInt]
+    //   setBackground() {
+    //       const rnInt = Math.floor(Math.random() * 10)
+    //       const bg = this.bgColors[rnInt]
+    //       return this.outlined ? `border border-solid border-${bg} text-${bg}` : `bg-${bg} text-white`
+    //   },
+      isRound() {
+          return this.square ? 'rounded' : 'rounded-full'
       },
       classes() {
-          return 'flex items-center relative justify-center flex-shrink-0 leading-none rounded-full overflow-hidden select-none'
+          return 'flex items-center relative justify-center flex-shrink-0 leading-none overflow-hidden select-none'
       },
     imgSize: function() {
         return {
             'w-6 h-6 text-base': this.size === "small",
-            'w-10 h-10 text-xl': this.size === "medium",
-            'w-14 h-14 text-2xl': this.size === "large"
+            'w-9 h-9 text-xl': this.size === "medium",
+            'w-12 h-12 text-2xl': this.size === "large"
         }
     }
   }
