@@ -41,7 +41,7 @@ export const state = () => ({
 	  } catch (error) {
 		commit("setError", error.message);
 		this.$toast.error(error.message);
-	  }
+	  }  
 	},
   
 	async fetchWishlist({ commit }) {
