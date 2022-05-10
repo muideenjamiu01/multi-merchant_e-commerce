@@ -123,6 +123,7 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
+  components: {},
   computed: {
     ...mapGetters({
       cart: "cart/cartProducts",
