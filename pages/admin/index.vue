@@ -45,7 +45,7 @@ import AdminStatisticCard from '~/components/contents/adminStatisticCard.vue';
 
 
 export default {
-//   layout: "merchant",
+  layout: "admin",
   //   middleware: "auth-merchant",
   components: {
     DashboardChart,

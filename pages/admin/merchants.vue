@@ -39,8 +39,8 @@ import AddIcon from "@/components/svg/Add.vue";
 import FilterIcon from "@/components/svg/Filter.vue";
 
 export default {
-  layout: 'merchant',
-//   middleware: 'auth-merchant',
+  layout: 'admin',
+  // middleware: 'auth-merchant',
   components: {
     AppTable,
     TableHeader,
