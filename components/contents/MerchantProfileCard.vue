@@ -27,14 +27,7 @@
           </span>
         </NuxtLink>
       </li>
-      <!-- <li class="">
-        <NuxtLink to="/merchant/transactions" class="flex items-center space-x-5" active-class="text-primary-500">
-          <transfer-icon />
-          <span class="text-xl capitalize text-inherit">
-            Transactions
-          </span>
-        </NuxtLink>
-      </li> -->
+      
       <li class="">
         <NuxtLink to="/merchant/withdrawals" class="flex items-center space-x-5" active-class="text-primary-500">
           <withdrawal-icon />
