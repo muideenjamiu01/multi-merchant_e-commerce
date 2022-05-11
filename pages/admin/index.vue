@@ -6,41 +6,12 @@
       </side-nav> -->
       <main class="sm:ml-72 sm:w-[calc(100%_-_288px)] my-4">
         <div
-          class="w-full grid  xs:grid-cols-4 md:grid-rows-none gap-x-3"
+          class="w-full grid xs:grid-cols-4 md:grid-rows-none gap-x-3"
         >
-          <div class="mt-4 md:mt-0 rounded shadow-lg p-2">
-            <p class="font-medium text-base">Customers</p>
-            <span class="flex justify-center text-blue-400 mt-2 text-3xl font-semibold">25,130</span>
-            <div class="flex justify-between items-center mt-2 font-normal text-sm">
-              <p>This month</p>
-              <p>+3042</p>
-            </div>
-          </div>
-          <div class="mt-4 md:mt-0 rounded shadow-lg p-2">
-            <p class="font-medium text-base">Merchants</p>
-            <span class="flex justify-center text-blue-400 mt-2 text-3xl font-semibold">25,130</span>
-            <div class="flex justify-between items-center mt-2 font-normal text-sm">
-              <p>This month</p>
-              <p>+3042</p>
-            </div>
-          </div>
-          <div class="mt-4 md:mt-0 rounded shadow-lg p-2">
-            <p class="font-medium text-base">Products</p>
-            <span class="flex justify-center text-blue-400 mt-2 text-3xl font-semibold">25,130</span>
-            <div class="flex justify-between items-center mt-2 font-normal text-sm">
-              <p>This month</p>
-              <p>+3042</p>
-            </div>
-          </div>
-          <div class="mt-4 md:mt-0 rounded shadow-lg p-2">
-            <p class="font-medium text-base">Customers</p>
-            <span class="flex justify-center text-blue-400 mt-2 text-3xl font-semibold">25,130</span>
-            <div class="flex justify-between items-center mt-2 font-normal text-sm">
-              <p>This month</p>
-              <p>+3042</p>
-            </div>
-          </div>
-          
+          <admin-statistic-card cardText="Customers"/>
+          <admin-statistic-card cardText="Merchants"/>
+          <admin-statistic-card cardText="Products"/>
+          <admin-statistic-card cardText="Sales"/>
         </div>
 
         <div class="mt-8 md:mt-10">
@@ -54,10 +25,10 @@
         </div>
 
 <div class="xs:flex gap-12 mt-4 items-center">
-	<div class="md:w-1/3">
+	<div class="md:w-3/5">
 		<div class="rounded-full h-40 w-40 bg-primary-gray"></div>
 	</div>
-	<div class="md:w-2/3"> 
+	<div class="md:w-2/5"> 
 		<admin-activities/>
 	</div>
 
@@ -70,13 +41,16 @@
 <script>
 import DashboardChart from "~/components/DashboardChart.vue";
 import AdminActivities from "~/components/contents/AdminActivities";
+import AdminStatisticCard from '~/components/contents/adminStatisticCard.vue';
+
 
 export default {
 //   layout: "merchant",
   //   middleware: "auth-merchant",
   components: {
     DashboardChart,
-	AdminActivities
+	AdminActivities,
+	AdminStatisticCard 
   },
   data() {
     return {

@@ -1,11 +1,12 @@
 <template>
-<app-table>
+  <div>
+    <app-table>
       <template #toolbar>
         <table-toolbar :title="title">
           <template #buttons>
-          <icon-button square>
-            <filter-icon size="small" color="primary" />
-          </icon-button>
+            <icon-button square>
+              <filter-icon size="small" color="primary" />
+            </icon-button>
           </template>
         </table-toolbar>
       </template>
@@ -21,15 +22,20 @@
       <template #tr-body>
         <table-row v-for="row in data" :key="row._id">
           <table-cell>{{ row._id }}</table-cell>
-          <table-cell>{{ row.storeName }}</table-cell>
-          <table-cell>{{ row.name }}</table-cell>
+          <table-cell>{{ row.accountName }}</table-cell>
           <table-cell>{{ row.email }}</table-cell>
+          <table-cell>{{ row.phone }}</table-cell>
           <table-cell>{{ row.status }}</table-cell>
-          <table-cell>{{ new Date(row.lastSeen).toLocaleDateString("en-US") }}</table-cell>
-          <table-cell>{{ new Date(row.created).toLocaleDateString("en-US") }}</table-cell>
+          <table-cell>{{
+            new Date(row.lastSeen).toLocaleDateString("en-US")
+          }}</table-cell>
+          <table-cell>{{
+            new Date(row.created).toLocaleDateString("en-US")
+          }}</table-cell>
         </table-row>
       </template>
     </app-table>
+  </div>
 </template>
 
 <script>
@@ -56,3 +62,5 @@ export default {
   }
 }
 </script>
+
+<style lang="sass" scoped></style>

@@ -95,16 +95,7 @@
           No item in your cart
         </h4>
       </div>
-	<div> 
-		<div>
-			<p>Customers</p>
-			<span class="flex justify-center">25,130</span>
-			<div class="flex justify-between items-center">
-				<p>This month</p>
-				<p>+3042</p>
-			</div>
-		</div>
-	</div>
+	
       <div
         v-show="itemsCount"
         class="mt-4 lg:mt-0 md:w-1/4 bg-primary-100 p-4 self-start"
@@ -124,15 +115,19 @@
           >Checkout
         </app-button>
       </div>
+	  <admin-statistic-card cardText="hellowrod" />
+	  <admin-statistic-card cardText="chima" />
+	  <admin-statistic-card cardText="jamiu" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import AdminStatisticCard from '~/components/contents/adminStatisticCard.vue';
 
 export default {
-  components: {},
+  components: {AdminStatisticCard},
   computed: {
     ...mapGetters({
       cart: "cart/cartProducts",
