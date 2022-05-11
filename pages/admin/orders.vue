@@ -14,7 +14,7 @@
 <script>
 
 export default {
-  layout: "merchant",
+  layout: "admin",
   components: {
   },
   data() {

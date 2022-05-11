@@ -72,7 +72,7 @@ import DashboardChart from "~/components/DashboardChart.vue";
 import AdminActivities from "~/components/contents/AdminActivities";
 
 export default {
-//   layout: "merchant",
+  layout: "admin",
   //   middleware: "auth-merchant",
   components: {
     DashboardChart,
