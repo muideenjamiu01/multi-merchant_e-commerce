@@ -73,68 +73,45 @@
           >
             <span class="text-center flex-grow p-2">{{ error }}</span>
             <icon-button
-              @click="closeErrorMessage"
               size="small"
               class="hover:bg-error-100 rounded-full"
+              @click="closeErrorMessage"
             >
               <cancel-icon></cancel-icon>
             </icon-button>
           </div>
 
-          <form @submit.prevent="loginUser" class="flex flex-col text-left">
-            <div class="mb-4">
-              <label class="mb-2 capitalize" for="email">Email</label>
-              <input
-                class="
-                  w-full
-                  flex
-                  items-center
-                  outline-0
-                  border border-secondary-200
-                  rounded-md
-                  shadow-sm
-                  focus:outline-none
-                  focus:border-primary-200
-                  focus:ring-primary-200
-                  focus:ring-1
-                  sm:text-sm
-                  p-2
-                "
-                v-model="input.email"
-                name="email"
-                type="email"
-                id="email"
-              />
-            </div>
+          <form class="flex flex-col text-left" @submit.prevent="loginUser">
+            <text-input v-model="input.email" type="email" name="email" required>
+              email
+            </text-input>
 
-            <div class="mb-4">
-              <label class="mb-2 capitalize" for="password">Password</label>
-              <input
-                class="
-                  w-full
-                  flex
-                  items-center
-                  outline-0
-                  border border-secondary-200
-                  rounded-md
-                  shadow-sm
-                  focus:outline-none
-                  focus:border-primary-200
-                  focus:ring-primary-200
-                  focus:ring-1
-                  sm:text-sm
-                  p-2
-                "
-                v-model="input.password"
-                name="password"
-                type="password"
-                id="password"
-              />
-            </div>
+            <text-input
+              v-model="input.password"
+              type="password"
+              name="password"
+              required
+            >
+              password
+            </text-input>
 
-            <app-button class="" type="submit" variant="contained" color="primary" size="large" :disabled="loading" fullWidth uppercase>
-                {{loading ? 'Loading' : 'login'}}
-                <loading-spinners v-if="loading" size="small" color="white" class="mx-4"></loading-spinners>
+            <app-button
+              class=""
+              type="submit"
+              variant="contained"
+              color="primary"
+              size="large"
+              :disabled="loading"
+              full-width
+              uppercase
+            >
+              {{ loading ? "" : "login" }}
+              <loading-spinners
+                v-if="loading"
+                size="small"
+                color="white"
+                class="mx-4"
+              ></loading-spinners>
             </app-button>
           </form>
 
@@ -148,9 +125,10 @@
             >
           </p>
           <p class="text-sm text-primary-500">
-            <nuxt-link to="/auth/forgot-password?user=customer">Forgot your password?</nuxt-link>
+            <nuxt-link to="/auth/forgot-password?user=customer"
+              >Forgot your password?</nuxt-link
+            >
           </p>
-
         </div>
       </div>
     </div>
@@ -158,7 +136,7 @@
 </template>
 
 <script>
-import CancelIcon from "@/components/svg/Cancel.vue"
+import CancelIcon from "@/components/svg/Cancel.vue";
 import BrandLogo from "@/components/svg/Logo";
 
 export default {
@@ -172,36 +150,35 @@ export default {
     return {
       input: {
         email: "",
-        password: ""
+        password: "",
       },
       loading: false,
-      error: null
+      error: null,
     };
   },
   methods: {
     async loginUser() {
-      this.loading = true
+      this.loading = true;
       try {
-       window.localStorage.setItem("ys.user_type", "customer")
+        window.localStorage.setItem("ys.user_type", "customer");
         await this.$auth.loginWith("local", {
           data: this.input,
           params: { userType: "customer" },
         });
-        this.input.email = '';
-        this.input.password = '';
-        this.$toast.success('Successfully authenticated')
+        this.input.email = "";
+        this.input.password = "";
+        this.$toast.success("Successfully authenticated");
       } catch (err) {
-        this.error = err.response.data.msg
-        window.localStorage.removeItem("ys.user_type", "customer")
-        this.$toast.error('Error while authenticating')
-      }
-      finally {
-        this.loading = false
+        this.error = err.response.data.msg;
+        window.localStorage.removeItem("ys.user_type", "customer");
+        this.$toast.error("Error while authenticating");
+      } finally {
+        this.loading = false;
       }
     },
     closeErrorMessage() {
-      this.error = null
-    }
-  }
+      this.error = null;
+    },
+  },
 };
 </script>

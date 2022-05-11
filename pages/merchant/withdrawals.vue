@@ -1,12 +1,7 @@
 <template>
-  <div class="">
-      <side-nav merchant>
-        <ContentsMerchantProfileCard />
-      </side-nav>
-      <main class="sm:ml-72 sm:w-[calc(100%_-_288px)] my-4">
-      <MerchantWithdrawalsStats />
-      <MerchantWithdrawalsTransfers title="Withdrawals" :columns="['Transfer ID', 'Account Name', 'Account Number', 'Amount (NGN)', 'Transfer Date', 'Status']" :data="items" />
-    </main>
+  <div>
+    <MerchantWithdrawalsStats />
+    <MerchantWithdrawalsTransfers title="Withdrawals" :columns="['Transfer ID', 'Account Name', 'Account Number', 'Amount (NGN)', 'Transfer Date', 'Status']" :data="items" />
   </div>
 </template>
 

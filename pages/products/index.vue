@@ -2,12 +2,28 @@
   <app-container maxWidth="xl">
     <main class="my-8">
       <h1 class="text-2xl font-bold text-primary-black capitalize">
-        {{ getCategory }}
+        {{ getTitle }}
       </h1>
-      <grid-container alignItems="center" class="my-4" gap="4">
-        <product-filter v-for="cat in categories" :key="cat.name" v-model="category" :value="cat.name" @change="handleChange">{{ cat.label }}</product-filter>
+      <grid-container v-if="category" align-items="center" class="my-4" gap="2">
+        <product-filter
+          v-for="cat in categories"
+          :key="cat.name"
+          v-model="category"
+          :value="cat.name"
+          @change="handleChange"
+          >{{ cat.label }}</product-filter
+        >
       </grid-container>
-      <div v-if="loading" class="flex items-center justify-center w-full h-[calc(100vh_-_56px_-_64px)]">
+      <div
+        v-if="loading"
+        class="
+          flex
+          items-center
+          justify-center
+          w-full
+          h-[calc(100vh_-_56px_-_64px)]
+        "
+      >
         <loading-spinners size="large" color="primary" />
       </div>
       <h2 v-else-if="errors" class="text-2xl text-secondary-600">
@@ -15,7 +31,7 @@
       </h2>
       <div v-else class="grid-container mt-8">
         <ContentsProductCard
-          v-for="(product, index) in products"
+          v-for="(product, index) in getProducts"
           :key="product._id"
           :product="product"
           :index="index"
@@ -27,42 +43,43 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import ProductFilter from "@/components/ProductFilter.vue"
+import ProductFilter from "@/components/ProductFilter.vue";
 
 export default {
   components: {
-    "product-filter": ProductFilter
+    "product-filter": ProductFilter,
   },
   data() {
     return {
       category: this.$route.query.category,
+      search: this.$route.query.search,
       categories: [
         {
           name: "computing",
-          label: "Computing"
+          label: "Computing",
         },
         {
           name: "phones",
-          label: "Phones & Tablets"
+          label: "Phones & Tablets",
         },
         {
           name: "fashion",
-          label: "Fashion"
+          label: "Fashion",
         },
         {
           name: "home",
-          label: "Home & offices"
+          label: "Home & offices",
         },
         {
           name: "electronics",
-          label: "Electronic appliances"
+          label: "Electronic appliances",
         },
         {
           name: "gaming",
-          label: "Gaming"
+          label: "Gaming",
         },
-      ]
-    }
+      ],
+    };
   },
   async created() {
     if (this.$auth.loggedIn) {
@@ -76,11 +93,34 @@ export default {
   computed: {
     ...mapGetters({
       products: "products/products",
+      searchResults: "search/products",
       errors: "products/errors",
       loading: "products/loading",
     }),
-    getCategory() {
-      return this.categories.filter(cat => cat.name === this.category)[0].label
+    getTitle() {
+      return this.category ? this.categories.filter((cat) => cat.name === this.category)[0].label : `Search results for '${this.search}':`
+    },
+    getProducts() {
+      if (this.search) {
+        return this.searchResults
+      } else {
+        return this.products
+      }
+    }
+  },
+  async created() {
+    if (this.$auth.loggedIn) {
+      await this.$store.dispatch("wishlist/fetchWishlist");
+    }
+
+    if (this.category) {
+      await this.$store.dispatch("products/fetchProducts", {
+        category: this.category,
+      });
+    }
+
+    if (this.search) {
+      await this.$store.dispatch("search/search", this.search);
     }
   },
   methods: {
@@ -88,11 +128,15 @@ export default {
     ...mapActions({ getSingleProduct: "products/getSingleProduct" }),
     ...mapActions("wishlist", ["fetchWishlist"]),
     handleChange(e) {
-      this.$router.push({ path: "/products", query: { category: this.category }})
+      this.$router.push({
+        path: "/products",
+        query: { category: this.category },
+      });
+
       this.$store.dispatch("products/fetchProducts", {
         category: this.category || "",
       });
-    }
+    },
   },
 };
 </script>
@@ -101,6 +145,6 @@ export default {
 .grid-container {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 </style>

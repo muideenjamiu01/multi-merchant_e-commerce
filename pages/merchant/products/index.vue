@@ -1,9 +1,5 @@
 <template>
-  <div class="flex mt-8 px-4">
-    <side-nav merchant>
-      <ContentsMerchantProfileCard />
-    </side-nav>
-    <main class="sm:ml-72 sm:w-[calc(100%_-_288px)] my-4">
+  <div>
       <div class="flex justify-between items-center">
         <h1 class="text-2xl">Products</h1>
         <NuxtLink to="products/newproduct">
@@ -99,7 +95,6 @@
           </jw-pagination> -->
         </div>
       </div>
-    </main>
   </div>
 </template>
 

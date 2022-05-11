@@ -1,10 +1,5 @@
 <template>
-  <div class="px-4 py-8">
-    <div class="md:flex">
-      <side-nav merchant>
-        <ContentsMerchantProfileCard />
-      </side-nav>
-      <main class="sm:ml-72 sm:w-[calc(100%_-_288px)] my-4">
+  <div>
         <div
           class="w-full grid grid-rows-4 md:grid-cols-3 md:grid-rows-none gap-x-3"
         >
@@ -194,8 +189,6 @@
             </div>
           </div>
         </div> -->
-      </main>
-    </div>
   </div>
 </template>
 
