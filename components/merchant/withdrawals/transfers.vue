@@ -1,14 +1,5 @@
 <template>
   <div class="my-8 shadow">
-    <div class="whites relative flex items-center px-4 sm:px-0 sm:min-h-[64px] min-h-[56px] sm:pl-4 sm:pr-2">
-      <span class="text-2xl capitalize font-medium m-0 flex-[1_1_100%]">
-        {{title}}
-      </span>
-      <app-button size="small" variant="contained" @click="setTransferModal">
-        Make Transfer
-      </app-button>
-    </div>
-
     <!-- Modal component -->
     <div
       v-if="transferModal"
@@ -142,48 +133,46 @@
       </div>
     </div>
     <!-- End modal -->
+    <app-table :columns="columns" :data="data">
+      <template #toolbar>
+        <table-toolbar :title="title">
+          <template #buttons>
+            <app-button size="small" variant="contained" @click="setTransferModal">
+              Make Transfer
+            </app-button>
+          </template>
+        </table-toolbar>
+      </template>
 
-    <div class="w-full overflow-x-auto">
-    <table class="table w-full border-collapse">
-      <thead class="table-head">
-        <tr class="text-inherit table-row align-middle outline-0">
-          <th v-for="name in columns" :key="name" class="font-medium text-sm leading-6 table-cell text-center p-4 border-b border-solid border-b-secondary-200 tracking-[0.01em] text-secondary-800">
-            <span class="relative p-0 border-0 m-0 bg-transparent box-border outline-0 rounded-none select-none align-middle no-underline text-inherit inline-flex justify-start items-center">{{name}}</span>
-          </th>
-        </tr>
-      </thead>
-      <tbody class="table-body">
-        <tr v-for="row in data" :key="row.id" class="text-inherit table-row align-middle outline-0">
-          <td class="td border-b border-solid border-b-secondary-200 text-secondary-800">
-            {{row.id}}
-          </td>
-          <td class="td border-b border-solid border-b-secondary-200 text-secondary-800">
-            {{row.accountName}}
-          </td>
-          <td class="td border-b border-solid border-b-secondary-200 text-secondary-800">
-            {{row.accountNo}}
-          </td>
-          <td class="td border-b border-solid border-b-secondary-200 text-secondary-800">
-            {{Math.ceil(row.amount / 100)}}
-          </td>
-          <td class="td border-b border-solid border-b-secondary-200 text-secondary-800">
-            {{new Date(row.created_on).toLocaleDateString("en-US")}}
-          </td>
-          <td class="td border-b border-solid border-b-secondary-200 text-secondary-800">
-            {{row.status}}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
+      <template #tr-head>
+        <table-row>
+          <table-cell v-for="column in columns" :key="column" variant="th">
+            {{ column }}
+          </table-cell>
+        </table-row>
+      </template>
+
+      <template #tr-body>
+        <table-row v-for="(row, ind) in data" :key="ind">
+          <table-cell>{{ row.id }}</table-cell>
+          <table-cell>{{ row.accountName }}</table-cell>
+          <table-cell>{{ row.accountNumber }}</table-cell>
+          <table-cell align="right">{{ row.amount }}</table-cell>
+          <table-cell>{{ new Date(row.date).toLocaleDateString("en-US") }}</table-cell>
+          <table-cell>{{ row.status }}</table-cell>
+        </table-row>
+      </template>
+    </app-table>
   </div>
 </template>
 
 <script>
+import AppTable from "@/components/Table"
 import CancelIcon from "@/components/svg/Cancel.vue"
 
   export default {
   components: {
+    AppTable,
     "cancel-icon": CancelIcon,
   },
     props: ['title', 'columns', 'data'],
@@ -283,13 +272,15 @@ import CancelIcon from "@/components/svg/Cancel.vue"
         this.transferFields.account_number = this.$auth.user.accountNo
         this.transferFields.bank_code = this.getBankCode(this.$auth.user.bankName)
       }
-      console.log({
-        name: this.$auth.user.accountName,
+
+      const payload = {
+          id: "403904032",
+          accountName: this.$auth.user.accountName,
+          accountNumber: this.transferFields.account_number,
           amount: this.transferFields.amount,
-          account_number: this.transferFields.account_number,
-          bank_code: this.transferFields.bank_code,
-          customerId: this.$auth.user._id
-      })
+          date: new Date(Date.now()).toISOString(),
+          status: "pending"}
+      console.log(payload)
 
       try {
         const response = await this.$axios.post('/api/payments/transfer', {
@@ -308,7 +299,7 @@ import CancelIcon from "@/components/svg/Cancel.vue"
           amount: this.transferFields.amount,
           date: new Date(Date.now()).toISOString(),
           status: "pending"
-        }, ...withdrawals])
+        }, ...this.withdrawals])
         this.$toast.success(response.data.message)
       } catch (error) {
         console.log(error)
@@ -322,29 +313,6 @@ import CancelIcon from "@/components/svg/Cancel.vue"
 </script>
 
 <style scoped>
-.table {
-  display: table;
-  border-spacing: 0;
-  min-width: 650px;
-}
-
-.table-head {
-  display: table-header-group;
-}
-
-.table-body {
-  display: table-row-group;
-}
-
-.td {
-    font-size: 0.875rem;
-    line-height: 1.43;
-    letter-spacing: 0.01071em;
-    vertical-align: inherit;
-    text-align: center;
-    padding: 16px;
-  }
-
 input:checked ~ label {
   border: 2px solid #EBF8FE;
   background-color: #EBF8FE
