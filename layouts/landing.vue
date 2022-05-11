@@ -1,7 +1,9 @@
 <template>
-  <div class="font-br-sonoma">
+  <div class="mx-auto font-br-sonoma relative">
     <LandingNavBar/>
-    <nuxt/>
-    <Footer />
+    <app-container maxWidth="xl">
+      <nuxt class="min-h-screen"/>
+      <Footer/>
+    </app-container>
   </div>
 </template>

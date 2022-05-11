@@ -15,34 +15,103 @@
           Rate this Item
         </h2>
         <div class="flex gap-2 mt-4">
-          <span
-            @click="test(star)"
-            v-for="star in rating"
-            :key="star"
-            class="text-xl"
-          >
-            <!-- &#9733; -->
-            ⭐
+          
+
+          //remove every mouse event listener on click
+          <span>
+            <span v-if="rating === 1">
+              <span class="cursor-pointer mr-[15px] text-3xl " @mouseover="rating=1" @click="showRating(1)">
+                &#9733; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=2" @click="showRating(2)">
+                &#9734; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=3" @click="showRating(3)">
+                &#9734; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=4" @click="showRating(4)">
+                &#9734; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=5" @click="showRating(5)">
+                &#9734; 
+              </span>
+            </span>
+           
+            <span v-if="rating === 2">
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=1" @click="showRating(1)">
+                &#9733; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=2" @click="showRating(2)">
+                &#9733; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=3" @click="showRating(3)">
+                &#9734; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=4" @click="showRating(4)">
+                &#9734; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=5" @click="showRating(5)">
+                &#9734; 
+              </span>
+            </span>
+
+            <span v-if="rating === 3">
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=1" @click="showRating(1)">
+                &#9733; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=2" @click="showRating(2)">
+                &#9733; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=3" @click="showRating(3)">
+                &#9733; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=4" @click="showRating(4)">
+                &#9734; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=5" @click="showRating(5)">
+                &#9734; 
+              </span>
+            </span>
+
+            <span v-if="rating === 4">
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=1" @click="showRating(1)">
+                &#9733; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=2" @click="showRating(2)">
+                &#9733; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=3" @click="showRating(3)">
+                &#9733; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=4" @click="showRating(4)">
+                &#9733; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=5" @click="showRating(5)">
+                &#9734; 
+              </span>
+            </span>
+
+            <span v-if="rating === 5">
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=1" @click="showRating(1)">
+                &#9733; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=2" @click="showRating(2)">
+                &#9733; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=3" @click="showRating(3)">
+                &#9733; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=4" @click="showRating(4)">
+                &#9733; 
+              </span>
+              <span class="cursor-pointer mr-[15px] text-3xl" @mouseover="rating=5" @click="showRating(5)">
+                &#9733; 
+              </span>
+            </span>
           </span>
-          <span
-            @click="testBlack(star)"
-            v-for="star in 5-rating"
-            :key="`${star}1`"
-            class="text-xl"
-          >
-            ✩
-            <!-- &#9734; -->
-          </span>
-         
-          <span
-            @click="test5"
-            class="text-xl"
-          >
-          <img src="@/assets/images/test-images/5star.jpg" 
-            class="text-xl mt-[-5px]"
-            width="40px" height="40px" alt="5 star">
-            <!-- &#9734; -->
-          </span>
+          <div class="mr-[5px] pt-[5px] text-base">{{rating}}/5</div>
+          
+          
         </div>
       </div>
 
@@ -84,7 +153,7 @@
     data () {
       return  {
           input: "",
-          rating: 5,
+          rating: 3,
           product: this.$store.state.products.singleProduct
         }
     },
@@ -93,17 +162,18 @@
         this.$store.dispatch("reviews/postReviews", {input: this.input, rating: this.rating})
         this.$router.push("/products?category=fashion")
       },
-      test(star) {
-        this.rating = star
+      showRating(star) {
+        this.rating = star;
       },
-      testBlack(star) {
-        this.rating = star
-      },
-      test5() {
-        this.rating = 5
+      
+      testb() {
+        console.log("bye")
       }
     },
     computed : {
+      testa() {
+        console.log("hello")
+      },
     }
   }
 </script>
