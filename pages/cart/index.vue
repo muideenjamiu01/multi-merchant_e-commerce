@@ -95,7 +95,16 @@
           No item in your cart
         </h4>
       </div>
-
+	<div> 
+		<div>
+			<p>Customers</p>
+			<span class="flex justify-center">25,130</span>
+			<div class="flex justify-between items-center">
+				<p>This month</p>
+				<p>+3042</p>
+			</div>
+		</div>
+	</div>
       <div
         v-show="itemsCount"
         class="mt-4 lg:mt-0 md:w-1/4 bg-primary-100 p-4 self-start"
