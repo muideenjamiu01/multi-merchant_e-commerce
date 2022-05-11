@@ -10,7 +10,7 @@
         </span>
         <span 
             v-for="star in 5-rating"
-            :key="`${star} 1`" 
+            :key="`${star}1`"
             class="text-xl"
         >
             &#9734;
