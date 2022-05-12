@@ -39,28 +39,36 @@
 </template>
 
 <script>
-import AppTable from "@/components/Table"
-import TableHeader from "@/components/Table/Toolbar.vue"
+import AppTable from "@/components/Table";
+import TableHeader from "@/components/Table/Toolbar.vue";
 import AddIcon from "@/components/svg/Add.vue";
 import FilterIcon from "@/components/svg/Filter.vue";
 
 export default {
-  layout: 'merchant',
-//   middleware: 'auth-merchant',
+  layout: "admin",
+  //   middleware: 'auth-merchant',
   components: {
     AppTable,
     TableHeader,
     AddIcon,
-    FilterIcon
+    FilterIcon,
   },
   data() {
     return {
-      title: "Merchants",
-      columns: ["ID", "Name of Store", "Name", "Email", "Status", "Last Seen", "Date Created"],
-      data: []
-    }
-  }
-}
+      title: "ADMIN",
+      columns: [
+        "ID",
+        "Name of Store",
+        "Name",
+        "Email",
+        "Status",
+        "Last Seen",
+        "Date Created",
+      ],
+      data: [],
+    };
+  },
+};
 </script>
 
 <style lang="sass" scoped></style>
