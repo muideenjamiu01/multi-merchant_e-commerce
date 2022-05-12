@@ -20,10 +20,7 @@ export default {
   css: ["@/assets/css/tailwind.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    "~plugins/core-component.js",
-    "~plugins/axios.js",
-  ],
+  plugins: ["~plugins/core-component.js", "~plugins/axios.js"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -34,6 +31,7 @@ export default {
     // https://go.nuxtjs.dev/eslint
     // '@nuxtjs/eslint-module'
   ],
+  serverMiddleware: ["~/server/index"],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -68,14 +66,13 @@ export default {
           global: true,
         },
         user: {
-          property: 'data',
+          property: "data",
           // autoFetch: false
         },
         endpoints: {
           login: { url: "/api/users/v1/auth/", method: "post" },
           logout: { url: "/auth/logout", method: "get" },
-          user: { url: "/api/users/v1/auth/user", method: "get"
-          }
+          user: { url: "/api/users/v1/auth/user", method: "get" },
         },
       },
     },

@@ -3,7 +3,7 @@
     <div class="md:flex">
       <side-nav merchant>
         <ContentsAdminProfileCard />
-      </side-nav>
+      </side-nav> 
       <main class="sm:ml-72 sm:w-[calc(100%_-_288px)] my-4">
        Users
       </main>
