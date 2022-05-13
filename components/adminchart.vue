@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import PieChart from "./PieChart.js";
+import PieChart from "~/components/PieChart";
 export default {
   name: "App",
   components: {
@@ -19,12 +19,12 @@ export default {
       chartData: {
         hoverBackgroundColor: "red",
         hoverBorderWidth: 10,
-        labels: ["Green", "Red", "Blue"],
+        labels: ["Fashion", "Phones","Computing", "Gaming", "Homes", "Electronics"],
         datasets: [
           {
             label: "Data One",
-            backgroundColor: ["#41B883", "#E46651", "#00D8FF",],
-            data: [1, 10, 5]
+            backgroundColor: ["#41B883", "#E46651", "#00D8FF","#46B2C8","FFEFEF",],
+            data: [15, 20, 15, 15, 15, 20]
           }
         ]
       }
@@ -34,12 +34,5 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
