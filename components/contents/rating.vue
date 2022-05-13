@@ -1,6 +1,6 @@
 <template>
     <div>
-        {{ratingLabel}}: 
+        {{ratingLabel}}
         <span 
             v-for="star in rating"
             :key="star" 

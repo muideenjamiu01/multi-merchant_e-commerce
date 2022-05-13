@@ -16,27 +16,14 @@
       </grid-container>
       <div
         v-if="loading"
-        class="
-          flex
-          items-center
-          justify-center
-          w-full
-          h-[calc(100vh_-_56px_-_64px)]
-        "
+        class="flex items-center justify-center w-full h-12"
       >
         <loading-spinners size="large" color="primary" />
       </div>
       <h2 v-else-if="errors" class="text-2xl text-secondary-600">
         An error occurred or check your internet connection.
       </h2>
-      <div v-else class="grid-container mt-8">
-        <ContentsProductCard
-          v-for="(product, index) in getProducts"
-          :key="product._id"
-          :product="product"
-          :index="index"
-        />
-      </div>
+      <ContentsProductList v-else :product="product" />
     </main>
   </app-container>
 </template>
