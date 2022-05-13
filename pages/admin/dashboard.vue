@@ -1,9 +1,6 @@
 <template>
   <div class="px-4 py-8">
     <div class="md:flex">
-      <!-- <side-nav merchant>
-        <ContentsMerchantProfileCard /> 
-      </side-nav> -->
       <main class="w-full">
         <div class="w-full grid xs:grid-cols-4 md:grid-rows-none gap-x-3">
           <admin-statistic-card cardText="Customers" />
@@ -25,7 +22,8 @@
         <div class="xs:flex gap-12 mt-20 justify-between">
           <div class="md:w-2/5 xs:flex justify-center items-center">
             <div class="rounded shadow-lg p-4">
-              <admin-piechart />
+			  <Adminchart/>
+			  
             </div>
           </div>
           <div class="md:w-3/5">
@@ -40,8 +38,10 @@
 <script>
 import DashboardChart from "~/components/DashboardChart.vue";
 import AdminActivities from "~/components/contents/AdminActivities";
-import AdminPiechart from "~/components/adminPiechart";
+import Adminchart from "~/components/adminchart";
 import AdminStatisticCard from "~/components/contents/adminStatisticCard.vue";
+
+
 
 export default {
   layout: "admin",
@@ -49,9 +49,10 @@ export default {
   components: {
     AdminStatisticCard,
     DashboardChart,
-    AdminPiechart,
+    
     AdminActivities,
-  },
+    Adminchart
+},
   data() {
     return {
       chartData: {
