@@ -19,17 +19,17 @@
     </template>
 
     <template #tr-body>
-      <table-row v-for="row in data" :key="row._id">
-        <table-cell>{{ row._id }}</table-cell>
-        <table-cell>{{ row.accountName }}</table-cell>
-        <table-cell>{{ row.email }}</table-cell>
-        <table-cell>{{ row.phone }}</table-cell>
-        <table-cell>{{ row.status }}</table-cell>
+      <table-row v-for="i in 20" :key="i">
+        <table-cell>{{ data._id }}</table-cell>
+        <table-cell>{{ data.name }}</table-cell>
+        <table-cell>{{ data.email }}</table-cell>
+        <table-cell>{{ data.phone }}</table-cell>
+        <table-cell>{{ data.status }}</table-cell>
         <table-cell>{{
-          new Date(row.lastSeen).toLocaleDateString("en-US")
+          new Date(data.lastSeen).toLocaleDateString("en-US")
         }}</table-cell>
         <table-cell>{{
-          new Date(row.created).toLocaleDateString("en-US")
+          new Date(data.created).toLocaleDateString("en-US")
         }}</table-cell>
       </table-row>
     </template>
@@ -63,7 +63,15 @@ export default {
         "Last Seen",
         "Date Created",
       ],
-      data: [],
+      data: {
+        _id: "29892739",
+        name: "Ellie Gonçalves",
+        email: "ellie.goncalves@example.com",
+        phone: "08004291019",
+        status: "verified",
+        lastSeen: new Date("2022-03-14 17:14:29.847696"),
+        created: new Date("2021-02-06 07:37:07.658872"),
+      },
     };
   },
 };
