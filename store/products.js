@@ -25,7 +25,6 @@ export const actions = {
         }
       );
       commit("setProducts", response.data.data);
-      console.log(response.data.data)
       if (rootState.auth.loggedIn && rootState.wishlist.length > 0) {
         commit("setProductWishlistKey", rootState.wishlist);
       }

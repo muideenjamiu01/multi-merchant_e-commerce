@@ -9,14 +9,37 @@
           </span>
         </NuxtLink>
       </li>
-      <li class="">
-        <NuxtLink to="/admin/users" class="flex items-center space-x-5" active-class="text-primary-500">
-          <withdrawal-icon />
-          <span class="text-xl capitalize text-inherit">
+      
+        <sidebar-item to="/admin/users">
+          <template #icon>
+            <withdrawal-icon />
+          </template>
+
+          <template #label>
             Users
-          </span>
-        </NuxtLink>
-      </li>
+          </template>
+            
+          <template #dropdown-icon>
+            <icon-button color="primary" size="small" @click="toggleDropDown">
+              <withdrawal-icon />
+            </icon-button>
+          </template>
+
+          <template v-if="isOpen" #dropdown>
+            <li class="flex">
+              <nuxt-link to="/admin/users">Admin</nuxt-link>
+            </li>
+            <li class="flex">
+            <nuxt-link to="/admin/customers">Customers</nuxt-link>
+            </li>
+            
+            <li class="flex">
+
+            <nuxt-link to="/admin/merchants">Merchants</nuxt-link>
+            </li>
+          
+          </template>
+        </sidebar-item>
       
       <li class="">
         <NuxtLink to="/admin/products" class="flex items-center space-x-5" active-class="text-primary-500">
@@ -44,6 +67,9 @@ import ProductIcon from "@/components/svg/Product";
 import SettingsIcon from "@/components/svg/Settings";
 import TransactionIcon from "@/components/svg/Transaction";
 import WithdrawalIcon from "@/components/svg/Profile";
+import SidebarItem from "@/components/Sidebar/Item"
+import IconButton from '../buttons/IconButton.vue';
+import Sidebar from '../Sidebar.vue';
 
 export default {
   components: {
@@ -52,13 +78,17 @@ export default {
     "settings-icon": SettingsIcon,
     "withdrawal-icon": WithdrawalIcon,
     "transaction-icon": TransactionIcon,
+     SidebarItem
   },
   data () {
-    return {}
+    return {
+      isOpen: false,
+    }
   },
-  computed: {
-    user() {
-      return this.$auth.user
+  methods: {
+    toggleDropDown() {
+      console.log(this.isOpen)
+      this.isOpen = !this.isOpen
     }
   }
 }

@@ -6,17 +6,20 @@
       </side-nav> -->
       <main class="sm:ml-72 sm:w-[calc(100%_-_288px)] my-4">
         Products
+        <Table/>
       </main>
     </div>
   </div>
 </template>
 
 <script>
+import Table from "~/components/Table/index.vue";
 
 export default {
   layout: "admin",
   components: {
-  },
+    Table
+},
   data() {
     return {
       
