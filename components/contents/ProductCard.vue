@@ -1,5 +1,5 @@
 <template>
-  <div class="w-72">
+  <div class="w-[300px]">
     <div class="h-56 cursor-pointer" @click="viewProduct()">
       <img :src="getProductImage(product.images)" class="w-full h-full" :alt="product.name" />
     </div>
