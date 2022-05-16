@@ -31,7 +31,7 @@ export default {
     // https://go.nuxtjs.dev/eslint
     // '@nuxtjs/eslint-module'
   ],
-//   serverMiddleware: ["~/server/index"],
+  serverMiddleware: ["~/server/index"],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
