@@ -21,7 +21,7 @@
             
           <template #dropdown-icon>
             <icon-button color="primary" size="small" @click="toggleDropDown">
-              <withdrawal-icon />
+              <chevron-icon />
             </icon-button>
           </template>
 
@@ -63,6 +63,8 @@
 
 <script>
 import DashboardIcon from "@/components/svg/Dashboard";
+import ChevronIcon from "@/components/svg/Chevron";
+
 import ProductIcon from "@/components/svg/Product";
 import SettingsIcon from "@/components/svg/Settings";
 import TransactionIcon from "@/components/svg/Transaction";
@@ -74,6 +76,7 @@ import Sidebar from '../Sidebar.vue';
 export default {
   components: {
     "dashboard-icon": DashboardIcon,
+    "chevron-icon": ChevronIcon,
     "product-icon": ProductIcon,
     "settings-icon": SettingsIcon,
     "withdrawal-icon": WithdrawalIcon,
