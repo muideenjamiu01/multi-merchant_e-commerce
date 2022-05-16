@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import PieChart from "~/components/PieChart";
+import PieChart from "~/PieChart";
 export default {
   name: "App",
   components: {
