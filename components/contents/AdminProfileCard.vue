@@ -63,7 +63,7 @@
 
 <script>
 import DashboardIcon from "@/components/svg/Dashboard";
-import ChevronIcon from "@/components/svg/Chevron";
+import ChevronIcon from "@/components/svg/chevron";
 
 import ProductIcon from "@/components/svg/Product";
 import SettingsIcon from "@/components/svg/Settings";
