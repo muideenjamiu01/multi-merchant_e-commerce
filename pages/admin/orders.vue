@@ -67,17 +67,15 @@
       </template>
 
       <template #tr-body>
-        <table-row v-for="row in data" :key="row._id">
-          <table-cell>{{ row._id }}</table-cell>
-          <table-cell>{{ row.storeName }}</table-cell>
-          <table-cell>{{ row.name }}</table-cell>
-          <table-cell>{{ row.email }}</table-cell>
-          <table-cell>{{ row.status }}</table-cell>
+        <table-row v-for="row in 10" :key="row">
+          <table-cell>{{ data._id }}</table-cell>
+          <table-cell>{{ data.name }}</table-cell>
+          <table-cell>{{ data.merchant }}</table-cell>
+          <table-cell>{{ data.customer }}</table-cell>
+          <table-cell>{{ data.quantiy }}</table-cell>
+          <table-cell>{{ data.status }}</table-cell>
           <table-cell>{{
-            new Date(row.lastSeen).toLocaleDateString("en-US")
-          }}</table-cell>
-          <table-cell>{{
-            new Date(row.created).toLocaleDateString("en-US")
+            new Date(data.created).toLocaleDateString("en-US")
           }}</table-cell>
         </table-row>
       </template>
@@ -110,7 +108,15 @@ export default {
         "Status",
         "Date Created",
       ],
-      data: [],
+      data: {
+        _id: "29892739",
+        name: "Ellie Gonçalves",
+        merchant: "Global Ventures",
+        customer: "Chima Ilo",
+        quantiy: "18",
+        status: "Delivered",
+        created: new Date("2021-02-06 07:37:07.658872"),
+      },
     };
   },
 };
