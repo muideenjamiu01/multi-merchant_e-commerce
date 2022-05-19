@@ -2,6 +2,7 @@
 // //when user register a component ,user can use it the component
 // //anywhere on the page and dont need to be importing on each page
 import Vue from 'vue'
+import {Portal} from '@linusborg/vue-simple-portal'
 import AppButton from "@/components/buttons/Button.vue";
 import AppContainer from "@/components/Container";
 import Backdrop from "@/components/Backdrop"
@@ -26,6 +27,7 @@ Vue.component('grid-item', GridItem)
 Vue.component('icon-button', IconButton)
 Vue.component('loading-spinners', Spinners)
 Vue.component('Popper', Popper)
+Vue.component('Portal', Portal)
 Vue.component('side-nav', Sidebar)
 Vue.component('text-input', TextInput)
 Vue.component('user-avatar', UserAvatar)
