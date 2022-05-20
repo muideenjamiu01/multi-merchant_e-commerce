@@ -19,34 +19,33 @@ export const getters = {
 };
 
 export const actions = {
-  async makeWithdrawal({ state, commit }, { amount, bankName }) {
+  async fetchWithdrawals({ commit, rootState }) {
     commit("setLoading", true);
     try {
-      const response = await this.$axios({
-        url: '/merchants/withdrawals',
-        method: 'post',
-        data: { amount, bankName }
-      });
-      commit("setWishlist", response.data);
+      const response = await this.$axios.get(`/api/payments/transfer/merchant/${rootState.auth.user._id}`);
+
+      // const {_links, items, meta} = response.data
+
+      commit("setWithdrawals", response.data.data);
+      // commit("setPagination", {...meta, ..._links});
     } catch (error) {
       commit("setError", error.message);
     } finally {
       commit("setLoading", false);
     }
   },
-  async fetchWithdrawals({ commit }) {
-    commit("setLoading", true);
+  async makeWithdrawal({ state, commit }, payload) {
     try {
-      const response = await this.$axios.get('/merchants/withdrawals');
+      const response = await this.$axios({
+        url: '/api/payments/transfer',
+        method: 'post',
+        data: payload
+      });
 
-      // const {_links, items, meta} = response.data
-
-      commit("setWithdrawals", response.data.items);
-      // commit("setPagination", {...meta, ..._links});
+      this.$toast.success(response.data.message);
+      commit("setWithdrawals", response.data);
     } catch (error) {
-      commit("setError", error.message);
-    } finally {
-      commit("setLoading", false);
+      this.$toast.error(error.response.data.message)
     }
   },
   async fetchMerchantStats({commit}) {

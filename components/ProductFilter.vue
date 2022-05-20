@@ -1,8 +1,7 @@
 <template>
   <div
     :class="[
-      'flex items-center justify-center outline-0 list-none',
-      classes,
+      'flex items-center justify-center', classes,
       { [activeClasses]: isActive },
     ]"
   >
@@ -44,7 +43,7 @@ export default {
     // Change the default styles for the active tab/filter
     activeClasses: {
       type: String,
-      default: "border-primary-100 bg-primary-100",
+      default: "!border-primary-100 bg-primary-100",
     },
     // Change the default styles for the tab/filter
     classes: {
