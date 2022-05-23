@@ -1,5 +1,5 @@
 <template>
-  <app-container maxWidth="xl">
+  <app-container max-width="xl">
       <h1 class="text-2xl font-bold text-primary-black capitalize">
         Stores
       </h1>
@@ -13,7 +13,7 @@
           >{{ cat.label }}</product-filter
         >
       </grid-container>
-      <!-- <div
+      <div
         v-if="loading"
         class="
           flex
@@ -25,13 +25,14 @@
       >
         <loading-spinners size="large" color="primary" />
       </div>
+      <offline v-else-if="$nuxt.isOffline"></offline>
       <h2 v-else-if="errors" class="text-2xl text-secondary-600">
         Oops... An error occurred.
-      </h2> -->
-      <div class="flex flex-wrap items-center gap-5 my-8">
+      </h2>
+      <div v-else class="flex flex-wrap items-center gap-5 my-8">
         <merchant-card
-          v-for="i in 20"
-          :key="i"
+          v-for="merchant in merchants"
+          :key="merchant.id"
           :merchant="merchant"
         />
       </div>
@@ -39,6 +40,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import MerchantCard from "@/components/contents/MerchantCard";
 
 export default {
@@ -73,15 +75,28 @@ export default {
           name: "gaming",
           label: "Gaming",
         },
-      ],
-      merchant: {
-          accountName: "Calhoun Kording",
-          storeName: "State Street Corporation",
-          banner: "https://dummyimage.com/1344x400/e6c073/fff.png&text=Your+banner+goes+here",
-          avatar: "https://randomuser.me/api/portraits/med/women/58.jpg",
-          description: "Aenean ultrices quam sed dolor laoreet, eu suscipit nibh hendrerit. In cursus tincidunt ipsum, quis volutpat urna. Etiam pulvinar purus orci, quis pharetra nunc consequat eu. Mauris sodales quam metus, id pharetra ligula tincidunt quis. Integer ligula ex, egestas sit amet ex ut, porta placerat purus."
-      },
+      ]
     };
+  },
+  computed: {
+    ...mapGetters({
+      data: "merchants/getMerchants",
+      loading: "merchants/loading",
+      errors: "merchants/errors",
+    }),
+    merchants() {
+      return this.data.map(user => ({
+        id: user._id,
+        storeName: user.storeName,
+        accountName: user.accountName,
+        banner: user.banner,
+        description: user.description || "Aenean ultrices quam sed dolor laoreet, eu suscipit nibh hendrerit. In cursus tincidunt ipsum, quis volutpat urna. Etiam pulvinar purus orci, quis pharetra nunc consequat eu. Mauris sodales quam metus, id pharetra ligula tincidunt quis. Integer ligula ex, egestas sit amet ex ut, porta placerat purus.",
+        avatar: user.avatar
+      }))
+    },
+  },
+  mounted() {
+    this.$store.dispatch("merchants/fetchMerchants");
   },
   methods: {
     handleChange(e) {},
