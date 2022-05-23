@@ -41,6 +41,12 @@
         Wishlist
       </nuxt-link>
     </li>
+    <li :class="classes" @click="$emit('close-dropdown')">
+      <nuxt-link to="/merchant/new">
+        <merchant-icon size="small" class="mr-4"></merchant-icon>
+        Become a merchant
+      </nuxt-link>
+    </li>
     <div v-if="$auth.loggedIn" class="border-t" />
     <app-button v-if="$auth.loggedIn" color="error" @click="logout" fullWidth>
       Log out
@@ -51,6 +57,7 @@
 <script>
 import ProfileIcon from "@/components/svg/Profile";
 import OrderIcon from "@/components/svg/Order";
+import MerchantIcon from "@/components/svg/Merchant";
 import WishlistIcon from "@/components/svg/WishlistOutline";
 
 const classes =
@@ -62,6 +69,7 @@ export default {
     "wishlist-icon": WishlistIcon,
     "order-icon": OrderIcon,
     "profile-icon": ProfileIcon,
+    "merchant-icon": MerchantIcon,
   },
   data() {
     return {
