@@ -19,7 +19,7 @@ export default {
       src: String,
       alt: {
           type: String,
-          required: true
+          default: ''
       },
       square: {
           type: Boolean,
@@ -32,7 +32,7 @@ export default {
   },
   computed: {
       getInitials: function() {
-          return this.alt.split('')[0]
+          return this.alt && this.alt.split('')[0]
       },
     //   setBackground() {
     //       const rnInt = Math.floor(Math.random() * 10)
