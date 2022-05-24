@@ -21,7 +21,11 @@
 
 <script>
 export default {
-  data() {},
+  data() {
+	  return {
+		  
+	  }
+  },
   props: {
     cardText: {
       type: String,
