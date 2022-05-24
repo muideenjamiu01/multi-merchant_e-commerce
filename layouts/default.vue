@@ -7,7 +7,7 @@
           You are currently offline
         </h1>
       </div>
-      <Nuxt class="min-h-screen" />
+      <Nuxt v-else class="min-h-screen" />
       <Footer />
   </div>
 </template>
