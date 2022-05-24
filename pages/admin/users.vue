@@ -25,10 +25,9 @@
       <template #tr-body>
         <table-row v-for="i in 20" :key="i">
           <table-cell>{{ data._id }}</table-cell>
-          <table-cell>{{ data.nameOfStore }}</table-cell>
-          <table-cell>{{ data.name }}</table-cell>
+                    <table-cell>{{ data.name }}</table-cell>
           <table-cell>{{ data.email }}</table-cell>
-          <table-cell>{{ data.status }}</table-cell>
+          <table-cell>{{ data.level }}</table-cell>
           <table-cell>{{
             new Date(data.lastSeen).toLocaleDateString("en-US")
           }}</table-cell>
@@ -151,10 +150,9 @@ export default {
       title: "ADMIN",
       columns: [
         "ID",
-        "Name of Store",
         "Name",
         "Email",
-        "Status",
+        "Level",
         "Last Seen",
         "Date Created",
       ],
@@ -164,7 +162,7 @@ export default {
         nameOfStore: "MMJ Watch store",
         name: "Ellie Gonçalves",
         email: "ellie.goncalves@example.com",
-        status: "verified",
+        level: "admin",
         lastSeen: new Date("2022-03-14 17:14:29.847696"),
         created: new Date("2021-02-06 07:37:07.658872"),
       },
