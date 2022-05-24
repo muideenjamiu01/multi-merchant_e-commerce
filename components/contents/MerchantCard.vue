@@ -1,7 +1,7 @@
 <template>
-  <div class="shadow-lg w-[300px] rounded">
+  <div class="shadow-lg hover:-translate-y-1 cursor-pointer w-[300px] rounded" @click="viewMerchant()">
     <!-- header -->
-    <div class="relative w-full h-36">
+    <div class="relative w-full h-36 bg-primary-100">
       <img
         :src="merchant.banner"
         :alt="merchant.storeName"
@@ -14,12 +14,9 @@
       />
     </div>
     <div class="mt-2 ml-[104px] flex-grow pr-4 mb-4">
-      <nuxt-link
-        :to="`/stores/${getSlug(merchant.storeName)}`"
-        class="text-primary-500 truncate hover:text-primary-600"
-      >
-        {{ merchant.storeName }}
-      </nuxt-link>
+      <p class="mb-2 capitalize text-primary-500 truncate hover:text-primary-600">
+          {{ merchant.storeName }}
+      </p>
       <p class="mb-2 capitalize">
         <small>overall rating: {{ overallRating }}%</small>
       </p>
@@ -84,9 +81,6 @@ export default {
     },
   },
   methods: {
-    getSlug(text) {
-      return slugify(text);
-    },
     getRnCategories() {
       const cats = [
         "phones",
@@ -104,6 +98,11 @@ export default {
       const value = Math.random() * 100;
       return value < 50 ? value + 50 : value;
     },
+    viewMerchant() {
+      const slug = slugify(this.merchant.storeName)
+      this.$router.push(`/stores/${slug}`);
+      this.$store.commit("merchants/setMerchant", this.merchant.id);
+    }
   },
 };
 </script>
