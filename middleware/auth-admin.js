@@ -1,7 +1,8 @@
 export default function ({ store, redirect }) {
-    const { loggedIn, user } = store.state.auth
-  
-      if (!loggedIn || !user.adminName ) {
-        return redirect('/auth/admin-login')
-      }
-    }
+  const { loggedIn, user } = store.state.auth
+  console.log(user)
+
+  if (!loggedIn || !user.role === "admin" || !user.role === "superAdmin") {
+    return redirect('/admin/login')
+  }
+}

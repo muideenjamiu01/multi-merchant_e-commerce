@@ -1,5 +1,5 @@
 <template>
-  <tr :class="['text-inherit table-row align-middle outline-0 hover:bg-secondary-50', setSelectedBgColor]">
+  <tr :class="['text-inherit table-row align-middle outline-0 even:bg-secondary-50 odd:bg-white', setSelectedBgColor]">
     <slot></slot>
   </tr>
 </template>

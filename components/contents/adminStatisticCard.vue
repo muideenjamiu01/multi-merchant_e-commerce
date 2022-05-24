@@ -21,18 +21,11 @@
 
 <script>
 export default {
-  data() {
-	  return {
-		  
-	  }
-  },
   props: {
     cardText: {
       type: String,
       default: "label",
-    },
-  },
+    }
+  }
 };
 </script>
-
-<style></style>

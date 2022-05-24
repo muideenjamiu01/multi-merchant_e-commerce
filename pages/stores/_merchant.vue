@@ -23,12 +23,32 @@
       </p>
       <div class="mt-4 hidden sm:flex items-center">
         <div class="text-sm font-normal flex-grow">
-          <p>Selling on Youstore: {{ merchant.created }} months</p>
-          <p>Order Fulfilment Rate: {{ merchant.fulfilmentRate }}</p>
+          <p>Selling on Youstore: {{ merchant.created }}</p>
+            <div class="flex items-center gap-2">
+              Customer Rating
+              <star-rating
+                read-only
+                :show-rating="false"
+                :inline="true"
+                :star-size="15"
+                :increment="0.5"
+                :rating="merchant.customerRating"
+              />
+            </div>
         </div>
         <div class="text-sm font-normal flex-grow">
           <p>Succesful Sales: {{ merchant.successfulSales }} items</p>
-          <p>Customer Rating: {{ merchant.customerRating }}</p>
+            <div class="flex items-center gap-2">
+              Order Fulfilment
+              <star-rating
+                read-only
+                :show-rating="false"
+                :inline="true"
+                :star-size="15"
+                :increment="0.5"
+                :rating="merchant.fulfilmentRate"
+              />
+            </div>
         </div>
       </div>
     </div>
@@ -49,6 +69,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import ProductsList from "@/components/contents/ProductsList";
 import ReviewsList from "@/components/contents/ReviewsList";
 
@@ -59,25 +80,30 @@ export default {
   },
   data() {
     return {
-      merchant: {
-        avatar: "https://randomuser.me/api/portraits/med/women/5.jpg",
-        banner:
-          "https://dummyimage.com/1344x400/cc5ca5/fff.png&text=Your+banner+goes+here.",
-        storeName: "Medovex Corp.",
-        description:
-          "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Proin venenatis massa eget nunc viverra dignissim. Praesent varius sed turpis vel aliquet. Duis laoreet lacinia auctor. Donec non varius odio. Integer at nibh sit amet lacus eleifend molestie. Donec quis nibh sodales, volutpat lectus non, vehicula nulla. Cras sollicitudin odio id faucibus semper. Suspendisse potenti. Nullam sagittis in ante interdum venenatis.",
-        created: Math.floor(Math.random() * 5) + 1,
-        fulfilmentRate: "Excellent",
-        successfulSales: Math.floor(Math.random() * 200) + 30,
-        customerRating: "Excellent",
-      },
       currentTab: "products",
     };
   },
   computed: {
+    ...mapGetters({ data: "merchants/getMerchant" }),
     currentTabComponent() {
       return this.currentTab + "-list";
+    },
+    merchant() {
+      return {
+        avatar: this.data.avatar,
+        banner:
+           this.data.banner || "https://dummyimage.com/1344x400/cc5ca5/fff.png&text=Your+banner+goes+here.",
+        storeName: this.data.storeName,
+        description: this.data.description || "Aenean ultrices quam sed dolor laoreet, eu suscipit nibh hendrerit. In cursus tincidunt ipsum, quis volutpat urna. Etiam pulvinar purus orci, quis pharetra nunc consequat eu. Mauris sodales quam metus, id pharetra ligula tincidunt quis. Integer ligula ex, egestas sit amet ex ut, porta placerat purus.",
+        created: this.data.createdAt,
+        fulfilmentRate: (Math.floor(Math.random() * 10) + 1) / 2,
+        successfulSales: Math.floor(Math.random() * 200) + 30,
+        customerRating: (Math.floor(Math.random() * 10) + 1) / 2,
+      }
     }
+  },
+  mounted() {
+    console.log(this.data)
   },
   methods: {
     handleSelect(value) {
