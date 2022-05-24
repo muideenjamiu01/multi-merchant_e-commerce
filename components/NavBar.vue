@@ -3,10 +3,7 @@
     class="
       flex flex-col flex-shrink-0
       items-center
-      sticky
-      top-0
       bg-white
-      z-50
       w-full
       shadow
     "
@@ -34,11 +31,11 @@
       <app-search v-if="!isMobile"></app-search>
 
       <app-button
-        to="/merchant/dashboard"
+        to="/stores"
         color="primary"
-        class="hidden justify-end md:flex capitalize mr-4"
+        class="hidden justify-end sm:flex capitalize mr-4"
       >
-        Stores
+        View Stores
       </app-button>
 
       <div class="flex items-center justify-end gap-2">
