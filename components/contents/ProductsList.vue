@@ -20,33 +20,28 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "ProductsList",
   data() {
     return {
-        products: [],
-        errors: null,
-        loading: false
+        page: 1
     }
   },
+  computed: mapGetters({
+    products: "merchants/getMerchantProducts",
+    loading: "merchants/loading",
+    errors: "merchants/errors",
+  }),
   async created() {
     if (this.$auth.loggedIn) {
       await this.$store.dispatch("wishlist/fetchWishlist");
     }
 
-    try {
-        this.loading = true
-        const response = await this.$axios.get('/api/products/v1/products')
-
-        this.products = await response.data.data
-        console.log(this.products)
-    } catch(error) {
-        this.errors = error.response.data.msg
-    } finally {
-        this.loading = false
-    }
+    await this.$store.dispatch("merchants/fetchMerchantProducts", {
+      page: this.page,
+    });
   },
   methods: {
     ...mapActions("wishlist", ["fetchWishlist"])

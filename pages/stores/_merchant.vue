@@ -10,7 +10,7 @@
       <user-avatar
         :src="merchant.avatar"
         :alt="merchant.storeName"
-        class="absolute w-40 h-40 left-8 bottom-20 shadow"
+        class="absolute w-20 h-20 xs:w-40 xs:h-40 left-4 xs:left-8 bottom-40 shadow"
       />
     </div>
       <!-- header -->
@@ -22,33 +22,13 @@
         {{ merchant.description }}
       </p>
       <div class="mt-4 hidden sm:flex items-center">
-        <div class="text-sm font-normal flex-grow">
-          <p>Selling on Youstore: {{ merchant.created }}</p>
-            <div class="flex items-center gap-2">
-              Customer Rating
-              <star-rating
-                read-only
-                :show-rating="false"
-                :inline="true"
-                :star-size="15"
-                :increment="0.5"
-                :rating="merchant.customerRating"
-              />
-            </div>
+        <div class="text-sm font-medium capitalize flex-grow">
+          <p>Selling on Youstore: {{ new Date(merchant.created).toLocaleDateString("en-US") }}</p>
+          <p>Customer Rating: {{ merchant.customerRating }}</p>
         </div>
-        <div class="text-sm font-normal flex-grow">
+        <div class="text-sm font-medium capitalize flex-grow">
           <p>Succesful Sales: {{ merchant.successfulSales }} items</p>
-            <div class="flex items-center gap-2">
-              Order Fulfilment
-              <star-rating
-                read-only
-                :show-rating="false"
-                :inline="true"
-                :star-size="15"
-                :increment="0.5"
-                :rating="merchant.fulfilmentRate"
-              />
-            </div>
+          <p>Order Fulfilment Rate: {{ merchant.orderFufillmentRate }}</p>
         </div>
       </div>
     </div>
@@ -96,14 +76,11 @@ export default {
         storeName: this.data.storeName,
         description: this.data.description || "Aenean ultrices quam sed dolor laoreet, eu suscipit nibh hendrerit. In cursus tincidunt ipsum, quis volutpat urna. Etiam pulvinar purus orci, quis pharetra nunc consequat eu. Mauris sodales quam metus, id pharetra ligula tincidunt quis. Integer ligula ex, egestas sit amet ex ut, porta placerat purus.",
         created: this.data.createdAt,
-        fulfilmentRate: (Math.floor(Math.random() * 10) + 1) / 2,
-        successfulSales: Math.floor(Math.random() * 200) + 30,
-        customerRating: (Math.floor(Math.random() * 10) + 1) / 2,
+        fulfilmentRate: this.data.orderFufillmentRate,
+        customerRating: this.data.customerRating,
+        successfulSales: Math.floor(Math.random() * 200) + 30
       }
     }
-  },
-  mounted() {
-    console.log(this.data)
   },
   methods: {
     handleSelect(value) {
