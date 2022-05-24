@@ -3,14 +3,7 @@
     <div class="flex mt-[32px]">
       <main class="w-[70%]">
         <div  class="flex ">
-          <div class="mr-[32px]">
-            <div class="w-[60px] h-[60px] mb-[16px] border border-[#0B4B58]"></div>
-            <div class="w-[60px] h-[60px] mb-[16px] border border-[#0B4B58]"></div>
-            <div class="w-[60px] h-[60px] mb-[16px] border border-[#0B4B58]"></div>
-            <div class="w-[60px] h-[60px] mb-[16px] border border-[#0B4B58]"></div>
-            <div class="w-[60px] h-[60px] mb-[16px] border border-[#0B4B58]"></div>
-            <div class="w-[60px] h-[60px] mb-[16px] border border-[#0B4B58]"></div>
-          </div>
+          
           <div class="w-full h-min max-w-lg min-w-[25%] border border-[#0B4B58]">
             <img
               :src="getProductImage(product.images[0])"
@@ -21,7 +14,8 @@
           <div class="mx-[32px]  min-w-[25%]">
             <h1 class="text-xl capitalize">{{ product.name }}</h1>
             <div class="flex items-center">
-              <p class="text-2xl font-bold">******</p>
+              <Rating rating=""  ratingLabel="AVG. Rating"/>
+              <button @click="fetchSomething">fetch</button>
               <p class="text-primary-blue-dark ml-2.5 text-sm">
               </p>
             </div>
@@ -36,15 +30,16 @@
             >
               Add to cart
             </app-button>
-        
-          </div>
-        </div>
-        <div class="mt-[32px]">
+            <div class="mt-[32px]">
           <h1 class="text-xl mb-3">Product Description</h1>
           <p>
             {{ product.description }}
           </p>
         </div>
+        
+          </div>
+        </div>
+        
      
       </main>
       <aside class="max-w-[20%]">
@@ -150,21 +145,29 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Rating from "./Rating";
 
 export default {
-  mounted() {
-    console.log(this.product)
-  },
-  methods: {
-    ...mapActions("cart", ["addProductToCart"]),
-    ...mapActions("wishlist", ["addToWishlist"]),
-
-    getProductImage(images) {
-      return images
+    async mounted() {
+        console.log(this.product);
+        this.getOneMerchant()
     },
-    
-  },
-  computed: mapGetters({ product: "products/singleProduct" })
+    methods: {
+       async getOneMerchant() {
+          const response = await this.$axios.$get('https://api-2445583927843.production.gw.apicast.io:443/api/users/v1/merchants/one/623c4fc948190e352f309664')
+          console.log('GET_ONE_MERCHANT', response.data)
+        },
+        ...mapActions("cart", ["addProductToCart"]),
+        ...mapActions("wishlist", ["addToWishlist"]),
+        getProductImage(images) {
+            return images;
+        },
+    },
+    computed: mapGetters({
+        product: "products/singleProduct",
+        merchant: "merchant-products/products"
+    }),
+    components: { Rating }
 };
 </script>
 

@@ -24,9 +24,8 @@
           <table-cell>{{ data.name }}</table-cell>
           <table-cell>{{ data.merchant }}</table-cell>
           <table-cell>{{ data.category }}</table-cell>
-          <table-cell>{{ data.status }}</table-cell>
           <table-cell>{{ data.quantity }}</table-cell>
-
+          <table-cell>{{ data.status }}</table-cell>
           <table-cell>{{
             new Date(data.created).toLocaleDateString("en-US")
           }}</table-cell>
