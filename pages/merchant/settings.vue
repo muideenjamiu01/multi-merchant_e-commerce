@@ -282,7 +282,7 @@
           <div class="flex-grow max-w-lg xs:mb-0 mb-2 mr-2">
             <div class="text-sm text-secondary-800">
               <p>
-                Recommended size is a square image of not more than 150kb
+                Recommended size is a square image of not more than 300kb
               </p>
               <p>File type: JPG, PNG or GIF</p>
             </div>
@@ -328,7 +328,7 @@
       </form>
     </section>
 
-    <!-- <section class="w-full">
+    <section class="w-full">
       <form enctype="multipart/form-data" @submit.prevent="saveBanner">
         <grid-container>
           <h3 class="flex-grow text-xl">Banner</h3>
@@ -357,7 +357,7 @@
           <div class="flex-grow max-w-lg xs:mb-0 mb-2 mr-2">
             <div class="text-sm text-secondary-800">
               <p>
-                Recommended size is a square image of not more than 150kb
+                Recommended size is a square image of not more than 300kb
               </p>
               <p>File type: JPG, PNG or GIF</p>
             </div>
@@ -380,11 +380,9 @@
             @change="handleBannerChange"
           />
           <label for="uploadBanner" class="relative">
-            <user-avatar
-              :alt="merchant.storeName"
-              :src="merchant.storeBanner.image"
-              class="w-14 h-14 xs:w-20 xs:h-20"
-            />
+            <div class="border-secondary-200 w-14 h-14 xs:w-32 xs:h-18">
+              <img :src="merchant.storeBanner.image" :alt="merchant.storeName" class="w-full h-full">
+            </div>
             <span
               class="
                 absolute
@@ -393,7 +391,7 @@
                 bottom-0
                 right-0
                 z-10
-                rounded-full
+                rounded-sm
                 hover:bg-black/30
                 transition-colors
               "
@@ -401,7 +399,7 @@
           </label>
         </div>
       </form>
-    </section> -->
+    </section>
 
     <ValidationObserver tag="section" class="my-12">
       <div class="flex items-center justify-between">
@@ -577,7 +575,7 @@ import {
         },
         storeBanner: {
           editing: false,
-          image: this.$auth.user.storeBanner || null,
+          image: this.$auth.user.storeBanner || "https://dummyimage.com/32x18/cc5ca5/fff.png&text=banner",
           file: null,
           errors: [],
         },
@@ -643,7 +641,7 @@ import {
         errs.push(`'${image.type}' is not a supported format`);
       }
 
-      if (image.size > 150000) {
+      if (image.size > 300000) {
         errs.push(`'${image.name}' is too large, please pick a smaller image`);
       }
       return errs;
