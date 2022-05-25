@@ -156,7 +156,7 @@
                   :disabled="loading"
                   fullWidth
                 >
-                  {{ loading ? "Submitting" : "Get Started" }}
+                  {{ loading ? "Submitting" : "Complete SignUp" }}
                   <loading-spinners
                     v-if="loading"
                     size="small"
@@ -206,7 +206,9 @@ export default {
       
 		 try{
 			 const response = await this.$axios.post('/api/users/v1/admins/complete', this.adminRegDetails)
+			 this.$toast.success(response.data.msg)
 		 } catch(e){
+			  this.$toast.error(error.response.data.msg)
 
 		 }
 		 this.adminRegDetails = ""

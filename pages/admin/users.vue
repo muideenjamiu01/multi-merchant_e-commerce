@@ -23,16 +23,16 @@
       </template>
 
       <template #tr-body>
-        <table-row v-for="i in 20" :key="i">
-          <table-cell>{{ data._id }}</table-cell>
-                    <table-cell>{{ data.name }}</table-cell>
-          <table-cell>{{ data.email }}</table-cell>
-          <table-cell>{{ data.level }}</table-cell>
+        <table-row v-for="(row, i) in admins" :key="row._id">
+          <table-cell>{{ i + 1 }}</table-cell>
+                    <table-cell>{{ row.name }}</table-cell>
+          <table-cell>{{ row.email }}</table-cell>
+          <table-cell>{{ row.role }}</table-cell>
           <table-cell>{{
-            new Date(data.lastSeen).toLocaleDateString("en-US")
+            new Date(row.lastSeen).toLocaleDateString("en-US")
           }}</table-cell>
           <table-cell>{{
-            new Date(data.created).toLocaleDateString("en-US")
+            new Date(row.created).toLocaleDateString("en-US")
           }}</table-cell>
         </table-row>
       </template>
@@ -148,6 +148,7 @@ export default {
       transferModal: false,
 	  loading:false,
       title: "ADMIN",
+	  data:[],
       columns: [
         "ID",
         "Name",
@@ -157,20 +158,49 @@ export default {
         "Date Created",
       ],
 
-      data: {
-        _id: "29892739",
-        nameOfStore: "MMJ Watch store",
-        name: "Ellie Gonçalves",
-        email: "ellie.goncalves@example.com",
-        level: "admin",
-        lastSeen: new Date("2022-03-14 17:14:29.847696"),
-        created: new Date("2021-02-06 07:37:07.658872"),
-      },
 	  adminDetails:{
 		  email:"",
 		  role:""
 	  },
     };
+  },
+   computed: {
+    admins() {
+      return this.data.map(admin => ({
+         _id: admin._id,
+        name: `${admin.firstName} ${admin.lastName}`,
+        email: admin.email,
+        phone: admin.phoneNo,
+        role: admin.role,
+        lastSeen: new Date("2022-03-14 17:14:29.847696"),
+        created: admin.createdAt,
+      }))
+    },
+    getOrdersCount() {
+      return Math.ceil(Math.random() * 50) + 10;
+    }
+  },
+
+  async mounted() {
+    this.loading = true
+
+    try {
+      const response = await this.$axios.get('/api/users/v1/admins', {
+        params: {
+          userType: "admin"
+        }
+      })
+
+      this.data = response.data.data
+      this.$toast.success(response.data.msg)
+      console.log(response)
+    } catch(error) {
+      console.log(error)
+      this.error = error.response.data.msg
+      this.$toast.error(error.response.data.msg)
+    } finally {
+      this.loading = false
+    }
   },
   methods: {
 	 async createAdmin(){
