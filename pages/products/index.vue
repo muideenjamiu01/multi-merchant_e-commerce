@@ -81,15 +81,6 @@ export default {
       ],
     };
   },
-  async created() {
-    if (this.$auth.loggedIn) {
-      await this.$store.dispatch("wishlist/fetchWishlist")
-    }
-
-    await this.$store.dispatch("products/fetchProducts", {
-      category: this.category || "",
-    });
-  },
   computed: {
     ...mapGetters({
       products: "products/products",

@@ -48,7 +48,7 @@ export const actions = {
 			  color: item.product.color,
 			  image: item.product.images[0],
         quantity: item.quantity,
-        merchantId: item.merchantId
+        merchantId: item.product.merchantId
 			})),
 			total: rootGetters["cart/cartTotalPrice"] * 100,
 		  };

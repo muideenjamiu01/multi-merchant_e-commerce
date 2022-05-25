@@ -1,6 +1,6 @@
 <template>
   <app-container max-width="xl">
-      <h1 class="text-2xl font-bold text-primary-black capitalize">
+      <h1 class="text-2xl font-bold text-primary-black my-8 capitalize">
         Stores
       </h1>
       <grid-container align-items="center" class="my-4" gap="2">
@@ -9,8 +9,7 @@
           :key="cat.name"
           v-model="category"
           :value="cat.name"
-          @change="handleChange"
-          >{{ cat.label }}</product-filter
+          @change="filterMerchants">{{ cat.label }}</product-filter
         >
       </grid-container>
       <div
@@ -50,13 +49,14 @@ export default {
   data() {
     return {
       category: "",
+      page: 1,
       categories: [
         {
           name: "computing",
           label: "Computing",
         },
         {
-          name: "phones",
+          name: "phonesAndTablets",
           label: "Phones & Tablets",
         },
         {
@@ -64,11 +64,11 @@ export default {
           label: "Fashion",
         },
         {
-          name: "home",
+          name: "homeAndOffices",
           label: "Home & offices",
         },
         {
-          name: "electronics",
+          name: "electronicAppliances",
           label: "Electronic appliances",
         },
         {
@@ -89,17 +89,30 @@ export default {
         id: user._id,
         storeName: user.storeName,
         accountName: user.accountName,
-        banner: user.banner,
+        banner: user.storeBanner || "https://dummyimage.com/1344x400/cc5ca5/fff.png&text=Your+banner+goes+here.",
+        categories: user.category,
         description: user.description || "Aenean ultrices quam sed dolor laoreet, eu suscipit nibh hendrerit. In cursus tincidunt ipsum, quis volutpat urna. Etiam pulvinar purus orci, quis pharetra nunc consequat eu. Mauris sodales quam metus, id pharetra ligula tincidunt quis. Integer ligula ex, egestas sit amet ex ut, porta placerat purus.",
         avatar: user.avatar
       }))
     },
   },
   mounted() {
-    this.$store.dispatch("merchants/fetchMerchants");
+    this.$store.dispatch("merchants/fetchMerchants", {
+        page: this.page
+      });
   },
   methods: {
-    handleChange(e) {},
+    filterMerchants(e) {
+      this.$router.push({
+        path: "/stores",
+        query: { category: this.category },
+      });
+
+      this.$store.dispatch("merchants/fetchMerchants", {
+        category: this.category || "",
+        page: this.page
+      });
+    }
   }
 };
 </script>
