@@ -115,9 +115,6 @@
           >Checkout
         </app-button>
       </div>
-	  <admin-statistic-card cardText="hellowrod" />
-	  <admin-statistic-card cardText="chima" />
-	  <admin-statistic-card cardText="jamiu" />
     </div>
   </div>
 </template>
