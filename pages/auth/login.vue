@@ -129,6 +129,11 @@
               >Forgot your password?</nuxt-link
             >
           </p>
+          <p class="text-sm my-4">
+            Admin?<span class="text-primary-500 text-sm ml-2"
+              ><nuxt-link to="/admin/login">Log in here</nuxt-link></span
+            >
+          </p>
         </div>
       </div>
     </div>

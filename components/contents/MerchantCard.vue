@@ -1,7 +1,7 @@
 <template>
   <div class="shadow-lg hover:-translate-y-1 cursor-pointer w-[300px] rounded" @click="viewMerchant()">
     <!-- header -->
-    <div class="relative w-full h-36 bg-primary-100">
+    <div class="relative w-full h-36">
       <img
         :src="merchant.banner"
         :alt="merchant.storeName"
