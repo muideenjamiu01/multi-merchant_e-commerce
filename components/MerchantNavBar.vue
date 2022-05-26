@@ -1,5 +1,11 @@
 <template>
-  <div class="flex justify-end items-center sm:px-6 px-4 h-12 flex-grow">
+  <div class="flex items-center sm:px-6 px-4 h-12">
+      <div class="h-10 sm:hidden block">
+        <nuxt-link to="/" class="mr-6">
+          <brand-logo class="!w-full !h-full" />
+        </nuxt-link>
+      </div>
+
     <!--
       <input
         type="text"
@@ -9,20 +15,20 @@
       <img class="cursor-pointer" src="@/assets/images/icons/search-icon.svg">
     </div>
      -->
-    <div class="flex items-center justify-end">
-      <NuxtLink
+    <div class="flex items-center justify-end flex-grow">
+      <!-- <NuxtLink
         to="/merchant/transactions"
         class="hover:bg-secondary-100 relative rounded-full p-[5px]"
       >
         <notif-icon />
-      </NuxtLink>
+      </NuxtLink> -->
 
       <dropdown-menu>
-        <template v-slot:dropdown-element="{ setOpen, isOpen }">
+        <template #reference="{ isOpen, handleShow, handleHide }">
           <app-button
             class="rounded-full hover:!bg-transparent"
             size="small"
-            @click.native="setOpen(!isOpen)"
+            @click.native="() => isOpen ? handleHide($event) : handleShow($event)"
           >
             <user-avatar 
               class="w-8 h-8"
@@ -31,7 +37,7 @@
             />
           </app-button>
         </template>
-        <template v-slot:dropdown-content="{ setOpen }">
+        <template #content="{ handleHide }">
           <ul class="m-0 py-2 px-0 relative list-none outline-0">
             <li
               v-for="(link, index) in links"
@@ -59,14 +65,14 @@
                 box-border
                 whitespace-nowrap
               "
-              @click="setOpen(false)"
+              @click="handleHide"
             >
               <NuxtLink :to="link.to">
                 {{ link.label }}
               </NuxtLink>
             </li>
             <div class="border-t" />
-            <app-button class="" @click="logout" fullWidth>
+            <app-button class="" full-width @click="() => { logout(); handleHide() }">
               Log out
             </app-button>
           </ul>
@@ -78,16 +84,17 @@
 
 <script>
 import UserAvatar from "@/components/Avatar";
+import BrandLogo from "@/components/svg/Logo";
 import NotificationIcon from "@/components/svg/Notifications.vue";
 
 export default {
   components: {
     "notif-icon": NotificationIcon,
     "user-avatar": UserAvatar,
+    BrandLogo
   },
   data() {
     return {
-      isOpen: false,
       links: [
         {
           to: '/merchant/dashboard',

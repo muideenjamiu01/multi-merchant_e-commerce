@@ -10,12 +10,3 @@
     <Footer />
   </div>
 </template>
-
-<script>
-import MerchantNavBar from "@/components/MerchantNavBar"
-export default {
-  components: {
-    MerchantNavBar
-  }
-}
-</script>
