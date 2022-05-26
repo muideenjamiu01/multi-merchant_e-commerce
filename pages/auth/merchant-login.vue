@@ -104,14 +104,19 @@
           <p class="text-primary-500 text-sm my-4">
             <nuxt-link to="/auth/login">Login as Customer</nuxt-link>
           </p>
-          <!-- <p class="font-light text-base mb-[16px]">
-            Don't have a seller account?<span class="text-primary-blue ml-[10px]"
+          <p class="text-sm my-4">
+            Don't have a merchant account?<span class="text-primary-500 text-sm ml-2"
               ><nuxt-link to="/merchant/new">Create one here</nuxt-link></span
             >
-          </p> -->
+          </p>
           <p class="text-primary-blue text-sm my-4">
             <nuxt-link to="/auth/forgot-password?user=merchant"
               >Forgot your password?</nuxt-link
+            >
+          </p>
+          <p class="text-sm my-4">
+            Admin?<span class="text-primary-500 text-sm ml-2"
+              ><nuxt-link to="/admin/login">Log in here</nuxt-link></span
             >
           </p>
         </div>

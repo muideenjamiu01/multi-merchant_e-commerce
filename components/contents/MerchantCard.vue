@@ -1,7 +1,7 @@
 <template>
   <div class="shadow-lg hover:-translate-y-1 cursor-pointer w-[300px] rounded" @click="viewMerchant()">
     <!-- header -->
-    <div class="relative w-full h-36 bg-primary-100">
+    <div class="relative w-full h-36">
       <img
         :src="merchant.banner"
         :alt="merchant.storeName"
@@ -27,23 +27,19 @@
     </div>
     <!-- footer -->
     <div class="flex gap-2 align-center flex-wrap pt-0 p-4">
-      <nuxt-link
+      <span
         v-for="(cat, i) in categories"
         :key="i"
-        :to="`/products?category=${cat}`"
         class="
           rounded
-          transition-color
           px-1
           text-sm text-primary-600
-          hover:text-primary-700
           border border-solid border-primary-500
           bg-transparent
-          hover:bg-primary-100
         "
       >
         <small>{{ cat }}</small>
-      </nuxt-link>
+      </span>
     </div>
   </div>
 </template>

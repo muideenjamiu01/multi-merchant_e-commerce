@@ -48,8 +48,7 @@ export default {
   //   middleware: "auth-merchant",
   components: {
     AdminStatisticCard,
-    DashboardChart,
-    
+    DashboardChart,    
     AdminActivities,
     Adminchart
 },
