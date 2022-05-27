@@ -189,7 +189,6 @@
             name="address"
             rules="required"
             tag="div"
-            class="my-8"
           >
             <label for="address" class="block mb-2 text-sm font-medium"
               >Address</label
@@ -217,6 +216,15 @@
             }}</span>
           </ValidationProvider>
 </grid-item>
+          <grid-item xs="12" sm="6" class="px-0 sm:px-2">
+            <h6 class="block mb-2 text-sm font-medium">
+              Category
+            </h6>
+<div v-for="cat in categories" :key="cat.name" class="my-2">
+    <input :id="cat.name" v-model="merchant.category" type="radio" :value="cat.name" :disabled="!editing" class="default:ring-2 checked:bg-primary-400 disabled:opacity-75">
+    <label :for="cat.name" class="ml-2 text-sm">{{cat.label}}</label>
+</div>
+          </grid-item>
         </grid-container>
         <grid-container
           v-if="editing"
@@ -567,6 +575,7 @@ import {
         email: this.$auth.user.email ||"",
         phone: this.$auth.user.phoneNo ||"",
         address: this.$auth.user.address ||"",
+        category: this.$auth.user.category || [],
         avatar: {
           editing: false,
           image: this.$auth.user.avatar || null,
@@ -588,7 +597,33 @@ import {
           matchError: null
         },
       },
-      banks: []
+      banks: [],
+      categories: [
+        {
+          name: "computing",
+          label: "Computing",
+        },
+        {
+          name: "phonesAndTablets",
+          label: "Phones & Tablets",
+        },
+        {
+          name: "fashion",
+          label: "Fashion",
+        },
+        {
+          name: "homeAndOffices",
+          label: "Home & offices",
+        },
+        {
+          name: "electronicAppliances",
+          label: "Electronic appliances",
+        },
+        {
+          name: "gaming",
+          label: "Gaming",
+        },
+      ]
     };
   },
   methods: {
@@ -602,14 +637,16 @@ import {
       (this.merchant.accountNo = this.$auth.user.accountNo || ''),
       (this.merchant.phone = this.$auth.user.phoneNo || ''),
       (this.merchant.address = this.$auth.user.address || '');
+      (this.merchant.category = this.$auth.user.category || []);
       this.editing = false;
     },
     async updateMerchant() {
-      const {storeName, accountName, accountNo, bankName, phone, address} = this.merchant
       try {
+        const {storeName, accountName, accountNo, bankName, phone, address, category } = this.merchant
+ 
         const response = await this.$axios.put(
           "/api/users/v1/merchants/",
-          {storeName, accountName, accountNo, bankName, phone, address}
+          { storeName, accountName, accountNo, bankName, phone, address, category: category.join() }
         );
 
         this.$auth.setUser(response.data.data);
@@ -717,12 +754,12 @@ import {
     },
     async saveBanner() {
       const formdata = new FormData();
-      formdata.append("storeBanner", this.merchant.storeBanner.file);
+      formdata.append("banner", this.merchant.storeBanner.file);
 
       try {
         this.merchant.storeBanner.editing = true;
         const response = await this.$axios.post(
-          "/api/users/v1/customers/upload/",
+          "/api/users/v1/merchants/upload-banner/",
           formdata,
           {
             headers: {

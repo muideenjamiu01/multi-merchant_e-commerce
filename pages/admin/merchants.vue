@@ -329,7 +329,7 @@ export default {
       this.isModalOpen = false;
     },
     hasPermission(permission) {
-      const adminPerms = this.$auth.$state.user.user.permissions
+      const adminPerms = this.$auth.user.permissions
       return adminPerms && adminPerms.includes(permission);
     },
   },
