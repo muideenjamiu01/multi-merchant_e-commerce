@@ -9,7 +9,10 @@
       <h2 v-else-if="errors" class="text-2xl text-secondary-600">
        {{ errors || 'Oops... An error occurred.' }}
       </h2> -->
-    <ContentsReviewItem v-for="review in reviews" :key="review._id" :review="review" />
+          <h2 v-if="reviews.length === 0" class="text-2xl text-secondary-600">
+            This merchants has no reviews.
+          </h2>
+    <ContentsReviewItem v-for="review in reviews" v-else :key="review._id" :review="review" />
   </div>
 </template>
 

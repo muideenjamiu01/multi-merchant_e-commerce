@@ -1,88 +1,56 @@
 <template>
   <div>
         <div
-          class="w-full grid grid-rows-4 md:grid-cols-3 md:grid-rows-none gap-x-3"
+          class="w-full grid grid-rows-3 md:grid-cols-3 md:grid-rows-none md:gap-x-3 gap-y-3"
         >
-          <div class="p-2 bg-green-100 rounded mt-4 md:mt-0">
-            <div class="flex items-center gap-2">
-              <div>
-                <!-- <img src="@/assets/images/icons/validate.svg" alt="" /> -->
-                <svg
-                  width="24"
-                  height="14"
-                  viewBox="0 0 24 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M0.410156 8.40996L6.00016 14L7.41016 12.58L1.83016 6.99996L0.410156 8.40996ZM22.2402 0.579956L11.6602 11.17L7.50016 6.99996L6.07016 8.40996L11.6602 14L23.6602 1.99996L22.2402 0.579956ZM18.0002 1.99996L16.5902 0.579956L10.2402 6.92996L11.6602 8.33996L18.0002 1.99996Z"
-                    fill="#1EB62D"
-                  />
-                </svg>
-              </div>
-              <span class="text-lg font-medium">91</span>
-              <span class="font-normal text-xs text-primary-green"
-                >+49 this month</span
-              >
+          <div class="flex gap-2 p-4 justify-center bg-green-100 rounded mt-4 sm:mt-0">
+            <double-check-icon></double-check-icon>
+            <div class="">
+              <span class="flex gap-2">
+                <h1 class="text-xl font-bold mb-2">
+                  {{ getOrders }}
+                </h1>
+                <p class="text-primary-green w-full truncate">
+                  <small>+{{ getOrdersMonth }} this month</small>
+                </p>
+              </span>
+                <h3 class="font-medium capitalize">
+                  Orders Fulfilled
+                </h3>
             </div>
-            <span class="font-medium text-sm flex justify-center items-center"
-              >Orders Fulfilled</span
-            >
           </div>
-          <div class="p-2 bg-primary-gold-light rounded mt-4 md:mt-0">
-            <div class="flex items-center gap-2">
-              <div>
-                <!-- <img src="@/assets/images/icons/currency.svg" alt="" /> -->
-                <svg
-                  width="22"
-                  height="16"
-                  viewBox="0 0 22 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M4 0H22V12H4V0ZM13 3C13.7956 3 14.5587 3.31607 15.1213 3.87868C15.6839 4.44129 16 5.20435 16 6C16 6.79565 15.6839 7.55871 15.1213 8.12132C14.5587 8.68393 13.7956 9 13 9C12.2044 9 11.4413 8.68393 10.8787 8.12132C10.3161 7.55871 10 6.79565 10 6C10 5.20435 10.3161 4.44129 10.8787 3.87868C11.4413 3.31607 12.2044 3 13 3ZM8 2C8 2.53043 7.78929 3.03914 7.41421 3.41421C7.03914 3.78929 6.53043 4 6 4V8C6.53043 8 7.03914 8.21071 7.41421 8.58579C7.78929 8.96086 8 9.46957 8 10H18C18 9.46957 18.2107 8.96086 18.5858 8.58579C18.9609 8.21071 19.4696 8 20 8V4C19.4696 4 18.9609 3.78929 18.5858 3.41421C18.2107 3.03914 18 2.53043 18 2H8ZM0 4H2V14H18V16H0V4Z"
-                    fill="#ABA519"
-                  />
-                </svg>
-              </div>
-              <span class="text-lg font-medium">₦1890</span>
-              <span class="font-normal text-xs text-primary-gold"
-                >+122 this month</span
-              >
+          <div class="flex gap-2 p-4 justify-center bg-purple-100 rounded mt-4 sm:mt-0">
+            <cash-icon></cash-icon>
+            <div class="">
+              <span class="flex gap-2">
+              <h1 class="text-xl font-bold mb-2">
+                {{ (Math.floor(Math.random() * 10000) + 3000) }}
+              </h1>
+                <p class="text-primary-purple w-full truncate">
+                  <small>+{{ Math.ceil(Math.random() * 2000) }} this month</small>
+                </p>
+              </span>
+                <h3 class="font-medium capitalize">
+                  Earned
+                </h3>
             </div>
-            <span class="font-medium text-sm flex justify-center items-center"
-              >Earned</span
-            >
           </div>
-          <div class="p-2 bg-primary-purple-light rounded mt-4 md:mt-0">
-            <div class="flex items-center gap-2">
-              <div>
-                <svg
-                  width="20"
-                  height="19"
-                  viewBox="0 0 20 19"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M10 15.27L16.18 19L14.54 11.97L20 7.24L12.81 6.62L10 0L7.19 6.62L0 7.24L5.45 11.97L3.82 19L10 15.27Z"
-                    fill="#DA30B5"
-                  />
-                </svg>
-              </div>
-              <span class="text-lg font-medium">4.3</span>
-              <span class="font-normal text-xs text-primary-purple"
-                >+37 this month</span
-              >
+          <div class="flex gap-2 p-4 justify-center bg-yellow-100 rounded mt-4 sm:mt-0">
+            <star-icon></star-icon>
+            <div class="">
+              <span class="flex gap-2">
+              <h1 class="text-xl font-bold mb-2">
+                {{ (Math.floor(Math.random() * 10) + 1) / 2 }}
+              </h1>
+              </span>
+                <h3 class="font-medium capitalize">
+                  Average Rating
+                </h3>
             </div>
-            <span class="font-medium text-sm flex justify-center items-center"
-              >Average Rating</span
-            >
           </div>
         </div>
 
-        <div class="mt-8 md:mt-10">
+        <div class="mt-8 sm:mt-10">
           <div class="chart-div">
             <DashboardChart
               :chart-data="chartData"
@@ -194,12 +162,18 @@
 
 <script>
 import DashboardChart from "~/components/DashboardChart.vue";
+import CashIcon from "@/components/svg/Cash.vue"
+import StarIcon from "@/components/svg/Star.vue"
+import DoubleCheckIcon from "@/components/svg/DoubleCheck.vue"
 
 export default {
   layout: "merchant",
   middleware: "auth-merchant",
   components: {
     DashboardChart,
+    CashIcon,
+    StarIcon,
+    DoubleCheckIcon
   },
   data() {
     return {
@@ -266,6 +240,14 @@ export default {
       },
     };
   },
+  computed: {
+    getOrders() {
+      return Math.ceil(Math.random() * 1000) + 100
+    },
+    getOrdersMonth() {
+      return Math.ceil(Math.random() * 300) + 50
+    }
+  }
 };
 </script>
 
