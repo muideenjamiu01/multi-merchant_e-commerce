@@ -1,17 +1,20 @@
 <template>
-  <div class="flex flex-wrap items-center gap-5 my-8">
+  <div class="flex flex-wrap justify-center gap-5 my-8">
       <div
         v-if="loading"
         class="flex items-center justify-center w-full h-12"
       >
         <loading-spinners size="large" color="primary" />
       </div>
+      <offline v-else-if="$nuxt.isOffline"></offline>
       <h2 v-else-if="errors" class="text-2xl text-secondary-600">
         Oops... An error occurred.
       </h2>
+          <h2 v-else-if="products.length === 0" class="text-2xl text-secondary-600">
+            This merchants has no products to display.
+          </h2>
     <ContentsProductCard
       v-for="(product, index) in products"
-      v-else
       :key="product._id"
       :product="product"
       :index="index"
