@@ -28,12 +28,19 @@
       <h2 v-else-if="errors" class="text-2xl text-secondary-600">
         Oops... An error occurred.
       </h2>
-      <div v-else class="flex flex-wrap items-center gap-5 my-8">
-        <merchant-card
-          v-for="merchant in merchants"
-          :key="merchant.id"
-          :merchant="merchant"
-        />
+      <div v-else class="flex flex-wrap justify-center gap-5 my-8">
+        <template v-if="merchants.length > 0">
+          <merchant-card
+            v-for="merchant in merchants"
+            :key="merchant.id"
+            :merchant="merchant"
+          />
+        </template>
+        <template v-else>
+          <h2 class="text-2xl text-secondary-600">
+            There are no merchants to display.
+          </h2>
+        </template>
       </div>
   </app-container>
 </template>

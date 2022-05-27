@@ -10,7 +10,7 @@
       <user-avatar
         :src="merchant.avatar"
         :alt="merchant.storeName"
-        class="absolute w-20 h-20 xs:w-40 xs:h-40 left-4 xs:left-8 bottom-40 shadow"
+        class="absolute w-20 h-20 xs:w-40 xs:h-40 left-4 xs:left-8 bottom-20 shadow"
       />
     </div>
       <!-- header -->
