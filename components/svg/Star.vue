@@ -1,12 +1,20 @@
 <template>
-  <base-svg viewBox="0 0 10 7" :size="size" :color="color">
-    <path d="M1.18209 0.864063L4.64645 4.32842L4.99961 4.68159L5.35317 4.32881L8.82461 0.864925L9.29289 1.3332L5 5.6261L0.708359 1.33445L1.18209 0.864063Z" />
+  <base-svg viewBox="0 0 22 16" :size="size" :color="color">
+    <path
+      d="M10 15.27L16.18 19L14.54 11.97L20 7.24L12.81 6.62L10 0L7.19 6.62L0 7.24L5.45 11.97L3.82 19L10 15.27Z"
+      fill="#ABA519"
+    />
   </base-svg>
 </template>
 
 <script>
+import BaseSvg from "./Base.vue";
+
 export default {
-  name: "ChevronIcon",
+  name: "ProfileIcon",
+  components: {
+    "base-svg": BaseSvg,
+  },
   props: {
     viewBox: {
       type: String,

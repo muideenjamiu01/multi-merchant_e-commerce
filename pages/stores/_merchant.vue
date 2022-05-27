@@ -10,7 +10,7 @@
       <user-avatar
         :src="merchant.avatar"
         :alt="merchant.storeName"
-        class="absolute w-20 h-20 xs:w-40 xs:h-40 left-4 xs:left-8 bottom-40 shadow"
+        class="absolute w-20 h-20 xs:w-40 xs:h-40 left-4 xs:left-8 bottom-20 shadow"
       />
     </div>
       <!-- header -->
@@ -72,7 +72,7 @@ export default {
       return {
         avatar: this.data.avatar,
         banner:
-           this.data.banner || "https://dummyimage.com/1344x400/cc5ca5/fff.png&text=Your+banner+goes+here.",
+           this.data.storeBanner || "https://dummyimage.com/1344x400/cc5ca5/fff.png&text=Your+banner+goes+here.",
         storeName: this.data.storeName,
         description: this.data.description || "Aenean ultrices quam sed dolor laoreet, eu suscipit nibh hendrerit. In cursus tincidunt ipsum, quis volutpat urna. Etiam pulvinar purus orci, quis pharetra nunc consequat eu. Mauris sodales quam metus, id pharetra ligula tincidunt quis. Integer ligula ex, egestas sit amet ex ut, porta placerat purus.",
         created: this.data.createdAt,
