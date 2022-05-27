@@ -140,7 +140,7 @@ export default {
        window.localStorage.setItem("ys.user_type", "admin")
        
       try {
-        const response = await this.$auth.loginWith("local", {
+        await this.$auth.loginWith("local", {
           data: this.input,
           params: { userType: "admin" },
         });
@@ -148,7 +148,6 @@ export default {
         this.input.password = '';
         this.$router.push('/admin/dashboard')
         this.$toast.success('Login Succesful!!')
-        this.$auth.$storage.setUniversal('user', response.data.data, true)
       } catch (err) {
         this.error = err.response.data.msg
        window.localStorage.removeItem("ys.user_type", "admin")
