@@ -19,15 +19,16 @@
       </template>
 
       <template #tr-body>
-        <table-row v-for="i in 20" :key="i">
-          <table-cell>{{ data._id }}</table-cell>
-          <table-cell>{{ data.name }}</table-cell>
-          <table-cell>{{ data.merchant }}</table-cell>
-          <table-cell>{{ data.category }}</table-cell>
-          <table-cell>{{ data.quantity }}</table-cell>
-          <table-cell>{{ data.status }}</table-cell>
+        <table-row v-for="(product, index) in allProducts" :key="index">
+          <table-cell >{{ index }}</table-cell>
+
+          <table-cell align='left' >{{ product._id }}</table-cell>
+          <table-cell align='left'>{{ `${product.name[0].toUpperCase()}${product.name.slice(1)}` }}</table-cell>
+          <table-cell align='left'>{{ data.merchant }}</table-cell>
+          <table-cell align='left'>{{ `${product.category[0].toUpperCase()}${product.category.slice(1)}` }}</table-cell>
+          <table-cell>{{ product.quantity }}</table-cell>
           <table-cell>{{
-            new Date(data.created).toLocaleDateString("en-US")
+            new Date(product.createdAt).toLocaleDateString("en-US")
           }}</table-cell>
         </table-row>
       </template>
@@ -52,27 +53,29 @@ layout: "admin",
   },
   data() {
     return {
+      allProducts : [],
       title: "Products",
       columns: [
+        "S/No.",
         "ID",
         "Name",
         "Merchant",
         "Category",
         "Quantity",
-        "Status",
         "Date Created",
       ],
       data: {
-        _id: "29892739",
-        name: "Ellie Gonçalves",
         merchant: "Becker & Sons.",
-        category: "Computing",
-        quantity: Math.floor(Math.random() * 10),
-        status: "Pending",
-        created: new Date("2021-02-06 07:37:07.658872"),
       },
     };
   },
+  async mounted() {
+    await this.$store.dispatch('merchant-products/getAllProducts')
+    this.allProducts = this.$store.getters['merchant-products/allProducts']
+    console.log(this.allProducts)
+
+  },
+  
 };
 </script>
 
