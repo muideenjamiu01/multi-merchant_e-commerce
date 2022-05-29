@@ -24,6 +24,7 @@
         props: {
             rating: "",
             ratingLabel: ""
+            
         },
     }
 </script>

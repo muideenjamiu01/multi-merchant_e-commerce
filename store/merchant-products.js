@@ -17,6 +17,30 @@ export const getters = {
 };
 
 export const actions = {
+  // async getMerchantDetails(id) {
+  //   try {
+  //   const response = await this.$axios.get(
+  //     // "https://api-2445583927843.production.gw.apicast.io:443/api/users/v1/merchants/one/",
+  //     `https://api-2445583927843.production.gw.apicast.io:443/api/users/v1/merchants/one/${id}`
+  //   );
+  //    console.log('merchantname', response.data.data.storeName);
+
+  //   // this.$toast.success(response.data.msg)
+  //   commit("setMerchantDetails", response.data.data.storeName);
+
+    
+  //     // commit("setPagination", {...meta, ..._links});
+  //   } catch (error) {
+  //     return 'manos'
+  //     // this.$toast.error(error.response.data.msg);
+  //     // commit("setError", error.message);
+  //   } finally {
+  //     // commit("setLoading", false);
+  //   }
+   
+
+
+  // },
   async getAllProducts({ commit }) {
     commit("setLoading", true);
     try {
@@ -29,7 +53,11 @@ export const actions = {
           },
         }
       );
-       console.log(1, response.data.data);
+     
+       console.log("merchantDetails", response.data.data);
+       
+
+      
       this.$toast.success(response.data.msg)
       commit("setAllProducts", response.data.data);
 
