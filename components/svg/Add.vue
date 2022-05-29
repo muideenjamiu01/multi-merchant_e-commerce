@@ -6,7 +6,6 @@
 
 <script>
 import BaseSvg from "./Base.vue";
-
 export default {
   name: "AddIcon",
   components: {

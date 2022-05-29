@@ -96,7 +96,7 @@
             </p>
           </div>
 
-          <form class="mt-8" @submit="">
+          <form class="mt-8" >
             <text-input
               v-model="input.firstName"
               type="text"
