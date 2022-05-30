@@ -9,6 +9,7 @@
       :name="name"
       :value="value"
       :placeholder="placeholder"
+      :disabled="disabled"
       :required="required"
       :class="[
         'w-full flex items-center border rounded-md shadow-sm text-sm sm:text-base p-2 focus:outline-none focus:text-black focus:border-primary-200 focus:ring-primary-200 focus:ring-1 transition-colors placeholder:italic placeholder:text-secondary-400',
