@@ -195,8 +195,9 @@
             variant="contained"
             color="success"
             :disabled="loading"
-            type="submit"
+            type="click"
             class="pl-4 ml-3"
+            @click="handleTransfer"
           >
             {{ loading ? "Transferring" : "Transfer" }}
             <loading-spinners
@@ -309,6 +310,7 @@ export default {
       this.error = null;
     },
     async handleTransfer() {
+      console.log('first')
       const err = this.validateTransferFields();
 
       if (err) {

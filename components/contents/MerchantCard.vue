@@ -28,7 +28,7 @@
     <!-- footer -->
     <div class="flex gap-2 align-center flex-wrap pt-0 p-4">
       <span
-        v-for="(cat, i) in categories"
+        v-for="(cat, i) in merchant.categories"
         :key="i"
         class="
           rounded
@@ -63,33 +63,33 @@ export default {
 
       return Math.ceil((cr + ofr + pq) / 3);
     },
-    categories() {
-      const categories = [];
-      const numOfCats = Math.floor(Math.random() * 4) + 1;
+    // categories() {
+    //   const categories = [];
+    //   const numOfCats = Math.floor(Math.random() * 4) + 1;
 
-      for (let i = 0; i < numOfCats; i++) {
-        const cat = this.getRnCategories();
-        if (!categories.includes(cat)) {
-          categories.push(cat);
-        }
-      }
-      return categories;
-    },
+    //   for (let i = 0; i < numOfCats; i++) {
+    //     const cat = this.getRnCategories();
+    //     if (!categories.includes(cat)) {
+    //       categories.push(cat);
+    //     }
+    //   }
+    //   return categories;
+    // },
   },
   methods: {
-    getRnCategories() {
-      const cats = [
-        "phones",
-        "computing",
-        "fashion",
-        "gaming",
-        "electronics",
-        "home",
-      ];
+  //   getRnCategories() {
+  //     const cats = [
+  //       "phones",
+  //       "computing",
+  //       "fashion",
+  //       "gaming",
+  //       "electronics",
+  //       "home",
+  //     ];
 
-      const cat = Math.floor(Math.random() * cats.length);
-      return cats[cat];
-    },
+  //     const cat = Math.floor(Math.random() * cats.length);
+  //     return cats[cat];
+  //   },
     genRnValue() {
       const value = Math.random() * 100;
       return value < 50 ? value + 50 : value;

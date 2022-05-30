@@ -189,7 +189,6 @@
             name="address"
             rules="required"
             tag="div"
-            class="my-8"
           >
             <label for="address" class="block mb-2 text-sm font-medium"
               >Address</label
@@ -217,6 +216,15 @@
             }}</span>
           </ValidationProvider>
 </grid-item>
+          <grid-item xs="12" sm="6" class="px-0 sm:px-2">
+            <h6 class="block mb-2 text-sm font-medium">
+              Category
+            </h6>
+<div v-for="cat in categories" :key="cat.name" class="my-2">
+    <input :id="cat.name" v-model="merchant.category" type="radio" :value="cat.name" :disabled="!editing" class="default:ring-2 checked:bg-primary-400 disabled:opacity-75">
+    <label :for="cat.name" class="ml-2 text-sm">{{cat.label}}</label>
+</div>
+          </grid-item>
         </grid-container>
         <grid-container
           v-if="editing"
@@ -282,7 +290,7 @@
           <div class="flex-grow max-w-lg xs:mb-0 mb-2 mr-2">
             <div class="text-sm text-secondary-800">
               <p>
-                Recommended size is a square image of not more than 150kb
+                Recommended size is a square image of not more than 300kb
               </p>
               <p>File type: JPG, PNG or GIF</p>
             </div>
@@ -328,7 +336,7 @@
       </form>
     </section>
 
-    <!-- <section class="w-full">
+    <section class="w-full">
       <form enctype="multipart/form-data" @submit.prevent="saveBanner">
         <grid-container>
           <h3 class="flex-grow text-xl">Banner</h3>
@@ -357,7 +365,7 @@
           <div class="flex-grow max-w-lg xs:mb-0 mb-2 mr-2">
             <div class="text-sm text-secondary-800">
               <p>
-                Recommended size is a square image of not more than 150kb
+                Recommended size is a square image of not more than 300kb
               </p>
               <p>File type: JPG, PNG or GIF</p>
             </div>
@@ -380,11 +388,9 @@
             @change="handleBannerChange"
           />
           <label for="uploadBanner" class="relative">
-            <user-avatar
-              :alt="merchant.storeName"
-              :src="merchant.storeBanner.image"
-              class="w-14 h-14 xs:w-20 xs:h-20"
-            />
+            <div class="border-secondary-200 w-14 h-14 xs:w-32 xs:h-18">
+              <img :src="merchant.storeBanner.image" :alt="merchant.storeName" class="w-full h-full">
+            </div>
             <span
               class="
                 absolute
@@ -393,7 +399,7 @@
                 bottom-0
                 right-0
                 z-10
-                rounded-full
+                rounded-sm
                 hover:bg-black/30
                 transition-colors
               "
@@ -401,7 +407,7 @@
           </label>
         </div>
       </form>
-    </section> -->
+    </section>
 
     <ValidationObserver tag="section" class="my-12">
       <div class="flex items-center justify-between">
@@ -569,6 +575,7 @@ import {
         email: this.$auth.user.email ||"",
         phone: this.$auth.user.phoneNo ||"",
         address: this.$auth.user.address ||"",
+        category: this.$auth.user.category || [],
         avatar: {
           editing: false,
           image: this.$auth.user.avatar || null,
@@ -577,7 +584,7 @@ import {
         },
         storeBanner: {
           editing: false,
-          image: this.$auth.user.storeBanner || null,
+          image: this.$auth.user.storeBanner || "https://dummyimage.com/32x18/cc5ca5/fff.png&text=banner",
           file: null,
           errors: [],
         },
@@ -590,7 +597,33 @@ import {
           matchError: null
         },
       },
-      banks: []
+      banks: [],
+      categories: [
+        {
+          name: "computing",
+          label: "Computing",
+        },
+        {
+          name: "phonesAndTablets",
+          label: "Phones & Tablets",
+        },
+        {
+          name: "fashion",
+          label: "Fashion",
+        },
+        {
+          name: "homeAndOffices",
+          label: "Home & offices",
+        },
+        {
+          name: "electronicAppliances",
+          label: "Electronic appliances",
+        },
+        {
+          name: "gaming",
+          label: "Gaming",
+        },
+      ]
     };
   },
   methods: {
@@ -604,14 +637,16 @@ import {
       (this.merchant.accountNo = this.$auth.user.accountNo || ''),
       (this.merchant.phone = this.$auth.user.phoneNo || ''),
       (this.merchant.address = this.$auth.user.address || '');
+      (this.merchant.category = this.$auth.user.category || []);
       this.editing = false;
     },
     async updateMerchant() {
-      const {storeName, accountName, accountNo, bankName, phone, address} = this.merchant
       try {
+        const {storeName, accountName, accountNo, bankName, phone, address, category } = this.merchant
+ 
         const response = await this.$axios.put(
           "/api/users/v1/merchants/",
-          {storeName, accountName, accountNo, bankName, phone, address}
+          { storeName, accountName, accountNo, bankName, phone, address, category: category.join() }
         );
 
         this.$auth.setUser(response.data.data);
@@ -643,7 +678,7 @@ import {
         errs.push(`'${image.type}' is not a supported format`);
       }
 
-      if (image.size > 150000) {
+      if (image.size > 300000) {
         errs.push(`'${image.name}' is too large, please pick a smaller image`);
       }
       return errs;
@@ -719,12 +754,12 @@ import {
     },
     async saveBanner() {
       const formdata = new FormData();
-      formdata.append("storeBanner", this.merchant.storeBanner.file);
+      formdata.append("banner", this.merchant.storeBanner.file);
 
       try {
         this.merchant.storeBanner.editing = true;
         const response = await this.$axios.post(
-          "/api/users/v1/customers/upload/",
+          "/api/users/v1/merchants/upload-banner/",
           formdata,
           {
             headers: {
