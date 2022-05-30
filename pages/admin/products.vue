@@ -1,4 +1,5 @@
 <template>
+  <div>
     <app-table :columns="columns" :data="data">
       <template #toolbar>
         <table-toolbar :title="title">
@@ -30,10 +31,135 @@
           <table-cell>{{
             new Date(product.createdAt).toLocaleDateString("en-US")
           }}</table-cell>
+          <table-cell v-if="hasPermission('view-users')">
+            <app-button
+              type="button"
+              variant="outlined"
+              size="small"
+              color="secondary"
+              @click="viewUser(row._id)"
+            >
+              view
+            </app-button>
+          </table-cell>
         </table-row>
       </template>
     </app-table>
-      
+
+     <transition name="fade">
+      <app-modal
+        v-if="isModalOpen"
+        :open="isModalOpen"
+        :close-modal="closeModal"
+      >
+        <template #header>
+          <div class="flex items-center flex-grow">
+            <user-avatar
+              :alt="customer.firstName"
+              :src="customer.avatar"
+              size="medium"
+            />
+            <h2 class="font-medium text-xl truncate ml-2">
+              {{ customer.firstName + ' ' + customer.lastName }}
+            </h2>
+          </div>
+        </template>
+        <template #content>
+          <div class="flex items-center my-4">
+            <p class="w-[calc(50%_-_16px)] truncate">
+              Orders: {{ getOrdersCount }}
+            </p>
+            <p class="w-[calc(50%_- 16px)] ml-8 truncate">
+              Wishlist: {{ getOrdersCount + getOrdersCount }}
+            </p>
+          </div>
+
+          <form class="mt-8" >
+            <text-input
+              v-model="input.firstName"
+              type="text"
+              class="min-w-[300px] !my-8"
+              name="storeName"
+              required
+            >
+              First Name
+            </text-input>
+            <text-input
+              v-model="input.lastName"
+              type="text"
+              class="min-w-[300px] !my-8"
+              name="name"
+              required
+            >
+              Last Name
+            </text-input>
+            <text-input
+              v-model="input.email"
+              type="email"
+              class="min-w-[300px] !my-8"
+              name="email"
+              required
+            >
+              Email
+            </text-input>
+            <text-input
+              v-model="input.phone"
+              type="text"
+              class="min-w-[300px] !my-8"
+              name="phone"
+              required
+            >
+              Phone
+            </text-input>
+            <text-input
+              v-model="input.address"
+              type="text"
+              class="min-w-[300px] !my-8"
+              name="address"
+              required
+            >
+              Address
+            </text-input>
+            <div class="flex items-center mt-8 gap-4">
+              <input
+                id="verified"
+                v-model="input.verified"
+                type="checkbox"
+                class=""
+              />
+              <label for="verified" class=""> Verified </label>
+            </div>
+            <div v-if="hasPermission('sanction-users')" class="flex items-center my-4 gap-4">
+              <input
+                id="suspended"
+                v-model="input.suspended"
+                type="checkbox"
+                class=""
+              />
+              <label for="suspended" class=""> Suspended </label>
+            </div>
+            <div class="flex justify-end">
+              <app-button
+                variant="contained"
+                color="success"
+                :disabled="loading"
+                type="submit"
+                class="pl-4 ml-3"
+              >
+                {{ loading ? "Submitting" : "Submit" }}
+                <loading-spinners
+                  v-if="loading"
+                  size="small"
+                  color="white"
+                  class="mx-4"
+                ></loading-spinners>
+              </app-button>
+            </div>
+          </form>
+        </template>
+      </app-modal>
+    </transition>
+      </div>
 </template>
 
 <script>
@@ -64,12 +190,33 @@ layout: "admin",
         "Quantity",
         "Date Created",
       ],
+      isModalOpen: false,
       data: {
         merchant: "Becker & Sons.",
       },
+      customer: null
     };
   },
   methods: {
+    viewUser(id) {
+      this.isModalOpen = true
+      this.customer = this.data.filter(user => user._id === id)[0]
+      this.input.firstName = this.customer.firstName;
+      this.input.lastName = this.customer.lastName;
+      this.input.email = this.customer.email;
+      this.input.phone = this.customer.phoneNo;
+      this.input.address = this.customer.address;
+      this.input.suspended = this.customer.isRestricted;
+      this.input.verified = this.customer.isVerified;
+    },
+    closeModal() {
+      this.customer = null
+      this.isModalOpen = false
+    },
+    hasPermission(permission) {
+      const adminPerms = this.$auth.user.permissions;
+      return adminPerms && adminPerms.includes(permission);
+    },
     async getMerchantDetails(id) {
       try {
       const response = await this.$axios.get(
