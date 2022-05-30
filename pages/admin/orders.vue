@@ -9,7 +9,7 @@
         >
         <div class="flex justify-between items-center mt-2 font-normal text-sm">
           <p>In progress</p>
-          <p>{{ordersInProgress.length}}</p>
+          <p>{{ ordersInProgress.length }}</p>
         </div>
       </div>
       <!-- <div class="mt-4 md:mt-0 rounded shadow-lg p-2">
@@ -27,7 +27,7 @@
         <p class="font-medium text-base">Dispatch</p>
         <span
           class="flex justify-center text-blue-400 mt-2 text-3xl font-semibold"
-          >{{ordersDispatched.length}}</span
+          >{{ ordersDispatched.length }}</span
         >
         <!-- <div class="flex justify-between items-center mt-2 font-normal text-sm">
           <p>This month</p>
@@ -38,7 +38,7 @@
         <p class="font-medium text-base">Delivered</p>
         <span
           class="flex justify-center text-blue-400 mt-2 text-3xl font-semibold"
-          >{{ordersDelivered.length}}</span
+          >{{ ordersDelivered.length }}</span
         >
         <!-- <div class="flex justify-between items-center mt-2 font-normal text-sm">
           <p>This month</p>
@@ -67,14 +67,27 @@
       </template>
 
       <template #tr-body>
-        <table-row v-for="order in orders" :key="order._id" class="truncate">
-          <table-cell>{{ order._id }}</table-cell>
-          <table-cell>{{ order.customerId }}</table-cell>
-          <table-cell>{{ order.total }}</table-cell>
-          <table-cell>{{ order.orderStatus }}</table-cell>
-          <table-cell>{{ order.orderDate }}</table-cell>
-        </table-row>
-      </template>
+        <div
+          v-if="loading"
+          class="flex items-center justify-center w-full mt-8"
+        >
+          <loading-spinners size="medium" color="secondary" />
+        </div>
+        <offline v-else-if="$nuxt.isOffline"></offline>
+        <h2 v-else-if="error" class="text-xl mt-8 w-full text-secondary-600">
+          Ooops, An has error occurred.
+        </h2>
+
+        <template v-else>
+          <table-row v-for="order in orders" :key="order._id" class="truncate">
+            <table-cell>{{ order._id }}</table-cell>
+            <table-cell>{{ order.customerId }}</table-cell>
+            <table-cell>{{ order.total }}</table-cell>
+            <table-cell>{{ order.orderStatus }}</table-cell>
+            <table-cell>{{ order.orderDate }}</table-cell>
+          </table-row>
+        </template></template
+      >
     </app-table>
   </div>
 </template>
@@ -112,6 +125,7 @@ export default {
         created: new Date("2021-02-06 07:37:07.658872"),
       },
       loading: false,
+      error: null,
       orders: [],
     };
   },
@@ -120,7 +134,9 @@ export default {
       return this.orders.filter((order) => order.deliveryStatus == "Delivered");
     },
     ordersDispatched() {
-      return this.orders.filter(order => order.deliveryStatus == "Dispatched")
+      return this.orders.filter(
+        (order) => order.deliveryStatus == "Dispatched"
+      );
     },
     ordersInProgress() {
       return this.orders.filter((order) => order.orderStatus == "Pending");
