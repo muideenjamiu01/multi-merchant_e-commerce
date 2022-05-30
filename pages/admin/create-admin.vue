@@ -74,6 +74,7 @@
                   id="email"
                   type="email"
                   class="border border-gray-200 text-sm focus:outline-primary-blue block w-full p-2.5"
+				  placeholder="data.email"
                 />
                 <small class="mt-2 text-gray-400 block">
                   The email of the new admin. An email would be sent to them to
@@ -207,11 +208,13 @@ export default {
 		 try{
 			 const response = await this.$axios.post('/api/users/v1/admins/complete', this.adminRegDetails)
 			 this.$toast.success(response.data.msg)
-		 } catch(e){
+		 } catch(error){
+			 this.error = error.response.data.msg
 			  this.$toast.error(error.response.data.msg)
 
 		 }
 		 this.adminRegDetails = ""
+		 this.$router.push("/admin/dashboard");
 	  },
     },
   };
