@@ -20,7 +20,7 @@
               <p class="capitalize">Size: {{ product.size }}</p>
               <p>Color:{{ product.color }}</p>
               <!-- <p  class="font-medium">Price:₦{{Number(product.price).toLocaleString() }}</p> -->
-              <p>Quantity:{{ product.quantity }}</p>
+              <!-- <p>Quantity:{{ product.quantity }}</p> -->
 
               <app-button
                 @click="removeFromWishlist(product._id)"

@@ -99,7 +99,8 @@
 
 <script>
 import BrandLogo from "@/components/svg/Logo";
-import NotificationIcon from "@/components/svg/Notifications.vue";
+import NotificationIcon from "@/components/svg/Notifications";
+
 export default {
   components: {
     "brand-logo": BrandLogo,
@@ -138,6 +139,13 @@ export default {
   computed: {
     user() {
       return this.$auth.user
+    },
+  },
+  methods: {
+    async logout() {
+      await this.$auth.logout();
+      window.localStorage.removeItem("ys.user_type");
+      this.$toast.success("Successfully Signed Out");
     },
   }
 };

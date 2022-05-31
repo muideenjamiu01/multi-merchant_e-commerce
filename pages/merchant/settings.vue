@@ -108,7 +108,7 @@
           <ValidationProvider
             v-slot="{ errors }"
             name="accountNo"
-            rules="required||alpha"
+            rules="required||digits:10"
             tag="div"
             class="my-8"
           >
