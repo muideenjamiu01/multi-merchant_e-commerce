@@ -103,6 +103,7 @@
               class="min-w-[300px] !my-8"
               name="storeName"
               required
+              disabled
             >
               First Name
             </text-input>
@@ -112,6 +113,7 @@
               class="min-w-[300px] !my-8"
               name="name"
               required
+              disabled
             >
               Last Name
             </text-input>
@@ -121,6 +123,7 @@
               class="min-w-[300px] !my-8"
               name="email"
               required
+              disabled
             >
               Email
             </text-input>
@@ -130,6 +133,7 @@
               class="min-w-[300px] !my-8"
               name="phone"
               required
+              disabled
             >
               Phone
             </text-input>
@@ -139,6 +143,7 @@
               class="min-w-[300px] !my-8"
               name="address"
               required
+              disabled
             >
               Address
             </text-input>
@@ -147,7 +152,7 @@
                 id="verified"
                 v-model="input.verified"
                 type="checkbox"
-                class=""
+                disabled
               />
               <label for="verified" class=""> Verified </label>
             </div>
@@ -156,11 +161,11 @@
                 id="suspended"
                 v-model="input.suspended"
                 type="checkbox"
-                class=""
+                disabled
               />
               <label for="suspended" class=""> Suspended </label>
             </div>
-            <div class="flex justify-end">
+            <!-- <div class="flex justify-end">
               <app-button
                 variant="contained"
                 color="success"
@@ -176,7 +181,7 @@
                   class="mx-4"
                 ></loading-spinners>
               </app-button>
-            </div>
+            </div> -->
           </form>
         </template>
       </app-modal>
@@ -208,7 +213,6 @@ export default {
         "Email",
         "Phone",
         "Status",
-        // "Last Seen",
         "Date Created",
       ],
       error: null,

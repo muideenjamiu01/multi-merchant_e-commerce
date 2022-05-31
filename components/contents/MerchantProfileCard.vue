@@ -17,35 +17,34 @@
     </div>
 
     <ul class="space-y-6 mt-6 pt-4 border-t">
-      <li class="">
-        <NuxtLink to="/merchant/dashboard" class="flex items-center space-x-5" active-class="text-primary-500">
-          <dashboard-icon />
-          <span class="text-xl capitalize text-inherit">
+      <li class="py-3 px-4">
+        <NuxtLink to="/merchant/dashboard" class="flex items-center space-x-5 hover:text-primary-600 font-medium" active-class="text-primary-600">
+          <dashboard-icon size="small" />
+          <span class="text-lg capitalize text-inherit">
             Dashboard
           </span>
         </NuxtLink>
       </li>
-      <li class="">
-        <NuxtLink to="/merchant/products" class="flex items-center space-x-5" active-class="text-primary-500">
-          <product-icon />
-          <span class="text-xl capitalize text-inherit">
+      <li class="py-3 px-4">
+        <NuxtLink to="/merchant/products" class="flex items-center space-x-5 hover:text-primary-600 font-medium" active-class="text-primary-600">
+          <product-icon size="small" />
+          <span class="text-lg capitalize text-inherit">
             Products
           </span>
         </NuxtLink>
       </li>
-      
-      <li class="">
-        <NuxtLink to="/merchant/withdrawals" class="flex items-center space-x-5" active-class="text-primary-500">
-          <withdrawal-icon />
-          <span class="text-xl capitalize text-inherit">
+      <li class="py-3 px-4">
+        <NuxtLink to="/merchant/withdrawals" class="flex items-center space-x-5 hover:text-primary-600 font-medium" active-class="text-primary-600">
+          <withdrawal-icon size="small" />
+          <span class="text-lg capitalize text-inherit">
             Withdrawals
           </span>
         </NuxtLink>
       </li>
-      <li class="">
-        <NuxtLink to="/merchant/settings" class="flex items-center space-x-5" active-class="text-primary-500">
-          <settings-icon />
-          <span class="text-xl capitalize text-inherit">
+      <li class="py-3 px-4">
+        <NuxtLink to="/merchant/settings" class="flex items-center space-x-5 hover:text-primary-600 font-medium" active-class="text-primary-600">
+          <settings-icon size="small" />
+          <span class="text-lg capitalize text-inherit">
             Settings
           </span>
         </NuxtLink>
