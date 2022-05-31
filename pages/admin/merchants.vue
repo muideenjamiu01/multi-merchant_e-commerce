@@ -115,7 +115,7 @@
                 :inline="true"
                 :star-size="18"
                 :increment="0.5"
-                :rating="getStarRating"
+                :rating="getStarRating()"
               />
             </div>
             <div class="flex items-center w-[calc(50%_-_16px)] ml-8 gap-4">
@@ -126,7 +126,7 @@
                 :inline="true"
                 :star-size="18"
                 :increment="0.5"
-                :rating="getStarRating"
+                :rating="getStarRating()"
               />
             </div>
           </div>
@@ -139,27 +139,29 @@
                 :inline="true"
                 :star-size="18"
                 :increment="0.5"
-                :rating="getStarRating"
+                :rating="getStarRating()"
               />
             </div>
           </div>
 
-          <form class="mt-8" @submit="">
+          <form class="mt-8">
             <text-input
               v-model="input.storeName"
               type="text"
               class="min-w-[300px] !my-8"
               name="storeName"
               required
+              disabled
             >
               Name of store
             </text-input>
             <text-input
-              v-model="input.accName"
+              v-model="input.accountName"
               type="text"
               class="min-w-[300px] !my-8"
               name="name"
               required
+              disabled
             >
               Merchant Name
             </text-input>
@@ -169,6 +171,7 @@
               class="min-w-[300px] !my-8"
               name="email"
               required
+              disabled
             >
               Email
             </text-input>
@@ -178,6 +181,7 @@
               class="min-w-[300px] !my-8"
               name="phone"
               required
+              disabled
             >
               Phone
             </text-input>
@@ -187,6 +191,7 @@
               class="min-w-[300px] !my-8"
               name="address"
               required
+              disabled
             >
               Address
             </text-input>
@@ -195,7 +200,7 @@
                 id="verified"
                 v-model="input.verified"
                 type="checkbox"
-                class=""
+                disabled
               />
               <label for="verified" class=""> Verified </label>
             </div>
@@ -205,10 +210,11 @@
                 v-model="input.suspended"
                 type="checkbox"
                 class=""
+                @change="handleSuspend"
               />
               <label for="suspended" class=""> Suspended </label>
             </div>
-            <div class="flex justify-end">
+            <!-- <div class="flex justify-end">
               <app-button
                 variant="contained"
                 color="success"
@@ -224,7 +230,7 @@
                   class="mx-4"
                 ></loading-spinners>
               </app-button>
-            </div>
+            </div> -->
           </form>
         </template>
       </app-modal>
@@ -278,6 +284,7 @@ export default {
     merchants() {
       return this.data.map((user) => ({
         _id: user._id,
+        avatar: user.avatar,
         storeName: user.storeName,
         accountName: user.accountName,
         email: user.email,
@@ -287,9 +294,6 @@ export default {
     },
     getProductsCount() {
       return Math.ceil(Math.random() * 150) + 10;
-    },
-    getStarRating() {
-      return (Math.floor(Math.random() * 10) + 1) / 2;
     },
   },
   async mounted() {
@@ -313,6 +317,9 @@ export default {
     }
   },
   methods: {
+    getStarRating() {
+      return (Math.floor(Math.random() * 10) + 1) / 2;
+    },
     viewUser(id) {
       this.isModalOpen = true;
       this.merchant = this.data.filter((user) => user._id === id)[0];
@@ -332,6 +339,31 @@ export default {
       const adminPerms = this.$auth.user.permissions
       return adminPerms && adminPerms.includes(permission);
     },
+    async handleSuspend() {
+      try {
+        let response
+
+        if (this.input.suspended) {
+          response = await this.$axios.post(
+            '/api/users/v1/admins/restrict/merchant',
+            { email: this.input.email },
+            { params: { type: 'temporary' } }
+          )
+        } else {
+          response = await this.$axios.post(
+            '/api/users/v1/admins/unban/merchant',
+            { email: this.input.email }
+          )
+        }
+
+        this.merchant = response.data.data
+        this.$toast.success(response.data.msg)
+      } catch(error) {
+        console.log(error)
+        this.input.suspended = this.merchant.isRestricted
+        this.$toast.error(error.response.data.msg)
+      }
+    }
   },
 };
 </script>
