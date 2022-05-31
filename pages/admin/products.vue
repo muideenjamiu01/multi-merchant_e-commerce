@@ -13,7 +13,7 @@
 
       <template #tr-head>
         <table-row>
-          <table-cell v-for="column in columns" :key="column" variant="th">
+          <table-cell v-for="column in columns" :key="column" variant="th" align='left'>
             {{ column }}
           </table-cell>
         </table-row>
@@ -37,7 +37,7 @@
               variant="outlined"
               size="small"
               color="secondary"
-              @click="viewUser(row._id)"
+              @click="viewUser(product._id)"
             >
               view
             </app-button>
@@ -54,29 +54,25 @@
       >
         <template #header>
           <div class="flex items-center flex-grow">
-            <user-avatar
-              :alt="customer.firstName"
-              :src="customer.avatar"
-              size="medium"
-            />
+            <!-- <img src="" alt=""> -->
             <h2 class="font-medium text-xl truncate ml-2">
-              {{ customer.firstName + ' ' + customer.lastName }}
+              {{ product.name }}
             </h2>
           </div>
         </template>
         <template #content>
           <div class="flex items-center my-4">
             <p class="w-[calc(50%_-_16px)] truncate">
-              Orders: {{ getOrdersCount }}
+              <!-- Orders: {{ getOrdersCount }} -->
             </p>
             <p class="w-[calc(50%_- 16px)] ml-8 truncate">
-              Wishlist: {{ getOrdersCount + getOrdersCount }}
+              <!-- Wishlist: {{ getOrdersCount + getOrdersCount }} -->
             </p>
           </div>
 
           <form class="mt-8" >
             <text-input
-              v-model="input.firstName"
+              v-model="product.name"
               type="text"
               class="min-w-[300px] !my-8"
               name="storeName"
@@ -85,7 +81,7 @@
               First Name
             </text-input>
             <text-input
-              v-model="input.lastName"
+              v-model="product.name"
               type="text"
               class="min-w-[300px] !my-8"
               name="name"
@@ -94,7 +90,7 @@
               Last Name
             </text-input>
             <text-input
-              v-model="input.email"
+              v-model="product.name"
               type="email"
               class="min-w-[300px] !my-8"
               name="email"
@@ -103,7 +99,7 @@
               Email
             </text-input>
             <text-input
-              v-model="input.phone"
+              v-model="product.name"
               type="text"
               class="min-w-[300px] !my-8"
               name="phone"
@@ -111,7 +107,7 @@
             >
               Phone
             </text-input>
-            <text-input
+            <!-- <text-input
               v-model="input.address"
               type="text"
               class="min-w-[300px] !my-8"
@@ -119,8 +115,8 @@
               required
             >
               Address
-            </text-input>
-            <div class="flex items-center mt-8 gap-4">
+            </text-input> -->
+            <!-- <div class="flex items-center mt-8 gap-4">
               <input
                 id="verified"
                 v-model="input.verified"
@@ -128,8 +124,8 @@
                 class=""
               />
               <label for="verified" class=""> Verified </label>
-            </div>
-            <div v-if="hasPermission('sanction-users')" class="flex items-center my-4 gap-4">
+            </div> -->
+            <!-- <div v-if="hasPermission('sanction-users')" class="flex items-center my-4 gap-4">
               <input
                 id="suspended"
                 v-model="input.suspended"
@@ -137,7 +133,7 @@
                 class=""
               />
               <label for="suspended" class=""> Suspended </label>
-            </div>
+            </div> -->
             <div class="flex justify-end">
               <app-button
                 variant="contained"
@@ -191,26 +187,30 @@ layout: "admin",
         "Date Created",
       ],
       isModalOpen: false,
-      data: {
-        merchant: "Becker & Sons.",
-      },
-      customer: null
+     
+      data: [],
+      product: null
     };
+  },
+   computed: {
+    products() {
+      return this.data.map(user => ({
+         _id: user._id,
+       
+      }))
+    },
+    getOrdersCount() {
+      return Math.ceil(Math.random() * 50) + 10;
+    }
   },
   methods: {
     viewUser(id) {
       this.isModalOpen = true
-      this.customer = this.data.filter(user => user._id === id)[0]
-      this.input.firstName = this.customer.firstName;
-      this.input.lastName = this.customer.lastName;
-      this.input.email = this.customer.email;
-      this.input.phone = this.customer.phoneNo;
-      this.input.address = this.customer.address;
-      this.input.suspended = this.customer.isRestricted;
-      this.input.verified = this.customer.isVerified;
+      this.product = this.data.filter(user => user._id === id)[0]
+    
     },
     closeModal() {
-      this.customer = null
+      this.productr = null
       this.isModalOpen = false
     },
     hasPermission(permission) {
@@ -220,7 +220,6 @@ layout: "admin",
     async getMerchantDetails(id) {
       try {
       const response = await this.$axios.get(
-        // "https://api-2445583927843.production.gw.apicast.io:443/api/users/v1/merchants/one/",
         `https://api-2445583927843.production.gw.apicast.io:443/api/users/v1/merchants/one/${id}`
       );
       console.log('merchantname', response.data.data.storeName);
