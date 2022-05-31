@@ -1,5 +1,5 @@
 <template>
-    <app-container maxWidth="md">
+    <app-container max-width="md">
     <main class="my-8">
       <h1 class="text-2xl font-bold text-primary-black capitalize mb-8">
         Your Wishlist
@@ -12,7 +12,14 @@
           An error occurred.
         </p>
       </div>
-      <ContentsWishlist v-for="product in wishlist" v-else :key="product._id" :product="product" />
+      <template v-else>
+        <div v-if="wishlist.length === 0" class="flex justify-center w-full mt-16">
+          <h4 class="font-medium text-xl text-secondary-500">
+            No items in your wishlist.
+          </h4>
+        </div>
+          <ContentsWishlist v-for="product in wishlist" v-else :key="product._id" :product="product" />
+      </template>
     </main>
   </app-container>
 </template>
@@ -30,7 +37,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch("wishlist/fetchWishlist");
-    console.log(this.wishlist)
   },
   methods: {
     ...mapActions("wishlist", ["fetchWishlist", "removeFromWishlist"]),

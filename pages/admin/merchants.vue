@@ -360,7 +360,7 @@ export default {
         this.$toast.success(response.data.msg)
       } catch(error) {
         console.log(error)
-        this.input.suspended = this.merchant.isRestricted
+        // this.input.suspended = this.merchant.isRestricted
         this.$toast.error(error.response.data.msg)
       }
     }
