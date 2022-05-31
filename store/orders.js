@@ -40,6 +40,7 @@ export const actions = {
 		let payload = {
 			customerId: rootState.auth.user._id,
 			customerEmail: rootState.auth.user.email,
+      name: rootState.auth.user.firstName + ' ' + rootState.auth.user.lastName,
 			products: rootState.cart.items.map((item) => ({
 			  id: item.product._id,
 			  name: item.product.name,

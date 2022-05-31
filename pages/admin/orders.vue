@@ -79,9 +79,9 @@
         </h2>
 
         <template v-else>
-          <table-row v-for="order in orders" :key="order._id" class="truncate">
+          <table-row v-for="order in orders" :key="order._id" class="truncate cursor-pointer">
             <table-cell>{{ order._id }}</table-cell>
-            <table-cell>{{ order.customerId }}</table-cell>
+            <table-cell>{{ order.name }}</table-cell>
             <table-cell>{{ order.total }}</table-cell>
             <table-cell>{{ order.orderStatus }}</table-cell>
             <table-cell>{{ order.orderDate }}</table-cell>
@@ -110,7 +110,7 @@ export default {
       title: "Orders",
       columns: [
         "Order ID",
-        "Customer ID",
+        "Customer Name",
         "Total Price",
         "Status",
         "Date Created",
