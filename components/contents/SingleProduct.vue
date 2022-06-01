@@ -21,7 +21,7 @@
             </div>
             <div class="flex mt-6">
               <p class="font-semibold text-lg">₦ {{Number(product.price).toLocaleString() }}</p>
-              <p class="text-primary-gray-light text-sm font-light ml-2.5">-23%</p>
+              <p class="text-primary-gray-light text-sm font-light ml-2.5"></p>
             </div>
             <app-button
               @click="addProductToCart(product)"
