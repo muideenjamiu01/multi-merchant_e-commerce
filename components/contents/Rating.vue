@@ -1,6 +1,6 @@
 <template>
     <div>
-        {{ratingLabel}}
+         <span class="font-medium"> {{ratingLabel}}:</span>
         <span 
             v-for="star in rating"
             :key="star" 
@@ -22,7 +22,7 @@
 <script>
     export default {
         props: {
-            rating: "",
+            rating: 0,
             ratingLabel: ""
             
         },
