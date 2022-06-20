@@ -69,7 +69,7 @@
           </div>
           <div v-else-if="errors" class="w-full my-4">
             <p class="text-lg text-secondary-600 text-center">
-              {{ errors }}
+              {{ errors}}
             </p>
           </div>
           <div v-else-if="$nuxt.isOffline" class="w-full my-4">

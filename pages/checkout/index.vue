@@ -1,6 +1,6 @@
 <template>
   <!-- <app-container maxWidth="lg"> -->
-	  <div class="box-border container mx-auto py-4 px-2">
+  <div class="box-border container mx-auto py-4 px-2">
     <div class="w-full md:flex gap-16 mt-6">
       <div class="md:w-2/3">
         <div>
@@ -10,7 +10,7 @@
             <hr class="mt-2" />
           </div>
         </div>
-       <div>
+        <div>
           <div class="md:flex justify-between gap-8 mt-4">
             <div class="md:md:w-1/2">
               <div class="flex">
@@ -42,7 +42,9 @@
             <section>
               <div class="flex justify-between items-center mt-6 hidden">
                 <span>Subtotal</span>
-                <span  class="font-semibold text-lg">₦ {{Number(totalPrice).toLocaleString()}}</span>
+                <span class="font-semibold text-lg"
+                  >₦ {{ Number(totalPrice).toLocaleString() }}</span
+                >
               </div>
               <div class="mt-6 flex justify-between border-b pb-2 hidden">
                 <p class="">Shipping Method</p>
@@ -93,7 +95,7 @@ export default {
       props: [],
       SelectedAddress: "",
       modalOpen: false,
-    //   shippingFee: "",
+      //   shippingFee: "",
     };
   },
   computed: {
@@ -129,7 +131,7 @@ export default {
     },
     initializePaystack() {
       const transId = this.orderId;
-	  console.log(this.orderId)
+      console.log(this.orderId);
       this.$paystack({
         key: "pk_test_2691da63d4da3f3e0839ba27151b097ef6019781", // Replace with your public key.
         email: this.$auth.user.email,
@@ -137,16 +139,12 @@ export default {
         ref: transId,
         currency: "NGN",
         callback: () => {
-          //   // Do something.
           let res = this.$axios.get(`/api/payments/verify/${transId}`);
           let data = res.data;
-          this.$router.push('/customer/orders')
+          this.$router.push("/customer/orders");
         },
         onClose: () => {
-          // Do something.
-          console.log("Payment Closed")
-		  ; 
-		  
+              console.log("Payment Closed");
         },
       });
     },
