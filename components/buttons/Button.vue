@@ -1,31 +1,20 @@
 <template>
-  <NuxtLink
-    role="button"
-    v-if="to"
-    :to="to"
-    :class="[
-      { 'w-full': fullWidth, [disabledStyle]: disabled },
-      baseStyles,
-      sizeStyles,
-      textTransform,
-      styles,
-    ]"
-  >
+  <NuxtLink role="button" v-if="to" :to="to" :class="[
+    { 'w-full': fullWidth, [disabledStyle]: disabled },
+    baseStyles,
+    sizeStyles,
+    textTransform,
+    styles,
+  ]">
     <slot></slot>
   </NuxtLink>
-  <button
-    type="button"
-    v-else
-    v-on="$listeners"
-    :disabled="disabled"
-    :class="[
-      { 'w-full': fullWidth, [disabledStyle]: disabled },
-      baseStyles,
-      sizeStyles,
-      textTransform,
-      styles,
-    ]"
-  >
+  <button type="button" v-else v-on="$listeners" :disabled="disabled" :class="[
+    { 'w-full': fullWidth, [disabledStyle]: disabled },
+    baseStyles,
+    sizeStyles,
+    textTransform,
+    styles,
+  ]">
     <slot></slot>
   </button>
 </template>
@@ -164,8 +153,8 @@ export default {
         this.variant === "outlined"
           ? outlinedBtnDisabled
           : this.variant === "contained"
-          ? containedBtnDisabled
-          : textBtnDisabled;
+            ? containedBtnDisabled
+            : textBtnDisabled;
       return `${disabledBtn} cursor-not-allowed opacity-40`;
     },
   },
